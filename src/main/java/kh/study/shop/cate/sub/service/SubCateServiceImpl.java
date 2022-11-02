@@ -4,7 +4,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-@Service("mainCateService")
+@Service("subCateService")
 public class SubCateServiceImpl implements SubCateService{
 	@Autowired
 	SqlSessionTemplate sqlSession;
