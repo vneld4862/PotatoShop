@@ -12,7 +12,7 @@ public class ItemController {
 	@GetMapping("/list")
 	public String list() {
 		
-		return "";
+		return "content/shop_main";
 		
 	}
 	

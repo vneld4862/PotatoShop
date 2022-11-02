@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorate="~{layout/base_layout}"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<th:block layout:fragment="css">
+	<link rel="stylesheet" th:href="@{}">
+</th:block>
+
+<div layout:fragment="content">
+<form th:action="@{/member/join}" method="post">
+	<input type="text" th:name="memberId">
+	<input type="text" th:name="memberPw">
+	<input type="text" th:name="memberName">
+	<input type="text" th:name="memberNickName">
+	<input type="text" th:name="memberAddr">
+	<input type="submit">
+</form>
+</div>
+
+</html>
