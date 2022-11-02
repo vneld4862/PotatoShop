@@ -1,5 +1,8 @@
 package kh.study.shop.admin.service;
 
-public class AdminServiceImpl {
+import org.springframework.stereotype.Service;
+
+@Service("adminService")
+public class AdminServiceImpl implements AdminService{
 
 }

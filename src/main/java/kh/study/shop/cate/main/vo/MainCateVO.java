@@ -1,5 +1,14 @@
 package kh.study.shop.cate.main.vo;
 
-public class MainCateVO {
+import groovy.transform.ToString;
+import lombok.Getter;
+import lombok.Setter;
 
+@ToString
+@Getter
+@Setter
+public class MainCateVO {
+	private String mainCateCode;
+	private String mainCateName;
+	private String cateStatus;
 }
