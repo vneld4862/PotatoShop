@@ -25,49 +25,49 @@
 				</div>
 			</div>
 		</div>
-		<div class="row">
-			
+		<div class="row d-flex justify-content-center">
+			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="width: 600px;height: 200px;">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="10000" >
+						<img src="/images/slide01.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>First slide label</h5>
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="2000">
+						<img src="/images/slide02.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Second slide label</h5>
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="/images/slide03.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+							<h5>Third slide label</h5>
+						</div>
+					</div>
+				</div>
+				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
+			</div>
 		</div>
 		<div class="row">인기 상품목록</div>
 		<div class="row">일반 상품목록?</div>
 		<div class="row">footer</div>
 	</div>
 	<script type="text/javascript" th:src="@{/js/shop_main.js}"></script>
-	<div class="section">
-				<input type="radio" name="slide" id="slide01" checked>
-				<input type="radio" name="slide" id="slide02">
-				<input type="radio" name="slide" id="slide03">
-				
-				<ul class="slidelist">
-					<li class="slideitem">
-						<div>
-							<label for="slide03" class="left"></label>
-							<label for="slide01" class="right"></label>
-							<a>
-								<img src="/images/slide01.jpg">
-							</a>
-						</div>
-					</li>
-					<li class="slideitem">
-						<div>
-							<label for="slide01" class="left"></label>
-							<label for="slide03" class="right"></label>
-							<a>
-								<img src="/images/slide02.jpg">
-							</a>
-						</div>
-					</li>
-					<li class="slideitem">
-						<div>
-							<label for="slide02" class="left"></label>
-							<label for="slide01" class="right"></label>
-							<a>
-								<img src="/images/slide03.jpg">
-							</a>
-						</div>
-					</li>
-				</ul>
-			</div>
+	<div class="section"></div>
 </div>
 
 </html>
