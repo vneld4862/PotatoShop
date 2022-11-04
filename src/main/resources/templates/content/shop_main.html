@@ -5,11 +5,69 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{}">
+	<link rel="stylesheet" th:href="@{shop_main.css}">
 </th:block>
 
 <div layout:fragment="content">
-main
+	<div class="col">
+		<div class="row">
+			<nav class="navbar navbar-white bg-white">
+				<div class="container-fluid">
+					<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+						<span class="navbar-toggler-icon"></span>
+					</button>
+				</div>
+			</nav>
+			<div class="collapse" id="navbarToggleExternalContent">
+				<div class="p-4">
+					<h5 class="h4">카테고리</h5>
+					<span class="text-muted">cate_list</span>
+				</div>
+			</div>
+		</div>
+		<div class="row">
+			
+		</div>
+		<div class="row">인기 상품목록</div>
+		<div class="row">일반 상품목록?</div>
+		<div class="row">footer</div>
+	</div>
+	<script type="text/javascript" th:src="@{/js/shop_main.js}"></script>
+	<div class="section">
+				<input type="radio" name="slide" id="slide01" checked>
+				<input type="radio" name="slide" id="slide02">
+				<input type="radio" name="slide" id="slide03">
+				
+				<ul class="slidelist">
+					<li class="slideitem">
+						<div>
+							<label for="slide03" class="left"></label>
+							<label for="slide01" class="right"></label>
+							<a>
+								<img src="/images/slide01.jpg">
+							</a>
+						</div>
+					</li>
+					<li class="slideitem">
+						<div>
+							<label for="slide01" class="left"></label>
+							<label for="slide03" class="right"></label>
+							<a>
+								<img src="/images/slide02.jpg">
+							</a>
+						</div>
+					</li>
+					<li class="slideitem">
+						<div>
+							<label for="slide02" class="left"></label>
+							<label for="slide01" class="right"></label>
+							<a>
+								<img src="/images/slide03.jpg">
+							</a>
+						</div>
+					</li>
+				</ul>
+			</div>
 </div>
 
 </html>
