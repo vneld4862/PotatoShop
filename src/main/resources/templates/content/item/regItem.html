@@ -58,6 +58,16 @@
 						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">
 						</div>
 						
+						<div class="mb-3">
+						  <label for="exampleFormControlInput1" class="form-label">거래지역</label>
+						  <input onclick="searchTrAddr();" type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래지역을 입력해주세요" name="tradeAddr" value="">
+						</div>
+					
+						
+						<div class="mb-3">
+						  <input onclick="searchTrAddr();" type="button" class="form-control" value="Search">
+						</div>
+						
 						
 						<button type="submit" class="btn btn-primary">등록</button>
                      </div>
@@ -75,8 +85,7 @@
 
 
 
-
-
-
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 외부에서 자바스크립트를 로드해온다. -->  
+<script type="text/javascript" th:src="@{/js/item/regItem.js}"></script>
 </div>
 </html>
