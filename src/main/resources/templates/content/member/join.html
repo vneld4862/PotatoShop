@@ -9,28 +9,71 @@
 </th:block>
 
 <div layout:fragment="content">
-<form th:action="@{/member/join}" method="post">
-	<div>
-		<div>
-			<input type="text" th:name="memberId">
+	<div class="row justify-content-md-center">
+		<div class="col-6">
+			<form class="row g-3" th:action="@{/member/join}" method="post" th:object="${memberVO}">
+				<div class="col-12">
+					<label for="memberId" class="form-label">ID</label> 
+					<input type="text" class="form-control" th:field="*{memberId}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div>
+				</div>
+				<div class="col-12">
+					<label for="memberPw" class="form-label">PASSWORD</label>
+					<input type="password" class="form-control" th:field="*{memberPw}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
+				</div>
+				<div class="col-12">
+					<label for="memberName" class="form-label">NAME</label> 
+					<input type="text" class="form-control" th:field="*{memberName}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></div>
+				</div>
+				<div class="col-12">
+					<label for="memberNickName" class="form-label">NICK NAME</label> 
+					<input type="text" class="form-control" th:field="*{memberNickName}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}"></div>
+				</div>
+				<div class="col-9">
+					<label for="memberAddr" class="form-label">ADDRESS</label>
+					<input onclick="searchAddr();" type="text" class="form-control" th:field="*{memberAddr}" readonly>
+					<div class="hasError" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></div>
+				</div>
+				<div class="col-3">
+					<label for="" class="form-label">&nbsp;</label>
+					<input onclick="searchAddr();" type="button"
+						class="btn btn-warning form-control" value="Search">
+				</div>
+				<div class="col-12">
+					<input type="text" class="form-control" th:field="*{addrDetail}">
+				</div>
+				<div class="col-4">
+					<label for="" class="form-label">TELL</label> 
+					<select id="" class="form-select" name="memberTells">
+						<option selected value="010">010</option>
+						<option value="011">011</option>
+					</select>
+				</div>
+				<div class="col-4">
+					<label for="" class="form-label">&nbsp;</label> 
+					<input type="text" class="form-control" id="memberTell" name="memberTells">
+				</div>
+				<div class="col-4">
+					<label for="" class="form-label">&nbsp;</label> 
+					<input type="text" class="form-control" id="" name="memberTells">
+					<div class="hasError" th:if="${#fields.hasErrors('memberTell')}" th:errors="*{memberTell}"></div>
+				</div>
+				<div class="col-12">
+					<label for="memberName" class="form-label">EMAIL</label> 
+					<input type="email" class="form-control" th:field="*{memberEmail}">
+				</div>
+			
+				<div class="col-12 d-grid gap-2">
+					<button type="submit" class="btn btn-warning">JOIN</button>
+				</div>
+			 </form>
 		</div>
-		<div>
-			<input type="text" th:name="memberPw">
-		</div>
-		<div>
-			<input type="text" th:name="memberName">
-		</div>
-		<div>
-			<input type="text" th:name="memberNickName">
-		</div>
-		<div>
-			<input type="text" th:name="memberAddr">
-		</div>
-		<div>
-			<input type="submit">
-		</div>
-	</div>
-</form>
+    </div> 
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>    
+<script type="text/javascript" th:src="@{/js/member/join.js}"></script>        
 </div>
 
 </html>

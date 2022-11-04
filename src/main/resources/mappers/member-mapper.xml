@@ -3,10 +3,52 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="memberMapper">
-	<!-- <resultMap type="kh.study.team2.shop.member.vo.MemberVO" id="member">
-	</resultMap> -->
-</mapper>
+	<resultMap type="kh.study.team2.shop.member.vo.MemberVO" id="member">
+		<id column="MEMBER_ID" property="memberId"/>
+		<result column="MEMBER_PW" property="memberPw"/>
+		<result column="MEMBER_NAME" property="memberName"/>
+		<result column="MEMBER_NICKNAME" property="memberNickName"/>
+		<result column="MEMBER_TELL" property="memberTell"/>
+		<result column="MEMBER_ADDR" property="memberAddr"/>
+		<result column="ADDR_DETAIL" property="addrDetail"/>
+		<result column="MEMBER_EMAIL" property="memberEmail"/>
+		<result column="MEMBER_ROLE" property="memberRole"/>
+		<result column="MEMBER_STATUS" property="memberStatus"/>
+		<result column="REG_DATE" property="regDate"/>
+	</resultMap> 
 
+<insert id="join">
+INSERT INTO SHOP_MEMBER(
+			 MEMBER_ID
+		    , MEMBER_PW
+			, MEMBER_NAME
+			, MEMBER_NICKNAME
+			, MEMBER_ADDR
+			, ADDR_DETAIL
+			, MEMBER_TELL
+			, MEMBER_EMAIL
+	    ) VALUES(
+		     #{memberId}
+		    , #{memberPw}
+		    , #{memberName}
+		    , #{memberNickName}
+		    , #{memberAddr}
+		    , #{addrDetail}
+		    , #{memberTell}
+		    , #{memberEmail}
+	    )
+</insert>
+
+<select id="login" resultMap="member">
+SELECT MEMBER_ID
+	, MEMBER_PW
+	, MEMBER_ROLE
+FROM SHOP_MEMBER
+WHERE MEMBER_ID = #{memberId}
+AND MEMBER_PW = #{memberPw}
+</select>
+
+</mapper>
 
 
 
