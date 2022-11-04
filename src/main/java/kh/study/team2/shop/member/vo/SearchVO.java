@@ -8,6 +8,6 @@ import lombok.Setter;
 @Getter
 @Setter
 public class SearchVO {
-	private String searchKeyword;
+	private String searchType;
 	private String searchValue;
 }
