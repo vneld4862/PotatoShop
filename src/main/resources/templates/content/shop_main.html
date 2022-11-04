@@ -5,64 +5,83 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{shop_main.css}">
+	<link rel="stylesheet" href="/css/shop_main.css">
 </th:block>
 
 <div layout:fragment="content">
 	<div class="col">
-		<div class="row d-flex justify-content-center">
-			<div class="dropdown">
-				<button class="btn btn-white" type="button"	data-bs-toggle="dropdown" aria-expanded="false">
-						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16" style="width: 35;height: 35;">
-						  <path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
-						</svg>
-					</button>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" href="#">cateList</a></li>
-				</ul>
+		<div class="row d-flex justify-content-start">
+			<div class="dropdown" >
+				<span class="dropdown" style="width: 55px;">
+					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-justify" viewBox="0 0 16 16" style="width: 50px;height: 50px;">
+						<path fill-rule="evenodd" d="M2 12.5a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5zm0-3a.5.5 0 0 1 .5-.5h11a.5.5 0 0 1 0 1h-11a.5.5 0 0 1-.5-.5z"/>
+					</svg>
+				</span>
+				<div class="dropdown-content dropdown">
+					<div class="mainCateNameList" th:each="mainCate:${mainCateList}" style="margin: 0 auto;margin-bottom: 0.7rem;">
+						<a href="#">[[${mainCate.mainCateName}]]</a>
+					</div>
+				</div>
+				
+				</div>
 			</div>
-			<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="width: 100%;height: 200px;">
+			<div id="carouselExampleDark" class="carousel carousel-dark slide"
+				data-bs-ride="carousel" style="width: 100%; height: 200px;">
 				<div class="carousel-indicators">
-					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+					<button type="button" data-bs-target="#carouselExampleDark"
+						data-bs-slide-to="0" class="active" aria-current="true"
+						aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleDark"
+						data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleDark"
+						data-bs-slide-to="2" aria-label="Slide 3"></button>
 				</div>
 				<div class="carousel-inner">
-					<div class="carousel-item active" data-bs-interval="10000" >
-						<img src="/images/slide01.jpg" class="d-block w-100" alt="..." height="200px;">
+					<div class="carousel-item active" data-bs-interval="10000">
+						<img src="/images/slide01.jpg" class="d-block w-100" alt="..."
+							height="200px;">
 						<div class="carousel-caption d-none d-md-block">
 							<h5>First slide label</h5>
 						</div>
 					</div>
 					<div class="carousel-item" data-bs-interval="2000">
-						<img src="/images/slide02.jpg" class="d-block w-100" alt="..." height="200px;">
+						<img src="/images/slide02.jpg" class="d-block w-100" alt="..."
+							height="200px;">
 						<div class="carousel-caption d-none d-md-block">
 							<h5>Second slide label</h5>
 						</div>
 					</div>
 					<div class="carousel-item">
-						<img src="/images/slide03.jpg" class="d-block w-100" alt="..." height="200px;">
+						<img src="/images/slide03.jpg" class="d-block w-100" alt="..."
+							height="200px;">
 						<div class="carousel-caption d-none d-md-block">
 							<h5>Third slide label</h5>
 						</div>
 					</div>
 				</div>
-				<button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="prev">
+				<button class="carousel-control-prev" type="button"data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="z-index: 0;">
 					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Previous</span>
 				</button>
-				<button class="carousel-control-next" type="button" data-bs-target="#carouselExampleDark" data-bs-slide="next">
+				<button class="carousel-control-next" type="button"	data-bs-target="#carouselExampleDark" data-bs-slide="next" style="z-index: 0;">
 					<span class="carousel-control-next-icon" aria-hidden="true"></span>
 					<span class="visually-hidden">Next</span>
 				</button>
+			</div>
+		</div>
+		<div class="banner">
+			<div class="border like_it text-center">찜한상품</div>
+			<div class="border clickItem">
+				<div class="text-center">최근본상품</div>
+				<div>AAAAAA</div>
 			</div>
 		</div>
 		<div class="row">인기 상품목록</div>
 		<div class="row">일반 상품목록?</div>
 		<div class="row">footer</div>
 	</div>
+	
 	<script type="text/javascript" th:src="@{/js/shop_main.js}"></script>
-	<div class="section"></div>
 </div>
 
 </html>
