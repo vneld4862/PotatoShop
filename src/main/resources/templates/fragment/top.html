@@ -5,11 +5,15 @@
 
 <div th:fragment="top">
 	<div class="row">
-		<div class="col-7 text-center">
-			<h2>감자마켓</h2>
+		<div class="col-9 text-center">
+			<h2 style="display: inline-block;">감자마켓</h2> <img alt="..." src="/images/bannerPT.PNG" width="50px;">
+			
 		</div>
-		<div class="col-5">
-			<div>로그인/회원가입</div>
+		<div class="col-3 text-center">
+			<div>
+				<a th:href="@{/member/login}">로그인</a>/
+				<a th:href="@{/member/join}">회원가입</a>
+			</div>
 			<div>
 			<a th:href="@{/item/regItemForm}">판매하기</a>
 			/내상점/번개톡

@@ -10,12 +10,26 @@
 
 <div layout:fragment="content">
 <form th:action="@{/member/join}" method="post">
-	<input type="text" th:name="memberId">
-	<input type="text" th:name="memberPw">
-	<input type="text" th:name="memberName">
-	<input type="text" th:name="memberNickName">
-	<input type="text" th:name="memberAddr">
-	<input type="submit">
+	<div>
+		<div>
+			<input type="text" th:name="memberId">
+		</div>
+		<div>
+			<input type="text" th:name="memberPw">
+		</div>
+		<div>
+			<input type="text" th:name="memberName">
+		</div>
+		<div>
+			<input type="text" th:name="memberNickName">
+		</div>
+		<div>
+			<input type="text" th:name="memberAddr">
+		</div>
+		<div>
+			<input type="submit">
+		</div>
+	</div>
 </form>
 </div>
 
