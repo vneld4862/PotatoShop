@@ -5,8 +5,13 @@
 <mapper namespace="itemMapper">
 	<!-- <resultMap type="kh.study.team2.shop.member.vo.MemberVO" id="member">
 	
-	
 	</resultMap> -->
+	
+	<select id="getNextItemCode" resultType="String">
+		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) +1, 3, 0) 
+		FROM SHOP_ITEM
+	</select>
+	
 	<insert id="insertItem">
 		INSERT INTO SHOP_ITEM (
 			  ITEM_CODE
@@ -17,7 +22,7 @@
 			  , ITEM_STATUS
 			  , TRADE_TYPE
 		  ) VALUES (
-		      (SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) +1, 3, 0) FROM SHOP_ITEM)
+		  	  #{itemCode}	
 		      , #{itemName}
 		      , #{itemPrice}
 		      , #{itemStock}
@@ -27,6 +32,24 @@
 		)
 	</insert>
 	
+	<insert id="insertImgs">
+		INSERT INTO ITEM_IMG (
+				IMG_CODE
+				, ORIGIN_NAME
+				, ATTACHED_NAME
+				, IS_MAIN
+				, ITEM_CODE
+			) 
+	<foreach collection="imgList" item="img" separator="UNION ALL" index="i">
+		SELECT (SELECT 'IMG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 4))), 0) +1 + #{i}, 3, 0) FROM ITEM_IMG)
+				, #{img.originName}
+				, #{img.attachedName}
+				, #{img.isMain}
+				, #{img.itemCode}
+		FROM DUAL
+	</foreach>	
+		
+	</insert>
 	
 </mapper>
 

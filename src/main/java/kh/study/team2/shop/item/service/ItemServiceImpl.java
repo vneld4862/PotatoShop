@@ -15,6 +15,13 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void insertItem(ItemVO itemVO) {
 		sqlSession.insert("itemMapper.insertItem", itemVO);
+		sqlSession.insert("itemMapper.insertImgs", itemVO);
+	}
+
+	@Override
+	public String getNextItemCode() {
+	 return	sqlSession.selectOne("itemMapper.getNextItemCode");
+		
 	}
 
 }

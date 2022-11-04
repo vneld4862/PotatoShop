@@ -1,6 +1,8 @@
 package kh.study.team2.shop.item.vo;
 
 
+import java.util.List;
+
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -19,5 +21,11 @@ public class ItemVO {
    private String tradeType;
    private String tradeAddr;
    private int viewCnt;
+   private String mainCateCode;
+   private String subCateCode;
+   private String detailCateCode;
+   private List<ImgVO> imgList;
+   
+   
  
 }
