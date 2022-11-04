@@ -12,20 +12,18 @@
 	<div class="col">
 		<div class="col-10">
 			<div class="text-end">
-				<select style="width: 10%; height: 30px;">
-					<option>닉네임</option>
-					<option>아이디</option>
+				<select name="searchKeyword" style="width: 10%; height: 30px;">
+					<option th:value="${memberNickName}" th:selected="${memberVO.searchKeyword == 'memberNickName'}">닉네임</option>
+					<option th:value="${memberId}" th:selected="${memberVO.searchKeyword == 'memberId'}">아이디</option>
 				</select>
-				<input type="text" name="" value="" class="" style="width: 20%">
+				<input type="text" name="searchValue" th:value="${memberVO.searchValue}" class="" style="width: 20%">
 				<input type="button" value="검색" class="btn btn-success" style="width: 5%">
 			</div>
 			<div class="text-start">
-				<select class="mb-3" style="width: 10%; height: 30px;">
+				<select class="mb-3 text-center" style="width: 15%; height: 30px;">
 					<option>전체</option>
-					<option></option>
-					<!-- <option th:each=""
-						th:text=""
-						th:value=""></option> -->
+					<option>활동중인회원</option>
+					<option>탈퇴한회원</option>
 				</select>
 			</div>
 		</div>

@@ -10,7 +10,7 @@ import lombok.Setter;
 @ToString
 @Getter
 @Setter
-public class MemberVO {
+public class MemberVO extends SearchVO {
 	@NotBlank(message = "아이디는 필수입력입니다.")
 	 private String memberId;
 	@NotBlank(message = "비밀번호는 필수입력입니다.")
