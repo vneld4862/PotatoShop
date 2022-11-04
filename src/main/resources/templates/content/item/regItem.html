@@ -12,27 +12,35 @@
 <form th:action="@{/item/regItem}" method="post">
 <div class="mb-3">
   <label for="formFileMultiple" class="form-label">이미지 등록</label>
-  <input class="form-control" type="file" id="formFileMultiple" multiple>
+  <!-- <input class="form-control" type="file" id="formFileMultiple" multiple> -->
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">상품명</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요">
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요" name="itemName" value="">
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">카테고리 임시</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^">
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" >
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">상품가격</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요">
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value="">
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">상품설명</label>
-  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요">
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요" name="itemComment" value="">
 </div>
 <div class="mb-3">
   <label for="exampleFormControlInput1" class="form-label">상품수량</label>
-  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1">
+  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1" name="itemStock" value="1">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">상품상태</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value="">
+</div>
+<div class="mb-3">
+  <label for="exampleFormControlInput1" class="form-label">거래방법</label>
+  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">
 </div>
 
 <button type="submit" class="btn btn-primary">등록</button>
