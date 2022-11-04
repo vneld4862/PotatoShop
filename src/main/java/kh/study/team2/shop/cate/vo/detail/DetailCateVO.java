@@ -1,4 +1,4 @@
-package kh.study.team2.shop.cate.sub.vo;
+package kh.study.team2.shop.cate.vo.detail;
 
 import groovy.transform.ToString;
 import lombok.Getter;
@@ -7,8 +7,8 @@ import lombok.Setter;
 @ToString
 @Getter
 @Setter
-public class SubCateVO {
+public class DetailCateVO {
+	private String etailCateCode;
+	private String detailCateName;
 	private String subCateCode;
-	private String subCateName;
-	private String mainCateCode;
 }

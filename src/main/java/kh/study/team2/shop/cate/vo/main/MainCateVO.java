@@ -1,4 +1,4 @@
-package kh.study.team2.shop.cate.main.vo;
+package kh.study.team2.shop.cate.vo.main;
 
 import groovy.transform.ToString;
 import lombok.Getter;

@@ -5,11 +5,13 @@ import java.util.List;
 import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
@@ -20,10 +22,12 @@ import kh.study.team2.shop.item.vo.ItemVO;
 public class ItemController {
 	@Resource(name="itemService")
 	private ItemService itemService;
+	@Resource(name = "cateService")
+	private CateService cateService;
 	
 	@GetMapping("/list")
-	public String list() {
-		
+	public String list(Model model) {
+		model.addAttribute("mainCateList",cateService.mainCateList());
 		return "content/shop_main";
 		
 	}

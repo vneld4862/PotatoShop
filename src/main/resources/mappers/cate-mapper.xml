@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="cateMapper">
+	<resultMap type="kh.study.team2.shop.cate.vo.main.MainCateVO" id="mainCate">
+		<id column="MAIN_CATE_CODE" property="mainCateCode"/>
+		<result column="MAIN_CATE_NAME" property="mainCateName"/>
+		<result column="CATE_STATUS" property="cateStatus"/>
+	</resultMap>
+	<resultMap type="kh.study.team2.shop.cate.vo.sub.SubCateVO" id="subCate">
+		<id column="SUB_CATE_CODE" property="subCateCode"/>
+		<result column="SUB_CATE_NAME" property="subCateName"/>
+		<result column="MAIN_CATE_CODE" property="mainCateCode"/>
+	</resultMap>
+	<resultMap type="kh.study.team2.shop.cate.vo.detail.DetailCateVO" id="detailCate">
+		<id column="DEATIL_CATE_CODE" property="detailCateCode"/>
+		<result column="DETAIL_CATE_NAME" property="detailCateName"/>
+		<result column="SUB_CATE_CDE" property="subCateCode"/>
+	</resultMap>
+	
+	<select id="mainCateList" resultMap="mainCate">
+		SELECT MAIN_CATE_CODE
+			,MAIN_CATE_NAME
+		FROM MAIN_CATE
+		WHERE CATE_STATUS='USE'
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
