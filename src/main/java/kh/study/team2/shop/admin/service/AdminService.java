@@ -7,5 +7,5 @@ import kh.study.team2.shop.member.vo.MemberVO;
 public interface AdminService {
 	
 	//회원 목록 조회
-	List<MemberVO> selectMemberList();
+	List<MemberVO> selectMemberList(MemberVO memberVO);
 }

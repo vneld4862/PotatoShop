@@ -22,8 +22,8 @@ public class AdminController {
 		System.out.println("searchType = " + memberVO.getSearchType());
 		System.out.println("searchValue = " + memberVO.getSearchValue());
 		
-		
-		model.addAttribute("memberList", adminService.selectMemberList());
+		//회원 목록 조회
+		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
 		
 		return "content/admin/member_manage";
 	}

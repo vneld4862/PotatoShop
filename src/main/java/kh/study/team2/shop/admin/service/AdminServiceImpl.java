@@ -14,8 +14,8 @@ public class AdminServiceImpl implements AdminService{
 	private SqlSessionTemplate sqlSession;
 
 	@Override
-	public List<MemberVO> selectMemberList() {
-		return sqlSession.selectList("adminMapper.selectMemberList");
+	public List<MemberVO> selectMemberList(MemberVO memberVO) {
+		return sqlSession.selectList("adminMapper.selectMemberList", memberVO);
 	}
 	
 }
