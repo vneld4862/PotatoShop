@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="sellMapper">
+	<resultMap type="kh.study.team2.shop.sell.vo.SellVO" id="sell">
+		<id column="SELL_CODE" property="sellCode"/>
+		<result column="ITEM_CODE" property="itemCode"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="SELL_DATE" property="sellDate"/>
+		<result column="TOTAL_PRICE" property="totalPrice"/>
+		<result column="BUY_REPLACE" property="buyReplace"/>
+	</resultMap>
+	
+	<select id="bestSaleItem" resultMap="sell">
+		SELECT (SELECT ITEM_NAME 
+			FROM SHOP_ITEM 
+			WHERE ITEM_CODE=SELL_INFO.ITEM_CODE) ITEM_NAME
+		    ,COUNT(ITEM_CODE)
+		    ,DENSE_RANK() OVER (ORDER BY COUNT(ITEM_CODE) DESC) RANK 
+	   	FROM SELL_INFO 
+	   	GROUP BY ITEM_CODE
+	   	ORDER BY COUNT(ITEM_CODE)
+	</select>
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

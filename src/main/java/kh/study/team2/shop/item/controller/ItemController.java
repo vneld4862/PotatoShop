@@ -16,6 +16,7 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.sell.service.SellService;
 
 @Controller
 @RequestMapping("/item")
@@ -24,6 +25,8 @@ public class ItemController {
 	private ItemService itemService;
 	@Resource(name = "cateService")
 	private CateService cateService;
+	@Resource(name = "sellService")
+	private SellService sellService;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
