@@ -65,7 +65,7 @@ public class ItemController {
 		//insert쿼리 실행
 		System.out.println(itemVO);
 		itemService.insertItem(itemVO);
-		return "content/item/itemList";
+		return "redirect:/item/list";
 	}
 	
 }

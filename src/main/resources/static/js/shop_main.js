@@ -9,3 +9,4 @@ $(window).scroll(function(){
 	const newPostion=currentTop+bannerTop;
 	$('.banner').stop().animate({top:newPostion+'px'},300);
 });
+
