@@ -4,7 +4,10 @@ import javax.annotation.Resource;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.study.team2.shop.admin.service.AdminService;
 import kh.study.team2.shop.member.vo.MemberVO;
@@ -16,6 +19,12 @@ public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
 	
+	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
+	@ModelAttribute
+	public void test(@RequestParam(defaultValue = "1") String menu, Model model) {
+		model.addAttribute("menu", menu);
+	}
+	
 	//회원관리 페이지 이동
 	@RequestMapping("/memberManage")
 	public String memberManage(Model model, MemberVO memberVO) {
@@ -26,6 +35,20 @@ public class AdminController {
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
 		
 		return "content/admin/member_manage";
+	}
+	
+	//매출관리 페이지 이동
+	@GetMapping("/sellManage")
+	public String sellManage() {
+		
+		return "content/admin/sell_manage";
+	}
+	
+	//판매현황 페이지 이동
+	@GetMapping("/sellStatus")
+	public String sellStatus() {
+		
+		return "content/admin/sell_status";
 	}
 
 }

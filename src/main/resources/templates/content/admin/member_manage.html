@@ -4,13 +4,8 @@
    layout:decorate="~{layout/admin_layout}">
 
 <div layout:fragment ="content">
-	<style>
-	
-	
-	</style>
-	
-	<div class="col">
-		<div class="col-10">
+	<div class="col-10" style="margin: 0 auto;">
+		<div class="col">
 			<div class="text-end">
 				<form th:action="@{/admin/memberManage}" method="post">
 					<select name="searchType" style="width: 10%; height: 30px;">
@@ -21,16 +16,19 @@
 					<input type="submit" value="검색" class="btn btn-success" style="width: 5%">
 				</form>
 			</div>
-			<div class="text-start">
-				<select class="mb-3 text-center" style="width: 15%; height: 30px;">
+		</div>
+		<div class="col">
+			<div class="col mb-3 text-center">
+				<h4>MEMBER LIST</h4>
+			</div>
+			<div class="col text-start">
+				<select class="mb-3 text-start" style="width: 15%; height: 30px;">
 					<option>전체</option>
 					<option>활동중인회원</option>
 					<option>탈퇴한회원</option>
 				</select>
 			</div>
-		</div>
-		<div class="col">
-			<div class="col-10" style="padding-right: 15px;">
+			<div class="col" style="padding-right: 15px;">
 				<table class="table text-center">
 					<colgroup>
 						<col width="10%">
@@ -51,7 +49,7 @@
 				</table>
 			</div>
 
-			<div class="col-10">
+			<div class="col">
 				<div class="row" style="height: 300px; overflow-y: scroll;">
 					<table class="table text-center">
 						<colgroup>
@@ -81,10 +79,72 @@
 				</div>
 			</div>
 		</div>
-		<div class="col">
-			<div class="col-10">상세정보</div>
-			<div class="col-10">감자마켓 Q&A</div>
-			<div class="col-10">상점 Q&A</div>		
+		
+		
+		<div class="col mt-3">
+			<div class="col mb-3 text-center">
+				<h4>회원 상세 정보</h4>
+			</div>
+			
+			<div class="col">
+				<table class="table text-center">
+					<colgroup>
+						<col width="15%">
+						<col width="20%">
+						<col width="*%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">이름</th>
+							<th scope="col">연락처</th>
+							<th scope="col">주소</th>
+							<th scope="col">이메일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr th:each="member : ${memberList}">
+							<td th:text="${member.memberName}"></td>
+							<td th:text="${member.memberTell}"></td>
+							<td>[[${member.memberAddr}]] [[${member.addrDetail}]]</td>
+							<td th:text="${member.memberEmail}"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			
+			<div>
+				<감자마켓 Q&A>
+			</div>
+			
+			<div class="col">
+				<table class="table text-center">
+					<colgroup>
+						<col width="10%">
+						<col width="*">
+						<col width="30%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">No</th>
+							<th scope="col">제목</th>
+							<th scope="col">작성일</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td>1</td>
+							<td></td>
+							<td></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+				
+			<div>
+				<상점 Q&A>
+			</div>
+			
 		</div>
 	</div>
 	
