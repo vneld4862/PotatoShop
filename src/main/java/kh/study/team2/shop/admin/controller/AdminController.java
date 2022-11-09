@@ -40,7 +40,7 @@ public class AdminController {
 	
 	//내 상점 페이지 이동 //MemberController 건드리는 사람 없을 때 옮기기
 	@GetMapping("/myMarket")
-	public String myMarket(Model model, String memberId) {
+	public String myMarket() {
 		
 		//adminService.selectMemberDetail(memberId);
 		
