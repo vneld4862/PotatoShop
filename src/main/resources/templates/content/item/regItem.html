@@ -7,71 +7,146 @@
  <div class="container">
 	<div class="row">
 		<div class="col-12">
-		   <div class="row">
-			  <div class="col-6">
+		   <div class="row text-center">
+			  <div class="col-12">
 			  		<h2>Product Registration</h2>
 					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data">
-					   <div class="align-middle">
-						<div class="mb-3">
-						  <label for="formFileMultiple" class="form-label">이미지 등록</label>
+						<div class="row">
+							<div class="col">
+							   <div class="mb-3">
+							     <table>
+							       <tr>
+							       	  <td>상품등록</td>
+							       	  <td>상품관리</td>
+							       	  <td>구매/판매내역</td>
+							       </tr>
+							   </table>
+							   </div>
+						  	   <div>
+								  <table class="table">
+									<thead>
+										<tr>
+											<th scope="col">기본정보</th>
+											<th scope="col">
+											  <div>
+												
+											  </div>
+											  *필수항목
+											</th>
+										</tr>
+									</thead>
+									<tbody>
+										<tr>
+											<th scope="row">상품이미지*</th>
+											<td>
+											   <div class="input-group flex-nowrap mb-3">
+										    <span class="input-group-text" id="addon-wrapping">Main Images</span>
+											<input type="file" class="form-control" name="mainImg">
+										</div>
+									 	<div class="input-group flex-nowrap mb-3">
+										    <span class="input-group-text" id="addon-wrapping">Sub Images</span>
+											<input type="file" class="form-control" name="subImgs" multiple>
+										</div> 
+											</td>
+										</tr>
+										<tr>
+										  <th scope="row">상품명*</th>
+										  <td>
+							              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요" name="itemName" value="">
+											
+										  </td>
+										</tr>
+										<tr>
+											<th scope="row">카테고리*</th>
+											<td>
+						 					   <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" >
+											
+											</td>
+										</tr>
+										<tr>
+										  <th scope="row">상품가격*</th>
+										  <td>
+								          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value="">
+										
+										  </td>
+										</tr>
+										<tr>
+											<th scope="row">상품설명*</th>
+											<td>
+										      <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요" name="itemComment" value="">
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">상품수량</th>
+											<td>
+												<input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1" name="itemStock" value="1">
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">상품상태*</th>
+											<td>
+											<div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="itemStatus" id="inlineRadio1"
+																value="중고"> <label class="form-check-label"
+																for="inlineRadio1">중고</label>
+											  </div>
+										      <div class="form-check form-check-inline">
+											 	<input class="form-check-input" type="radio"
+													name="itemStatus" id="inlineRadio2"
+													value="새상품"> <label class="form-check-label"
+													for="inlineRadio2">새상품</label>
+											  </div>
+											    <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value=""> -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">거래방법*</th>
+											<td>
+											  <div class="form-check form-check-inline">
+															<input class="form-check-input" type="radio"
+																name="tradeType" id="inlineRadio3"
+																value="직거래"> <label class="form-check-label"
+																for="inlineRadio1">직거래</label>
+											  </div>
+										      <div class="form-check form-check-inline">
+											 	<input class="form-check-input" type="radio"
+													name="tradeType" id="inlineRadio4"
+													value="택배"> <label class="form-check-label"
+													for="inlineRadio2">택배</label>
+											  </div>
+												 <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">  -->
+											</td>
+										</tr>
+										<tr>
+											<th scope="row">거래주소*</th>
+											<td>
+											   <div class="mb-3">
+                    							 <input onclick="searchTrAddr();" type="text" class="form-control" 
+                    							   id="tradeAddr" placeholder="거래지역을 입력해주세요" 
+                    							   name="tradeAddr" value="">
+                  							  </div>
+               
+                  
+              							      <div class="mb-3">
+                    							<input onclick="searchTrAddr();" type="button" class="form-control" value="Search">
+                  							  </div>
+											</td>
+										</tr>
+									  </tbody>
+								   </table>
+						  	   </div>
 						  
-						  <!-- <img th:src="..." class="img-thumbnail" alt="..." width="200px;" height="200px;"> -->
 						  
-						  <!-- <input class="form-control" type="file" id="formFileMultiple" multiple> -->
-						  <!-- <input type="file" accept="image/jpg, image/jpeg, image/png" multiple=""> -->
+						  
+						  
+						  
+							   
+							</div>
 						</div>
-						<div class="input-group flex-nowrap mb-3">
-												    <span class="input-group-text" id="addon-wrapping">Main Images</span>
-													<input type="file" class="form-control" name="mainImg">
-												</div>
-											 	<div class="input-group flex-nowrap mb-3">
-												    <span class="input-group-text" id="addon-wrapping">Sub Images</span>
-													<input type="file" class="form-control" name="subImgs" multiple>
-												</div> 
-						
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">상품명</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요" name="itemName" value="">
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">카테고리 임시</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" >
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">상품가격</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="숫자만 입력해주세요." name="itemPrice" value="">
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">상품설명</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요" name="itemComment" value="">
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">상품수량</label>
-						  <input type="number" class="form-control" id="exampleFormControlInput1" placeholder="1" name="itemStock" value="1">
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">상품상태</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value="">
-						</div>
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">거래방법</label>
-						  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">
-						</div>
-						
-						<div class="mb-3">
-						  <label for="exampleFormControlInput1" class="form-label">거래지역</label>
-						  <input onclick="searchTrAddr();" type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래지역을 입력해주세요" name="tradeAddr" value="">
-						</div>
-					
-						
-						<div class="mb-3">
-						  <input onclick="searchTrAddr();" type="button" class="form-control" value="Search">
-						</div>
-						
-						
 						<button type="submit" class="btn btn-primary">등록</button>
-                     </div>
 					</form>
+
 			  		
 			  </div>
 			</div>
@@ -85,7 +160,9 @@
 
 
 
-<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script><!-- 외부에서 자바스크립트를 로드해온다. -->  
-<script type="text/javascript" th:src="@{/js/item/regItem.js}"></script>
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" th:src="@{/js/item/regItem.js}"></script><!-- 타임리프에서 경로나 페이지이동은 @{ }로 작성해준다.   -->
+
 </div>
 </html>
