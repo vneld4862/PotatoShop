@@ -17,7 +17,7 @@
 				</form>
 			</div>
 		</div>
-		<div class="col">
+		<div class="col mb-3">
 			<div class="col mb-3 text-center">
 				<h4>MEMBER LIST</h4>
 			</div>
@@ -81,71 +81,73 @@
 		</div>
 		
 		
-		<div class="col mt-3">
-			<div class="col mb-3 text-center">
-				<h4>회원 상세 정보</h4>
-			</div>
-			
+		
+		<div class="row mt-3">
 			<div class="col">
-				<table class="table text-center">
-					<colgroup>
-						<col width="15%">
-						<col width="20%">
-						<col width="*%">
-						<col width="20%">
-					</colgroup>
-					<thead>
+				<div class="row">
+					<div class="mb-3">
+						<회원 상세 정보>
+					</div>
+					<table class="table text-center">
 						<tr>
-							<th scope="col">이름</th>
-							<th scope="col">연락처</th>
-							<th scope="col">주소</th>
-							<th scope="col">이메일</th>
+							<td>이름</td>
+							<td>주소</td>
 						</tr>
-					</thead>
-					<tbody>
 						<tr th:each="member : ${memberList}">
 							<td th:text="${member.memberName}"></td>
-							<td th:text="${member.memberTell}"></td>
 							<td>[[${member.memberAddr}]] [[${member.addrDetail}]]</td>
+						</tr>
+						<tr>
+							<td>연락처</td>
+							<td>이메일</td>
+						</tr>
+						<tr th:each="member : ${memberList}">
+							<td th:text="${member.memberTell}"></td>
 							<td th:text="${member.memberEmail}"></td>
 						</tr>
-					</tbody>
-				</table>
-			</div>
-			
-			<div>
-				<감자마켓 Q&A>
+					</table>
+				</div>
 			</div>
 			
 			<div class="col">
-				<table class="table text-center">
-					<colgroup>
-						<col width="10%">
-						<col width="*">
-						<col width="30%">
-					</colgroup>
-					<thead>
-						<tr>
-							<th scope="col">No</th>
-							<th scope="col">제목</th>
-							<th scope="col">작성일</th>
-						</tr>
-					</thead>
-					<tbody>
-						<tr>
-							<td>1</td>
-							<td></td>
-							<td></td>
-						</tr>
-					</tbody>
-				</table>
+				<div class="row">
+					<div class="mb-3">
+						<감자마켓 Q&A>
+					</div>
+					
+					<div class="col">
+						<table class="table text-center">
+							<colgroup>
+								<col width="10%">
+								<col width="*">
+								<col width="30%">
+							</colgroup>
+							<thead>
+								<tr>
+									<th scope="col">No</th>
+									<th scope="col">제목</th>
+									<th scope="col">작성일</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td></td>
+									<td></td>
+								</tr>
+							</tbody>
+						</table>
+					</div>
+				</div>
+				<div class="row">
+					<div class="mb-3">
+						<상점 Q&A>
+					</div>
+				</div>
 			</div>
-				
-			<div>
-				<상점 Q&A>
-			</div>
-			
 		</div>
+		
+
 	</div>
 	
 	<!-- <script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script> -->

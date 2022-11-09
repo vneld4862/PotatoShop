@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	layout:decorate="~{layout/base_layout}">
+
+<!-- <th:block layout:fragment="css">
+      <link rel="stylesheet" th:href="@{}">
+</th:block> -->	
+
+<div layout:fragment="content">
+	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
+		<div>
+			<!-- 내 정보 -->
+			<div class="col mt-3 mb-3">
+					<h4><회원 닉네임>님의 상점</h4>
+			</div>
+			<div class="col mt-3">
+				<div class="row">
+					<div class="col">
+						<div class="col"><br><br>프로필 사진<br><br></div>
+						<div class="col">닉네임</div>
+						<div class="col">
+							<button class="btn btn-success" style="width: 30%">프로필 수정</button>
+						</div>
+					</div>
+					<div class="col text-start">
+						<div class="row">
+							<div class="col-6">[등급]</div>
+							<div class="col-6">[상점오픈일]</div>
+							<div class="col-6">[상점방문수]</div>
+							<div class="col-6">[판매횟수]</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<br>
+		<br>
+		<br>
+
+		<div>상점 Q&A</div>
+		<div>상점후기</div>
+		<!-- 탭 누르면 아코디언 형식으로 나오게 -->
+		<div>위시리스트</div>
+		
+		<!-- 본인만 보이는 탭 -->
+		<div>다른 상점에 남긴 Q&A</div>
+		<div>구매내역</div>	
+	</div>
+</div>
+
+</html>

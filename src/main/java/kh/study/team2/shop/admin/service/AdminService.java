@@ -8,4 +8,7 @@ public interface AdminService {
 	
 	//회원 목록 조회
 	List<MemberVO> selectMemberList(MemberVO memberVO);
+	
+	//회원 정보 상세 조회
+	MemberVO selectMemberDetail(String memberId);
 }

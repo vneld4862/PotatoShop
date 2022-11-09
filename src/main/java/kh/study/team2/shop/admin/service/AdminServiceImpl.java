@@ -17,5 +17,10 @@ public class AdminServiceImpl implements AdminService{
 	public List<MemberVO> selectMemberList(MemberVO memberVO) {
 		return sqlSession.selectList("adminMapper.selectMemberList", memberVO);
 	}
+
+	@Override
+	public MemberVO selectMemberDetail(String memberId) {
+		return sqlSession.selectOne("adminMapper.selectMemberDetail", memberId);
+	}
 	
 }

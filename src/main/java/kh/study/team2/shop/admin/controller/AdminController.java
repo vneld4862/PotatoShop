@@ -25,16 +25,26 @@ public class AdminController {
 		model.addAttribute("menu", menu);
 	}
 	
+	
 	//회원관리 페이지 이동
 	@RequestMapping("/memberManage")
 	public String memberManage(Model model, MemberVO memberVO) {
-		System.out.println("searchType = " + memberVO.getSearchType());
-		System.out.println("searchValue = " + memberVO.getSearchValue());
+		//System.out.println("searchType = " + memberVO.getSearchType());
+		//System.out.println("searchValue = " + memberVO.getSearchValue());
 		
 		//회원 목록 조회
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
 		
 		return "content/admin/member_manage";
+	}
+	
+	//내 상점 페이지 이동 //MemberController 건드리는 사람 없을 때 옮기기
+	@GetMapping("/myMarket")
+	public String myMarket(Model model, String memberId) {
+		
+		//adminService.selectMemberDetail(memberId);
+		
+		return "content/member/my_market"; 
 	}
 	
 	//매출관리 페이지 이동
