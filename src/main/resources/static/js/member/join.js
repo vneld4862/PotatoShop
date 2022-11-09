@@ -34,26 +34,7 @@ function check(){
 
 //join 버튼 클릭시 진행
 function join(){
-	const member_id = $("#memberId").val();
 	
-	//ajax start
-	$.ajax({
-		url: '/member/checkDuplId', //요청경로
-		type: 'post',
-		data: {'memberId':member_id}, //필요한 데이터
-		success: function(result) {
-			if(result){
-				alert('로그인 성공');
-			}
-			else{
-				alert('로그인 실패');
-			}
-		},
-		error: function() {
-			alert('로그인 실패');
-		}
-	});
-	//ajax end
 	
 }
 

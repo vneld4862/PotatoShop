@@ -6,6 +6,7 @@ import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +29,11 @@ public class MemberContorller {
 	}
 	
 	@PostMapping("/join")
-	public String doJoin(MemberVO memberVO, Model model){
+	public String doJoin(@Valid MemberVO memberVO,BindingResult bindingResult, Model model){
+		if(bindingResult.hasErrors()) {
+			System.out.println("error!!");
+			return "content/join";
+		}
 		memberService.join(memberVO);
 		return "redirect:/item/list";
 		
@@ -49,6 +54,7 @@ public class MemberContorller {
 		return loginInfo == null ? false : true;
 	}
 	
+	//중복확인
 	@ResponseBody
 	@PostMapping("/checkDuplId")
 	public boolean ID_Check(String memberId) {
