@@ -2,6 +2,7 @@ package kh.study.team2.shop.member.controller;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpSession;
+import javax.validation.Valid;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -51,7 +52,7 @@ public class MemberContorller {
 	// 아이디 중복 체크
 	@ResponseBody
 	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(MemberVO memberVO) throws Exception {
+	public int idChk(MemberVO memberVO) {
 		int result = memberService.idChk(memberVO);
 		return result;
 	}
