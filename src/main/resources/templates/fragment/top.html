@@ -4,7 +4,7 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div th:fragment="top">
-	<div class="row">
+	<div class="row mt-3 mb-3">
 		<div class="col-12 text-center">
 			<a th:href="@{/item/list}">
 				<h2 style="display: inline-block;">감자마켓</h2><img alt="..." src="/images/bannerPT.png" width="50px;">
@@ -16,8 +16,9 @@
 					<a th:href="@{/member/join}">회원가입</a>
 				</div>
 				<div>
-				<a th:href="@{/item/regItemForm}">판매하기</a>
-				/내상점/번개톡
+					<a th:href="@{/item/regItemForm}">판매하기</a>/
+					<a th:href="@{/admin/myMarket}">내 상점</a>/
+					번개톡
 				</div>
 				
 			</div>
