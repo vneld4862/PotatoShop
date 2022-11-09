@@ -9,10 +9,14 @@
 	<div class="row justify-content-md-center">
 		<div class="col-6">
 			<form class="row g-3" th:action="@{/member/join}" method="post" th:object="${memberVO}">
-				<div class="col-12">
+				<div class="col-9">
 					<label for="memberId" class="form-label">ID</label> 
 					<input type="text" class="form-control" th:field="*{memberId}">
 					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div>
+				</div>
+				<div class="col-3">
+					<label for="" class="form-label">&nbsp;</label>
+					<button class="idChk form-control" type="button" id="idChk" onclick="fn_idChk();" value="N">중복확인</button>
 				</div>
 				<div class="col-12">
 					<label for="memberPw" class="form-label">PASSWORD</label>
