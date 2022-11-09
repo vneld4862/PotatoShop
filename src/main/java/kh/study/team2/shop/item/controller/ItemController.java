@@ -79,6 +79,14 @@ public class ItemController {
 	}
 	
 	
+	//상품상세보기 페이지로 이동
+	@GetMapping("/itemDetail")
+	public String itemDetail() {
+		
+		return"content/item/item_detail";
+	}
+	
+	
 	
 	
 	

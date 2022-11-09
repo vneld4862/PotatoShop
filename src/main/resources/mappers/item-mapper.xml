@@ -84,6 +84,10 @@
 		AND IS_MAIN='Y'
 		ORDER BY ITEM.ITEM_CODE DESC
 	</select>
+	
+	<select id="select">
+		SELECT ITEM
+	</select>
 </mapper>
 
 
