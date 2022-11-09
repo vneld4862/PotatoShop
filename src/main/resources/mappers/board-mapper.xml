@@ -25,5 +25,16 @@
 		)
 	</insert>
 	
+	<select id="selectBoardList" resultMap="board">
+		SELECT BOARD_NUM
+			, BOARD_TITLE
+			, BOARD_CONTENT
+			, MEMBER_ID
+			, REG_DATE
+		FROM QNA_BOARD
+		WHERE MEMBER_ID = #{memberId}
+		ORDER BY BOARD_NUM
+	</select>
+	
 	
 </mapper>

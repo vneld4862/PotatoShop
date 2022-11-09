@@ -10,6 +10,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.study.team2.shop.admin.service.AdminService;
+import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 
@@ -18,6 +20,9 @@ import kh.study.team2.shop.member.vo.MemberVO;
 public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
+	
+	@Resource(name="boardService")
+	private BoardService boardService;
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
 	@ModelAttribute
@@ -40,9 +45,12 @@ public class AdminController {
 	
 	//내 상점 페이지 이동 //MemberController 건드리는 사람 없을 때 옮기기
 	@GetMapping("/myMarket")
-	public String myMarket() {
+	public String myMarket(Model model, BoardVO boardVO) {
 		
 		//adminService.selectMemberDetail(memberId);
+		boardVO.setMemberId("test"); //임시로
+		//내 상점 Q&A 목록 조회
+		model.addAttribute("boardList", boardService.selectBoardList(boardVO));
 		
 		return "content/member/my_market"; 
 	}

@@ -13,4 +13,5 @@ public class BoardVO{
 	private String boardContent;
 	private String memberId;
 	private String regDate;
+	private String shopOwner;
 }

@@ -10,7 +10,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.board.vo.BoardVO;
-import kh.study.team2.shop.member.vo.MemberVO;
 
 @Controller
 @RequestMapping("/board")
@@ -26,10 +25,12 @@ public class BoardController {
 	
 	//글 작성
 	@PostMapping("/regMarketBoard")
-	public String regMarketBoard(BoardVO boardVO, MemberVO memberVO) {
-		boardVO.setMemberId(memberVO.getMemberId());
+	public String regMarketBoard(BoardVO boardVO) {
+		boardVO.setMemberId("test"); //임시로
 		
 		boardService.insertBoard(boardVO);
 		return "content/member/my_market";
 	}
+	
+	//
 }

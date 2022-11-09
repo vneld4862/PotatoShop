@@ -63,12 +63,19 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr>
-							<td></td>
-							<td></td>
-							<td></td>
-							<td></td>
-						</tr>
+						<th:block th:if="${#lists.size(boardList) == 0}">
+							<tr>
+								<td colspan="4">작성된 Q&A가 없습니다.</td>
+							</tr>
+						</th:block>
+						<th:block th:unless="${#lists.size(boardList) == 0}">
+							<tr th:each="board : ${boardList}">
+								<td th:text="${boardStat.count}"></td>
+								<td th:text="${board.boardTitle}"></td>
+								<td th:text="${board.memberId}"></td>
+								<td th:text="${board.regDate}"></td>
+							</tr>
+						</th:block>
 					</tbody>
 				</table>
 			</div>
