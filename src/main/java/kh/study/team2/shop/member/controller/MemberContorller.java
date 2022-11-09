@@ -49,30 +49,18 @@ public class MemberContorller {
 		return loginInfo == null ? false : true;
 	}
 	
-	// 아이디 중복 체크
 	@ResponseBody
-	@RequestMapping(value="/idChk", method = RequestMethod.POST)
-	public int idChk(MemberVO memberVO) {
-		int result = memberService.idChk(memberVO);
-		return result;
+	@PostMapping("/checkDuplId")
+	public boolean ID_Check(String memberId) {
+		System.out.println(memberId);
+		String result = memberService.idChk(memberId);
+		
+		//id 사용 가능
+		if(result == null) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
-
-//	// 회원가입 post
-//	@RequestMapping(value = "/register", method = RequestMethod.POST)
-//	public String postRegister(MemberVO memberVO) throws Exception {
-//		logger.info("post register");
-//		int result = memberService.idChk(memberVO);
-//		try {
-//			if(result == 1) {
-//				return "/member/join";
-//			}else if(result == 0) {
-//				memberService.join(memberVO);
-//			}
-//			// 요기에서~ 입력된 아이디가 존재한다면 -> 다시 회원가입 페이지로 돌아가기 
-//			// 존재하지 않는다면 -> register
-//		} catch (Exception e) {
-//			throw new RuntimeException();
-//		}
-//		return "redirect:/member/login";
-//	}
 }

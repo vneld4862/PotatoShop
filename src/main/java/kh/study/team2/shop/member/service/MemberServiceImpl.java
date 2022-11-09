@@ -20,8 +20,8 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.login", memberVO);
 	}
 	@Override
-	public int idChk(MemberVO memberVO) {
-		return sqlSession.selectOne("memberMapper.idChk", memberVO);
+	public String idChk(String memberId) {
+		return sqlSession.selectOne("memberMapper.idChk", memberId);
 	}
 	
 	

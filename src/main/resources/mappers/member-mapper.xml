@@ -51,8 +51,9 @@ AND MEMBER_PW = #{memberPw}
 </select>
 
 <!-- 아이디 중복 체크 -->
-<select id="idChk" resultType="int">
-	SELECT COUNT(*) FROM SHOP_MEMBER
+<select id="idChk" resultType="String">
+	SELECT MEMBER_ID
+	FROM SHOP_MEMBER
 	WHERE MEMBER_ID = #{memberId}
 </select>
 
