@@ -14,5 +14,4 @@ public class SellVO {
     private String sellDate; 
     private int totalPrice;  
     private String buyReplace; 
-	
 }

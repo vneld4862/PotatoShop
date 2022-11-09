@@ -1,5 +1,7 @@
 package kh.study.team2.shop.item.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,6 +24,11 @@ public class ItemServiceImpl implements ItemService {
 	public String getNextItemCode() {
 	 return	sqlSession.selectOne("itemMapper.getNextItemCode");
 		
+	}
+
+	@Override
+	public List<ItemVO> selectItemList() {
+		return sqlSession.selectList("itemMapper.selectItemList");
 	}
 
 }

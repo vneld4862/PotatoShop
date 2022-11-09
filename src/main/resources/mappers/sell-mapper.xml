@@ -12,16 +12,6 @@
 		<result column="BUY_REPLACE" property="buyReplace"/>
 	</resultMap>
 	
-	<select id="bestSaleItem" resultMap="sell">
-		SELECT (SELECT ITEM_NAME 
-			FROM SHOP_ITEM 
-			WHERE ITEM_CODE=SELL_INFO.ITEM_CODE) ITEM_NAME
-		    ,COUNT(ITEM_CODE)
-		    ,DENSE_RANK() OVER (ORDER BY COUNT(ITEM_CODE) DESC) RANK 
-	   	FROM SELL_INFO 
-	   	GROUP BY ITEM_CODE
-	   	ORDER BY COUNT(ITEM_CODE)
-	</select>
 </mapper>
 
 

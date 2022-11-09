@@ -3,9 +3,30 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="itemMapper">
-	<!-- <resultMap type="kh.study.team2.shop.member.vo.MemberVO" id="member">
+	<resultMap type="kh.study.team2.shop.item.vo.ItemVO" id="item">
+		<id column="ITEM_CODE" property="itemCode"/>
+		<result column="ITEM_NAME" property="itemName"/>
+		<result column="ITEM_PRICE" property="itemPrice"/>
+		<result column="REG_DATE" property="regDate"/>
+		<result column="ITEM_COMMENT" property="itemComment"/>
+		<result column="ITEM_STOCK" property="itemStock"/>
+		<result column="ITEM_STATUS" property="itemStatus"/>
+		<result column="TRADE_TYPE" property="tradeType"/>
+		<result column="TRADE_ADDR" property="tradeAddr"/>
+		<result column="VIEW_CNT" property="viewCnt"/>
+		<result column="MAIN_CATE_CODE" property="mainCateCode"/>
+		<result column="SUB_CATE_CODE" property="subCateCode"/>
+		<result column="DETAIL_CATE_CODE" property="detailCateCode"/>
+		<collection property="imgList" resultMap="img"/>
+	</resultMap>
 	
-	</resultMap> -->
+	<resultMap type="kh.study.team2.shop.item.vo.ImgVO" id="img">
+		<id column="IMG_CODE" property="imgCode"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="ATTACHED_NAME" property="attachedName"/>
+		<result column="IS_MAIN" property="isMain"/>
+		<result column="ITEM_CODE" property="itemCode"/>
+	</resultMap>
 	
 	<select id="getNextItemCode" resultType="String">
 		SELECT 'ITEM_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(ITEM_CODE, 6))), 0) +1, 3, 0) 
@@ -51,6 +72,16 @@
 		
 	</insert>
 	
+	<select id="selectItemList" resultMap="item">
+		SELECT ITEM.ITEM_CODE
+			,ITEM_NAME
+			,ITEM_PRICE
+			,ATTACHED_NAME
+		FROM SHOP_ITEM ITEM,ITEM_IMG IMG
+		WHERE ITEM.ITEM_CODE=IMG.ITEM_CODE
+		AND IS_MAIN='Y'
+		ORDER BY ITEM.ITEM_CODE DESC
+	</select>
 </mapper>
 
 
