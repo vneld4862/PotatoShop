@@ -4,9 +4,6 @@
 	layout:decorate="~{layout/base_layout}"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
-<th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{}">
-</th:block>
 
 <div layout:fragment="content">
 	<div class="row justify-content-md-center">
@@ -28,7 +25,7 @@
 					<div class="hasError" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></div>
 				</div>
 				<div class="col-12">
-					<label for="memberNickName" class="form-label">NICK NAME</label> 
+					<label for="memberNickName" class="form-label">NICKNAME</label> 
 					<input type="text" class="form-control" th:field="*{memberNickName}">
 					<div class="hasError" th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}"></div>
 				</div>
