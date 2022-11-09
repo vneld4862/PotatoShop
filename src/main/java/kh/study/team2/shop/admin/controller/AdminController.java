@@ -61,4 +61,10 @@ public class AdminController {
 		return "content/admin/sell_status";
 	}
 
+	//상품관리 페이지 이동
+	@GetMapping("/itemManage")
+	public String itemManage() {
+		
+		return "content/admin/item_manage";
+	}
 }

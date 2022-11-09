@@ -3,10 +3,45 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layout/base_layout}">
-	
+
 
 <div layout:fragment="content">
-글쓰기 페이지
-</div>
 
+	<div class="container mt-3">
+		<form th:action="@{/board/regMarketBoard}" method="post">
+			<div class="col">
+				<div class="mt-3">
+					<input type="text" class="form-control" name="boardTitle" placeholder="제목을 입력하세요">
+				</div>
+				<div class="mt-3">
+					<textarea class="summernote" name="boardContent" placeholder="내용을 입력하세요"></textarea>
+				</div>
+				<div class="text-end mt-3">
+					<input type="submit" value="등록" class="btn btn-success">
+				</div>
+			</div>
+		</form>
+	</div>
+
+	<script type="text/javascript">	
+		$('.summernote').summernote({
+			height: 400,
+			lang: "ko-KR",
+			toolbar: [
+					// [groupName, [list of button]]
+					['fontname', ['fontname']],
+					['fontsize', ['fontsize']],
+					['style', ['bold', 'italic', 'underline','strikethrough', 'clear']],
+					['color', ['forecolor','color']],
+					['table', ['table']],
+					['para', ['ul', 'ol', 'paragraph']],
+					['height', ['height']],
+					['insert',['picture','link','video']],
+					['view', ['fullscreen', 'help']]
+ 			],
+			fontNames: ['Arial', 'Arial Black', 'Comic Sans MS', 'Courier New','맑은 고딕','궁서','굴림체','굴림','돋움체','바탕체'],
+			fontSizes: ['8','9','10','11','12','14','16','18','20','22','24','28','30','36','50','72']
+		  });
+	</script>
+</div>
 </html>

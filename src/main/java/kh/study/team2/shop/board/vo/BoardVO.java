@@ -8,5 +8,9 @@ import lombok.Setter;
 @Getter
 @Setter
 public class BoardVO{
-
+	private int boardNum;
+	private String boardTitle;
+	private String boardContent;
+	private String memberId;
+	private String regDate;
 }
