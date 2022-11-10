@@ -61,10 +61,10 @@
 											<td>
 						 					  <!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
 											    <select name="mainCateCode" class="form-select form-select-sm" aria-label=".form-select-sm example">
-											    	<option selected>카테고리</option>
-											    	<option value="의류">의류</option>
-											    	<option value="신발">신발</option>
-											    	<option value="도서">도서</option>
+											       <option selected >카테고리</option>
+											         <th:block th:each="mainCate:${mainCateList}">
+											    	   <option value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
+											         </th:block>
 											    </select>
 											</td>
 										</tr>
@@ -155,7 +155,7 @@
 					<!-- 임시버튼 (상품목록 조회 테스트)-->
 					<div class="text-end">
 						<button type="button" th:onclick="|location.href='@{/item/memberItemList}'|">
-						상품목록
+						임시상품목록
 					   </button>
 					</div>
 					

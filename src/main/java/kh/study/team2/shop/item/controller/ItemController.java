@@ -13,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import groovyjarjarantlr4.v4.parse.GrammarTreeVisitor.mode_return;
 import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
@@ -41,8 +42,10 @@ public class ItemController {
 	
 	//판매하기 버튼 클릭 -> 상품등록 페이지로 이동
 	@GetMapping("/regItemForm")
-	public String regItemForm() {
-		
+	public String regItemForm(Model model) {
+		List<MainCateVO> mainCateList = cateService.mainCateList();
+		System.out.println(mainCateList);
+		model.addAttribute("mainCateList", mainCateList);
 		return "content/item/regItem";
 	}
 	
@@ -92,6 +95,7 @@ public class ItemController {
 		return"content/item/item_detail";
 	}
 	
+	//찜버튼 클릭 시 실행 
 	
 	
 	

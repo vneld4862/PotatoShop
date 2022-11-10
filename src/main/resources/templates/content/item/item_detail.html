@@ -10,7 +10,6 @@
 
 
 <div layout:fragment ="content">
-<h3>상품 상세 정보 페이지~</h3>
 <div class="container">
   <div class="row text-center">
 	 <div class="col-12">
@@ -20,10 +19,10 @@
 	    </div>
 	    <div class="row mb-3">
 	      
-	      <div class="col-3">
-	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|">
+	      <div class="col-3 text-end">
+	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="200px;">
 	      </div>
-	      <div class="col-9">
+	      <div class="col-9 text-start">
 	        <!-- 상품설명 -->
 	        <div class="row">
 	          <div class="col-12">
@@ -48,7 +47,12 @@
 	            </div> 
 	          </div>
 	          <div class="col-12">
-	             <button class="btn btn-success">찜</button>
+	             <button class="btn btn-success">
+	             	찜
+	                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+  					  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+					</svg>
+	             </button>
 	             <button class="btn btn-success">감자톡</button>
 	             <button class="btn btn-success">바로구매</button>
 	          </div>
@@ -61,7 +65,7 @@
 	      <div class="col-9">
 	        <div class="row text-start mt-3 mb-3">
 	         <div>
-	           <h3>상품정보(상품설명)</h3>
+	           <h3>상품정보</h3>
 	         </div>
 	         <div>[[${itemInfo.itemComment}]]</div>
 	         <div>거래지역 : [[${itemInfo.tradeAddr}]] / 카테고리</div>
@@ -131,6 +135,6 @@
 
 
 
-
+<script type="text/javascript" th:src="@{/js/item/item_detail.js}"></script>
 </div>
 </html>
