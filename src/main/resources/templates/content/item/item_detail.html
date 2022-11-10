@@ -31,10 +31,21 @@
 	             <h3>[[${itemInfo.itemPrice}]]</h3>
 	          </div>
 	          <div class="col-12">
-	            [찜/ 조회수 / 등록일]
+	            <div>
+	               [찜/ 조회수 / [[${itemInfo.regDate}]]]
+	            </div>
+	           
 	          </div>
 	          <div class="col-12">
-	             상품상태 [[${itemInfo.itemStatus}]]
+	            <div class="row">
+	            <!--  상품상태 [[${itemInfo.itemStatus}]] -->
+	             <div class="col-6">상품상태</div>
+	             <div class="col-6">[[${itemInfo.itemStatus}]]</div>
+	             <div class="col-6">거래지역</div>
+	             <div class="col-6">[[${itemInfo.tradeAddr}]]</div>
+	             <!-- <div class="col-6">교환여부</div>
+	             <div class="col-6">보류</div> -->
+	            </div> 
 	          </div>
 	          <div class="col-12">
 	             <button class="btn btn-success">찜</button>
@@ -48,15 +59,24 @@
 	    </div>
 	    <div class="row">
 	      <div class="col-9">
-	        <div>상품정보(상품설명)</div>
-	        <div>거래지역 / 카테고리</div>
+	        <div class="row text-start mt-3 mb-3">
+	         <div>
+	           <h3>상품정보(상품설명)</h3>
+	         </div>
+	         <div>[[${itemInfo.itemComment}]]</div>
+	         <div>거래지역 : [[${itemInfo.tradeAddr}]] / 카테고리</div>
+	        </div>
+	        
 	        
 	      </div>
 	      <div class="col-3">
-	        <div>상점정보</div>
-	        <div>상점이미지</div>
-	        <div>상품목록</div>
-	        <div>
+	       <div class="row text-start mt-3 mb-3">
+	         <div>
+	          <h3>상점정보</h3>
+	         </div>
+	         <div>상점이미지</div>
+	         <div>상품목록</div>
+	         <div>
 		        상품후기
 		        <table class="table">
 				  <thead>
@@ -81,7 +101,14 @@
 				  </tbody>
 				</table>
 	        </div>
-	        <div>감자톡/ 바로구매</div>
+	       
+	       </div>
+	      
+	        
+	        <div>
+	             <button class="btn btn-success">감자톡</button>
+	             <button class="btn btn-success">바로구매</button>
+	        </div>
 	        
 	        
 	      </div>
