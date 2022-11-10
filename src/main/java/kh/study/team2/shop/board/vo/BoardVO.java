@@ -9,9 +9,10 @@ import lombok.Setter;
 @Setter
 public class BoardVO{
 	private int boardNum;
+	private String itemCode;
 	private String boardTitle;
 	private String boardContent;
 	private String memberId;
 	private String regDate;
-	private String shopOwner;
+	private int starPoint;
 }

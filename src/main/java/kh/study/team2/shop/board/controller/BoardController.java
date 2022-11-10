@@ -26,10 +26,11 @@ public class BoardController {
 	//글 작성
 	@PostMapping("/regMarketBoard")
 	public String regMarketBoard(BoardVO boardVO) {
-		boardVO.setMemberId("test"); //임시로
-		
+		boardVO.setMemberId("test"); //임시
+		boardVO.setItemCode("ITEM_001"); //임시
 		boardService.insertBoard(boardVO);
-		return "content/member/my_market";
+		return "redirect:/admin/myMarket";
+		//return "content/member/my_market";
 	}
 	
 	//

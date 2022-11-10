@@ -5,33 +5,41 @@
 <mapper namespace="boardMapper">
 	<resultMap type="kh.study.team2.shop.board.vo.BoardVO" id="board">
 		<id column="BOARD_NUM" 			property="boardNum"/>
+		<result column="ITEM_CODE" 		property="itemCode"/>
 		<result column="BOARD_TITLE" 	property="boardTitle"/>
 		<result column="BOARD_CONTENT" 	property="boardContent"/>
 		<result column="MEMBER_ID" 		property="memberId"/>
 		<result column="REG_DATE" 		property="regDate"/>
+		<result column="STAR_POINT" 	property="starPoint"/>
 	</resultMap>
 
 	<insert id="insertBoard">
-		INSERT INTO QNA_BOARD (
+		INSERT INTO REVIEW_BOARD (
 			BOARD_NUM
+			, ITEM_CODE
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, MEMBER_ID
+			, STAR_POINT
 		) VALUES (
-			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM QNA_BOARD)
+			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM REVIEW_BOARD)
+			, #{itemCode}
 			, #{boardTitle}
 			, #{boardContent}
 			, #{memberId}
+			, #{starPoint}
 		)
 	</insert>
 	
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM
+			, ITEM_CODE <!-- 나중에 ITEM_NAME으로 변경 -->
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, MEMBER_ID
 			, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE
-		FROM QNA_BOARD
+			, STAR_POINT
+		FROM REVIEW_BOARD
 		WHERE MEMBER_ID = #{memberId}
 		ORDER BY BOARD_NUM DESC
 	</select>
