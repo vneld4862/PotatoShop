@@ -68,20 +68,6 @@ public class AdminController {
 		model.addAttribute("itemList", itemList);
 		return "content/member/my_market"; 
 	}
-	
-	//매출관리 페이지 이동
-	@GetMapping("/sellManage")
-	public String sellManage() {
-		
-		return "content/admin/sell_manage";
-	}
-	
-	//판매현황 페이지 이동
-	@GetMapping("/sellStatus")
-	public String sellStatus() {
-		
-		return "content/admin/sell_status";
-	}
 
 	//상품관리 페이지 이동
 	@GetMapping("/itemManage")

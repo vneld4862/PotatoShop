@@ -8,7 +8,14 @@
 				<a class="nav-link" aria-current="page" th:classappend="${menu} eq '1' ? 'active'"
 				th:href="@{/admin/memberManage(menu=1)}">회원관리</a>
 			</li>
-			<li class="nav-item dropdown">
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/admin/itemManage(menu=2)}" th:classappend="${menu} eq '2' ? 'active'">상품관리</a>
+			</li>
+			<li class="nav-item">
+				<a class="nav-link" th:href="@{/admin/regCateForm(menu=3)}" th:classappend="${menu} eq '3' ? 'active'">카테고리생성</a>
+			</li>
+
+<!-- 			<li class="nav-item dropdown">
 				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" 
 					th:classappend="${menu} eq '2' ? 'active'" aria-expanded="false">판매관리</a>
 				<ul class="dropdown-menu">
@@ -20,16 +27,8 @@
 					</li>
 					<li><a class="dropdown-item" href="#">Separated link</a></li>
 				</ul>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/admin/itemManage(menu=3)}" th:classappend="${menu} eq '3' ? 'active'">상품관리</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:href="@{/admin/regCateForm(menu=4)}" th:classappend="${menu} eq '4' ? 'active'">카테고리생성</a>
-			</li>
-			<li class="nav-item">
-				<a class="nav-link disabled">-</a>
-			</li>
+			</li> -->
+
 		</ul>
 	</div>
 

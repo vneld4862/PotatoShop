@@ -4,6 +4,15 @@
    layout:decorate="~{layout/admin_layout}">
 
 <div layout:fragment ="content">
+	<style>
+		.msg {
+			margin-top: -15px;
+			font-weight: bold;
+			color: #CFB997;
+			font-size: 14px;
+		}
+	</style>
+
 	<div class="col-10" style="margin: 0 auto;">
 		<div class="col">
 			<div class="text-end">
@@ -28,6 +37,11 @@
 					<option>탈퇴한회원</option>
 				</select>
 			</div>
+			
+			<div class="msg mb-3 text-end">
+				*회원 닉네임 클릭시 상세 정보 조회 가능
+			</div>
+				
 			<div class="col" style="padding-right: 15px;">
 				<table class="table text-center">
 					<colgroup>
@@ -77,6 +91,9 @@
 						</tbody>
 					</table>
 				</div>
+				
+
+				
 			</div>
 		</div>
 		
@@ -92,6 +109,13 @@
 			</div>
 			
 			<div class="col">
+			
+				<div class="row">
+					<div class="mb-3">
+						<다른 상점에 남긴 후기>
+					</div>
+				</div>
+				
 				<div class="row">
 					<div class="mb-3">
 						<감자마켓 Q&A>
@@ -121,11 +145,7 @@
 						</table>
 					</div>
 				</div>
-				<div class="row">
-					<div class="mb-3">
-						<다른 상점에 남긴 후기>
-					</div>
-				</div>
+
 			</div>
 		</div>
 		
