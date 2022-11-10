@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import groovyjarjarantlr4.v4.parse.GrammarTreeVisitor.mode_return;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
@@ -83,8 +84,11 @@ public class ItemController {
 	
 	//상품상세보기 페이지로 이동
 	@GetMapping("/itemDetail")
-	public String itemDetail() {
-		
+	public String itemDetail(String itemCode, Model model) {
+		System.out.println(itemCode);
+		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
+		System.out.println(itemInfo);
+		model.addAttribute("itemInfo", itemInfo);
 		return"content/item/item_detail";
 	}
 	

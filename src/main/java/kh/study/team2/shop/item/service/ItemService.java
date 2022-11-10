@@ -8,4 +8,5 @@ public interface ItemService {
 	void insertItem(ItemVO itemVO);
 	String getNextItemCode();
 	List<ItemVO> selectItemList();
+	ItemVO selectItemDetail(String itemCode);
 }

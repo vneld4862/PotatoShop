@@ -85,8 +85,22 @@
 		ORDER BY ITEM.ITEM_CODE DESC
 	</select>
 	
-	<select id="select">
-		SELECT ITEM
+	<select id="selectItemDetail" resultMap="item">
+		SELECT I.ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
+			, REG_DATE
+			, ITEM_COMMENT
+			, ITEM_STOCK
+			, ITEM_STATUS
+			, TRADE_TYPE
+			, TRADE_ADDR
+			, ATTACHED_NAME
+			, IS_MAIN
+		FROM SHOP_ITEM S, ITEM_IMG I
+		WHERE I.ITEM_CODE = #{itemCode}
+		AND S.ITEM_CODE = I.ITEM_CODE
+		<!-- 카테고리, 조회수 추후 추가예정 -->
 	</select>
 </mapper>
 

@@ -21,21 +21,25 @@
 	    <div class="row mb-3">
 	      
 	      <div class="col-3">
-	        이미지
-	        <img alt="" src="">
+	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|">
 	      </div>
 	      <div class="col-9">
 	        <!-- 상품설명 -->
 	        <div class="row">
 	          <div class="col-12">
-	             상품명
-	             가격
+	             <h3> [[${itemInfo.itemName}]]</h3>
+	             <h3>[[${itemInfo.itemPrice}]]</h3>
 	          </div>
 	          <div class="col-12">
-	             상품상태
+	            [찜/ 조회수 / 등록일]
 	          </div>
 	          <div class="col-12">
-	             찜 감자톡 바로구매<!-- 버튼 생성-->
+	             상품상태 [[${itemInfo.itemStatus}]]
+	          </div>
+	          <div class="col-12">
+	             <button class="btn btn-success">찜</button>
+	             <button class="btn btn-success">감자톡</button>
+	             <button class="btn btn-success">바로구매</button>
 	          </div>
 	        </div>
 	        
