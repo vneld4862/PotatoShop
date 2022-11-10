@@ -31,6 +31,8 @@ public class ItemController {
 	@GetMapping("/list")
 	public String list(Model model) {
 		model.addAttribute("mainCateList",cateService.mainCateList());
+		model.addAttribute("subCateList",cateService.subCateList());
+		model.addAttribute("detailCateList",cateService.detailCateList());
 		model.addAttribute("itemList",itemService.selectItemList());
 		return "content/shop_main";
 		

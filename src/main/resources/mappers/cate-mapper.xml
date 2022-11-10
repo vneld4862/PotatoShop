@@ -24,7 +24,23 @@
 			,MAIN_CATE_NAME
 		FROM MAIN_CATE
 		WHERE CATE_STATUS='USE'
+		ORDER BY MAIN_CATE_CODE
 	</select>
+	
+	<select id="subCateList" resultMap="subCate">
+		SELECT SUB_CATE_CODE
+			,SUB_CATE_NAME
+			,MAIN_CATE_CODE
+		FROM SUB_CATE
+	</select>
+	
+	<select id="detailCateList" resultMap="detailCate">
+		SELECT DETAIL_CATE_CODE
+			,DETAIL_CATE_NAME
+			,SUB_CATE_CODE
+		FROM DETAIL_CATE
+	</select>
+	
 </mapper>
 
 
