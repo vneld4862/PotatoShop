@@ -83,4 +83,10 @@ public class AdminController {
 		
 		return adminService.selectMemberDetail(memberId);
 	}
+	
+	//카테고리 생성페이지 이동
+	@GetMapping("/regCateForm")
+	public String cateForm() {
+		return "content/admin/reg_cate_form";
+	}
 }
