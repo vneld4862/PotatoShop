@@ -21,24 +21,23 @@ public class CateServiceImpl implements CateService{
 	}
 
 	@Override
-	public List<SubCateVO> subCateList() {
-		return sqlSession.selectList("cateMapper.subCateList");
+	public List<SubCateVO> subCateList(SubCateVO subCateVO) {
+		return sqlSession.selectList("cateMapper.subCateList",subCateVO);
 	}
 
 	@Override
-	public List<DetailCateVO> detailCateList() {
-		return sqlSession.selectList("cateMapper.detailCateList");
+	public List<DetailCateVO> detailCateList(DetailCateVO detailCateVO) {
+		return sqlSession.selectList("cateMapper.detailCateList",detailCateVO);
 	}
 
 	@Override
 	public void inputMainCate(MainCateVO mainCateVO) {
 		sqlSession.insert("cateMapper.inputMainCate",mainCateVO);
-		
 	}
 
 	@Override
 	public void inputSubCate(SubCateVO subCateVO) {
-		// TODO Auto-generated method stub
+		sqlSession.insert("cateMapper.inputSubCate",subCateVO);
 		
 	}
 
@@ -46,6 +45,11 @@ public class CateServiceImpl implements CateService{
 	public void inputDetailCate(DetailCateVO detailCateVO) {
 		// TODO Auto-generated method stub
 		
+	}
+
+	@Override
+	public List<SubCateVO> subCateInMainCate(String mainCateCode){
+		return sqlSession.selectList("cateMapper.subCateInMainCate",mainCateCode);
 	}
 	
 	

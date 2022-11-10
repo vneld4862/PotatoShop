@@ -16,7 +16,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.study.team2.shop.admin.service.AdminService;
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.member.vo.MemberVO;
@@ -86,10 +88,8 @@ public class AdminController {
 	
 	//카테고리 생성페이지 이동
 	@GetMapping("/regCateForm")
-	public String cateForm(Model model) {
+	public String cateForm(Model model,SubCateVO subCateCode,DetailCateVO detailCateVO) {
 		model.addAttribute("mainCateList",cateService.mainCateList());
-		model.addAttribute("subCateList",cateService.subCateList());
-		model.addAttribute("detailCateList",cateService.detailCateList());
 		return "content/admin/reg_cate_form";
 	}
 	
@@ -98,6 +98,20 @@ public class AdminController {
 	public void inputMainCateName(MainCateVO mainCateVO)
 	{
 		cateService.inputMainCate(mainCateVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/subCateAjax")
+	public void inputSubCateName(SubCateVO subCateVO)
+	{
+		cateService.inputSubCate(subCateVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/selectSubCateAjax")
+	public List<SubCateVO> selectSubCateName(String mainCateCode)
+	{
+		return cateService.subCateInMainCate(mainCateCode);
 	}
 	
 }

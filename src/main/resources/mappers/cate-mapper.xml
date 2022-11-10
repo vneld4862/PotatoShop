@@ -33,7 +33,7 @@
 			,MAIN_CATE_CODE
 		FROM SUB_CATE
 		ORDER BY SUB_CATE_CODE
-		<if test="_parameter != null">
+		<if test="mainCateCode != null">
 		WHERE MAIN_CATE_CODE=#{mainCateCode}		
 		</if>
 	</select>
@@ -43,7 +43,7 @@
 			,DETAIL_CATE_NAME
 			,SUB_CATE_CODE
 		FROM DETAIL_CATE
-		<if test="_parameter != null">
+		<if test="subCateCode != null">
 		WHERE SUB_CATE_CODE=#{subCateCode}		
 		</if>
 		ORDER BY DETAIL_CATE_CODE
@@ -65,7 +65,7 @@
 	
 	<insert id="inputSubCate">
 		<selectKey resultType="String" keyProperty="subCateCode" order="BEFORE">
-		    SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(DETAIL_CATE_CODE, 5))), 0) +1, 3, 0)
+		    SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_CATE_CODE, 5))), 0) +1, 3, 0)
 		    FROM SUB_CATE
 		</selectKey>
 		INSERT INTO SUB_CATE (
@@ -99,7 +99,7 @@
 		SELECT SUB_CATE_CODE
 			,SUB_CATE_NAME
 		FROM SUB_CATE
-		WHERE MAIN_CATE=#{mainCateCode}
+		WHERE MAIN_CATE_CODE=#{mainCateCode}
 	</select>
 </mapper>
 

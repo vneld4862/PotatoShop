@@ -14,7 +14,9 @@ import org.springframework.web.multipart.MultipartFile;
 
 import groovyjarjarantlr4.v4.parse.GrammarTreeVisitor.mode_return;
 import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
@@ -36,10 +38,10 @@ public class ItemController {
 	private WishService wishService;
 	
 	@GetMapping("/list")
-	public String list(Model model) {
+	public String list(Model model,SubCateVO subCateVO,DetailCateVO detailCateVO) {
 		model.addAttribute("mainCateList",cateService.mainCateList());
-		model.addAttribute("subCateList",cateService.subCateList());
-		model.addAttribute("detailCateList",cateService.detailCateList());
+		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
+		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
 		model.addAttribute("itemList",itemService.selectItemList());
 		return "content/shop_main";
 		
