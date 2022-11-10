@@ -33,6 +33,9 @@
 			,MAIN_CATE_CODE
 		FROM SUB_CATE
 		ORDER BY SUB_CATE_CODE
+		<if test="_parameter != null">
+		WHERE MAIN_CATE_CODE=#{mainCateCode}		
+		</if>
 	</select>
 	
 	<select id="detailCateList" resultMap="detailCate">
@@ -40,6 +43,9 @@
 			,DETAIL_CATE_NAME
 			,SUB_CATE_CODE
 		FROM DETAIL_CATE
+		<if test="_parameter != null">
+		WHERE SUB_CATE_CODE=#{subCateCode}		
+		</if>
 		ORDER BY DETAIL_CATE_CODE
 	</select>
 	
@@ -88,6 +94,13 @@
 		    ,#{subCateCode}
 		)
 	</insert>
+	
+	<select id="subCateInMainCate" resultMap="subCate">
+		SELECT SUB_CATE_CODE
+			,SUB_CATE_NAME
+		FROM SUB_CATE
+		WHERE MAIN_CATE=#{mainCateCode}
+	</select>
 </mapper>
 
 

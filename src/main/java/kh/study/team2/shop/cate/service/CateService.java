@@ -12,6 +12,8 @@ public interface CateService {
 	List<DetailCateVO> detailCateList();
 	//mainCate 등록
 	void inputMainCate(MainCateVO mainCateVO);
+	//subCate 등록
 	void inputSubCate(SubCateVO subCateVO);
+	//detailCate 등록
 	void inputDetailCate(DetailCateVO detailCateVO);
 }
