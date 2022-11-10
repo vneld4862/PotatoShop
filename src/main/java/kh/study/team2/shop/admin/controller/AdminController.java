@@ -92,10 +92,9 @@ public class AdminController {
 	}
 	
 	@ResponseBody
-	@PostMapping("/mainCate")
+	@PostMapping("/mainCateAjax")
 	public void inputMainCateName(MainCateVO mainCateVO)
 	{
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@controll까진옴");
 		adminService.inputMainCate(mainCateVO);
 	}
 }

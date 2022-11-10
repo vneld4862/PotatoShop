@@ -10,7 +10,7 @@
 			<div>
 				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
 					<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
-					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="mainCate(this);">등록</button>
+					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="mainCate(this);" data-bs-main="main">등록</button>
 				</form>
 			</div>
 			<table class="table table-striped">
