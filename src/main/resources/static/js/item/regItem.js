@@ -1,4 +1,4 @@
-alert('상품등록화면 연결성공~');
+//alert('상품등록화면 연결성공~');
 
 function searchTrAddr(){
 	new daum.Postcode({
