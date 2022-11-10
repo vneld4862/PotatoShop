@@ -16,7 +16,7 @@
 	<resultMap type="kh.study.team2.shop.cate.vo.detail.DetailCateVO" id="detailCate">
 		<id column="DEATIL_CATE_CODE" property="detailCateCode"/>
 		<result column="DETAIL_CATE_NAME" property="detailCateName"/>
-		<result column="SUB_CATE_CDE" property="subCateCode"/>
+		<result column="SUB_CATE_CODE" property="subCateCode"/>
 	</resultMap>
 	
 	<select id="mainCateList" resultMap="mainCate">
@@ -32,6 +32,7 @@
 			,SUB_CATE_NAME
 			,MAIN_CATE_CODE
 		FROM SUB_CATE
+		ORDER BY SUB_CATE_CODE
 	</select>
 	
 	<select id="detailCateList" resultMap="detailCate">
@@ -39,6 +40,7 @@
 			,DETAIL_CATE_NAME
 			,SUB_CATE_CODE
 		FROM DETAIL_CATE
+		ORDER BY DETAIL_CATE_CODE
 	</select>
 	
 </mapper>

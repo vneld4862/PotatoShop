@@ -8,7 +8,7 @@ import lombok.Setter;
 @Getter
 @Setter
 public class DetailCateVO {
-	private String etailCateCode;
+	private String detailCateCode;
 	private String detailCateName;
 	private String subCateCode;
 }

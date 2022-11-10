@@ -13,22 +13,30 @@
 		<div class="row d-flex justify-content-start">
 		
 		<!-- 카테고리 목록 -->
-			<div class="dropdown" id="dropdownMenu">
-				<button class="dropdown-button" style="width: 65px;">
+			<div class="dropdown" id="dropdownMenu" style="width: 65px;">
+				<button class="dropdown-button">
 					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-list" viewBox="0 0 16 16">
 						<path fill-rule="evenodd" d="M2.5 12a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h10a.5.5 0 0 1 0 1H3a.5.5 0 0 1-.5-.5z"/>
 					</svg>
 				</button>
 				<div class="dropdown-content">
 					<div id="menu2">
-						<ul class="M01" th:each="mainCate:${mainCateList}">
-							<li><a href="#">[[${mainCate.mainCateName}]]</a>
+						<ul class="M01" th:if="${#lists.size(mainCateList)}==0">
+							<li>
+								<a style="text-align: center;">등록안됨</a>
+							</li>
+						</ul>
+						
+						<ul class="M01" th:each="mainCate:${mainCateList}" th:unless="${#lists.size(mainCateList)}==0">
+							<li>
+								<a href="#">[[${mainCate.mainCateName}]]</a>
 								<ul class="M02">
-									<li><a href="#">소메뉴1</a>
+									<li th:each="subCate:${subCateList}" th:if="${subCate.mainCateCode==mainCate.mainCateCode}">
+										<a href="#">[[${subCate.subCateName}]]</a>
 										<ul class="M03">
-											<li><a href="#">2단소메뉴1</a></li>
-											<li><a href="#">2단소메뉴2</a></li>
-											<li><a href="#">2단소메뉴3</a></li>
+											<li th:each="detailCate:${detailCateList}" th:if="${detailCate.subCateCode==subCate.subCateCode}">
+												<a href="#">[[${detailCate.detailCateName}]]</a>
+											</li>
 										</ul>
 									</li>
 								</ul>
