@@ -10,8 +10,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+//import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
@@ -29,9 +30,10 @@ public class MemberContorller {
 	}
 	
 	@PostMapping("/join")
-	public String doJoin(@Valid MemberVO memberVO,BindingResult bindingResult, Model model){
+	public String doJoin(@Valid MemberVO memberVO, BindingResult bindingResult, Model model){
+		
 		if(bindingResult.hasErrors()) {
-			System.out.println("error!!");
+			System.out.println("error!");
 			return "content/join";
 		}
 		memberService.join(memberVO);
@@ -54,7 +56,6 @@ public class MemberContorller {
 		return loginInfo == null ? false : true;
 	}
 	
-	//중복확인
 	@ResponseBody
 	@PostMapping("/checkDuplId")
 	public boolean ID_Check(String memberId) {
@@ -69,4 +70,6 @@ public class MemberContorller {
 			return false;
 		}
 	}
+	
+	
 }

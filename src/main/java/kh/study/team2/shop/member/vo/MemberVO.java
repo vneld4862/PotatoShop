@@ -22,19 +22,6 @@ public class MemberVO extends SearchVO {
 	 private String memberRole;
 	 private String memberStatus;
 	 private String regDate; 
-	 private String[] memberTells;
 	 
-	 public String getMemberTell() {
-		 if(memberTells == null) {
-			 return null;
-		 }
-		 else {
-			 String result = "";
-			 
-			 for(String tell : memberTells) {
-				 result += tell;
-			 }
-			 return result;
-		 }
-	 }
+	
 }
