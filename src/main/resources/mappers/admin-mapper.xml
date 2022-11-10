@@ -3,38 +3,8 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="adminMapper">
-	<!-- memberMapper에 resultMap 생기면 삭제-->
-	<resultMap type="kh.study.team2.shop.member.vo.MemberVO" id="member">
-		<id column="MEMBER_ID" 				property="memberId"/>
-		<result column="MEMBER_PW" 			property="memberPw"/>
-		<result column="MEMBER_NAME" 		property="memberName"/>
-		<result column="MEMBER_NICKNAME" 	property="memberNickName"/>
-		<result column="MEMBER_TELL" 		property="memberTell"/>
-		<result column="MEMBER_ADDR" 		property="memberAddr"/>
-		<result column="ADDR_DETAIL" 		property="addrDetail"/>
-		<result column="MEMBER_EMAIL"		property="memberEmail"/>
-		<result column="MEMBER_ROLE"		property="memberRole"/>
-		<result column="MEMBER_STATUS"		property="memberStatus"/>
-		<result column="REG_DATE"			property="regDate"/>
-	</resultMap>
-
-<!-- 	<select id="selectMemberList" resultMap="member">
-		SELECT MEMBER_ID
-			, MEMBER_PW
-			, MEMBER_NAME
-			, MEMBER_NICKNAME
-			, MEMBER_TELL
-			, MEMBER_ADDR
-			, ADDR_DETAIL
-			, MEMBER_EMAIL
-			, MEMBER_ROLE
-			, MEMBER_STATUS
-			, REG_DATE
-		FROM SHOP_MEMBER
-		ORDER BY REG_DATE
-	</select> -->
 	
-	<select id="selectMemberList" resultMap="member">
+	<select id="selectMemberList" resultMap="memberMapper.member">
 		SELECT MEMBER_ID
 			, MEMBER_PW
 			, MEMBER_NAME
@@ -53,7 +23,7 @@
 		ORDER BY REG_DATE
 	</select>
 	
-	<select id="selectMemberDetail" resultMap="member">
+	<select id="selectMemberDetail" resultMap="memberMapper.member">
 		SELECT MEMBER_ID
 			, MEMBER_PW
 			, MEMBER_NAME
@@ -61,8 +31,8 @@
 			, MEMBER_ADDR
 			, ADDR_DETAIL
 			, MEMBER_EMAIL
-			, MEMBER_ROLE
-			, MEMBER_STATUS
+			, DECODE(MEMBER_ROLE, 'MEMBER', '회원', '관리자') AS MEMBER_ROLE
+			, DECODE(MEMBER_STATUS, 'ACTIVE', '활동중', '탈퇴') AS MEMBER_STATUS
 			, REG_DATE
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}

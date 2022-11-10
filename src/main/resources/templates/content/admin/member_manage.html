@@ -68,7 +68,7 @@
 							<th:block th:unless="${#lists.size(memberList) == 0}">
 								<tr th:each="member : ${memberList}">
 									<td th:text="${memberStat.count}"></td>
-									<td>[[${member.memberNickName}]]([[${member.memberId}]])</td>
+									<td th:onclick="getMemberDetail([[${member.memberId}]]);">[[${member.memberNickName}]]([[${member.memberId}]])</td>
 									<td>등급</td>
 									<td th:text="${member.regDate}"></td>
 									<td th:text="${member.memberStatus}"></td>
@@ -83,29 +83,11 @@
 		
 		
 		<div class="row mt-3">
-			<div class="col">
+			<div class="col" id="detailDiv">
 				<div class="row">
 					<div class="mb-3">
 						<회원 상세 정보>
 					</div>
-					<table class="table text-center">
-						<tr>
-							<td>이름</td>
-							<td>주소</td>
-						</tr>
-						<tr th:each="member : ${memberList}">
-							<td th:text="${member.memberName}"></td>
-							<td>[[${member.memberAddr}]] [[${member.addrDetail}]]</td>
-						</tr>
-						<tr>
-							<td>연락처</td>
-							<td>이메일</td>
-						</tr>
-						<tr th:each="member : ${memberList}">
-							<td th:text="${member.memberTell}"></td>
-							<td th:text="${member.memberEmail}"></td>
-						</tr>
-					</table>
 				</div>
 			</div>
 			
@@ -150,7 +132,7 @@
 
 	</div>
 	
-	<!-- <script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script> -->
+<script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script>
 
 </div>
 </html>

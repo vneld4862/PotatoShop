@@ -6,12 +6,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.admin.service.AdminService;
 import kh.study.team2.shop.board.service.BoardService;
-import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 
@@ -45,12 +46,11 @@ public class AdminController {
 	
 	//내 상점 페이지 이동 //MemberController 건드리는 사람 없을 때 옮기기
 	@GetMapping("/myMarket")
-	public String myMarket(Model model, BoardVO boardVO) {
+	public String myMarket(Model model, String memberId) {
+		memberId = "test"; //임시 아이디 값
 		
-		//adminService.selectMemberDetail(memberId);
-		boardVO.setMemberId("test"); //임시로
 		//내 상점 Q&A 목록 조회
-		model.addAttribute("boardList", boardService.selectBoardList(boardVO));
+		model.addAttribute("boardList", boardService.selectBoardList(memberId));
 		
 		return "content/member/my_market"; 
 	}
@@ -74,5 +74,13 @@ public class AdminController {
 	public String itemManage() {
 		
 		return "content/admin/item_manage";
+	}
+	
+	//회원 정보 상세 조회
+	@ResponseBody
+	@PostMapping("/selectMemberDetail")
+	public MemberVO selectMemberDetail(String memberId) {
+		
+		return adminService.selectMemberDetail(memberId);
 	}
 }

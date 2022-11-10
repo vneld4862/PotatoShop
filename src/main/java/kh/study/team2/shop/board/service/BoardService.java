@@ -9,7 +9,7 @@ public interface BoardService {
 	void insertBoard(BoardVO boardVO);	
 	
 	//글 목록 조회
-	List<BoardVO> selectBoardList(BoardVO boardVO);
+	List<BoardVO> selectBoardList(String memberId);
 
 	
 }
