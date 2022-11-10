@@ -12,6 +12,7 @@
 				<div class="col-9">
 					<label for="memberId" class="form-label">ID</label> 
 					<input type="text" class="form-control" th:field="*{memberId}">
+					 <span class="point successNameChk">이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
 					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div>
 				</div>
 				<div class="col-3">
