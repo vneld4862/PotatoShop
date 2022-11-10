@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import groovyjarjarantlr4.v4.parse.GrammarTreeVisitor.mode_return;
@@ -19,6 +20,8 @@ import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.sell.service.SellService;
+import kh.study.team2.shop.wish.service.WishService;
+import kh.study.team2.shop.wish.vo.WishVO;
 
 @Controller
 @RequestMapping("/item")
@@ -29,6 +32,8 @@ public class ItemController {
 	private CateService cateService;
 	@Resource(name = "sellService")
 	private SellService sellService;
+	@Resource(name = "wishService")
+	private WishService wishService;
 	
 	@GetMapping("/list")
 	public String list(Model model) {
@@ -96,6 +101,16 @@ public class ItemController {
 	}
 	
 	//찜버튼 클릭 시 실행 
+	@ResponseBody
+	@PostMapping("/insertWish")
+	public void insertWish(WishVO wishVO) {
+		System.out.println("찜을 해보자^^");
+		wishVO.setMemberId("test1"); //임시로 추가. 추후에 시큐리티에서 가져올 예정
+		
+		
+		
+		wishService.insertWish(wishVO);
+	}
 	
 	
 	

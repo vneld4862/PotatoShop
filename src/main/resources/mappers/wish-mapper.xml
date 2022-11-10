@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="wishMapper">
+	<!-- <resultMap type="kh.study.team2.shop.wish.vo.WishVO" id="wish">
+		
+	</resultMap> -->
+	
+	
+	<!--찜 등록 -->
+	<insert id="insertWish">
+		INSERT INTO WISH_LIST (
+		     WISH_CODE
+		    , MEMBER_ID
+		     , ITEM_CODE
+		   ) VALUES (
+			(SELECT 'WISH_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(WISH_CODE, 6))), 0) +1, 3, 0) FROM WISH_LIST)
+			, #{memberId}
+			, #{itemCode}
+		)
+	</insert>
+	
+	
+	
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,5 +1,10 @@
 package kh.study.team2.shop.wish.service;
 
-public interface WishService {
+import kh.study.team2.shop.wish.vo.WishVO;
 
+public interface WishService {
+  
+	void insertWish(WishVO wishVo);
+	
+	
 }

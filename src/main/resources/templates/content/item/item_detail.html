@@ -15,12 +15,12 @@
 	 <div class="col-12">
 	    <div class="row mb-3">
 	      홈 카테고리
-	      
+	      <hr>
 	    </div>
 	    <div class="row mb-3">
 	      
 	      <div class="col-3 text-end">
-	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="200px;">
+	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="250px;">
 	      </div>
 	      <div class="col-9 text-start">
 	        <!-- 상품설명 -->
@@ -47,12 +47,13 @@
 	            </div> 
 	          </div>
 	          <div class="col-12">
-	             <button class="btn btn-success">
+	             <button class="btn btn-success" th:onclick="insertWish(this);" th:data-item-name="${itemInfo.itemCode}">
 	             	찜
 	                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
   					  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
 					</svg>
 	             </button>
+	             <input type="hidden" th:value="${itemInfo.itemCode}" id="itemCodeInput">
 	             <button class="btn btn-success">감자톡</button>
 	             <button class="btn btn-success">바로구매</button>
 	          </div>
@@ -61,11 +62,15 @@
 	      </div>
 	      
 	    </div>
+	    
+	    <hr>
+	    
 	    <div class="row">
 	      <div class="col-9">
 	        <div class="row text-start mt-3 mb-3">
 	         <div>
 	           <h3>상품정보</h3>
+	           <hr>
 	         </div>
 	         <div>[[${itemInfo.itemComment}]]</div>
 	         <div>거래지역 : [[${itemInfo.tradeAddr}]] / 카테고리</div>
@@ -77,6 +82,7 @@
 	       <div class="row text-start mt-3 mb-3">
 	         <div>
 	          <h3>상점정보</h3>
+	          <hr>
 	         </div>
 	         <div>상점이미지</div>
 	         <div>상품목록</div>
