@@ -37,9 +37,24 @@ function check(){
 		});
 		//ajax end
 }
+}
 
+//비밀번호 확인
+function passChk(){
+	
+		if($("#userpasschk").val() == $("#memberPw").val()){
+			$(".successPwChk").text("비밀번호가 일치합니다.");
+			$(".successPwChk").css("color", "green");
+		}else{
+			$(".successPwChk").text("비밀번호가 일치하지 않습니다.");
+			$(".successPwChk").css("color", "red");
+		}
 
 }
+
+
+
+
 
 
 		
