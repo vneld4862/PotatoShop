@@ -27,7 +27,7 @@
 				</div>
 				<div class="col-12">
 					<label for="userpasschk" class="form-label">비밀번호 확인</label>
-					<input id="userpasschk" type="password" class="form-control" onclick="passChk();" required maxlength="8">
+					<input id="userpasschk" type="password" class="form-control" onkeyup="passChk();" required maxlength="8">
 					<span class="point successPwChk"></span>
 					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
 				</div>
@@ -54,21 +54,13 @@
 				<div class="col-12">
 					<input type="text" class="form-control" th:field="*{addrDetail}">
 				</div>
-				<div class="col-4">
-					<label for="" class="form-label">연락처</label> 
-					<select id="" class="form-select" name="memberTells">
-						<option selected value="010">010</option>
-						<option value="011">011</option>
-					</select>
+				<div class="col-9">
+					<label for="" class="form-label">휴대폰 번호</label> 
+					<input type="text" class="form-control" id="memberTell" name="memberTell">
 				</div>
-				<div class="col-4">
+				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<input type="text" class="form-control" id="memberTell" name="memberTells">
-				</div>
-				<div class="col-4">
-					<label for="" class="form-label">&nbsp;</label> 
-					<input type="text" class="form-control" id="" name="memberTells">
-					<div class="hasError" th:if="${#fields.hasErrors('memberTell')}" th:errors="*{memberTell}"></div>
+					<button class="form-control" id="duplicate_check" type="button" onclick="">휴대번호 인증</button>
 				</div>
 				<div class="col-12">
 					<label for="memberName" class="form-label">이메일</label> 
