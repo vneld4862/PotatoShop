@@ -29,6 +29,7 @@
 			, MEMBER_NAME
 			, MEMBER_NICKNAME
 			, MEMBER_ADDR
+			, MEMBER_TELL
 			, ADDR_DETAIL
 			, MEMBER_EMAIL
 			, DECODE(MEMBER_ROLE, 'MEMBER', '회원', '관리자') AS MEMBER_ROLE
@@ -38,6 +39,19 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<insert id="inputMainCate">
+		<selectKey resultType="String" keyProperty="cateCode" order="BEFORE">
+		    SELECT 'MAIN_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MAIN_CATE_CODE, 6))), 0) +1, 3, 0)
+		    FROM MAIN_CATE
+		</selectKey>
+		INSERT INTO MAIN_CATE (
+		    MAIN_CATE_CODE
+		    ,MAIN_CATE_NAME
+		) VALUES(
+		    #{mainCateCode}
+		    ,#{mainCateName}
+		)
+	</insert>
 </mapper>
 
 

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.admin.service.AdminService;
 import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 
@@ -88,5 +89,13 @@ public class AdminController {
 	@GetMapping("/regCateForm")
 	public String cateForm() {
 		return "content/admin/reg_cate_form";
+	}
+	
+	@ResponseBody
+	@PostMapping("/mainCate")
+	public void inputMainCateName(MainCateVO mainCateVO)
+	{
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@controll까진옴");
+		adminService.inputMainCate(mainCateVO);
 	}
 }
