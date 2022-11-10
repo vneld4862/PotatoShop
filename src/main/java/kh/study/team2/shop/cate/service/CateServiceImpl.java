@@ -29,5 +29,24 @@ public class CateServiceImpl implements CateService{
 	public List<DetailCateVO> detailCateList() {
 		return sqlSession.selectList("cateMapper.detailCateList");
 	}
+
+	@Override
+	public void inputMainCate(MainCateVO mainCateVO) {
+		sqlSession.insert("cateMapper.inputMainCate",mainCateVO);
+		
+	}
+
+	@Override
+	public void inputSubCate(SubCateVO subCateVO) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void inputDetailCate(DetailCateVO detailCateVO) {
+		// TODO Auto-generated method stub
+		
+	}
+	
 	
 }
