@@ -36,7 +36,7 @@
 			<h4>SUB CATEGORY MANAGE</h4>
 			<div>
 				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
-					<select id="subCateSelect" data-main-cate-name="" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
+					<select id="subCateSelect" data-main-cate-code="" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
 						<option selected>선택...</option>
 						<th:block th:each="mainCate:${mainCateList}">
 							<option class="mainCateCodeList" th:data-main-cate-code="${mainCate.mainCateCode}">[[${mainCate.mainCateName}]]</option>
