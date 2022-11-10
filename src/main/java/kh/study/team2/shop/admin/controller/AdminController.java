@@ -49,7 +49,7 @@ public class AdminController {
 	public String myMarket(Model model, String memberId) {
 		memberId = "test"; //임시 아이디 값
 		
-		//내 상점 Q&A 목록 조회
+		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(memberId));
 		
 		return "content/member/my_market"; 
