@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="buyMapper">
+	<resultMap type="kh.study.team2.shop.buy.vo.BuyVO" id="buy">
+		<id column="BUY_CODE" property="buyCode"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="BUY_DATE" property="buyDate"/>
+		<result column="TOTAL_PRICE" property="totalPrice"/>
+	</resultMap>
+
+
+
+
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
