@@ -29,8 +29,8 @@ public class BoardController {
 		boardVO.setMemberId("test"); //임시
 		boardVO.setItemCode("ITEM_001"); //임시
 		boardService.insertBoard(boardVO);
-		return "redirect:/admin/myMarket";
-		//return "content/member/my_market";
+		return "redirect:/manage/myMarket";
+		//return "content/manage/my_market";
 	}
 	
 	//

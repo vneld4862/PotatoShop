@@ -14,13 +14,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.admin.service.AdminService;
-import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
-import kh.study.team2.shop.item.service.ItemService;
-import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 
@@ -29,12 +26,6 @@ import kh.study.team2.shop.member.vo.MemberVO;
 public class AdminController {
 	@Resource(name="adminService")
 	private AdminService adminService;
-	
-	@Resource(name="boardService")
-	private BoardService boardService;
-	
-	@Resource(name="itemService")
-	private ItemService itemService;
 	
 	@Resource(name = "cateService")
 	private CateService cateService;
@@ -57,25 +48,6 @@ public class AdminController {
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
 		
 		return "content/admin/member_manage";
-	}
-	
-	//내 상점 페이지 이동 //MemberController 건드리는 사람 없을 때 옮기기
-	@GetMapping("/myMarket")
-	public String myMarket(Model model, String memberId) {
-		memberId = "test"; //임시 아이디 값
-		
-		//내 상점 후기 목록 조회
-		model.addAttribute("boardList", boardService.selectBoardList(memberId));
-		List<ItemVO> itemList = itemService.selectItemList();
-		model.addAttribute("itemList", itemList);
-		return "content/member/my_market"; 
-	}
-
-	//상품관리 페이지 이동
-	@GetMapping("/itemManage")
-	public String itemManage() {
-		
-		return "content/admin/item_manage";
 	}
 	
 	//회원 정보 상세 조회
