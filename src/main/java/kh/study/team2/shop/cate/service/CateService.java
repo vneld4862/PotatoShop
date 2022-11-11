@@ -18,4 +18,6 @@ public interface CateService {
 	void inputDetailCate(DetailCateVO detailCateVO);
 	//ajax로 detailCate등록 화면의 subCateList 조회
 	List<SubCateVO> subCateInMainCate(String mainCateCode);
+	
+	//ajax로 등록한 카테고리 조회
 }

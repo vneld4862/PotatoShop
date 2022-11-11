@@ -106,6 +106,8 @@
 		FROM SUB_CATE
 		WHERE MAIN_CATE_CODE=#{mainCateCode}
 	</select>
+	
+	
 </mapper>
 
 

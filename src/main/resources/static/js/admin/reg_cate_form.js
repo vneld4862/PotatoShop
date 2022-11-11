@@ -40,6 +40,11 @@ function detailCate(selectBtn)
 {
 	const detailCateName=selectBtn.closest('form').querySelector('.inputCateName').value;
 	const subCateCode=document.querySelector('#detailCateSelect').value;
+	if(subCateCode=='not')
+	{
+		alert('카테고리를 골라주세요.')
+		return
+	}
 	$.ajax({
 		url: '/admin/detailCateAjax', //요청경로
 		type: 'post',
@@ -94,3 +99,5 @@ subCateSelect.addEventListener('change',function(){
 	});
 
 })
+
+//전체 체크박스 선택
