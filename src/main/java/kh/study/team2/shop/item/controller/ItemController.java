@@ -80,7 +80,7 @@ public class ItemController {
 	    List<ItemVO> itemList = itemService.selectItemList();
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);
-		return"content/item/itemList";
+		return"content/item/item_list";
 	}
 	
 	

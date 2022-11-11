@@ -60,7 +60,7 @@ public class ManageController {
 		List<MainCateVO> mainCateList = cateService.mainCateList();
 		System.out.println(mainCateList);
 		model.addAttribute("mainCateList", mainCateList);
-		return "content/manage/regItem";
+		return "content/manage/reg_item";
 	}
 	
 	
