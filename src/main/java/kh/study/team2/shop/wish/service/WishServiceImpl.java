@@ -1,5 +1,7 @@
 package kh.study.team2.shop.wish.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +18,12 @@ public class WishServiceImpl implements WishService{
 	@Override
 	public void insertWish(WishVO wishVo) {
 		sqlSession.insert("wishMapper.insertWish", wishVo);
+	}
+
+
+	@Override
+	public List<WishVO> selectWishList() {
+		return sqlSession.selectList("wishMapper.selectWishList");
 	}
 
 }

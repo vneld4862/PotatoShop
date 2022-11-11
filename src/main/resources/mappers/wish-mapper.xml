@@ -3,9 +3,13 @@
 
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="wishMapper">
-	<!-- <resultMap type="kh.study.team2.shop.wish.vo.WishVO" id="wish">
-		
-	</resultMap> -->
+	<resultMap type="kh.study.team2.shop.wish.vo.WishVO" id="wish">
+		<id column="WISH_CODE" property="wishCode"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="ITEM_CODE" property="itemCode"/>
+		<result column="WISH_STATUS" property="wishStatus"/>
+		<association property="itemVO" resultMap="itemMapper.item"/>
+	</resultMap>
 	
 	
 	<!--찜 등록 -->
@@ -21,6 +25,25 @@
 		)
 	</insert>
 	
+	<!-- 찜 목록 조회 -->
+	<select id="selectWishList" resultMap="wish">
+		SELECT 
+			WISH_CODE
+			, MEMBER_ID
+			, S.ITEM_CODE
+			, (SELECT ATTACHED_NAME
+			   FROM ITEM_IMG I
+			   WHERE I.ITEM_CODE = S.ITEM_CODE
+			   AND IS_MAIN = 'Y') AS ATTACHED_NAME
+			, ITEM_NAME
+			, ITEM_PRICE
+			, TRADE_ADDR
+			, REG_DATE
+		FROM WISH_LIST W, SHOP_ITEM S
+		WHERE W.ITEM_CODE = S.ITEM_CODE
+		ORDER BY WISH_CODE DESC
+	</select>
+		<!-- AND MEMBER_ID = #{memberId} -->
 	
 	
 	

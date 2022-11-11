@@ -80,6 +80,10 @@ public class ItemController {
 	    List<ItemVO> itemList = itemService.selectItemList();
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);
+		
+		List<WishVO> wishList = wishService.selectWishList();
+		System.out.println(wishList);
+		model.addAttribute("wishList", wishList);
 		return"content/item/item_list";
 	}
 	
