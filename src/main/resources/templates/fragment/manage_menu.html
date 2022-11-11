@@ -6,7 +6,7 @@
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a class="nav-link" aria-current="page" th:classappend="${menu} eq '1' ? 'active'"
-				th:href="@{/manage/memberManage(menu=1)}">상품등록</a>
+				th:href="@{/manage/regItemForm(menu=1)}">상품등록</a>
 			</li>
 			<li class="nav-item">
 				<a class="nav-link" th:href="@{/manage/itemManage(menu=2)}" th:classappend="${menu} eq '2' ? 'active'">상품관리</a>

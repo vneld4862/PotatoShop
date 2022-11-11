@@ -13,6 +13,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
@@ -28,6 +30,9 @@ public class ManageController {
 	
 	@Resource(name="itemService")
 	private ItemService itemService;
+
+	@Resource(name="cateService")
+	private CateService cateService;
 	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
@@ -49,7 +54,15 @@ public class ManageController {
 		return "content/manage/my_market"; 
 	}	
 	
-	//상품등록 페이지 이동
+	//상품등록 페이지로 이동
+	@GetMapping("/regItemForm")
+	public String regItemForm(Model model) {
+		List<MainCateVO> mainCateList = cateService.mainCateList();
+		System.out.println(mainCateList);
+		model.addAttribute("mainCateList", mainCateList);
+		return "content/manage/regItem";
+	}
+	
 	
 	//상품관리 페이지 이동
 	@GetMapping("/itemManage")

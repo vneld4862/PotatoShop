@@ -46,14 +46,7 @@ public class ItemController {
 		
 	}
 	
-	//판매하기 버튼 클릭 -> 상품등록 페이지로 이동
-	@GetMapping("/regItemForm")
-	public String regItemForm(Model model) {
-		List<MainCateVO> mainCateList = cateService.mainCateList();
-		System.out.println(mainCateList);
-		model.addAttribute("mainCateList", mainCateList);
-		return "content/item/regItem";
-	}
+	
 	
 	
 	//상품등록 버튼 클릭 -> 메인화면으로 이동(상품관리페이지 이동으로 변경예정)

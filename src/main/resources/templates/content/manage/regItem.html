@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
    xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-   layout:decorate="~{layout/base_layout}">
+   layout:decorate="~{layout/manage_layout}">
 
 <div layout:fragment ="content">
  <div class="container">
@@ -13,15 +13,6 @@
 					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data">
 						<div class="row">
 							<div class="col">
-							   <div class="mb-3">
-							     <table>
-							       <tr>
-							       	  <td>[상품등록]</td>
-							       	  <td>[상품관리]</td>
-							       	  <td>[구매/판매내역]</td>
-							       </tr>
-							   </table>
-							   </div>
 							   <hr>
 							   
 						  	   <div>
