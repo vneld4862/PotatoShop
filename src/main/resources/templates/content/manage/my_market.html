@@ -152,7 +152,7 @@
 													</svg>
 													[[${board.starPoint}]]
 												</td>
-												<td th:text="${board.boardTitle}"></td>
+												<td th:text="${board.boardTitle}" th:onclick="|location.href='@{/board/reviewDetail(itemCode=${board.itemCode})}'|"></td>
 												<td th:text="${board.memberId}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>

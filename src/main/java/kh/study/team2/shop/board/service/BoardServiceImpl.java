@@ -15,13 +15,19 @@ public class BoardServiceImpl implements BoardService{
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public void insertBoard(BoardVO boardVO) {
-		sqlSession.insert("boardMapper.insertBoard", boardVO);
+	public void insertReview(BoardVO boardVO) {
+		sqlSession.insert("boardMapper.insertReview", boardVO);
+		sqlSession.insert("boardMapper.insertReviewImg", boardVO);
 	}
 
 	@Override
 	public List<BoardVO> selectBoardList(String memberId) {
 		return sqlSession.selectList("boardMapper.selectBoardList", memberId);
+	}
+
+	@Override
+	public BoardVO selectBoardDetail(String itemCode) {
+		return sqlSession.selectOne("boardMapper.selectBoardDetail", itemCode);
 	}
 
 

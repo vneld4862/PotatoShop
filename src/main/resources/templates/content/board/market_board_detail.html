@@ -6,7 +6,10 @@
 	
 
 <div layout:fragment="content">
-
+	[[${board.boardTitle}]]
+	[[${board.boardContent}]]
+	
+	<div th:text="${board.boardContent}"></div>
 </div>
 
 </html>
