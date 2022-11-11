@@ -72,4 +72,12 @@ public class MemberContorller {
 	}
 	
 	
+	//프로필 수정 버튼 클릭 시 -> 프로필 수정 화면으로 이동
+	@GetMapping("/profileForm")
+	public String profileForm() {
+		
+		return"content/member/modify_profile";
+	}
+	
+	
 }
