@@ -58,7 +58,7 @@
 		             </button>
 		             <input type="hidden" th:value="${itemInfo.itemCode}" id="itemCodeInput">
 		             <button class="btn btn-success">감자톡</button>
-		             <button class="btn btn-success">바로구매</button>
+		             <button class="btn btn-success" th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|">바로구매</button>
 	             </div>
 	                  <button class="btn btn-warning" style="width:45%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
 	          </div>
