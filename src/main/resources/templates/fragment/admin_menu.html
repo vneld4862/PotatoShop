@@ -9,10 +9,10 @@
 				th:href="@{/admin/memberManage(menu=1)}">회원관리</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/admin/itemManage(menu=2)}" th:classappend="${menu} eq '2' ? 'active'">상품관리</a>
+				<a class="nav-link" th:href="@{/admin/regCateForm(menu=2)}" th:classappend="${menu} eq '2' ? 'active'">카테고리생성</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/admin/regCateForm(menu=3)}" th:classappend="${menu} eq '3' ? 'active'">카테고리생성</a>
+				<a class="nav-link" th:classappend="${menu} eq '3' ? 'active'">상품관리(보류)</a>
 			</li>
 
 <!-- 			<li class="nav-item dropdown">
