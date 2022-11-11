@@ -43,8 +43,7 @@ public class CateServiceImpl implements CateService{
 
 	@Override
 	public void inputDetailCate(DetailCateVO detailCateVO) {
-		// TODO Auto-generated method stub
-		
+		sqlSession.insert("cateMapper.inputDetailCate",detailCateVO);
 	}
 
 	@Override

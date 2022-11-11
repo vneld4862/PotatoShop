@@ -108,6 +108,13 @@ public class AdminController {
 	}
 	
 	@ResponseBody
+	@PostMapping("/detailCateAjax")
+	public void inputDetailCateName(DetailCateVO detailCateVO)
+	{
+		cateService.inputDetailCate(detailCateVO);
+	}
+	
+	@ResponseBody
 	@PostMapping("/selectSubCateAjax")
 	public List<SubCateVO> selectSubCateName(String mainCateCode)
 	{

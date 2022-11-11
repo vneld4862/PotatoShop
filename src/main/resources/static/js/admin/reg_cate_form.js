@@ -39,22 +39,24 @@ function subCate(selectBtn)
 function detailCate(selectBtn)
 {
 	const detailCateName=selectBtn.closest('form').querySelector('.inputCateName').value;
-	/*$.ajax({
-		url: '/admin/mainCateAjax', //요청경로
+	const subCateCode=document.querySelector('#detailCateSelect').value;
+	$.ajax({
+		url: '/admin/detailCateAjax', //요청경로
 		type: 'post',
-		data: {'mainCateName':mainCateName}, //필요한 데이터
+		data: {'detailCateName':detailCateName
+				,'subCateCode':subCateCode}, //필요한 데이터
 		success: function(result) {
 			alert('등록되었습니다.');
 		},
 		error: function() {
 			alert('실패');
 		}
-	});*/
+	});
 }
 
 //선택한 메인카테고리의 서브 카테고리 조회
 const subCateSelect=document.querySelector('#subCateSelect');
-const detailCateSelect=document.querySelector('#detailCateSelect')
+const detailCateSelect=document.querySelector('#detailCateSelect');
 subCateSelect.addEventListener('change',function(){
 	const mainCateCode=subCateSelect.value;
 	if(mainCateCode=='not')
