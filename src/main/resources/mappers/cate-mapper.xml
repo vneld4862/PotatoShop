@@ -12,16 +12,19 @@
 		<id column="SUB_CATE_CODE" property="subCateCode"/>
 		<result column="SUB_CATE_NAME" property="subCateName"/>
 		<result column="MAIN_CATE_CODE" property="mainCateCode"/>
+		<collection property="mainCateVO" resultMap="mainCate"></collection>
 	</resultMap>
 	<resultMap type="kh.study.team2.shop.cate.vo.detail.DetailCateVO" id="detailCate">
 		<id column="DEATIL_CATE_CODE" property="detailCateCode"/>
 		<result column="DETAIL_CATE_NAME" property="detailCateName"/>
 		<result column="SUB_CATE_CODE" property="subCateCode"/>
+		<collection property="subCateVO" resultMap="subCate"></collection>
 	</resultMap>
 	
 	<select id="mainCateList" resultMap="mainCate">
 		SELECT MAIN_CATE_CODE
 			,MAIN_CATE_NAME
+			,CATE_STATUS
 		FROM MAIN_CATE
 		WHERE CATE_STATUS='USE'
 		ORDER BY MAIN_CATE_CODE
@@ -31,6 +34,7 @@
 		SELECT SUB_CATE_CODE
 			,SUB_CATE_NAME
 			,MAIN_CATE_CODE
+			,(SELECT MAIN_CATE_NAME FROM MAIN_CATE WHERE MAIN_CATE_CODE=SUB_CATE.MAIN_CATE_CODE) MAIN_CATE_NAME
 		FROM SUB_CATE
 		ORDER BY SUB_CATE_CODE
 		<if test="mainCateCode != null">
@@ -42,6 +46,7 @@
 		SELECT DETAIL_CATE_CODE
 			,DETAIL_CATE_NAME
 			,SUB_CATE_CODE
+			,(SELECT SUB_CATE_NAME FROM SUB_CATE WHERE SUB_CATE_CODE=DETAIL_CATE.SUB_CATE_CODE) SUB_CATE_NAME
 		FROM DETAIL_CATE
 		<if test="subCateCode != null">
 		WHERE SUB_CATE_CODE=#{subCateCode}		

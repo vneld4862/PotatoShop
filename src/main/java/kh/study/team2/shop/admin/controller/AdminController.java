@@ -62,6 +62,8 @@ public class AdminController {
 	@GetMapping("/regCateForm")
 	public String cateForm(Model model,SubCateVO subCateCode,DetailCateVO detailCateVO) {
 		model.addAttribute("mainCateList",cateService.mainCateList());
+		model.addAttribute("subCateList",cateService.subCateList(subCateCode));
+		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
 		return "content/admin/reg_cate_form";
 	}
 	

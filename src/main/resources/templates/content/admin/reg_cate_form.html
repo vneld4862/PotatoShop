@@ -26,8 +26,15 @@
 					</tr>
 				</thead>
 				<tbody class="table-group-divider">
-					<tr>
+					<tr th:if="${#lists.size(mainCateList)}==0">
 						<td colspan="5" class="text-center">등록된 카테고리가 없습니다</td>
+					</tr>
+					<tr th:unless="${#lists.size(mainCateList)}==0" th:each="mainCate:${mainCateList}">
+						<td><input class="form-check-input" type="checkbox" value=""></td>
+						<td class="text-center" th:text="${mainCateStat.count}"></td>
+						<td th:text="${mainCate.mainCateCode}"></td>
+						<td th:text="${mainCate.mainCateName}"></td>
+						<td th:text="${mainCate.cateStatus}"></td>
 					</tr>
 				</tbody>
 			</table>
@@ -54,8 +61,8 @@
 						</th>
 						<th scope="col" class="text-center">No.</th>
 						<th scope="col">Code</th>
-						<th scope="col">Name</th>
-						<th scope="col">Usable</th>
+						<th scope="col">SubName</th>
+						<th scope="col">MainCode</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider" >
@@ -84,8 +91,8 @@
 						</th>
 						<th scope="col" class="text-center">No.</th>
 						<th scope="col">Code</th>
-						<th scope="col">Name</th>
-						<th scope="col">Usable</th>
+						<th scope="col">DetailName</th>
+						<th scope="col">SubName</th>
 					</tr>
 				</thead>
 				<tbody class="table-group-divider" >
