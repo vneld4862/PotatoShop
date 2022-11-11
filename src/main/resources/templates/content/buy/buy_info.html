@@ -3,12 +3,54 @@
 	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	  layout:decorate="~{layout/base_layout}">
 
-<th:block layout:fragment="css">
-	<link rel="stylesheet" th:href="@{}">
-</th:block>
-
 <div layout:fragment="content"> 
- 	
+	<div class="container">
+	<div class="row">
+		<div class="col-12 mb-5" style="background-color: gray;">
+			<div class="row" >
+				<div class="col-12">
+					<h4>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+					</svg>
+					상품 정보
+					</h4>
+				</div>	
+			</div>
+			<div class="col-12">
+		 		<div class="col-3" style="background-color: aqua;">
+					<th:block th:each=" img : ${item.imgList}">
+						<th:block th:if="${img.isMain eq 'Y'}">
+							<img th:src="|@{/images/}${img.attachedName}|" width="80rem;">
+						</th:block>
+					</th:block>
+				</div> 
+				<div class="col-8" style="background-color: blue;">
+					<div class="row">
+						<div class="col-12">
+							<h4>[[${item.itemPrice}]]</h4>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">[[${item.itemName}]]</div>
+		</div>
+		</div>
+	</div>
+	<div class="col-12 mb-5">
+		<div class="row">
+			<div class="col">
+				<h4>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+				</svg>
+				구매자 정보
+				</h4>
+			</div>
+		</div>
+	</div>
+	
+	
+	
 </div>
-
+</div>
 </html>

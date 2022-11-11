@@ -7,4 +7,7 @@ public interface MemberService {
 	void join(MemberVO memberVO);
 	MemberVO login(MemberVO memberVO);
 	String idChk(String memberId);
+	MemberVO selectMemberInfo(String memberId);
+
+	
 }
