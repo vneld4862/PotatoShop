@@ -4,14 +4,15 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="boardMapper">
 	<resultMap type="kh.study.team2.shop.board.vo.BoardVO" id="board">
-		<id column="BOARD_NUM" 			property="boardNum"/>
-		<result column="ITEM_CODE" 		property="itemCode"/>
-		<result column="BOARD_TITLE" 	property="boardTitle"/>
-		<result column="BOARD_CONTENT" 	property="boardContent"/>
-		<result column="MEMBER_ID" 		property="memberId"/>
-		<result column="REG_DATE" 		property="regDate"/>
-		<result column="STAR_POINT" 	property="starPoint"/>
-		<collection property="reviewImgVO" resultMap="reviewImg"/>
+		<id column="BOARD_NUM" 				property="boardNum"/>
+		<result column="ITEM_CODE" 			property="itemCode"/>
+		<result column="BOARD_TITLE" 		property="boardTitle"/>
+		<result column="BOARD_CONTENT" 		property="boardContent"/>
+		<result column="MEMBER_ID" 			property="memberId"/>
+		<result column="REG_DATE" 			property="regDate"/>
+		<result column="STAR_POINT" 		property="starPoint"/>
+		<association property="itemVO" 		resultMap="itemMapper.item"/>
+		<association property="reviewImgVO" resultMap="reviewImg"/>
 	</resultMap>
 	
 	<resultMap type="kh.study.team2.shop.board.vo.ReviewImgVO" id="reviewImg">
@@ -59,30 +60,33 @@
 	
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM
-			, S.ITEM_CODE
-			, S.ITEM_NAME
+			, ITEM_CODE
+			, (SELECT ITEM_NAME
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
-		FROM REVIEW_BOARD R, SHOP_ITEM S
+		FROM REVIEW_BOARD R
 		WHERE MEMBER_ID = #{memberId}
-		AND R.ITEM_CODE = S.ITEM_CODE
 		ORDER BY BOARD_NUM DESC
 	</select>
 	
 	<select id="selectBoardDetail" resultMap="board">
 		SELECT BOARD_NUM
-			, S.ITEM_CODE
-			, S.ITEM_NAME
+			, ITEM_CODE
+			, (SELECT ITEM_NAME
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
-		FROM REVIEW_BOARD R, SHOP_ITEM S
-		WHERE S.ITEM_CODE = #{itemCode}
+		FROM REVIEW_BOARD R
+		WHERE ITEM_CODE = #{itemCode}
 	</select>
 	
 </mapper>

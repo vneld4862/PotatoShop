@@ -51,7 +51,7 @@ public class BoardController {
 	}
 	
 	//후기 상세 보기
-	@GetMapping("/reviewDetail")
+	@PostMapping("/reviewDetail")
 	public String reviewDetail(Model model, String itemCode) {
 		model.addAttribute("board", boardService.selectBoardDetail(itemCode));
 		

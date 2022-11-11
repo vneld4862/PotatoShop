@@ -1,6 +1,7 @@
 package kh.study.team2.shop.board.vo;
 
 import groovy.transform.ToString;
+import kh.study.team2.shop.item.vo.ItemVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -16,4 +17,5 @@ public class BoardVO{
 	private String regDate;
 	private int starPoint;
 	private ReviewImgVO reviewImgVO;
+	private ItemVO itemVO;
 }
