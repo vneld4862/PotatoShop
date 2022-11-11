@@ -20,4 +20,5 @@ public interface CateService {
 	List<SubCateVO> subCateInMainCate(String mainCateCode);
 	
 	//ajax로 등록한 카테고리 조회
+	String selectNextMainCateCode();
 }

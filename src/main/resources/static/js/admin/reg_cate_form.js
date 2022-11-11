@@ -1,12 +1,26 @@
 function mainCate(selectBtn)
 {
 	const mainCateName=selectBtn.closest('form').querySelector('.inputCateName').value;
-	/*alert(selectBtn.dataset.main)*/
 	$.ajax({
 		url: '/admin/mainCateAjax', //요청경로
 		type: 'post',
 		data: {'mainCateName':mainCateName}, //필요한 데이터
 		success: function(result) {
+			//count
+			document.querySelector('');
+			//code
+			nextMainCateCode=result;
+			//name
+			mainCateName
+			//use
+			
+			let str='';
+			
+			
+			
+			
+			
+			
 			alert('등록되었습니다.');
 		},
 		error: function() {

@@ -50,6 +50,11 @@ public class CateServiceImpl implements CateService{
 	public List<SubCateVO> subCateInMainCate(String mainCateCode){
 		return sqlSession.selectList("cateMapper.subCateInMainCate",mainCateCode);
 	}
+
+	@Override
+	public String selectNextMainCateCode() {
+		return sqlSession.selectOne("cateMapper.selectNextMainCateCode");
+	}
 	
 	
 }

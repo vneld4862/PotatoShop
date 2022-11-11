@@ -107,7 +107,10 @@
 		WHERE MAIN_CATE_CODE=#{mainCateCode}
 	</select>
 	
-	
+	<select id="selectNextMainCateCode" resultType="String">
+		SELECT 'MAIN_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MAIN_CATE_CODE, 6))), 0) +0, 3, 0)
+	    FROM MAIN_CATE
+	</select>
 </mapper>
 
 

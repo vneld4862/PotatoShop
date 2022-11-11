@@ -69,9 +69,10 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/mainCateAjax")
-	public void inputMainCateName(MainCateVO mainCateVO)
+	public String inputMainCateName(MainCateVO mainCateVO)
 	{
 		cateService.inputMainCate(mainCateVO);
+		return cateService.selectNextMainCateCode();
 	}
 	
 	@ResponseBody
