@@ -21,6 +21,10 @@ public class UploadFileUtil {
 //	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//명현 경로
 	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	//민하 경로
+//	private static final String UPLOAD_PATH = "C:\\Users\\202-30\\git\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	
+	
 	
 	  //변수에 final이 붙어있으면 값을 변경할 수 없다... 다시 물어보자. 파일변경할수 없도록 상수로 만들었다
 	  //상수로 만들면 모두 대문자로 만든다. 
