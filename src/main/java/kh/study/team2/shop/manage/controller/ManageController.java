@@ -59,6 +59,16 @@ public class ManageController {
 	}
 	
 	//구매내역 페이지 이동
+	@GetMapping("/buyList")
+	public String buyList() {
+		
+		return "content/manage/buy_list";
+	}
 	
 	//판매내역 페이지 이동
+	@GetMapping("/sellList")
+	public String sellList() {
+		
+		return "content/manage/sell_list";
+	}
 }

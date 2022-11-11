@@ -57,13 +57,15 @@
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="contact-tab" data-bs-toggle="tab" data-bs-target="#contact-tab-pane" type="button" role="tab" aria-controls="contact-tab-pane" aria-selected="false">
-							구매목록
+						<button class="nav-link" id="myMarketReview-tab" data-bs-toggle="tab" data-bs-target="#myMarketReview-tab-pane" type="button" role="tab" aria-controls="myMarketReview-tab-pane" aria-selected="false">
+							상점 리뷰
 						</button>
 					</li>
+					
+					<!-- 본인만 보이는 탭 -->
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="sell-tab" data-bs-toggle="tab" data-bs-target="#sell-tab-pane" type="button" role="tab" aria-controls="sell-tab-pane" aria-selected="false">
-							판매현황
+						<button class="nav-link" id="writtenReview-tab" data-bs-toggle="tab" data-bs-target="#writtenReview-tab-pane" type="button" role="tab" aria-controls="writtenReview-tab-pane" aria-selected="false">
+							다른 상점에 작성한 리뷰
 						</button>
 					</li>
 					
@@ -95,15 +97,15 @@
 
 												</div>
 											</div>
-
 										</div>
+									</th:block>
 								</div>
 
 								<!-- <table>
-				<tr th:each="item : ${itemList}">
-				  <td th:text="${item.itemCode}"></td>		
-				</tr>
-			</table>	 -->
+										<tr th:each="item : ${itemList}">
+										  <td th:text="${item.itemCode}"></td>		
+										</tr>
+									</table>	 -->
 							</div>
 						</div>
 					</div>
@@ -112,97 +114,71 @@
 						찜
 					</div>
 					
-					<div class="tab-pane fade" id="contact-tab-pane" role="tabpanel" aria-labelledby="contact-tab" tabindex="0">
-						<div class="mt-3">
-							<h4>구매목록</h4>
-						</div>
-						
-						<div class="text-end">
-							<input type="button" value="후기 작성" th:onclick="|location.href='@{/board/regMarketBoard}'|">
+					<div class="tab-pane fade" id="myMarketReview-tab-pane" role="tabpanel" aria-labelledby="myMarketReview-tab" tabindex="0">
+						<div class="col mt-3">
+							<div>
+								<table class="table">
+									<colgroup>
+										<col width="10%">
+										<col width="15%">
+										<col width="10%">
+										<col width="*">
+										<col width="15%">
+										<col width="15%">
+									</colgroup>
+									<thead>
+										<tr>
+											<td>No</td>
+											<td>상품명</td>
+											<td>별점</td>
+											<td>제목</td>
+											<td>작성자</td>
+											<td>등록일</td>
+										</tr>
+									</thead>
+									<tbody>
+										<th:block th:if="${#lists.size(boardList) == 0}">
+											<tr>
+												<td colspan="6">작성된 후기가 없습니다.</td>
+											</tr>
+										</th:block>
+										<th:block th:unless="${#lists.size(boardList) == 0}">
+											<tr th:each="board : ${boardList}">
+												<td th:text="${boardStat.count}"></td>
+												<td>상품명</td>
+												<td>
+													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+														<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+													</svg>
+													[[${board.starPoint}]]
+												</td>
+												<td th:text="${board.boardTitle}"></td>
+												<td th:text="${board.memberId}"></td>
+												<td th:text="${board.regDate}"></td>
+											</tr>
+										</th:block>
+									</tbody>
+								</table>
+							</div>
 						</div>
 					</div>
-					
-					<div class="tab-pane fade" id="sell-tab-pane" role="tabpanel" aria-labelledby="sell-tab" tabindex="0">
-						판매 현황
+										
+					<div class="tab-pane fade" id="writtenReview-tab-pane" role="tabpanel" aria-labelledby="writtenReview-tab" tabindex="0">
+						다른 상점에 작성한 리뷰
 					</div>
-					
 
+					
 				</div>
 			</div>
-
 		</div>
-		
-		
-		
-		
-		<br>
-		<br>
-		<br>
-			
-		<div class="col">
-			<div>[상점 후기]</div>
-			<div>
-				<table class="table">
-					<colgroup>
-						<col width="10%">
-						<col width="15%">
-						<col width="10%">
-						<col width="*">
-						<col width="15%">
-						<col width="15%">
-					</colgroup>
-					<thead>
-						<tr>
-							<td>No</td>
-							<td>상품명</td>
-							<td>별점</td>
-							<td>제목</td>
-							<td>작성자</td>
-							<td>등록일</td>
-						</tr>
-					</thead>
-					<tbody>
-						<th:block th:if="${#lists.size(boardList) == 0}">
-							<tr>
-								<td colspan="6">작성된 후기가 없습니다.</td>
-							</tr>
-						</th:block>
-						<th:block th:unless="${#lists.size(boardList) == 0}">
-							<tr th:each="board : ${boardList}">
-								<td th:text="${boardStat.count}"></td>
-								<td>상품명</td>
-								<td>
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-									</svg>
-									[[${board.starPoint}]]
-								</td>
-								<td th:text="${board.boardTitle}"></td>
-								<td th:text="${board.memberId}"></td>
-								<td th:text="${board.regDate}"></td>
-							</tr>
-						</th:block>
-					</tbody>
-				</table>
-			</div>
-		
-		
-		</div>
-<hr>
 
-		
-		<!-- 본인만 보이는 탭 -->
-		<div>다른 상점에 남긴 후기</div>
-		<div>
-			<div>
-				구매내역
-			</div>
 
-		</div>
+		<hr>
+
+
 	</div>
 	
 
 	
 </div>
-
 </html>
