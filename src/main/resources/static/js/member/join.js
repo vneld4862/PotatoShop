@@ -52,7 +52,48 @@ function passChk(){
 
 }
 
+//휴대폰 인증번호
+$('#sendPhoneNumber').click(function(){
+    let memberTell = $('#memberTell').val();
+    Swal.fire('인증번호 발송 완료!')
 
+
+    $.ajax({
+        type: "post",
+        url: "/sms/sendSMS",
+        data: {
+            "member_Tell" : memberTell
+        },
+        success: function(res){
+            $('#checkBtn').click(function(){
+                if($.trim(res) ==$('#inputCertifiedNumber').val()){
+                    Swal.fire(
+                        '인증성공!',
+                        '휴대폰 인증이 정상적으로 완료되었습니다.',
+                        'success'
+                    )
+
+  
+                }else{
+                    Swal.fire({
+                        icon: 'error',
+                        title: '인증오류',
+                        text: '인증번호가 올바르지 않습니다!',
+                        footer: '<a href="/home">다음에 인증하기</a>'
+                    })
+                }
+            })
+
+
+        }
+    })
+});
+
+
+
+
+   
+// 휴대폰 인증확인
 function test(){
 	Swal.fire({
 	   title: '정말로 그렇게 하시겠습니까?',

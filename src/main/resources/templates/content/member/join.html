@@ -1,8 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-	layout:decorate="~{layout/base_layout}"
-	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+	layout:decorate="~{layout/base_layout}">
 
 
 <div layout:fragment="content">
@@ -54,22 +53,25 @@
 				<div class="col-12">
 					<input type="text" class="form-control" th:field="*{addrDetail}">
 				</div>
-				<div class="col-9">
+ 				<div class="col-9">
 					<label for="" class="form-label">휴대폰 번호</label> 
 					<input type="text" class="form-control" id="memberTell" name="memberTell">
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<button class="form-control" type="button" onclick="">인증번호 전송</button>
+					<button class="form-control" type="button" id="sendPhoneNumber" onclick="">인증번호 전송</button>
 				</div>
 				<div class="col-9">
 					<label for="" class="form-label">인증번호 입력</label> 
-					<input type="text" class="form-control" id="memberTell" name="memberTell">
+					<input type="text" class="form-control" id="inputCertifiedNumber" name="memberTell">
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<button class="form-control" type="button" onclick="test();">인증확인</button>
-				</div>
+					<button class="form-control" type="button" id="checkBtn" onclick="test();">인증확인</button>
+				</div> 
+
+				
+				
 				<div class="col-12">
 					<label for="memberName" class="form-label">이메일</label> 
 					<input type="email" class="form-control" th:field="*{memberEmail}">
