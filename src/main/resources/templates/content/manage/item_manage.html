@@ -26,6 +26,9 @@
 		    	<table class="table">
 				  <thead>
 				    <tr>
+				      <th scope="col">
+				      	<input type="checkbox">전체선택
+				      </th>
 				      <th scope="col">사진</th>
 				      <th scope="col">판매상태</th>
 				      <th scope="col">상품명</th>
@@ -38,10 +41,13 @@
 				  <tbody th:each="item : ${itemList}">
 				    <tr>
 				      <th scope="row">
+				      	  <input type="checkbox">
+				      </th>
+				      <td>
 				      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
 				      	   <img th:src="|@{/images/}${item.imgList[0].attachedName}|" width="100px;">
 				      	</a>
-				      </th>
+				      </td>
 				      <td>
 				      	<select>
 				      		<option>판매 중</option>
@@ -56,13 +62,18 @@
 				      <td>수정일</td>
 				      <td>
 				      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|">수정</button>
+				      	<button>삭제</button>
 				      </td>
 				    </tr>
 				  
 				  </tbody>
 				</table>
 		    </div>
-		
+		    <div class="col-12 text-end">
+		    	<button>
+		    		선택삭제
+		    	</button>
+		    </div>
 		  
 		  
 		  

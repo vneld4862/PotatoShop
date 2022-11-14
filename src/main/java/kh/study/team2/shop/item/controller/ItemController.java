@@ -4,6 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -76,14 +78,16 @@ public class ItemController {
 	
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")
-	public String memberItemList(Model model) {
-	    List<ItemVO> itemList = itemService.selectItemList();
+	public String memberItemList(Authentication authentication, Model model) {
+		User user = (User)authentication.getPrincipal();
+		String memberId = user.getUsername();
+	    List<ItemVO> itemList = itemService.memberItemList(memberId);
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);
 		
-		List<WishVO> wishList = wishService.selectWishList();
-		System.out.println(wishList);
-		model.addAttribute("wishList", wishList);
+	//	List<WishVO> wishList = wishService.selectWishList();
+	//	System.out.println(wishList);
+	//	model.addAttribute("wishList", wishList);
 		return"content/item/item_list";
 	}
 	

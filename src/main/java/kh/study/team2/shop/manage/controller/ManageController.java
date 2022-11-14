@@ -75,8 +75,13 @@ public class ManageController {
 	
 	//상품관리 페이지 이동
 	@GetMapping("/itemManage")
-	public String itemManage(Model model) {
-		List<ItemVO> itemList = itemService.memberItemList();
+	public String itemManage(Authentication authentication, Model model, @RequestParam(defaultValue = "2") String menu) {
+		model.addAttribute("menu", menu);
+		
+		User user = (User)authentication.getPrincipal();
+		String memberId = user.getUsername();
+		
+		List<ItemVO> itemList = itemService.memberItemList(memberId);
 		model.addAttribute("itemList", itemList);
 		return "content/manage/item_manage";
 	}
