@@ -8,9 +8,18 @@
 		<div class="row text-start">
 			<div class="col-12">
 				<h3>
-		    	   상품관리
+		    	   상품목록
 		 		</h3>
 			</div>
+		    
+		    <div class="col-12 mb-3">
+		    	<input type="text">
+		    	<button>검색</button>
+		    	<select>
+		    		<option>10개씩</option>
+		    		<option>20개씩</option>
+		    	</select>
+		    </div>
 		    <hr>
 		    <div class="col-12">
 		    	<table class="table">
@@ -25,10 +34,12 @@
 				      <th scope="col">기능(수정)</th>
 				    </tr>
 				  </thead>
-				  <tbody>
+				  <tbody th:each="item : ${itemList}">
 				    <tr>
 				      <th scope="row">
-				      	 <img alt="" src="">
+				      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
+				      	   <img th:src="|@{/images/}${item.imgList[0].attachedName}|" width="100px;">
+				      	</a>
 				      </th>
 				      <td>
 				      	<select>
@@ -38,25 +49,15 @@
 				      		<option>예약완료</option>
 				      	</select>
 				      </td>
-				      <td>테스트</td>
-				      <td>18000원</td>
-				      <td>0</td>
+				      <td>[[${item.itemName}]]</td>
+				      <td>[[${item.itemPrice}]]</td>
+				      <td>[[${item.cntWishList}]]</td>
 				      <td>수정일</td>
 				      <td>
 				      	<button>수정</button>
 				      </td>
 				    </tr>
-				    <tr>
-				      <th scope="row">2</th>
-				      <td>Jacob</td>
-				      <td>Thornton</td>
-				      <td>@fat</td>
-				    </tr>
-				    <tr>
-				      <th scope="row">3</th>
-				      <td colspan="2">Larry the Bird</td>
-				      <td>@twitter</td>
-				    </tr>
+				  
 				  </tbody>
 				</table>
 		    </div>

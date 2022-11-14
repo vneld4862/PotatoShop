@@ -24,8 +24,9 @@ public class ItemVO {
    private String mainCateCode;
    private String subCateCode;
    private String detailCateCode;
-   private List<ImgVO> imgList;
    
+   private List<ImgVO> imgList;
+   private int cntWishList;
    
  
 }

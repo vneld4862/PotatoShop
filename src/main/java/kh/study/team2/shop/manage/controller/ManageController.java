@@ -66,8 +66,9 @@ public class ManageController {
 	
 	//상품관리 페이지 이동
 	@GetMapping("/itemManage")
-	public String itemManage() {
-		
+	public String itemManage(Model model) {
+		List<ItemVO> itemList = itemService.memberItemList();
+		model.addAttribute("itemList", itemList);
 		return "content/manage/item_manage";
 	}
 	

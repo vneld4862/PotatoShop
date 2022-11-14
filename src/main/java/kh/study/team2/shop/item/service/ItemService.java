@@ -9,4 +9,5 @@ public interface ItemService {
 	String getNextItemCode();
 	List<ItemVO> selectItemList();
 	ItemVO selectItemDetail(String itemCode);
+	List<ItemVO> memberItemList();
 }
