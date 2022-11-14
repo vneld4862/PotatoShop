@@ -21,4 +21,6 @@ public interface CateService {
 	
 	//ajax로 등록한 카테고리 조회
 	String selectNextMainCateCode();
+	String selectNextSubCateCode();
+	String selectNextDetailCateCode();
 }

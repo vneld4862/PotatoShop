@@ -25,13 +25,13 @@
 						<th scope="col">Usable</th>
 					</tr>
 				</thead>
-				<tbody class="table-group-divider">
+				<tbody class="table-group-divider" id="mainCateList">
 					<tr th:if="${#lists.size(mainCateList)}==0">
 						<td colspan="5" class="text-center">등록된 카테고리가 없습니다</td>
 					</tr>
 					<tr th:unless="${#lists.size(mainCateList)}==0" th:each="mainCate:${mainCateList}">
 						<td><input class="form-check-input" type="checkbox" value=""></td>
-						<td class="text-center" th:text="${mainCateStat.count}"></td>
+						<td class="text-center mainCountList" th:text="${mainCateStat.count}"></td>
 						<td th:text="${mainCate.mainCateCode}"></td>
 						<td th:text="${mainCate.mainCateName}"></td>
 						<td th:text="${mainCate.cateStatus}"></td>
@@ -62,16 +62,16 @@
 						<th scope="col" class="text-center">No.</th>
 						<th scope="col">Code</th>
 						<th scope="col">SubName</th>
-						<th scope="col">MainCode</th>
+						<th scope="col">MainName</th>
 					</tr>
 				</thead>
-				<tbody class="table-group-divider">
+				<tbody class="table-group-divider" id="subCateList">
 					<tr th:if="${#lists.size(subCateList)}==0">
 						<td colspan="5" class="text-center">등록된 카테고리가 없습니다</td>
 					</tr>
 					<tr th:unless="${#lists.size(subCateList)}==0" th:each="subCate:${subCateList}">
 						<td><input class="form-check-input" type="checkbox" value=""></td>
-						<td class="text-center" th:text="${subCateStat.count}"></td>
+						<td class="text-center subCountList" th:text="${subCateStat.count}"></td>
 						<td th:text="${subCate.subCateCode}"></td>
 						<td th:text="${subCate.subCateName}"></td>
 						<td th:text="${subCate.mainCateVO.mainCateName}"></td>
@@ -102,13 +102,13 @@
 						<th scope="col">SubName</th>
 					</tr>
 				</thead>
-				<tbody  class="table-group-divider">
+				<tbody class="table-group-divider" id="detailCateList">
 					<tr th:if="${#lists.size(detailCateList)}==0">
 						<td colspan="5" class="text-center">등록된 카테고리가 없습니다</td>
 					</tr>
 					<tr th:unless="${#lists.size(detailCateList)}==0" th:each="detailCate:${detailCateList}" >
 						<td><input class="form-check-input" type="checkbox" value=""></td>
-						<td class="text-center" th:text="${detailCateStat.count}"></td>
+						<td class="text-center detailCountList" th:text="${detailCateStat.count}"></td>
 						<td th:text="${detailCate.detailCateCode}"></td>
 						<td th:text="${detailCate.detailCateName}"></td>
 						<td th:text="${detailCate.subCateVO.subCateName}"></td>

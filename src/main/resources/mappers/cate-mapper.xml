@@ -15,7 +15,7 @@
 		<collection property="mainCateVO" resultMap="mainCate"></collection>
 	</resultMap>
 	<resultMap type="kh.study.team2.shop.cate.vo.detail.DetailCateVO" id="detailCate">
-		<id column="DEATIL_CATE_CODE" property="detailCateCode"/>
+		<id column="DETAIL_CATE_CODE" property="detailCateCode"/>
 		<result column="DETAIL_CATE_NAME" property="detailCateName"/>
 		<result column="SUB_CATE_CODE" property="subCateCode"/>
 		<collection property="subCateVO" resultMap="subCate"></collection>
@@ -110,6 +110,14 @@
 	<select id="selectNextMainCateCode" resultType="String">
 		SELECT 'MAIN_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(MAIN_CATE_CODE, 6))), 0) +0, 3, 0)
 	    FROM MAIN_CATE
+	</select>
+	<select id="selectNextSubCateCode" resultType="String">
+		SELECT 'SUB_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(SUB_CATE_CODE, 5))), 0) +0, 3, 0)
+	    FROM SUB_CATE
+	</select>
+	<select id="selectNextDetailCateCode" resultType="String">
+		SELECT 'DETAIL_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(DETAIL_CATE_CODE, 8))), 0) +0, 4, 0)
+	    FROM DETAIL_CATE
 	</select>
 </mapper>
 

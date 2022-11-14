@@ -77,16 +77,18 @@ public class AdminController {
 	
 	@ResponseBody
 	@PostMapping("/subCateAjax")
-	public void inputSubCateName(SubCateVO subCateVO)
+	public String inputSubCateName(SubCateVO subCateVO)
 	{
 		cateService.inputSubCate(subCateVO);
+		return cateService.selectNextSubCateCode();
 	}
 	
 	@ResponseBody
 	@PostMapping("/detailCateAjax")
-	public void inputDetailCateName(DetailCateVO detailCateVO)
+	public String inputDetailCateName(DetailCateVO detailCateVO)
 	{
 		cateService.inputDetailCate(detailCateVO);
+		return cateService.selectNextDetailCateCode();
 	}
 	
 	@ResponseBody

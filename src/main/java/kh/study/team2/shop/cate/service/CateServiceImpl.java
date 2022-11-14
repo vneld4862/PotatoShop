@@ -55,6 +55,16 @@ public class CateServiceImpl implements CateService{
 	public String selectNextMainCateCode() {
 		return sqlSession.selectOne("cateMapper.selectNextMainCateCode");
 	}
+
+	@Override
+	public String selectNextSubCateCode() {
+		return sqlSession.selectOne("cateMapper.selectNextSubCateCode");
+	}
+
+	@Override
+	public String selectNextDetailCateCode() {
+		return sqlSession.selectOne("cateMapper.selectNextDetailCateCode");
+	}
 	
 	
 }
