@@ -25,13 +25,13 @@
 						/
 						<a th:href="@{/manage/myMarket}">내 상점</a>
 						/
-						번개톡
+						<a target="_blank" onclick="potatoChat();">감자톡</a>
 						<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/regCateForm}">/ (관리기능)</a><!-- 임시로 생성 -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
-<!-- <script type="text/javascript" th:src="@{/js/layout/top.js}"></script> -->
+<script type="text/javascript" th:src="@{/js/fragment/top.js}"></script>
 </div>
 </html>
