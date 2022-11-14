@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
@@ -35,7 +36,7 @@ public class ManageController {
 
 	@Resource(name="cateService")
 	private CateService cateService;
-
+	
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
@@ -53,7 +54,7 @@ public class ManageController {
 		
 		//회원 정보 조회
 		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
-		
+				
 		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
 		List<ItemVO> itemList = itemService.selectItemList();
@@ -79,6 +80,23 @@ public class ManageController {
 		model.addAttribute("itemList", itemList);
 		return "content/manage/item_manage";
 	}
+	
+	//상품수정 화면으로 이동
+	@GetMapping("/updateForm")
+	public String updateForm(String itemCode, Model model) {
+		System.out.println(itemCode);
+		model.addAttribute("itemInfo", itemService.selectItemDetail(itemCode));
+		return "content/manage/update_item";
+	}
+	
+	//상품수정
+	@PostMapping("/updateItem")
+	public String updateItem() {
+		
+		return"";
+	}
+	
+	
 	
 	//구매내역 페이지 이동
 	@GetMapping("/buyList")
