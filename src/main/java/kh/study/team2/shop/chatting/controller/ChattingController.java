@@ -1,9 +1,12 @@
 package kh.study.team2.shop.chatting.controller;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import lombok.extern.log4j.Log4j2;
 
-@RequestMapping("/chat")
+@Log4j2
+@RequestMapping("/potatoChat")
 @Controller
 public class ChattingController {
 	
@@ -13,4 +16,11 @@ public class ChattingController {
 		return "content/chatting/potato_chat";
 	}
 	
+	 @GetMapping("/chat")
+	    public String chatGET(){
+
+	        log.info("@ChatController, chat GET()");
+	        
+	        return "chat";
+	    }
 }
