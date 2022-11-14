@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.study.team2.shop.board.vo.BoardVO;
+import kh.study.team2.shop.board.vo.ReviewImgVO;
 
 
 @Service("boardService")
@@ -15,9 +16,12 @@ public class BoardServiceImpl implements BoardService{
 	SqlSessionTemplate sqlSession;
 
 	@Override
-	public void insertReview(BoardVO boardVO) {
+	public void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo) {
 		sqlSession.insert("boardMapper.insertReview", boardVO);
-		sqlSession.insert("boardMapper.insertReviewImg", boardVO);
+		
+		if(uploadInfo.getReviewImgCode() != null) {
+			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
+		}
 	}
 
 	@Override

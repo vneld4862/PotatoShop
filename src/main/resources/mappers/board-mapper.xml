@@ -74,9 +74,9 @@
 		ORDER BY BOARD_NUM DESC
 	</select>
 	
-	<select id="selectBoardDetail" resultMap="board">
+ 	<select id="selectBoardDetail" resultMap="board">
 		SELECT BOARD_NUM
-			, ITEM_CODE
+			, R.ITEM_CODE
 			, (SELECT ITEM_NAME
 				FROM SHOP_ITEM
 				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
@@ -85,8 +85,11 @@
 			, MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
-		FROM REVIEW_BOARD R
-		WHERE ITEM_CODE = #{itemCode}
+			, REVIEW_IMG_CODE
+			, ATTACHED_NAME
+		FROM REVIEW_BOARD R, REVIEW_IMG I
+		WHERE R.ITEM_CODE = #{itemCode}
+		AND R.ITEM_CODE = I.ITEM_CODE(+)
 	</select>
 	
 </mapper>

@@ -16,7 +16,6 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
-import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;

@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
@@ -34,11 +35,12 @@ public class BoardController {
 	//후기 작성
 	@PostMapping("/regReview")
 	public String regReview(BoardVO boardVO
-							, ReviewImgVO reviewImgVO
-							, MultipartFile reviewImg
+							, @RequestParam(required = false) ReviewImgVO reviewImgVO
+							, @RequestParam(required = false) MultipartFile reviewImg
 							, Authentication authentication) {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+		
 		uploadInfo.setItemCode("ITEM_001"); //임시
 		
 		boardVO.setItemCode("ITEM_001"); //임시
@@ -47,15 +49,15 @@ public class BoardController {
 		boardVO.setMemberId(user.getUsername());
 		
 		boardVO.setReviewImgVO(uploadInfo);		
-		boardService.insertReview(boardVO);
+		boardService.insertReview(boardVO, uploadInfo);
 		
 		return "redirect:/manage/myMarket";
 	}
 	
 	//후기 상세 보기
-	@PostMapping("/reviewDetail")
+	@GetMapping("/reviewDetail")
 	public String reviewDetail(Model model, String itemCode) {
-		model.addAttribute("board", boardService.selectBoardDetail(itemCode));
+		model.addAttribute("review", boardService.selectBoardDetail(itemCode));
 		
 		return "/content/board/market_board_detail";
 	}
