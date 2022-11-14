@@ -52,20 +52,17 @@ function passChk(){
 
 }
 
-//휴대폰 인증번호
+//휴대폰 인증번호 전송버튼 클릭
 $('#sendPhoneNumber').click(function(){
     let memberTell = $('#memberTell').val();
     Swal.fire('인증번호 발송 완료!')
 
-
     $.ajax({
         type: "post",
         url: "/sms/sendSMS",
-        data: {
-            "member_Tell" : memberTell
-        },
+        data: {"memberTell" : memberTell},
         success: function(res){
-            $('#checkBtn').click(function(){
+            $('#checkBtn').click(function test(){
                 if($.trim(res) ==$('#inputCertifiedNumber').val()){
                     Swal.fire(
                         '인증성공!',
@@ -79,7 +76,6 @@ $('#sendPhoneNumber').click(function(){
                         icon: 'error',
                         title: '인증오류',
                         text: '인증번호가 올바르지 않습니다!',
-                        footer: '<a href="/home">다음에 인증하기</a>'
                     })
                 }
             })
@@ -89,34 +85,8 @@ $('#sendPhoneNumber').click(function(){
     })
 });
 
-
-
-
    
-// 휴대폰 인증확인
-function test(){
-	Swal.fire({
-	   title: '정말로 그렇게 하시겠습니까?',
-	   text: '다시 되돌릴 수 없습니다. 신중하세요.',
-	   icon: 'error',
-	   
-	   showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
-	   confirmButtonColor: '#3085d6', // confrim 버튼 색깔 지정
-	   cancelButtonColor: '#d33', // cancel 버튼 색깔 지정
-	   confirmButtonText: '승인', // confirm 버튼 텍스트 지정
-	   cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-	   
-	   reverseButtons: false, // 버튼 순서 거꾸로
-   
-}).then(result => {
-   // 만약 Promise리턴을 받으면,
-   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-   
-      Swal.fire('승인이 완료되었습니다.', '화끈하시네요~!', 'success');
-   }
-});
 
-}
 
 
 		

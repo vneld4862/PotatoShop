@@ -16,7 +16,7 @@
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
-					<button class="form-control" id="duplicate_check" type="button" onclick="check();">중복확인</button>
+					<button class="btn btn-warning form-control" id="duplicate_check" type="button" onclick="check();">중복확인</button>
 				</div>
 				<div class="col-12">
 					<label for="memberPw" class="form-label">비밀번호</label>
@@ -48,26 +48,26 @@
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
 					<input onclick="searchAddr();" type="button"
-						class="btn btn-warning form-control" value="Search">
+						class="btn btn-warning form-control" value="검색">
 				</div>
 				<div class="col-12">
 					<input type="text" class="form-control" th:field="*{addrDetail}">
 				</div>
  				<div class="col-9">
 					<label for="" class="form-label">휴대폰 번호</label> 
-					<input type="text" class="form-control" id="memberTell" name="memberTell">
+					<input type="text" class="form-control" id="memberTell" name="memberTell" th:field="*{memberTell}">
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<button class="form-control" type="button" id="sendPhoneNumber" onclick="">인증번호 전송</button>
+					<button class="btn btn-warning form-control" type="button" id="sendPhoneNumber">인증번호 전송</button>
 				</div>
 				<div class="col-9">
 					<label for="" class="form-label">인증번호 입력</label> 
-					<input type="text" class="form-control" id="inputCertifiedNumber" name="memberTell">
+					<input type="text" class="form-control" id="inputCertifiedNumber" >
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<button class="form-control" type="button" id="checkBtn" onclick="test();">인증확인</button>
+					<button class="btn btn-warning form-control" type="button" id="checkBtn" onclick="test();">인증확인</button>
 				</div> 
 
 				
@@ -78,7 +78,7 @@
 				</div>
 			
 				<div class="col-12 d-grid gap-2">
-					<button type="submit" class="btn btn-warning" onclick="join();">JOIN</button>
+					<button type="submit" class="btn btn-warning" onclick="join();">회원가입</button>
 				</div>
 			 </form>
 		</div>
