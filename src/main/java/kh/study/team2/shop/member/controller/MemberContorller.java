@@ -1,14 +1,11 @@
 package kh.study.team2.shop.member.controller;
 
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
-import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -36,16 +33,12 @@ public class MemberContorller {
 	}
 	
 	@PostMapping("/join")
-	public String doJoin(@Valid MemberVO memberVO, BindingResult bindingResult, Model model){
+	public String doJoin(MemberVO memberVO, Model model){
 
 		//비밀번호 암호화
 		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
 		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
 		
-		if(bindingResult.hasErrors()) {
-			System.out.println("error!");
-			return "content/join";
-		}
 		memberService.join(memberVO);
 		
 		return "redirect:/item/list";
@@ -57,17 +50,6 @@ public class MemberContorller {
 		return "content/member/login";
 	}
 
-//스프링 시큐리티 사용하는 경우에는 필요 X
-//	@ResponseBody
-//	@PostMapping("/ajaxLogin")
-//	public boolean ajaxLogin(MemberVO memberVO, HttpSession session) {
-//		MemberVO loginInfo = memberService.login(memberVO);
-//		
-//		if(loginInfo != null) { 
-//			session.setAttribute("loginInfo", loginInfo);
-//		}
-//		return loginInfo == null ? false : true;
-//	}
 	
 	//로그인 시도하면 login_result.html로 보내 준다
 	@GetMapping("/loginResult")

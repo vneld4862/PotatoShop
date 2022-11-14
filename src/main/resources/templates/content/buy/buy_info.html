@@ -6,35 +6,6 @@
 
 <div layout:fragment="content"> 
 	<div class="container">
-	<div class="row">
-		<div class="col-12 mb-5">
-			<div class="row" >
-				<div class="col-12">
-					<h4>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-					</svg>
-					상품 정보
-					</h4>
-				</div>	
-			</div>
-			<div class="row">
-		 		<div class="col-4">
-					<th:block th:each=" img : ${item.imgList}">
-						<th:block th:if="${img.isMain eq 'Y'}">
-							<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
-						</th:block>
-					</th:block>
-				</div> 
-				<div class="col-8" style="margin-left: -20rem; margin-top: 2rem;">
-					<div class="row">
-						<h4>[[${item.itemPrice}]]</h4> <br>
-						<div class="col-6"><h5>[[${item.itemName}]]</h5></div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="col-12 mb-3">
 		<div class="row">
 			<div class="col">
@@ -58,13 +29,39 @@
 			<div class="col-12">[[${memberInfo.memberAddr}]]</div>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12 mb-5">
+			<div class="row" >
+				<div class="col-12">
+					<h4>
+					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+					</svg>
+					상품 정보
+					</h4>
+				</div>	
+			</div>
+			<div class="row">
+		 		<div class="col-4">
+					<th:block th:each=" img : ${item.imgList}">
+						<th:block th:if="${img.isMain eq 'Y'}">
+							<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
+						</th:block>
+					</th:block>
+				</div> 
+				<div class="col-8" style="margin-left: -20rem; margin-top: 2rem;">
+					<div class="row">
+						<div th:text="${#numbers.formatCurrency(item.itemPrice)}" style="font-size: 20px;"></div>
+						<div class="col-6"><h5>[[${item.itemName}]]</h5></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 	<div class="row mt-3 mb-3">
 	
-	
 	</div>
-	
-	
 	
 	
 	<button class="btn btn-warning">결제하기</button>

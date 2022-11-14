@@ -13,7 +13,6 @@
 					<label for="memberId" class="form-label">아이디</label> 
 					<input type="text" class="form-control" th:field="*{memberId}">
 					 <span class="point successNameChk">※ 이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
-					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div>
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
@@ -23,28 +22,23 @@
 					<label for="memberPw" class="form-label">비밀번호</label>
 					<input type="password" class="form-control" th:field="*{memberPw}" required maxlength="8">
 					<span class="point">※ 비밀번호는 총 8자까지 입력가능</span>
-					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
 				</div>
 				<div class="col-12">
 					<label for="userpasschk" class="form-label">비밀번호 확인</label>
 					<input id="userpasschk" type="password" class="form-control" onkeyup="passChk();" required maxlength="8">
 					<span class="point successPwChk"></span>
-					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
 				</div>
 				<div class="col-12">
 					<label for="memberName" class="form-label">이름</label> 
 					<input type="text" class="form-control" th:field="*{memberName}">
-					<div class="hasError" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></div>
 				</div>
 				<div class="col-12">
 					<label for="memberNickName" class="form-label">닉네임</label> 
 					<input type="text" class="form-control" th:field="*{memberNickName}">
-					<div class="hasError" th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}"></div>
 				</div>
 				<div class="col-9">
 					<label for="memberAddr" class="form-label">주소</label>
 					<input onclick="searchAddr();" type="text" class="form-control" th:field="*{memberAddr}" readonly>
-					<div class="hasError" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></div>
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
