@@ -17,55 +17,55 @@
 		<result column="REG_DATE" property="regDate"/>
 	</resultMap> 
 	
-<!-- 회원가입 -->
-<insert id="join">
-INSERT INTO SHOP_MEMBER(
-			 MEMBER_ID
-		    , MEMBER_PW
+	<!-- 회원가입 -->
+	<insert id="join">
+		INSERT INTO SHOP_MEMBER(
+					 MEMBER_ID
+				    , MEMBER_PW
+					, MEMBER_NAME
+					, MEMBER_NICKNAME
+					, MEMBER_ADDR
+					, ADDR_DETAIL
+					, MEMBER_TELL
+					, MEMBER_EMAIL
+			    ) VALUES(
+				     #{memberId}
+				    , #{memberPw}
+				    , #{memberName}
+				    , #{memberNickName}
+				    , #{memberAddr}
+				    , #{addrDetail}
+				    , #{memberTell}
+				    , #{memberEmail}
+			    )
+	</insert>
+	
+	<!-- 로그인 -->
+	<select id="login" resultMap="member">
+		SELECT MEMBER_ID
+			, MEMBER_PW
+			, MEMBER_ROLE
+		FROM SHOP_MEMBER
+		WHERE MEMBER_ID = #{memberId}
+		<!-- AND MEMBER_PW = #{memberPw} -->
+	</select>
+	
+	<!-- 아이디 중복 체크 -->
+	<select id="idChk" resultType="String">
+		SELECT MEMBER_ID
+		FROM SHOP_MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
+	
+	<!-- 회원정보 조회 -->
+	<select id="selectMemberInfo" resultMap="member">
+		SELECT MEMBER_ID
 			, MEMBER_NAME
-			, MEMBER_NICKNAME
-			, MEMBER_ADDR
-			, ADDR_DETAIL
 			, MEMBER_TELL
-			, MEMBER_EMAIL
-	    ) VALUES(
-		     #{memberId}
-		    , #{memberPw}
-		    , #{memberName}
-		    , #{memberNickName}
-		    , #{memberAddr}
-		    , #{addrDetail}
-		    , #{memberTell}
-		    , #{memberEmail}
-	    )
-</insert>
-
-<!-- 로그인 -->
-<select id="login" resultMap="member">
-SELECT MEMBER_ID
-	, MEMBER_PW
-	, MEMBER_ROLE
-FROM SHOP_MEMBER
-WHERE MEMBER_ID = #{memberId}
-AND MEMBER_PW = #{memberPw}
-</select>
-
-<!-- 아이디 중복 체크 -->
-<select id="idChk" resultType="String">
-SELECT MEMBER_ID
-FROM SHOP_MEMBER
-WHERE MEMBER_ID = #{memberId}
-</select>
-
-<!-- 회원정보 조회 -->
-<select id="selectMemberInfo" resultMap="member">
-SELECT MEMBER_ID
-	, MEMBER_NAME
-	, MEMBER_TELL
-	, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR
-FROM SHOP_MEMBER
-WHERE MEMBER_ID = #{memberId}
-</select>
+			, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR
+		FROM SHOP_MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
 
 </mapper>
 
