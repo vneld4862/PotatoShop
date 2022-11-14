@@ -2,7 +2,8 @@ package kh.study.team2.shop.board.controller;
 
 import javax.annotation.Resource;
 
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -34,15 +35,16 @@ public class BoardController {
 	@PostMapping("/regReview")
 	public String regReview(BoardVO boardVO
 							, ReviewImgVO reviewImgVO
-							, MultipartFile reviewImg) {
+							, MultipartFile reviewImg
+							, Authentication authentication) {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
 		uploadInfo.setItemCode("ITEM_001"); //임시
 		
 		boardVO.setItemCode("ITEM_001"); //임시
 
-		//uploadInfo.setItemCode(boardVO.getItemCode());
-		boardVO.setMemberId("test"); //임시
+		User user = (User)authentication.getPrincipal();
+		boardVO.setMemberId(user.getUsername());
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO);

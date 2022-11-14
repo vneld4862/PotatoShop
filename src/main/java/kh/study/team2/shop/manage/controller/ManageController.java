@@ -4,7 +4,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
-
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
+import kh.study.team2.shop.member.service.MemberService;
 
 @Controller
 @RequestMapping("/manage")
@@ -33,6 +35,9 @@ public class ManageController {
 
 	@Resource(name="cateService")
 	private CateService cateService;
+
+	@Resource(name="memberService")
+	private MemberService memberService;
 	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
@@ -43,11 +48,14 @@ public class ManageController {
 	
 	//내 상점 페이지 이동
 	@GetMapping("/myMarket")
-	public String myMarket(Model model, String memberId) {
-		memberId = "test"; //임시 아이디 값
+	public String myMarket(Model model, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		
+		//회원 정보 조회
+		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 		
 		//내 상점 후기 목록 조회
-		model.addAttribute("boardList", boardService.selectBoardList(memberId));
+		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
 		List<ItemVO> itemList = itemService.selectItemList();
 		model.addAttribute("itemList", itemList);
 		
