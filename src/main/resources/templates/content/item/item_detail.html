@@ -53,6 +53,7 @@
 	           <!-- 내 상품이면 찜/감자톡/바로구매 버튼을 -->
 	           <!-- 내 상점 관리 버튼으로 변경해줘야한다. -->
 	          	 <div>
+	          	  	<th:block th:unless="${memberId eq itemInfo.memberId}">
 		             <button class="btn btn-success" th:onclick="insertWish(this);" th:data-item-name="${itemInfo.itemCode}">
 		             	찜
 		                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
@@ -62,8 +63,13 @@
 		             <input type="hidden" th:value="${itemInfo.itemCode}" id="itemCodeInput">
 		             <button class="btn btn-success">감자톡</button>
 		             <button class="btn btn-success" th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|">바로구매</button>
+	             	</th:block>
 	             </div>
+	             <div>
+	             	<th:block th:if="${memberId eq itemInfo.memberId}">
 	                  <button class="btn btn-warning" style="width:45%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
+	             	</th:block>
+	             </div>
 	          </div>
 	        </div>
 	        

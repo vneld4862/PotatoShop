@@ -17,6 +17,7 @@
 		<result column="MAIN_CATE_CODE" property="mainCateCode"/>
 		<result column="SUB_CATE_CODE" property="subCateCode"/>
 		<result column="DETAIL_CATE_CODE" property="detailCateCode"/>
+		<result column="MEMBER_ID" property="memberId"/>
 		<result column="CNT_WISH_LIST" property="cntWishList"/><!--이렇게 임시로 작성하면 되나? -->
 		<collection property="imgList" resultMap="img"/>
 	</resultMap>
@@ -90,6 +91,7 @@
 	
 	<select id="selectItemDetail" resultMap="item">
 		SELECT I.ITEM_CODE
+		 	, MEMBER_ID
 			, ITEM_NAME
 			, ITEM_PRICE
 			, REG_DATE

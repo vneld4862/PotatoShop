@@ -85,20 +85,25 @@ public class ItemController {
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);
 		
-	//	List<WishVO> wishList = wishService.selectWishList();
-	//	System.out.println(wishList);
-	//	model.addAttribute("wishList", wishList);
+		List<WishVO> wishList = wishService.selectWishList(memberId);
+		System.out.println(wishList);
+		model.addAttribute("wishList", wishList);
 		return"content/item/item_list";
 	}
 	
 	
 	//상품상세보기 페이지로 이동
 	@GetMapping("/itemDetail")
-	public String itemDetail(String itemCode, Model model) {
+	public String itemDetail(String itemCode
+							, Model model
+							, Authentication authentication) {
+		User user = (User)authentication.getPrincipal();
+		String memberId = user.getUsername();
 		System.out.println(itemCode);
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		System.out.println(itemInfo);
 		model.addAttribute("itemInfo", itemInfo);
+		model.addAttribute("memberId", memberId);
 		return"content/item/item_detail";
 	}
 	

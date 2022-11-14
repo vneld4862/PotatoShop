@@ -7,6 +7,6 @@ import kh.study.team2.shop.wish.vo.WishVO;
 public interface WishService {
   
 	void insertWish(WishVO wishVo);
-	List<WishVO> selectWishList();
+	List<WishVO> selectWishList(String memberId);
 	
 }

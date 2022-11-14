@@ -22,8 +22,8 @@ public class WishServiceImpl implements WishService{
 
 
 	@Override
-	public List<WishVO> selectWishList() {
-		return sqlSession.selectList("wishMapper.selectWishList");
+	public List<WishVO> selectWishList(String memberId) {
+		return sqlSession.selectList("wishMapper.selectWishList", memberId);
 	}
 
 }
