@@ -54,7 +54,8 @@ public class ItemController {
 	@PostMapping("/regItem")
 	public String regItem(ItemVO itemVO
 						  , MultipartFile mainImg
-						  , List<MultipartFile> subImgs) {
+						  , List<MultipartFile> subImgs
+						  , Authentication authentication) {
 		
 		String nextItemCode = itemService.getNextItemCode();
 		
@@ -70,8 +71,11 @@ public class ItemController {
 		itemVO.setItemCode(nextItemCode);
 		//insert쿼리 실행
 		System.out.println(itemVO);
+		User user = (User)authentication.getPrincipal();
+		String memberId = user.getUsername();
+		itemVO.setMemberId(memberId);
 		itemService.insertItem(itemVO);
-		return "redirect:/item/list";
+		return "redirect:/manage/itemManage";
 	}
 	
 	

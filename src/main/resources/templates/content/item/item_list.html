@@ -144,7 +144,9 @@
 											 		  		 <div class="col-5" style="background-color: aqua;  margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
 								 				<div class="row">
 								 					<div class="col-4" style="margin: 0 auto;">
-								 					    <img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+								 						<a th:href="@{/item/itemDetail(itemCode=${wish.itemVO.itemCode})}">
+								 					    	<img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+								 						</a>
 								 					</div>
 								 					<div class="col-7" style="margin: 0 auto; margin-top: 30px;">
 								 						<div>

@@ -85,7 +85,12 @@
 										<tr>
 											<th scope="row">상품설명*</th>
 											<td>
-										      <input type="text" class="form-control" id="exampleFormControlInput1" name="itemComment" th:value="${itemInfo.itemComment}">
+										     	<input type="text" class="form-control" id="exampleFormControlInput1" name="itemComment" th:value="${itemInfo.itemComment}">
+											 	 <textarea rows="" cols="20" class="form-control"
+										    		  name="itemComment" style="resize: none;"
+										         	  placeholder="상품에 대한 정보를 입력해주세요" >
+										     			 [[${itemInfo.itemComment}]]	
+										     	 </textarea>
 											</td>
 										</tr>
 										<tr>
@@ -97,11 +102,13 @@
 										<tr>
 											<th scope="row">상품상태*</th>
 											<td>
-												<div class="form-check form-check-inline">
+												 <div class="form-check form-check-inline">
+													 <th:block>
 																<input class="form-check-input" type="radio"
 																	name="itemStatus" id="inlineRadio1"
 																	value="중고"> <label class="form-check-label"
 																	for="inlineRadio1">중고</label>
+													 </th:block>				
 												  </div>
 											      <div class="form-check form-check-inline">
 												 	<input class="form-check-input" type="radio"
