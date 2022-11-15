@@ -60,14 +60,50 @@
 	</div>
 	
 	<div class="row mt-3 mb-3">
-	
+		<div class="row" >
+			<div class="col-12">
+				<h4>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+				</svg>
+				결제수단
+				</h4>
+			</div>	
+			<div class="col-12">
+			  <div class="form-check form-check-inline">
+			 	<input class="form-check-input" type="radio" name="" id="" value="신용/체크카드"> 
+				<label class="form-check-label" for="">신용/체크카드</label>
+			  </div>
+			</div>
+			<div class="col-12">
+			  <div class="form-check form-check-inline">
+			 	<input class="form-check-input" type="radio" name="" id="" value="etc"> 
+				<label class="form-check-label" for="">간편결제</label>
+			  </div>
+			 </div>
+		</div>
 	</div>
 	
+	<div class="row mt-3 mb-3">
+		<div class="row" >
+			<div class="col-12">
+				<h4>
+				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+				</svg>
+				최종 결제금액
+				</h4>
+				<div th:text="${#numbers.formatCurrency(item.itemPrice)}" style="font-size: 30px;"></div>
+			</div>	
+		</div>
+	</div>
 	
-	<button class="btn btn-warning">결제하기</button>
+	<button class="btn btn-warning" onclick="payBtn();">결제하기</button>
 	
-	
-	
+<script type="text/javascript" th:src="@{/js/buy/buy_info.js}"></script>       
+<script src="https://code.jquery.com/jquery-latest.min.js"></script>
+<!-- iamport.payment.js -->
+ <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-{SDK-1.2.0}.js"></script>	
 </div>
 </div>
 </html>
