@@ -41,4 +41,9 @@ public class ItemServiceImpl implements ItemService {
 		return sqlSession.selectList("itemMapper.memberItemList", memberId);
 	}
 
+//	@Override
+//	public ItemVO updateItem(ItemVO itemVO) {
+//		return sqlSession.update("itemMapper.updateItem", itemVO);
+//	}
+
 }

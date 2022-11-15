@@ -130,6 +130,20 @@
 		ORDER BY ITEM_CODE DESC
 	</select>
 	
+	<!--상품수정-->
+	<update id="updateItem">
+		UPDATE SHOP_ITEM
+		SET 
+			ITEM_NAME = #{itemName}
+			, ITEM_PRICE = #{itemPrice}
+			, ITEM_COMMENT = #{itemComment}
+			, ITEM_STOCK = #{itemStock}
+			, ITEM_STATUS = #{itemStatus}
+			, TRADE_TYPE = #{tradeType}
+			, TRADE_ADDR = #{tradeAddr}
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
+	
 	
 </mapper>
 

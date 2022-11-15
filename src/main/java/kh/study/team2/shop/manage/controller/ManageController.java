@@ -96,9 +96,9 @@ public class ManageController {
 	
 	//상품수정
 	@PostMapping("/updateItem")
-	public String updateItem() {
-		
-		return"";
+	public String updateItem(ItemVO itemVO) {
+//		itemService.updateItem(itemVO);
+		return"redirect:/manage/itemManage";
 	}
 	
 	
