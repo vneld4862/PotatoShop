@@ -113,10 +113,11 @@ public class ItemController {
 	//찜버튼 클릭 시 실행 
 	@ResponseBody
 	@PostMapping("/insertWish")
-	public void insertWish(WishVO wishVO) {
+	public void insertWish(WishVO wishVO, Authentication authentication) {
 		System.out.println("찜을 해보자^^");
-		wishVO.setMemberId("test1"); //임시로 추가. 추후에 시큐리티에서 가져올 예정
-		
+		User user = (User)authentication.getPrincipal();
+		String memberId = user.getUsername();
+		wishVO.setMemberId(memberId);
 		
 		
 		wishService.insertWish(wishVO);
