@@ -46,4 +46,9 @@ public class ItemServiceImpl implements ItemService {
 	    sqlSession.update("itemMapper.updateItem", itemVO);
 	}
 
+	@Override
+	public void deleteItem(String itemCode) {
+		sqlSession.delete("itemMapper.deleteItem", itemCode);
+	}
+
 }

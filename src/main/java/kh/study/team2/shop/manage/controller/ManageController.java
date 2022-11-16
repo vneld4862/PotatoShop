@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
@@ -101,6 +102,14 @@ public class ManageController {
 		return"redirect:/manage/itemManage";
 	}
 	
+	
+	//상품삭제
+	@ResponseBody
+	@PostMapping("/deleteItem")
+	public void deleteItem(String itemCode) {
+		itemService.deleteItem(itemCode);
+		
+	}
 	
 	
 	//구매내역 페이지 이동

@@ -11,4 +11,5 @@ public interface ItemService {
 	ItemVO selectItemDetail(String itemCode);
 	List<ItemVO> memberItemList(String memberId);
 	void updateItem(ItemVO itemVO);
+	void deleteItem(String itemCode);
 }
