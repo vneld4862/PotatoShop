@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+
+<div layout:fragment="content"> 
+ 	<h3>공지사항</h3>
+ 	<table class="table text-center">
+ 		<colgroup>
+	       <col width="10%">
+	       <col width="75%">
+	       <col width="*">
+		</colgroup>
+ 		<tr>
+ 			<th>번호</th>
+ 			<th>내용</th>
+ 			<th>등록일</th>
+ 		</tr>
+ 		<tr>
+ 			<td>1</td>
+ 			<td>제목</td>
+ 			<td>2022-11-16</td>
+ 		</tr>
+ 	</table>
+ 	<input type="button" class="btn btn-warning" value="글 등록" th:onclick="|location.href='@{/notice/regNotice}'|">
+</div>
+
+</html>

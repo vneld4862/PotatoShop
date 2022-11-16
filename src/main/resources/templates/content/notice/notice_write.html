@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+
+<div layout:fragment="content"> 
+ 	<h3>공지사항</h3>
+ 	<form th:action="@{/notice/regNotice}" method="post">
+	  	<div class="col-12">
+	     <label for="title" class="form-label">TITLE</label>
+	     <input type="text" class="form-control" name="title">
+	  	</div>
+	  	<div class="col-12">
+	     <label for="content" class="form-label">CONTENT</label>
+	     <textarea rows="5" cols="40" class="form-control" name="content"></textarea>
+	  	</div>
+	  	<input type="submit" class="btn btn-warning" value="글등록" style="margin-top: 5px;">
+  	</form>
+</div>
+
+</html>

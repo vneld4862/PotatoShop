@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 해당 파일에 모든 쿼리문을 작성 -->
+<mapper namespace="noticeMapper">
+	<resultMap type="kh.study.team2.shop.notice.vo.NoticeVO" id="notice">
+		<id column="NOTICE_NUM" property="noticeNum"/>
+		<result column="TITLE" property="title"/>
+		<result column="CONTENT" property="content"/>
+		<result column="MEMBER_ID" property="memberId"/>
+		<result column="CREATE_DATE" property="createDate"/>
+		<result column="READ_CNT" property="readCnt"/>
+	</resultMap>
+	
+<!-- 글 등록 -->
+<insert id="insert">
+	INSERT INTO NOTICE(
+	    NOTICE_NUM
+	    , TITLE
+	    , CONTENT
+	    , MEMBER_ID
+	    ) VALUES(
+	   (SELECT NVL(MAX(NOTICE_NUM), 0) + 1 FROM NOTICE)
+	    , #{title}
+	    , #{content}
+	    , #{memberId}
+	    )	
+</insert>
+
+	
+</mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
