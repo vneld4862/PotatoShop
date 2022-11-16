@@ -9,7 +9,6 @@
 		<result column="ITEM_PRICE" property="itemPrice"/>
 		<result column="REG_DATE" property="regDate"/>
 		<result column="ITEM_COMMENT" property="itemComment"/>
-		<result column="ITEM_STOCK" property="itemStock"/>
 		<result column="ITEM_STATUS" property="itemStatus"/>
 		<result column="TRADE_TYPE" property="tradeType"/>
 		<result column="TRADE_ADDR" property="tradeAddr"/>
@@ -96,7 +95,6 @@
 			, ITEM_PRICE
 			, REG_DATE
 			, ITEM_COMMENT
-			, ITEM_STOCK
 			, ITEM_STATUS
 			, TRADE_TYPE
 			, TRADE_ADDR
@@ -135,7 +133,6 @@
 			ITEM_NAME = #{itemName}
 			, ITEM_PRICE = #{itemPrice}
 			, ITEM_COMMENT = #{itemComment}
-			, ITEM_STOCK = #{itemStock}
 			, ITEM_STATUS = #{itemStatus}
 			, TRADE_TYPE = #{tradeType}
 			, TRADE_ADDR = #{tradeAddr}

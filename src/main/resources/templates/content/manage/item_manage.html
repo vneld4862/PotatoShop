@@ -62,7 +62,7 @@
 				      <td>수정일</td>
 				      <td>
 				      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|">수정</button>
-				      	<button th:onclick="deleteItem([[${item.itemCode}]]);">삭제</button>
+				      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|">삭제</button>
 				      </td>
 				    </tr>
 				  

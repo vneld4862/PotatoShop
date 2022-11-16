@@ -104,12 +104,14 @@ public class ManageController {
 	
 	
 	//상품삭제
-	@ResponseBody
-	@PostMapping("/deleteItem")
-	public void deleteItem(String itemCode) {
+	
+	@GetMapping("/deleteItem")
+	public String deleteItem(String itemCode) {
 		itemService.deleteItem(itemCode);
 		
+		return"redirect:/manage/itemManage";
 	}
+	
 	
 	
 	//구매내역 페이지 이동
