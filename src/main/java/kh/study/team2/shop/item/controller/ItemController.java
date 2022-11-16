@@ -21,6 +21,7 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.sell.service.SellService;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
@@ -30,21 +31,36 @@ import kh.study.team2.shop.wish.vo.WishVO;
 public class ItemController {
 	@Resource(name="itemService")
 	private ItemService itemService;
+	
 	@Resource(name = "cateService")
 	private CateService cateService;
+	
 	@Resource(name = "sellService")
 	private SellService sellService;
+	
 	@Resource(name = "wishService")
 	private WishService wishService;
 	
+	@Resource(name="memberService")
+	private MemberService memberService;
+	
+	
+	
 	@GetMapping("/list")
-	public String list(Model model,SubCateVO subCateVO,DetailCateVO detailCateVO) {
+	public String list(Model model
+					, SubCateVO subCateVO
+					, DetailCateVO detailCateVO) { //, Authentication authentication
+		
 		model.addAttribute("mainCateList",cateService.mainCateList());
 		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
 		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
 		model.addAttribute("itemList",itemService.selectItemList());
-		return "content/shop_main";
 		
+		//User user = (User)authentication.getPrincipal();
+		
+		//model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
+		
+		return "content/shop_main";
 	}
 	
 	
@@ -82,6 +98,7 @@ public class ItemController {
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")
 	public String memberItemList(Authentication authentication, Model model) {
+		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 	    List<ItemVO> itemList = itemService.memberItemList(memberId);
@@ -91,6 +108,7 @@ public class ItemController {
 		List<WishVO> wishList = wishService.selectWishList(memberId);
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
+		
 		return"content/item/item_list";
 	}
 	
@@ -100,6 +118,7 @@ public class ItemController {
 	public String itemDetail(String itemCode
 							, Model model
 							, Authentication authentication) {
+		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		System.out.println(itemCode);
@@ -107,18 +126,20 @@ public class ItemController {
 		System.out.println(itemInfo);
 		model.addAttribute("itemInfo", itemInfo);
 		model.addAttribute("memberId", memberId);
+		
 		return"content/item/item_detail";
 	}
 	
 	//찜버튼 클릭 시 실행 
 	@ResponseBody
 	@PostMapping("/insertWish")
-	public void insertWish(WishVO wishVO, Authentication authentication) {
+	public void insertWish(WishVO wishVO
+						, Authentication authentication) {
+		
 		System.out.println("찜을 해보자^^");
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		wishVO.setMemberId(memberId);
-		
 		
 		wishService.insertWish(wishVO);
 	}

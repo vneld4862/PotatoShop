@@ -50,6 +50,14 @@ public class AdminController {
 		return "content/admin/member_manage";
 	}
 	
+	//회원 상태별로 조회
+	@ResponseBody
+	@PostMapping("/getMemberListAjax")
+	public List<MemberVO> getMemberListAjax(String memberStatus) {
+	
+		return null;
+	}
+	
 	//회원 정보 상세 조회
 	@ResponseBody
 	@PostMapping("/selectMemberDetail")
