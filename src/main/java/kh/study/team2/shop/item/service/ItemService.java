@@ -10,5 +10,6 @@ public interface ItemService {
 	List<ItemVO> selectItemList();
 	ItemVO selectItemDetail(String itemCode);
 	List<ItemVO> memberItemList(String memberId);
-//	ItemVO updateItem(ItemVO itemVO);
+	void updateItem(ItemVO itemVO);
+	void deleteItem(String itemCode);
 }

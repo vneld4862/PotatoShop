@@ -16,7 +16,6 @@ public class ItemVO {
    private int itemPrice;
    private String regDate;
    private String itemComment;
-   private int itemStock;
    private String itemStatus;
    private String tradeType;
    private String tradeAddr;

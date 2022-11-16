@@ -32,11 +32,11 @@
 								</button> -->
 								
 								<button class="btn btn-success" style="width: 30%" 
-								th:onclick="|location.href='@{/member/profileForm}'|">
-								프로필 수정
+								th:onclick="|location.href='@{/manage/profileForm}'|">
+								 내정보 수정
 								</button>
 								<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
- 								    프로필 수정(모달)
+ 								    프로필이미지 수정
 								</button>
 							</div>
 						</div>
@@ -327,18 +327,33 @@
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필 수정</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">상점프로필 수정</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <div>프로필 이미지 수정</div>
-        <div>닉네임 수정</div>
-        <div>비밀번호 수정</div>
-        <div></div>
+      
+      	<div class="row">
+      		<div class="col-12">
+      		  
+      		  <label>상점 이미지</label>
+      	      <div class="input-group flex-nowrap mb-3">
+		   			<span class="input-group-text" id="addon-wrapping">프로필 이미지</span>
+					<input type="file" class="form-control" name="mainImg">
+			   </div>
+			   <!-- <label>상점 닉네임</label>
+      	       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value=""> -->
+
+      		</div>
+      	</div>
+         
+      
+      
+      
+      
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Understood</button>
+        <button type="button" class="btn btn-primary">수정</button>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
   </div>

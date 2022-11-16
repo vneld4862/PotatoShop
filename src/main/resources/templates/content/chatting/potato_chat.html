@@ -11,19 +11,26 @@
 <script src="https://code.jquery.com/jquery-latest.min.js"></script>
 </head>
 <body>
-<div class="container">
-	<div class="text-center mt-3">
-		<h3 style="display: inline-block;">감자톡</h3><img alt="..." src="/images/bannerPT.png" width="50px;">
-		<div class="text-end" style="position: relative;;right: 10px;">[[${#authentication.name}]]</div>
-		<div class="border border-dark viewChat">
-			
-		</div>
-		<div class="input-group mt-3" style="width: 98%;">
-		  <input type="text" class="form-control" aria-describedby="button-addon2">
-		  <button class="btn btn-outline-secondary" type="button" id="button-addon2">전송</button>
+	<div class="container">
+		<div class="text-center mt-3">
+			<h3 style="display: inline-block;">감자톡</h3><img alt="..." src="/images/bannerPT.png" width="50px;">
+			<div class="text-end" style="position: relative;right: 10px;" id="memberId">[[${#authentication.name}]]</div>
+			<div class="border viewChat" style="overflow-y: scroll;padding: 0 .5rem;overflow-x: hidden; ">
+				<div class="col-12 bg-secondary mb-2">
+					<label><b>채팅방</b></label>
+				</div>
+	            <div class="row">
+	                <div id="msgArea" class="col-12"></div>
+	            </div>
+			</div>
+			<div class="input-group mt-3" style="width: 98%;">
+	            <div class="input-group mb-3">
+	                <input type="text" id="msg" class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2">
+	                <button class="btn btn-secondary" type="button" id="button-send">전송</button>
+	            </div>
+			</div>
 		</div>
 	</div>
-</div>
-<script type="text/javascript" th:src="@{/js/chat/chat.js}"></script>
+	<script type="text/javascript" th:src="@{/js/chat/chat.js}"></script>
 </body>
 </html>

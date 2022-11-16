@@ -20,6 +20,7 @@
 		    		<option>10개씩</option>
 		    		<option>20개씩</option>
 		    	</select>
+		    	(가능하면 구현)
 		    </div>
 		    <hr>
 		    <div class="col-12">
@@ -52,7 +53,6 @@
 				      	<select>
 				      		<option>판매 중</option>
 				      		<option>예약 중</option>
-				      		<option>삭제</option>
 				      		<option>예약완료</option>
 				      	</select>
 				      </td>
@@ -62,7 +62,7 @@
 				      <td>수정일</td>
 				      <td>
 				      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|">수정</button>
-				      	<button>삭제</button>
+				      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|">삭제</button>
 				      </td>
 				    </tr>
 				  
@@ -92,6 +92,6 @@
 
 
 
-
+<script type="text/javascript" th:src="@{/js/manage/item_manage.js}"></script>
 </div>
 </html>

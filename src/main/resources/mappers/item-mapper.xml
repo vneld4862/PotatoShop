@@ -9,7 +9,6 @@
 		<result column="ITEM_PRICE" property="itemPrice"/>
 		<result column="REG_DATE" property="regDate"/>
 		<result column="ITEM_COMMENT" property="itemComment"/>
-		<result column="ITEM_STOCK" property="itemStock"/>
 		<result column="ITEM_STATUS" property="itemStatus"/>
 		<result column="TRADE_TYPE" property="tradeType"/>
 		<result column="TRADE_ADDR" property="tradeAddr"/>
@@ -41,7 +40,6 @@
 			  ITEM_CODE
 			  , ITEM_NAME
 			  , ITEM_PRICE
-			  , ITEM_STOCK
 			  , ITEM_COMMENT
 			  , ITEM_STATUS
 			  , TRADE_TYPE
@@ -51,7 +49,6 @@
 		  	  #{itemCode}	
 		      , #{itemName}
 		      , #{itemPrice}
-		      , #{itemStock}
 		      , #{itemComment}
 		      , #{itemStatus}
 		      , #{tradeType}
@@ -98,7 +95,6 @@
 			, ITEM_PRICE
 			, REG_DATE
 			, ITEM_COMMENT
-			, ITEM_STOCK
 			, ITEM_STATUS
 			, TRADE_TYPE
 			, TRADE_ADDR
@@ -137,12 +133,18 @@
 			ITEM_NAME = #{itemName}
 			, ITEM_PRICE = #{itemPrice}
 			, ITEM_COMMENT = #{itemComment}
-			, ITEM_STOCK = #{itemStock}
 			, ITEM_STATUS = #{itemStatus}
 			, TRADE_TYPE = #{tradeType}
 			, TRADE_ADDR = #{tradeAddr}
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
+	
+	
+	<!--상품삭제-->
+	<delete id="deleteItem">
+		DELETE SHOP_ITEM
+		WHERE ITEM_CODE = #{itemCode}
+	</delete>
 	
 	
 </mapper>

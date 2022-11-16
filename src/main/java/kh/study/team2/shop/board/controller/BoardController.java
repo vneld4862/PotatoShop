@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
@@ -55,11 +56,11 @@ public class BoardController {
 	}
 	
 	//후기 상세 보기
-	@GetMapping("/reviewDetail")
-	public String reviewDetail(Model model, String itemCode) {
-		model.addAttribute("review", boardService.selectBoardDetail(itemCode));
+	@ResponseBody
+	@PostMapping("/reviewDetail")
+	public BoardVO reviewDetail(Model model, String itemCode) {
 		
-		return "/content/board/market_board_detail";
+		return boardService.selectBoardDetail(itemCode); //리턴 값을 ajax의 result로 전달
 	}
 	
 }

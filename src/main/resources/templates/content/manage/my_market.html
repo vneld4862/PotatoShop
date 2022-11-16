@@ -149,7 +149,7 @@
 													</svg>
 													[[${board.starPoint}]]
 												</td>
-												<td th:text="${board.boardTitle}" th:onclick="|location.href='@{/board/reviewDetail(itemCode=${board.itemCode})}'|"></td>
+												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
 												<td th:text="${board.memberId}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>
@@ -172,6 +172,61 @@
 		<hr>
 
 	</div>
+	
+	<!-- 리뷰 제목 클릭시 실행되는 Modal -->
+	<div class="modal fade" id="reviewDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+		<!-- 	<div class="modal-header">
+
+				</div> -->
+				<div class="modal-body">
+					<div class="col-12">
+					
+						<div class="row">
+							<div class="col-4">상품 메인 사진</div>
+							<div class="col-8">
+								<div class="row" id="reviewDetailModal_itemName">
+									상품명
+								</div>
+								<div class="row">
+									<div class="col">별점</div>
+									<div class="col" id="reviewDetailModal_starPoint"></div>
+								</div>
+							</div>
+						</div>
+						
+						<hr>
+						
+						<div class="col" id="reviewDetailModal_title">제목</div>
+						<div class="col" id="reviewDetailModal_wirter">작성자</div>
+						
+						<hr>
+						
+						<div class="col" id="reviewDetailModal_pic">사진</div>
+						<!-- <img th:src="|@{/images/}${result.attachedName}|" height="200px;"> -->
+						<div class="col">내용</div>
+						<div class="col text-end">등록일</div>
+						
+						<hr>
+						
+					</div>
+
+
+					<div class="col-12 text-end">
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+					</div>
+				</div>
+				
+		<!-- 	<div class="modal-footer">
+					
+				</div> -->
+				
+			</div>
+		</div>
+	</div>
+	
+<script type="text/javascript" th:src="@{/js/manage/my_market.js}"></script>
 
 </div>
 </html>

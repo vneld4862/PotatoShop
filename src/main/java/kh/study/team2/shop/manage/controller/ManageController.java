@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
@@ -63,6 +64,15 @@ public class ManageController {
 		return "content/manage/my_market"; 
 	}	
 	
+	//내정보수정 
+	@GetMapping("/profileForm")
+	public String profileForm() {
+		
+		return"content/manage/modify_profile";
+	}
+	
+	
+	
 	//상품등록 페이지로 이동
 	@GetMapping("/regItemForm")
 	public String regItemForm(Model model) {
@@ -97,7 +107,17 @@ public class ManageController {
 	//상품수정
 	@PostMapping("/updateItem")
 	public String updateItem(ItemVO itemVO) {
-//		itemService.updateItem(itemVO);
+		itemService.updateItem(itemVO);
+		return"redirect:/manage/itemManage";
+	}
+	
+	
+	//상품삭제
+	
+	@GetMapping("/deleteItem")
+	public String deleteItem(String itemCode) {
+		itemService.deleteItem(itemCode);
+		
 		return"redirect:/manage/itemManage";
 	}
 	
