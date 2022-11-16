@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.study.team2.shop.member.vo.MemberVO;
+import kh.study.team2.shop.member.vo.ProfileVO;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -14,6 +15,8 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void join(MemberVO memberVO) {
 		sqlSession.insert("memberMapper.join", memberVO);
+		sqlSession.insert("memberMapper.insertProfile", memberVO);
+//		sqlSession.insert("memberMapper.insertProfile", profileVO);
 	}
 	@Override
 	public MemberVO login(MemberVO memberVO) {

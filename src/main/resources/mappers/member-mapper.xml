@@ -41,17 +41,17 @@
 	</insert>
 	
 	<!-- 프로필생성 -->
-	<!-- <insert id="insertProfile">
+	<insert id="insertProfile">
 		INSERT INTO PROFILE (
 		 	 PROFILE_CODE
-		 	 , ORIGIN_NAME
+		 	<!--  , ORIGIN_NAME -->
 		 	 , MEMBER_ID
 		  ) VALUES (
 			 (SELECT 'PROFILE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(PROFILE_CODE, 9))), 0) +1, 3, 0) FROM PROFILE)	
-			 , #{originName}
+			<!--  , #{originName} -->
 			 , #{memberId} 
 		)
-	</insert> -->
+	</insert>
 	
 	
 	
