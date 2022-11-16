@@ -13,7 +13,6 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
@@ -58,8 +57,13 @@ public class ManageController {
 				
 		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
+		
 		List<ItemVO> itemList = itemService.selectItemList();
 		model.addAttribute("itemList", itemList);
+		
+		//내가 다른 상점에 남긴 후기 목록 조회
+		model.addAttribute("writtenReviewList", boardService.selectWrittenReviewList(user.getUsername()));
+		
 		
 		return "content/manage/my_market"; 
 	}	

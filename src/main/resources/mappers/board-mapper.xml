@@ -92,4 +92,20 @@
 		AND R.ITEM_CODE = I.ITEM_CODE(+)
 	</select>
 	
+	<select id="selectWrittenReviewList" resultMap="board">
+		SELECT BOARD_NUM
+			, ITEM_CODE
+			, (SELECT ITEM_NAME
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
+			, BOARD_TITLE
+			, BOARD_CONTENT
+			, MEMBER_ID
+			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
+			, STAR_POINT
+		FROM REVIEW_BOARD R
+		WHERE MEMBER_ID = #{memberId}
+		ORDER BY BOARD_NUM DESC		
+	</select>
+	
 </mapper>

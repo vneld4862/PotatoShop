@@ -18,6 +18,7 @@ import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
+import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 
@@ -29,6 +30,9 @@ public class AdminController {
 	
 	@Resource(name = "cateService")
 	private CateService cateService;
+
+	@Resource(name="memberService")
+	private MemberService memberService;
 	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
@@ -40,9 +44,8 @@ public class AdminController {
 	
 	//회원관리 페이지 이동
 	@RequestMapping("/memberManage")
-	public String memberManage(Model model, MemberVO memberVO) {
-		//System.out.println("searchType = " + memberVO.getSearchType());
-		//System.out.println("searchValue = " + memberVO.getSearchValue());
+	public String memberManage(Model model
+							, MemberVO memberVO) {
 		
 		//회원 목록 조회
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
@@ -62,11 +65,22 @@ public class AdminController {
 	@ResponseBody //페이지 이동 없이 Ajax 실행 
 	@PostMapping("/memberListAjax")
 	public List<MemberVO> getMemberListAjax(String memberStatus) {
-		System.out.println("@@@@@@@@@@@@@@@@@@@@@"+ memberStatus); //컨트롤러에 값은 넘어옴
 		List<MemberVO> list = adminService.getMemberList(memberStatus);
 
 		return list; //Ajax의 result로 전달
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//카테고리 생성페이지 이동
 	@GetMapping("/regCateForm")

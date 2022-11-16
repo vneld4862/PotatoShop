@@ -19,9 +19,10 @@ public class BoardServiceImpl implements BoardService{
 	public void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo) {
 		sqlSession.insert("boardMapper.insertReview", boardVO);
 		
-		if(uploadInfo.getReviewImgCode() != null) {
+		if(uploadInfo.getAttachedName() != null) {
 			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
 		}
+		System.out.println(boardVO.getItemCode());
 	}
 
 	@Override
@@ -32,6 +33,11 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public BoardVO selectBoardDetail(String itemCode) {
 		return sqlSession.selectOne("boardMapper.selectBoardDetail", itemCode);
+	}
+
+	@Override
+	public List<BoardVO> selectWrittenReviewList(String memberId) {
+		return sqlSession.selectList("boardMapper.selectWrittenReviewList", memberId);
 	}
 
 

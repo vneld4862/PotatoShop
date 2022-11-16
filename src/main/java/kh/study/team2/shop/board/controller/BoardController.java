@@ -51,7 +51,7 @@ public class BoardController {
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);
-		
+	
 		return "redirect:/manage/myMarket";
 	}
 	

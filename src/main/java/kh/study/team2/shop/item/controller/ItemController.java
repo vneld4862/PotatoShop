@@ -45,20 +45,16 @@ public class ItemController {
 	private MemberService memberService;
 	
 	
-	
 	@GetMapping("/list")
 	public String list(Model model
 					, SubCateVO subCateVO
-					, DetailCateVO detailCateVO) { //, Authentication authentication
+					, DetailCateVO detailCateVO) {
 		
 		model.addAttribute("mainCateList",cateService.mainCateList());
 		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
 		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
 		model.addAttribute("itemList",itemService.selectItemList());
 		
-		//User user = (User)authentication.getPrincipal();
-		
-		//model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 		
 		return "content/shop_main";
 	}
