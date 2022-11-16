@@ -1,18 +1,23 @@
+
 $(document).ready(function(){
 $("#disconn").on("click", (e) => {
     disconnect();
 })
-
+const view=document.querySelector('.viewChat');
 $("#button-send").on("click", (e) => {
     send();
+	setTimeout(function(){
+		view.scrollTo(0,view.scrollHeight);
+	},10);
 });
+
+
 const username = document.querySelector('#memberId').innerText;
 const websocket = new WebSocket("ws://localhost:8081/ws/chat");
 
 websocket.onmessage = onMessage;
 websocket.onopen = onOpen;
-websocket.onclose = onClose;
-
+websocket.close = onClose;
 function send(){
 
     let msg = document.getElementById("msg");
@@ -66,11 +71,20 @@ function onMessage(msg) {
         $("#msgArea").append(str);
     }
     else{
+		var scrollTop = $(view).scrollTop();
+	    var innerHeight = $(view).innerHeight();
+	    var scrollHeight = $(view).prop('scrollHeight');
         var str = "<div class='col-6'>";
         str += "<div class='alert alert-warning'>";
         str += "<b>" + sessionId + " : " + message + "</b>";
         str += "</div></div>";
         $("#msgArea").append(str);
+        if (scrollTop + innerHeight+1 >= scrollHeight) {
+			setTimeout(function(){
+				view.scrollTo(0,view.scrollHeight);
+			},10);
+	    } else {
+		}
     }
 }
 })
