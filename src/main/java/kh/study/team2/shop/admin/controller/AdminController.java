@@ -49,21 +49,23 @@ public class AdminController {
 		
 		return "content/admin/member_manage";
 	}
-	
-	//회원 상태별로 조회
-	@ResponseBody
-	@PostMapping("/getMemberListAjax")
-	public List<MemberVO> getMemberListAjax(String memberStatus) {
-	
-		return null;
-	}
-	
+
 	//회원 정보 상세 조회
 	@ResponseBody
 	@PostMapping("/selectMemberDetail")
 	public MemberVO selectMemberDetail(String memberId) {
 		
 		return adminService.selectMemberDetail(memberId);
+	}
+	
+	//회원 상태별 조회
+	@ResponseBody //페이지 이동 없이 Ajax 실행 
+	@PostMapping("/memberListAjax")
+	public List<MemberVO> getMemberListAjax(String memberStatus) {
+		System.out.println("@@@@@@@@@@@@@@@@@@@@@"+ memberStatus); //컨트롤러에 값은 넘어옴
+		List<MemberVO> list = adminService.getMemberList(memberStatus);
+
+		return list; //Ajax의 result로 전달
 	}
 	
 	//카테고리 생성페이지 이동

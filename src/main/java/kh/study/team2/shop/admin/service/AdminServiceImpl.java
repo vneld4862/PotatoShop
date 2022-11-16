@@ -22,4 +22,10 @@ public class AdminServiceImpl implements AdminService{
 	public MemberVO selectMemberDetail(String memberId) {
 		return sqlSession.selectOne("adminMapper.selectMemberDetail", memberId);
 	}
+	
+	@Override
+	public List<MemberVO> getMemberList(String memberStatus) {
+		return sqlSession.selectList("adminMapper.getMemberList", memberStatus);
+	}
+	
 }

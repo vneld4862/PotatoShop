@@ -38,6 +38,27 @@
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
+	
+	<select id="getMemberList" resultMap="memberMapper.member">
+		SELECT MEMBER_ID
+			, MEMBER_PW
+			, MEMBER_NAME
+			, MEMBER_NICKNAME
+			, MEMBER_TELL
+			, MEMBER_ADDR
+			, ADDR_DETAIL
+			, MEMBER_EMAIL
+			, MEMBER_ROLE
+			, MEMBER_STATUS
+			, REG_DATE
+		FROM SHOP_MEMBER
+		<if test="_parameter != 'ALL'">
+		WHERE MEMBER_STATUS = #{memberStatus}
+		</if>
+		ORDER BY REG_DATE
+	</select>	
+	
+	
 </mapper>
 
 

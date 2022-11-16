@@ -12,5 +12,7 @@ public interface AdminService {
 	//회원 정보 상세 조회
 	MemberVO selectMemberDetail(String memberId);
 	
+	//회원 상태별 조회
+	List<MemberVO> getMemberList(String memberStatus);
 	
 }
