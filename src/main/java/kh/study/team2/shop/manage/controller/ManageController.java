@@ -64,6 +64,15 @@ public class ManageController {
 		return "content/manage/my_market"; 
 	}	
 	
+	//내정보수정 
+	@GetMapping("/profileForm")
+	public String profileForm() {
+		
+		return"content/manage/modify_profile";
+	}
+	
+	
+	
 	//상품등록 페이지로 이동
 	@GetMapping("/regItemForm")
 	public String regItemForm(Model model) {

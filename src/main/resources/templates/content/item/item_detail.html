@@ -23,7 +23,31 @@
 	    <div class="row mb-3">
 	      
 	      <div class="col-3 text-end">
-	        <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="250px;">
+				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+					  <div class="carousel-inner">
+					     <th:block th:each="img:${itemInfo.imgList}">
+					   
+						    <div class="carousel-item active">
+						     	 <img th:src="|@{/images/}${img.attachedName}|" width="250px;" height="330px;">
+						    </div>
+					    </th:block>
+					  </div>
+					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Previous</span>
+					  </button>
+					  <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+					    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+					    <span class="visually-hidden">Next</span>
+					  </button>
+				</div>
+	      
+	      
+	      
+	      
+	      
+	      
+	        <!-- <img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="250px;"> -->
 	      </div>
 	      <div class="col-9 text-start">
 	        <!-- 상품설명 -->
