@@ -7,7 +7,9 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.member.service.MemberService;
@@ -43,6 +45,20 @@ public class BuyController {
 		
 		return "content/buy/buy_list";
 	}
+	
+	
+	@ResponseBody
+	@PostMapping("/doPay")
+	public void doPay(int money) {
+		System.out.println("!!!!!!!!!");
+		System.out.println("money = " + money);
+		
+	}
+	
+	
+	
+	
+	
 	
 	
 }

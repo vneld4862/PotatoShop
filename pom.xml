@@ -115,6 +115,14 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-websocket</artifactId>
 		</dependency>
+		
+		<!-- 결제 api 추가-->
+		<dependency>
+		    <groupId>com.github.iamport</groupId>
+		    <artifactId>iamport-rest-client-java</artifactId>
+	    <version>0.2.22</version>
+	</dependency>
+		
 	</dependencies>
 	
 
@@ -134,5 +142,13 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<!-- 결제 api 추가-->
+	<repositories>
+		<repository>
+		    <id>jitpack.io</id>
+		    <url>https://jitpack.io</url>
+		</repository>
+	</repositories>
 
 </project>
