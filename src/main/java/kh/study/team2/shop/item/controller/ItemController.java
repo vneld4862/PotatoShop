@@ -126,20 +126,6 @@ public class ItemController {
 		return"content/item/item_detail";
 	}
 	
-	//찜버튼 클릭 시 실행 
-	@ResponseBody
-	@PostMapping("/insertWish")
-	public void insertWish(WishVO wishVO
-						, Authentication authentication) {
-		
-		System.out.println("찜을 해보자^^");
-		User user = (User)authentication.getPrincipal();
-		String memberId = user.getUsername();
-		wishVO.setMemberId(memberId);
-		
-		wishService.insertWish(wishVO);
-	}
-	
 	
 	
 	

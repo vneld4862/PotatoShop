@@ -9,7 +9,7 @@ function insertWish(wishBtn){
 //	alert(itemCode2);
 	//ajax start
 	$.ajax({
-	   url: '/item/insertWish', //요청경로
+	   url: '/wish/insertWish', //요청경로
 	    type: 'post',
 	    data:{'itemCode': itemCode}, //필요한 데이터
 	    success: function(result) {
