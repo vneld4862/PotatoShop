@@ -225,39 +225,49 @@
 
 				</div> -->
 				<div class="modal-body reviewDetailDiv">
-					<div class="col-12 detailAjaxDiv">
- 						<div class="row">
-							<div class="col-4">상품 메인 사진</div>
-							<div class="col-8">
-								<div class="row" id="reviewDetailModal_itemName">
-									상품명
-								</div>
-								<div class="row">
-									<div class="col">별점</div>
-									<div class="col" id="reviewDetailModal_starPoint"></div>
+				
+					<div class="col-12 text-end mb-3">
+						<button type="button" class="btn btn-success">리뷰 삭제</button>
+						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+						<!-- X 표시로 바꿀 수 있으면 바꾸기 -->
+					</div>
+					
+					<hr>
+					
+					<div class="col-12 detailAjaxDiv"> <!-- 사진 클릭하면 원본 크기로 보이게 -->
+						
+					</div>
+					
+					<div class="col-12"> <!-- style="height: 300px; overflow-y: scroll;" -->
+						<div class="col-12 replyDiv">
+							<div>
+								<textarea rows="2" cols="90%" name="replyContent"
+											style="resize: none;" class="form-control"></textarea>
+							</div>
+							<div>
+								<div class="mt-3 text-end">
+									<input type="button" value="등록" class="btn btn-primary">
 								</div>
 							</div>
 						</div>
 						
 						<hr>
 						
-						<div class="col" id="reviewDetailModal_title">제목</div>
-						<div class="col" id="reviewDetailModal_wirter">작성자</div>
-						
-						<hr>
-						
-						<div class="col" id="reviewDetailModal_pic">사진</div>
-						<div class="col">내용</div>
-						<div class="col text-end">등록일</div>
-						
-						<hr>
-						
+						<div class="col-12 replyListDiv">
+							<div class="col-12 text-end">
+								<span style="font-size: 0.8rem;">댓글 등록일</span>
+							</div>
+							<div class="col-12 text-start">댓글 작성자</div>
+							<div class="col-12">
+								댓글 내용
+							</div>
+							<div class="col-12 text-end">
+								<input type="button" value="삭제" class="btn btn-secondary">
+							</div>
+							<hr>
+						</div>
 					</div>
 
-
-					<div class="col-12 text-end">
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-					</div>
 				</div>
 				
 		<!-- 	<div class="modal-footer">

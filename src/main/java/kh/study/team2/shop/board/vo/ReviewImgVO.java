@@ -12,6 +12,6 @@ import lombok.ToString;
 public class ReviewImgVO {
 	private String ReviewImgCode;
 	private String originName;
-	private String attachedName;
+	private String savedName;
 	private String itemCode;
 }

@@ -18,8 +18,16 @@
 	<resultMap type="kh.study.team2.shop.board.vo.ReviewImgVO" id="reviewImg">
 		<id column="REVIEW_IMG_CODE" 	property="reviewImgCode"/>
 		<result column="ORIGIN_NAME" 	property="originName"/>
-		<result column="ATTACHED_NAME" 	property="attachedName"/>
+		<result column="SAVED_NAME" 	property="savedName"/>
 		<result column="ITEM_CODE" 		property="itemCode"/>
+	</resultMap>
+	
+	<resultMap type="kh.study.team2.shop.board.vo.ReplyVO" id="reply">
+		<id column="REPLY_NUM" 			property="replyNum"/>
+		<result column="REPLY_CONTENT" 	property="replyContent"/>
+		<result column="MEMBER_ID" 		property="memberId"/>
+		<result column="REPLY_REG_DATE" property="replyRegDate"/>
+		<result column="BOARD_NUM" 		property="boardNum"/>
 	</resultMap>
 
 	<insert id="insertReview">
@@ -48,12 +56,12 @@
 		INSERT INTO REVIEW_IMG (
 			REVIEW_IMG_CODE
 			, ORIGIN_NAME
-			, ATTACHED_NAME
+			, SAVED_NAME
 			, ITEM_CODE
 		) VALUES (
 			#{reviewImgVO.reviewImgCode}
 			, #{reviewImgVO.originName}
-			, #{reviewImgVO.attachedName}
+			, #{reviewImgVO.savedName}
 			, #{itemCode}
 		)
 	</insert>
@@ -82,14 +90,19 @@
 				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
 			, BOARD_TITLE
 			, BOARD_CONTENT
-			, MEMBER_ID
+			, R.MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
 			, REVIEW_IMG_CODE
-			, ATTACHED_NAME
-		FROM REVIEW_BOARD R, REVIEW_IMG I
+			, SAVED_NAME
+			, (SELECT ATTACHED_NAME
+				FROM ITEM_IMG
+				WHERE ITEM_CODE = R.ITEM_CODE
+				AND IS_MAIN = 'Y') AS ATTACHED_NAME
+		FROM REVIEW_BOARD R, REVIEW_IMG I, ITEM_IMG M
 		WHERE R.ITEM_CODE = #{itemCode}
 		AND R.ITEM_CODE = I.ITEM_CODE(+)
+		AND R.ITEM_CODE = M.ITEM_CODE
 	</select>
 	
 	<select id="selectWrittenReviewList" resultMap="board">

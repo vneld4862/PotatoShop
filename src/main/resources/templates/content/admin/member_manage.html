@@ -18,7 +18,7 @@
 		<div class="col">
 			<div class="text-end">
 				<form th:action="@{/admin/memberManage}" method="post">
-					<select name="searchType" style="width: 10%; height: 30px;">
+					<select name="searchType" style="width: 10%; height: 30px; font-family: 'Cafe24SsurroundAir'">
 						<option value="MEMBER_NICKNAME" th:selected="${memberVO.searchType == 'MEMBER_NICKNAME'}">닉네임</option>
 						<option value="MEMBER_ID" th:selected="${memberVO.searchType == 'MEMBER_ID'}">아이디</option>
 					</select>
@@ -33,7 +33,7 @@
 			</div>
 			<div class="col text-start">
 				<select class="mb-3 text-start" onchange="changeStatus();"
-						id="statusSelectBox" style="width: 10%; height: 30px;">
+						id="statusSelectBox" style="width: 10%; height: 30px; font-family: 'Cafe24SsurroundAir';">
 					<option value="ALL">전체</option>
 					<option value="ACTIVE">활동 중인 회원</option>
 					<option value="DELETED">탈퇴한 회원</option>

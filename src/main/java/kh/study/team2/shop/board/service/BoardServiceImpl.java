@@ -19,7 +19,7 @@ public class BoardServiceImpl implements BoardService{
 	public void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo) {
 		sqlSession.insert("boardMapper.insertReview", boardVO);
 		
-		if(uploadInfo.getAttachedName() != null) {
+		if(uploadInfo.getSavedName() != null) {
 			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
 		}
 		System.out.println(boardVO.getItemCode());

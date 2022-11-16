@@ -14,7 +14,8 @@ public class UploadFileUtil2 {
 	//예진 경로
 //	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//연지 경로
-	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	//private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	private static final String UPLOAD_PATH = "D:\\dev\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//명현 경로
 //	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//민하 경로
@@ -52,7 +53,7 @@ public class UploadFileUtil2 {
 		
 		//리턴해야 하는 데이터를 저장하기 위한 객체
 		ReviewImgVO reviewImgVO = new ReviewImgVO();
-		reviewImgVO.setAttachedName(fileName);
+		reviewImgVO.setSavedName(fileName);
 		reviewImgVO.setOriginName(originFileName);
 		
 		return reviewImgVO;
