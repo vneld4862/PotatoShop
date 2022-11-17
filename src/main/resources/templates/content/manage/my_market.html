@@ -221,32 +221,35 @@
 	<div class="modal fade" id="reviewDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
-		<!-- 	<div class="modal-header">
-
-				</div> -->
+			 	<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div> 
 				<div class="modal-body reviewDetailDiv">
 				
-					<div class="col-12 text-end mb-3">
-						<button type="button" class="btn btn-success">리뷰 삭제</button>
-						<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-						<!-- X 표시로 바꿀 수 있으면 바꾸기 -->
-					</div>
-					
-					<hr>
 					
 					<div class="col-12 detailAjaxDiv"> <!-- 사진 클릭하면 원본 크기로 보이게 -->
+						
+						<div class="col-12 text-end mb-3"> <!-- 본인이 쓴 글에만 보이게 -->
+							<span>수정</span>
+							 |
+							<span th:onclick="deleteReviewAjax()">삭제</span>
+						</div>
+						
+						
+						
 						
 					</div>
 					
 					<div class="col-12"> <!-- style="height: 300px; overflow-y: scroll;" -->
-						<div class="col-12 replyDiv">
-							<div>
+						<div class="row replyDiv">
+							<div class="col-10">
 								<textarea rows="2" cols="90%" name="replyContent"
 											style="resize: none;" class="form-control"></textarea>
 							</div>
-							<div>
-								<div class="mt-3 text-end">
-									<input type="button" value="등록" class="btn btn-primary">
+							<div class="col-2">
+								<div>
+									<input type="button" value="등록" class="btn btn-primary"
+											style="height: 62px; width: 58px;">
 								</div>
 							</div>
 						</div>

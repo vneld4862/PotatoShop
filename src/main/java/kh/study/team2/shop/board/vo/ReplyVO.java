@@ -13,4 +13,5 @@ public class ReplyVO{
 	private String memberId;
 	private String ReplyRegDate;
 	private int boardNum;
+	private String itemCode;
 }

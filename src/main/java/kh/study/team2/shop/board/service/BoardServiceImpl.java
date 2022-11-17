@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
@@ -38,6 +39,13 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<BoardVO> selectWrittenReviewList(String memberId) {
 		return sqlSession.selectList("boardMapper.selectWrittenReviewList", memberId);
+	}
+
+	@Override
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteReview(String itemCode) {
+		sqlSession.delete("boardMapper.deleteReviewReply", itemCode);
+		sqlSession.delete("boardMapper.deleteReview", itemCode);
 	}
 
 

@@ -18,4 +18,7 @@ public interface BoardService {
 	//내가 작성한 리뷰 조회
 	List<BoardVO> selectWrittenReviewList(String memberId);
 	
+	//리뷰 삭제
+	void deleteReview(String itemCode);
+	
 }

@@ -9,19 +9,23 @@ function reviewDetail(itemCode){
 		type: 'post',
 		data: {'itemCode':itemCode}, //필요한 데이터
 		success: function(result) {
-//			document.querySelector('#reviewDetailModal_itemName').innerText = result.itemVO.itemName;
-//			document.querySelector('#reviewDetailModal_starPoint').innerText = result.starPoint;
-//			document.querySelector('#reviewDetailModal_title').innerText = result.boardTitle;
-//			document.querySelector('#reviewDetailModal_wirter').innerText = result.memberId;
-//			document.querySelector('#reviewDetailModal_pic').innerText = result;
 			
-			//const reviewDetailDiv = document.querySelector('.reviewDetail');
-			//const detailAjaxDiv = document.querySelector('.detailAjaxDiv');
-			//reviewDetailDiv.removeChild(detailAjaxDiv);
+			//document.querySelector('#reviewDetailModal_itemName').innerText = result.itemVO.itemName;
+			//document.querySelector('#reviewDetailModal_starPoint').innerText = result.starPoint;
+			//document.querySelector('#reviewDetailModal_title').innerText = result.boardTitle;
+			//document.querySelector('#reviewDetailModal_wirter').innerText = result.memberId;
+			//document.querySelector('#reviewDetailModal_pic').innerText = 
+			
+			
 			
 			document.querySelector('.detailAjaxDiv').innerHTML = '';
 			
 			let str = '';
+			
+			str += '<div class="col-12 text-end mb-3">'
+			str += '	<span>수정</span>|'
+			str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`
+			str += '</div>'			
 			
 			str += '<div class="row">';
 			str += '	<div class="col-3">';
@@ -39,7 +43,7 @@ function reviewDetail(itemCode){
 			str += '		</div>';
 			str += '	</div>';
 			str += '</div>';
-	
+	        
 			str += '<hr>';
 				
 			str += `<div class="col text-end">${result.regDate}</div>`;
@@ -47,15 +51,21 @@ function reviewDetail(itemCode){
 				
 			str += '<hr>';
 				
-			str += '<div class="col">';
-			str += `	<img src="/images/${result.reviewImgVO.savedName}" style="width: 200px;">`;
-			str += '</div>';
-			str += `<div class="col">${result.boardContent}</div>`;
-				
+			
+			//사진 있는 후기만 사진 조회
+			if(result.reviewImgVO.savedName != null){
+				str += '	<div class="col">';
+				str += `		<img src="/images/${result.reviewImgVO.savedName}" style="width: 200px;">`;
+				str += '	</div>';
+				str += `	<div class="col">${result.boardContent}</div>`;
+				str += '</th:block>';
+			}
+			else{
+				str += `	<div class="col">${result.boardContent}</div>`;
+			}
+			
 			str += '<hr>';
 			
-			
-				
 			
 			document.querySelector('.detailAjaxDiv').innerHTML = str;
 			
@@ -68,3 +78,23 @@ function reviewDetail(itemCode){
 	});
 //ajax end
 }
+
+
+//리뷰 삭제 클릭시 실행되는 Ajax
+function deleteReviewAjax(itemCode){	
+	//ajax start
+	$.ajax({
+		url: '/board/deleteReview', //요청경로
+		type: 'post',
+		data: {'itemCode':itemCode}, //필요한 데이터
+		success: function(result) {
+			alert('리뷰가 삭제되었습니다.');
+			location.href="/manage/myMarket"
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	//ajax end		
+}
+	

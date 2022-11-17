@@ -18,4 +18,5 @@ public class BoardVO{
 	private int starPoint;
 	private ReviewImgVO reviewImgVO;
 	private ItemVO itemVO;
+	private ReplyVO replyVO;
 }

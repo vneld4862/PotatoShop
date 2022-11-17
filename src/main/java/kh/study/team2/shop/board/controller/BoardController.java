@@ -51,7 +51,7 @@ public class BoardController {
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);
-	
+		
 		return "redirect:/manage/myMarket";
 	}
 	
@@ -61,6 +61,14 @@ public class BoardController {
 	public BoardVO reviewDetail(Model model, String itemCode) {
 		
 		return boardService.selectBoardDetail(itemCode); //리턴 값을 ajax의 result로 전달
+	}
+	
+	//후기 삭제
+	@ResponseBody
+	@PostMapping("/deleteReview")
+	public void deleteReview(String itemCode) {
+		
+		boardService.deleteReview(itemCode);
 	}
 	
 }

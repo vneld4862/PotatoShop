@@ -13,6 +13,7 @@
 		<result column="STAR_POINT" 		property="starPoint"/>
 		<association property="itemVO" 		resultMap="itemMapper.item"/>
 		<association property="reviewImgVO" resultMap="reviewImg"/>
+		<association property="replyVO" 	resultMap="reply"/>
 	</resultMap>
 	
 	<resultMap type="kh.study.team2.shop.board.vo.ReviewImgVO" id="reviewImg">
@@ -28,6 +29,7 @@
 		<result column="MEMBER_ID" 		property="memberId"/>
 		<result column="REPLY_REG_DATE" property="replyRegDate"/>
 		<result column="BOARD_NUM" 		property="boardNum"/>
+		<result column="ITEM_CODE" 		property="itemCode"/>
 	</resultMap>
 
 	<insert id="insertReview">
@@ -120,5 +122,22 @@
 		WHERE MEMBER_ID = #{memberId}
 		ORDER BY BOARD_NUM DESC		
 	</select>
+	
+	<delete id="deleteReview">
+		DELETE REVIEW_BOARD
+		WHERE ITEM_CODE = #{itemCode}
+	</delete>
+	
+	<delete id="deleteReviewReply">
+		DELETE REVIEW_REPLY
+		WHERE ITEM_CODE = #{itemCode}
+	</delete>
+	
+	<!-- 리뷰 수정 쿼리 -->
+	
+	
+	
+	
+	
 	
 </mapper>
