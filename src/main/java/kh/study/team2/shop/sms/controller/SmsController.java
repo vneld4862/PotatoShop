@@ -1,4 +1,4 @@
-package kh.study.team2.sms.controller;
+package kh.study.team2.shop.sms.controller;
 
 import java.util.Random;
 
@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import kh.study.team2.sms.service.SmsService;
+import kh.study.team2.shop.sms.service.SmsService;
 import net.nurigo.java_sdk.exceptions.CoolsmsException;
 
 

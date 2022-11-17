@@ -1,4 +1,4 @@
-package kh.study.team2.sms.service;
+package kh.study.team2.shop.sms.service;
 
 import java.util.HashMap;
 
