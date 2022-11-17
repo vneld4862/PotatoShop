@@ -17,6 +17,13 @@
 		<result column="REG_DATE" property="regDate"/>
 	</resultMap> 
 	
+	<resultMap type="kh.study.team2.shop.manage.vo.ProfileVO" id="profile">
+		<id column="PROFILE_CODE" property="profileCode"/>
+		<result column="ORIGIN_NAME" property="originName"/>
+		<result column="CHANGED_NAME" property="changedName"/>
+		<result column="MEMBER_ID" property="memberId"/>
+	</resultMap>
+	
 	<!-- 회원가입 -->
 	<insert id="join">
 		INSERT INTO SHOP_MEMBER(
@@ -39,21 +46,6 @@
 				    , #{memberEmail}
 			    )
 	</insert>
-	
-	<!-- 프로필생성 -->
-	<insert id="insertProfile">
-		INSERT INTO PROFILE (
-		 	 PROFILE_CODE
-		 	<!--  , ORIGIN_NAME -->
-		 	 , MEMBER_ID
-		  ) VALUES (
-			 (SELECT 'PROFILE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(PROFILE_CODE, 9))), 0) +1, 3, 0) FROM PROFILE)	
-			<!--  , #{originName} -->
-			 , #{memberId} 
-		)
-	</insert>
-	
-	
 	
 	<!-- 로그인 -->
 	<select id="login" resultMap="member">
@@ -81,8 +73,29 @@
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
-
-
+	
+	<!-- 프로필생성 -->
+	<insert id="insertProfile">
+		INSERT INTO PROFILE (
+		 	 PROFILE_CODE
+		 	<!--  , ORIGIN_NAME -->
+		 	 , MEMBER_ID
+		  ) VALUES (
+			 (SELECT 'PROFILE_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(PROFILE_CODE, 9))), 0) +1, 3, 0) FROM PROFILE)	
+			<!--  , #{originName} -->
+			 , #{memberId} 
+		)
+	</insert>
+	
+	<!-- 프로필정보 조회 -->
+	<select id="profileInfo" resultMap="profile">
+		SELECT 
+			PROFILE_CODE
+			, CHANGED_NAME
+			, MEMBER_ID
+		FROM PROFILE
+		WHERE MEMBER_ID = #{memberId}
+	</select>
 	
 </mapper>
 

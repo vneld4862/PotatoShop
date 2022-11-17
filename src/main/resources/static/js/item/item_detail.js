@@ -2,12 +2,13 @@
 
 function insertWish(wishBtn){
 //	alert('찜꽁');
-	const itemCode = wishBtn.dataset.itemName;
+	const itemCode = wishBtn.dataset.itemCode;
 //	alert(itemCode);
 	
 //	const itemCode2 = document.querySelector('#itemCodeInput').value;
 //	alert(itemCode2);
-	//ajax start
+
+	
 	$.ajax({
 	   url: '/wish/insertWish', //요청경로
 	    type: 'post',
@@ -19,7 +20,7 @@ function insertWish(wishBtn){
 	       alert('실패');
 	    }
 	});
-//ajax end
+
 	
 	
 	

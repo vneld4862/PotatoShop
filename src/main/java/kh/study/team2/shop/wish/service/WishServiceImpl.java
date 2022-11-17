@@ -26,4 +26,12 @@ public class WishServiceImpl implements WishService{
 		return sqlSession.selectList("wishMapper.selectWishList", memberId);
 	}
 
+
+	@Override
+	public void deleteWish(WishVO wishVO) {
+		sqlSession.delete("wishMapper.deleteWish", wishVO);
+	}
+	
+
+
 }

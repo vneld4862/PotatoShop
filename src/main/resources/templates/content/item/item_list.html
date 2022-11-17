@@ -22,9 +22,10 @@
 					<div class="row">
 						<div class="col">
 							<div class="col"><br><br>
-								<img src="/images/6e9072aa-c439-49a5-8263-a554bf3c2380.jpg" width="200px;">
+								<!-- <img src="/images/1.png" width="200px;"> -->
+								<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
 							<br><br></div>
-							<div class="col">닉네임</div>
+							<div class="col">닉네임[[${profileInfo.profileCode}]]</div>
 							<div class="col">
 								<!-- <button class="btn btn-success" style="width: 30%" 
 								th:onclick="|location.href='@{/member/profileForm}'|">
@@ -325,20 +326,21 @@
 <!-- Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
+   <form th:action="@{/manage/profileImg}" method="post">
+    <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">상점프로필 수정</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-      
+       
       	<div class="row">
       		<div class="col-12">
       		  
       		  <label>상점 이미지</label>
       	      <div class="input-group flex-nowrap mb-3">
-		   			<span class="input-group-text" id="addon-wrapping">프로필 이미지</span>
-					<input type="file" class="form-control" name="mainImg">
+					<input type="file" class="form-control" name="changedName">
 			   </div>
 			   <!-- <label>상점 닉네임</label>
       	       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value=""> -->
@@ -352,10 +354,11 @@
       
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-primary">수정</button>
+        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">수정</button>
         <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
       </div>
     </div>
+   </form>
   </div>
 </div>
 

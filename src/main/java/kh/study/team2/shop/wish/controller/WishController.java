@@ -30,6 +30,8 @@ public class WishController {
 		String memberId = user.getUsername();
 		wishVO.setMemberId(memberId);
 		
+		
+		//취소, 등록 중 하나가 실행
 		wishService.insertWish(wishVO);
 	}
 	

@@ -3,9 +3,10 @@ package kh.study.team2.shop.member.service;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
+import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.vo.MemberVO;
-import kh.study.team2.shop.member.vo.ProfileVO;
 
 @Service("memberService")
 public class MemberServiceImpl implements MemberService{
@@ -13,6 +14,7 @@ public class MemberServiceImpl implements MemberService{
 	SqlSessionTemplate sqlSession;
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void join(MemberVO memberVO) {
 		sqlSession.insert("memberMapper.join", memberVO);
 		sqlSession.insert("memberMapper.insertProfile", memberVO);
@@ -29,6 +31,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public MemberVO selectMemberInfo(String memberId) {
 		return sqlSession.selectOne("memberMapper.selectMemberInfo", memberId);
+	}
+	@Override
+	public ProfileVO profileInfo(String memberId) {
+		return sqlSession.selectOne("memberMapper.profileInfo", memberId);
 	}
 	
 	

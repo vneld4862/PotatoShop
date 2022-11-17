@@ -1,4 +1,4 @@
-package kh.study.team2.shop.member.vo;
+package kh.study.team2.shop.manage.vo;
 
 import lombok.Getter;
 import lombok.Setter;

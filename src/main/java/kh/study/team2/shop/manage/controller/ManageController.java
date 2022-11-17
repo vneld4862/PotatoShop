@@ -21,6 +21,7 @@ import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.member.service.MemberService;
+import retrofit2.http.POST;
 
 @Controller
 @RequestMapping("/manage")
@@ -74,6 +75,16 @@ public class ManageController {
 		
 		return"content/manage/modify_profile";
 	}
+	
+	//프로필 이미지 수정
+	@PostMapping("/profileImg")
+	public String profileImg(String profileCode) {
+		System.out.println(profileCode);
+		
+		return "redirect:/item/memberItemList";
+	}
+	
+	
 	
 	
 	

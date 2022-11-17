@@ -21,6 +21,7 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.sell.service.SellService;
 import kh.study.team2.shop.wish.service.WishService;
@@ -104,6 +105,9 @@ public class ItemController {
 		List<WishVO> wishList = wishService.selectWishList(memberId);
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
+		
+		ProfileVO profileInfo = memberService.profileInfo(memberId);
+		model.addAttribute("profileInfo", profileInfo);
 		
 		return"content/item/item_list";
 	}

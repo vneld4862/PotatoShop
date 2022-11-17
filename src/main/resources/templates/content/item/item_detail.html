@@ -78,7 +78,7 @@
 	           <!-- 내 상점 관리 버튼으로 변경해줘야한다. -->
 	          	 <div>
 	          	  	<th:block th:unless="${memberId eq itemInfo.memberId}">
-		             <button class="btn btn-success" th:onclick="insertWish(this);" th:data-item-name="${itemInfo.itemCode}">
+		             <button class="btn btn-success" th:onclick="insertWish(this);" th:data-item-code="${itemInfo.itemCode}">
 		             	찜
 		                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
 	  					  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
@@ -155,7 +155,8 @@
 	        
 	        <div>
 	             <button class="btn btn-success">감자톡</button>
-	             <button class="btn btn-success">바로구매</button>
+	             <button class="btn btn-success" th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|">바로구매</button>
+	             
 	        </div>
 	        
 	        

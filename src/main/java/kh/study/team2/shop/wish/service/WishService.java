@@ -8,5 +8,6 @@ public interface WishService {
   
 	void insertWish(WishVO wishVo);
 	List<WishVO> selectWishList(String memberId);
+	void deleteWish(WishVO wishVO);
 	
 }

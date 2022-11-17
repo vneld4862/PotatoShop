@@ -13,7 +13,7 @@
 	
 	
 	<!--찜 등록 -->
-	<insert id="insertWish">
+	<!-- <insert id="insertWish">
 		INSERT INTO WISH_LIST (
 		     WISH_CODE
 		    , MEMBER_ID
@@ -23,28 +23,42 @@
 			, #{memberId}
 			, #{itemCode}
 		)
-	</insert>
+	   </insert>
+	<delete id="deleteWish">
+		DELETE 
+   		WHERE ITEM_CODE = #{itemCode}
+   		AND MEMBER_ID = #{memberId} 
+	</delete> -->
+	<!-- DELETE 
+	     WHERE WISH_CODE = #{wishCode} -->
 	
-	<!-- <insert id="insertWish">
+	
+	
+	<insert id="insertWish">
 		MERGE INTO WISH_LIST
 		USING DUAL
 		ON (ITEM_CODE = #{itemCode} AND MEMBER_ID = #{memberId}) 
 		WHEN MATCHED THEN 
-   			 DELETE 
-   			 WHERE ITEM_CODE = #{itemCode}
-   			 AND MEMBER_ID = #{memberId}
+	            UPDATE 
+	            SET WISH_CODE = WISH_CODE
+	            WHERE ITEM_CODE = #{itemCode}
+	            AND MEMBER_ID = #{memberId}
+	            
+	            DELETE 
+	            WHERE ITEM_CODE = #{itemCode}
+	            AND MEMBER_ID = #{memberId}
 
 		WHEN NOT MATCHED THEN
-   		   INSERT (
-		   		  WISH_CODE
-		    	  , MEMBER_ID
-		          , ITEM_CODE
-		   	 ) VALUES (
-			    (SELECT 'WISH_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(WISH_CODE, 6))), 0) +1, 3, 0) FROM WISH_LIST)
-			    , #{memberId}
-			    , #{itemCode}
-		    )
-	</insert> -->
+	   		   INSERT (
+			   		  WISH_CODE
+			    	  , MEMBER_ID
+			          , ITEM_CODE
+			   	 ) VALUES (
+				    (SELECT 'WISH_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(WISH_CODE, 6))), 0) +1, 3, 0) FROM WISH_LIST)
+				    , #{memberId}
+				    , #{itemCode}
+			    )
+	</insert>
 	
 	
 	
