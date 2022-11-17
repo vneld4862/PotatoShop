@@ -3,17 +3,20 @@ package kh.study.team2.shop.item.controller;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
@@ -21,7 +24,9 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
-import kh.study.team2.shop.manage.vo.ProfileVO;
+
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.sell.service.SellService;
 import kh.study.team2.shop.wish.service.WishService;
@@ -49,14 +54,21 @@ public class ItemController {
 	@GetMapping("/list")
 	public String list(Model model
 					, SubCateVO subCateVO
-					, DetailCateVO detailCateVO) {
+					, DetailCateVO detailCateVO
+					, @CookieValue(required = false)String imgName) {
 		
 		model.addAttribute("mainCateList",cateService.mainCateList());
 		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
 		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
 		model.addAttribute("itemList",itemService.selectItemList());
 		
-		
+		if(imgName !=null)
+		{
+			String[] cookieArr=imgName.split(",");
+			List<String> cookieList=Arrays.asList(cookieArr);
+			
+			model.addAttribute("cookie_imgName",cookieList);
+		}
 		return "content/shop_main";
 	}
 	
@@ -94,7 +106,8 @@ public class ItemController {
 	
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")
-	public String memberItemList(Authentication authentication, Model model) {
+	public String memberItemList(Authentication authentication
+			, Model model) {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
@@ -106,9 +119,6 @@ public class ItemController {
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
 		
-		ProfileVO profileInfo = memberService.profileInfo(memberId);
-		model.addAttribute("profileInfo", profileInfo);
-		
 		return"content/item/item_list";
 	}
 	
@@ -117,13 +127,39 @@ public class ItemController {
 	@GetMapping("/itemDetail")
 	public String itemDetail(String itemCode
 							, Model model
-							, Authentication authentication) {
+							, Authentication authentication
+							, HttpServletResponse response
+							, @CookieValue(required = false,name = "imgName")String cookieImgName) {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		System.out.println(itemCode);
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		System.out.println(itemInfo);
+		
+		String imgName="";
+		for(ImgVO img:itemInfo.getImgList())
+		{
+			if(img.getIsMain().equals("Y"))
+			{
+				 imgName=img.getAttachedName();
+			}
+		}
+		
+		//인코딩 java.net			"+" -> "\\+"
+		//인코딩만 진행하면 공백이 + 문자로 바뀜
+		String encodeImgName=null;
+		
+		if(cookieImgName != null)
+		{
+			encodeImgName=getEncodeStr(cookieImgName+","+imgName);
+		}
+		else
+		{
+			encodeImgName=getEncodeStr(imgName);
+		}
+		Cookie cookie_imgName=new Cookie("imgName",encodeImgName);
+		response.addCookie(cookie_imgName);
 		model.addAttribute("itemInfo", itemInfo);
 		model.addAttribute("memberId", memberId);
 		
@@ -131,7 +167,16 @@ public class ItemController {
 	}
 	
 	
-	
+	public String getEncodeStr(String str)
+	{
+		String result="";
+		try {
+			result=URLEncoder.encode(str,"UTF-8").replaceAll("\\+","%20"); //컴퓨터가 생각하는 빈공백=%20
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
 	
 	
 	

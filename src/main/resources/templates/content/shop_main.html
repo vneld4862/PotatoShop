@@ -90,7 +90,9 @@
 		<div class="border like_it text-center">찜한상품</div>
 		<div class="border clickItem">
 			<div class="text-center">최근본상품</div>
-			<div>AAAAAA</div>
+			<div th:each="cookieImg:${cookie_imgName}">
+				<img th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="98%;">
+			</div>
 		</div>
 	</div>
 	<div class="row">인기 상품목록</div>
