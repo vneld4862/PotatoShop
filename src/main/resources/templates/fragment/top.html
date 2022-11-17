@@ -3,30 +3,46 @@
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
+<th:block layout:fragment="css">
+	<link rel="stylesheet" href="/css/top.css">
+</th:block>
 <div th:fragment="top">
 	<div class="row mt-3 mb-3">
-		<div class="col-12 text-center">
-			<a th:href="@{/item/list}">
-				<h2 style="display: inline-block;">감자마켓</h2><img alt="..." src="/images/bannerPT.png" width="50px;">
-			</a>
-			
-			<div class="col text-center" style="display: inline-block;position: absolute;right:10px;">
-				<div sec:authorize="isAnonymous()">
-					<div>
-						<a th:href="@{/member/login}">로그인</a>/
-						<a th:href="@{/member/join}">회원가입</a>
+		<div class="col-12 text-start">
+			<div class="col-12" style="display: inline-block;">
+				<div class="row">
+					<div class="col-2">
+						<a th:href="@{/item/list}" class="col-2">
+							<h2 style="display: inline-block;">감자마켓</h2><img alt="..." src="/images/bannerPT.png" width="50px;">
+						</a>
 					</div>
-				</div>
-				<div sec:authorize="isAuthenticated()">
-					<div>
-						<div>
-							[[${#authentication.name}]]님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
+					<div class="col-7">
+						<div class="input-group mb-3">
+							<input type="text" class="form-control border-danger searchInput" placeholder="어떻게 해야될꼬..." aria-describedby="button-addon2" style="border-radius: 0;">
+							<button class="btn btn-outline-danger searchBtn" type="button" id="button-addon2" style="border-radius: 0;" th:onclick="location.href='#'">
+								<img alt="" src="https://m.bunjang.co.kr/pc-static/resource/2be3c66fa47ccd5ece2a.png">
+							</button>
 						</div>
-						<div>
-							<a th:href="@{/manage/regItemForm}">판매하기</a> | 
-							<a th:href="@{/manage/myMarket}">내 상점</a> | 
-							<a target="_blank" onclick="potatoChat();" style="cursor: pointer;">감자톡</a>
-							<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/regCateForm}"> | (관리기능)</a><!-- 임시로 생성 -->
+					</div>
+					<div class="col-3 text-center">
+						<div sec:authorize="isAnonymous()">
+							<div>
+								<a th:href="@{/member/login}">로그인</a>/
+								<a th:href="@{/member/join}">회원가입</a>
+							</div>
+						</div>
+						<div sec:authorize="isAuthenticated()">
+							<div>
+								<div>
+									[[${#authentication.name}]]님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
+								</div>
+								<div>
+									<a th:href="@{/manage/regItemForm}">판매하기</a> | 
+									<a th:href="@{/manage/myMarket}">내 상점</a> | 
+									<a target="_blank" onclick="potatoChat();" style="cursor: pointer;">감자톡</a>
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/regCateForm}"> | (관리기능)</a><!-- 임시로 생성 -->
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>

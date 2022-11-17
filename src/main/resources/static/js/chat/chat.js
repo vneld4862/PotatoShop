@@ -1,3 +1,10 @@
+window.addEventListener("keyup", e => {
+  const key = document.getElementById(e.key);
+  if(e.key=='Enter'){
+	$("#button-send").click();
+}
+  
+});
 
 $(document).ready(function(){
 $("#disconn").on("click", (e) => {
@@ -14,14 +21,16 @@ $("#button-send").on("click", (e) => {
 
 const username = document.querySelector('#memberId').innerText;
 const websocket = new WebSocket("ws://localhost:8081/ws/chat");
-
 websocket.onmessage = onMessage;
 websocket.onopen = onOpen;
 websocket.close = onClose;
 function send(){
-
+	
     let msg = document.getElementById("msg");
-
+	if(msg.value==(''))
+	{
+		return
+	}
     console.log(username + ":" + msg.value);
     websocket.send(username + ":" + msg.value);
     msg.value = '';
@@ -29,14 +38,14 @@ function send(){
 
 //채팅창에서 나갔을 때
 function onClose() {
-    var str = username+":님이 방을 나가셨습니다.";
-    websocket.send(str);
+    var str = username+"님이 방을 나가셨습니다.";
+    $("#msgArea").append(str);
 }
 
 //채팅창에 들어왔을 때
 function onOpen() {
-    var str = username+":님이 입장하셨습니다.";
-    websocket.send(str);
+    var str = "채팅방에 입장하셨습니다.";
+    $("#msgArea").append(str);
 }
 
 function onMessage(msg) {
@@ -65,8 +74,9 @@ function onMessage(msg) {
         var str = "<div class='col-12'>";
         str += "<div class=row>"
         str += "<div class=col-6></div><div class=col-6>";
-        str += "<div class='alert alert-secondary'>";
-        str += "<b>" + sessionId + " : " + message + "</b>";
+        str += `<div class='text-end'>${sessionId}</div>`
+        str += "<div class='alert alert-secondary text-start'>";
+        str += "<b>" + message + "</b>";
         str += "</div></div></div></div>";
         $("#msgArea").append(str);
     }
@@ -75,8 +85,9 @@ function onMessage(msg) {
 	    var innerHeight = $(view).innerHeight();
 	    var scrollHeight = $(view).prop('scrollHeight');
         var str = "<div class='col-6'>";
-        str += "<div class='alert alert-warning'>";
-        str += "<b>" + sessionId + " : " + message + "</b>";
+        str += `<div class='text-start'>${sessionId}</div>`
+        str += "<div class='alert alert-warning text-start'>";
+        str += "<b>" + message + "</b>";
         str += "</div></div>";
         $("#msgArea").append(str);
         if (scrollTop + innerHeight+1 >= scrollHeight) {

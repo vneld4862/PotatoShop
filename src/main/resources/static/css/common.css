@@ -37,3 +37,11 @@ a:hover {
 	color: red;
 	font-style: italic;
 }
+.searchInput:focus{
+    box-shadow: none;
+}
+.searchBtn
+{
+	--bs-btn-hover-color: none;
+    --bs-btn-hover-bg: none;
+}
