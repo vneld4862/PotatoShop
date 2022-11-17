@@ -11,5 +11,5 @@ public class BuyVO {
 	private String buyCode;
 	private String memberId;
 	private String buyDate;
-	private String totalPrice;
+	private String itemCode;
 }

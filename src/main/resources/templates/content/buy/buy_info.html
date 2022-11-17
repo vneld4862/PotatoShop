@@ -6,6 +6,7 @@
 
 <div layout:fragment="content"> 
 	<div class="container">
+	
 	<div class="col-12 mb-3">
 		<div class="row">
 			<div class="col">
@@ -20,13 +21,13 @@
 	</div>
 	<div class="col-12">
 		<div class="row mb-2">
-			<div class="col-12" style="font-weight: bold;"><h5>[[${memberInfo.memberName}]]</h5></div>
+			<div class="col-12" style="font-weight: bold;" id="buyerName" th:text="${memberInfo.memberName}"></div>
 		</div>
 		<div class="row mb-2">
-			<div class="col-12">[[${memberInfo.memberTell}]]</div>
+			<div class="col-12" id="buyerTell" th:text="${memberInfo.memberTell}"></div>
 		</div>
 		<div class="row mb-5">
-			<div class="col-12">[[${memberInfo.memberAddr}]]</div>
+			<div class="col-12" id="buyerAddr" th:text="${memberInfo.memberAddr}"></div>
 		</div>
 	</div>
 	<div class="row">
@@ -51,8 +52,8 @@
 				</div> 
 				<div class="col-8" style="margin-left: -20rem; margin-top: 2rem;">
 					<div class="row">
-						<div th:text="${#numbers.formatCurrency(item.itemPrice)}" style="font-size: 20px;"></div>
-						<div class="col-6"><h5>[[${item.itemName}]]</h5></div>
+						<div class="col-6" id="buyerPrice" th:text="${item.itemPrice}"></div>
+						<div class="col-6" id="buyerItem" th:text="${item.itemName}"></div>
 					</div>
 				</div>
 			</div>
@@ -97,9 +98,12 @@
 			</div>	
 		</div>
 	</div>
-	<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
-	<button class="btn btn-warning" onclick="payBtn();">결제하기</button>
 	
+	<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
+	<input type="hidden" id="nextBuyCode" name="buyCode" th:value="${nextBuyCode}">
+	<input type="hidden" id="itemCode" name="itemCode" th:value="${item.itemCode}">
+	
+	<button class="btn btn-warning" type="button" onclick="payBtn();">결제하기</button>
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
 <!-- iamport.payment.js -->
  <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
