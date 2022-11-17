@@ -77,7 +77,7 @@ function changeStatus(){
 				str += '<tr>';
 				str += '	<td></td>';
 				str += '	<td>';
-				str += `<span onclick="getMemberDetail(${member.memberId});">${member.memberNickName}(${member.memberId})</td>`;
+				str += `<span onclick="getMemberDetail('${member.memberId}')">${member.memberNickName}(${member.memberId})</td>`;
 				str += '	<td>등급</td>';
 				str += `	<td>${member.regDate}</td>`;
 				str += `	<td>${member.memberStatus}</td>`;

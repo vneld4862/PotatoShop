@@ -22,10 +22,14 @@ function reviewDetail(itemCode){
 			
 			let str = '';
 			
+			if(result.memberId = `${username}`){
+					
 			str += '<div class="col-12 text-end mb-3">'
 			str += '	<span>수정</span>|'
 			str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`
 			str += '</div>'			
+				
+			}
 			
 			str += '<div class="row">';
 			str += '	<div class="col-3">';
