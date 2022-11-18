@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.fasterxml.jackson.annotation.JsonCreator.Mode;
+
 import edu.emory.mathcs.backport.java.util.Arrays;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
@@ -118,6 +120,7 @@ public class ItemController {
 		List<WishVO> wishList = wishService.selectWishList(memberId);
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
+		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
 		
 		return"content/item/item_list";
 	}
