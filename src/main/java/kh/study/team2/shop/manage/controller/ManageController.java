@@ -22,6 +22,8 @@ import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.member.service.MemberService;
+import kh.study.team2.shop.member.vo.MemberVO;
+import retrofit2.http.POST;
 
 @Controller
 @RequestMapping("/manage")
@@ -72,11 +74,19 @@ public class ManageController {
 		return "content/manage/my_market"; 
 	}	
 	
-	//내 정보 수정 
-	@GetMapping("/profileForm")
-	public String profileForm() {
-		
-		return"content/manage/modify_profile";
+	//내 정보
+	@GetMapping("/myInfo")
+	public String myInfo(Model model, String memberId) {
+		MemberVO memberInfo = memberService.selectMemberInfo(memberId);
+		model.addAttribute("myInfo", memberInfo);
+		return"content/manage/my_info";
+	}
+	
+	//내 정보 수정
+	@PostMapping("/updateMyInfo")
+	public String updateMyInfo(MemberVO memberVO) {
+		memberService.updateMyInfo(memberVO);
+		return "redirect:/item/memberItemList";//my_market으로 변경예정.
 	}
 	
 	//프로필 이미지 수정

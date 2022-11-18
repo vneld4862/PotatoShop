@@ -36,6 +36,10 @@ public class MemberServiceImpl implements MemberService{
 	public ProfileVO profileInfo(String memberId) {
 		return sqlSession.selectOne("memberMapper.profileInfo", memberId);
 	}
+	@Override
+	public void updateMyInfo(MemberVO memberVO) {
+		sqlSession.update("memberMapper.updateMyInfo", memberVO);
+	}
 	
 	
 }

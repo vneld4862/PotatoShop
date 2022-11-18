@@ -75,6 +75,16 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<!-- 내정보 수정 -->
+	<update id="updateMyInfo">
+		UPDATE SHOP_MEMBER
+	    SET MEMBER_ADDR = #{memberAddr}
+	        , MEMBER_TELL = #{memberTell}
+	        , MEMBER_EMAIL = #{memberEmail}
+	    WHERE MEMBER_ID = #{memberId}    
+	</update>
+	<!-- , MEMBER_PW = #{memberPw} --><!-- 추가예정 -->
+	
 	<!-- 프로필생성 -->
 	<insert id="insertProfile">
 		INSERT INTO PROFILE (

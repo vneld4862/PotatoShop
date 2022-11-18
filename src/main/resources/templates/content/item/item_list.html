@@ -33,7 +33,7 @@
 								</button> -->
 								
 								<button class="btn btn-success" style="width: 30%" 
-								th:onclick="|location.href='@{/manage/profileForm}'|">
+								th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
 								 내정보 수정
 								</button>
 								<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
@@ -330,14 +330,17 @@
     <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
     <div class="modal-content">
       <div class="modal-header">
-        <h1 class="modal-title fs-5" id="staticBackdropLabel">상점프로필 수정</h1>
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필 수정</h1>
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
        
       	<div class="row">
       		<div class="col-12">
-      		  
+      		  <label>닉네임</label>
+      		  <div class="input-group flex-nowrap mb-3">
+      		  	<input type="text" class="form-control" name="memberNickName">
+      		  </div>
       		  <label>상점 이미지</label>
       	      <div class="input-group flex-nowrap mb-3">
 					<input type="file" class="form-control" name="changedName">

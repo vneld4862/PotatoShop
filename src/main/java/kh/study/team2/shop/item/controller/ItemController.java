@@ -121,7 +121,6 @@ public class ItemController {
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
-		
 		return"content/item/item_list";
 	}
 	

@@ -10,6 +10,6 @@ public interface MemberService {
 	String idChk(String memberId);
 	MemberVO selectMemberInfo(String memberId);
 	ProfileVO profileInfo(String memberId);
-
+	void updateMyInfo(MemberVO memberVO);
 	
 }
