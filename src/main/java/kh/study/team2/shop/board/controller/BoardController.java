@@ -6,7 +6,6 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -27,11 +26,6 @@ public class BoardController {
 	@Resource(name="itemService")
 	private ItemService itemService;
 	
-	//후기 작성 페이지 이동
-	@GetMapping("/regReview")
-	public String regBoard() {
-		return "content/board/reg_market_board";
-	}
 	
 	//후기 작성
 	@PostMapping("/regReview")
@@ -42,9 +36,9 @@ public class BoardController {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
 		
-		uploadInfo.setItemCode("ITEM_001"); //임시
+		uploadInfo.setItemCode("ITEM_002"); //임시
 		
-		boardVO.setItemCode("ITEM_001"); //임시
+		boardVO.setItemCode("ITEM_002"); //임시
 
 		User user = (User)authentication.getPrincipal();
 		boardVO.setMemberId(user.getUsername());

@@ -3,6 +3,9 @@ const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 
 //리뷰 제목 클릭하면 실행
 function reviewDetail(itemCode){
+	
+	const loginId = document.querySelector('#hiddenId').value;
+	
 	//ajax start
 	$.ajax({
 		url: '/board/reviewDetail', //요청경로
@@ -10,26 +13,21 @@ function reviewDetail(itemCode){
 		data: {'itemCode':itemCode}, //필요한 데이터
 		success: function(result) {
 			
-			//document.querySelector('#reviewDetailModal_itemName').innerText = result.itemVO.itemName;
-			//document.querySelector('#reviewDetailModal_starPoint').innerText = result.starPoint;
-			//document.querySelector('#reviewDetailModal_title').innerText = result.boardTitle;
-			//document.querySelector('#reviewDetailModal_wirter').innerText = result.memberId;
-			//document.querySelector('#reviewDetailModal_pic').innerText = 
-			
-			
 			
 			document.querySelector('.detailAjaxDiv').innerHTML = '';
 			
 			let str = '';
 			
-			if(result.memberId = `${username}`){
-					
-			str += '<div class="col-12 text-end mb-3">'
-			str += '	<span>수정</span>|'
-			str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`
-			str += '</div>'			
-				
+			if(result.memberId = loginId) { //글 쓴 사람과 로그인한 사람이 일치하면
+				str += '<div class="col-12 text-end mb-3">'
+				str += '	<span data-bs-toggle="modal" data-bs-target="#review_update_modal">수정</span>|'
+				str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`
+				str += '</div>'	
 			}
+			else { //일치하지 않으면
+
+			}
+			
 			
 			str += '<div class="row">';
 			str += '	<div class="col-3">';
@@ -85,7 +83,8 @@ function reviewDetail(itemCode){
 
 
 //리뷰 삭제 클릭시 실행되는 Ajax
-function deleteReviewAjax(itemCode){	
+function deleteReviewAjax(itemCode){
+	
 	//ajax start
 	$.ajax({
 		url: '/board/deleteReview', //요청경로
@@ -99,6 +98,30 @@ function deleteReviewAjax(itemCode){
 			alert('실패');
 		}
 	});
-	//ajax end		
+	//ajax end
+	
+}
+
+
+//리뷰 수정 클릭시 실행되는 Ajax
+//수정을....... 꼭 해야되나? 그냥 삭제하고 다시 쓰세요....
+//모달을 다시 그려야 됨........................?
+//나중에 시간 남으면 함.................
+function updateReviewAjax(itemCode){
+	
+	//ajax start
+	$.ajax({
+		url: '/board/updateReview', //요청경로
+		type: 'post',
+		data: {'itemCode':itemCode}, //필요한 데이터
+		success: function(result) {
+
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	//ajax end
+	
 }
 	

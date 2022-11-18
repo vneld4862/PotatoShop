@@ -15,13 +15,13 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.member.service.MemberService;
-import retrofit2.http.POST;
 
 @Controller
 @RequestMapping("/manage")
@@ -40,6 +40,9 @@ public class ManageController {
 	
 	@Resource(name="memberService")
 	private MemberService memberService;
+	
+	@Resource(name="buyService")
+	private BuyService buyService;
 	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
@@ -69,7 +72,7 @@ public class ManageController {
 		return "content/manage/my_market"; 
 	}	
 	
-	//내정보수정 
+	//내 정보 수정 
 	@GetMapping("/profileForm")
 	public String profileForm() {
 		
@@ -84,9 +87,7 @@ public class ManageController {
 		return "redirect:/item/memberItemList";
 	}
 	
-	
-	
-	
+
 	
 	//상품등록 페이지로 이동
 	@GetMapping("/regItemForm")
@@ -94,6 +95,7 @@ public class ManageController {
 		List<MainCateVO> mainCateList = cateService.mainCateList();
 		System.out.println(mainCateList);
 		model.addAttribute("mainCateList", mainCateList);
+		
 		return "content/manage/reg_item";
 	}
 	
@@ -108,26 +110,29 @@ public class ManageController {
 		
 		List<ItemVO> itemList = itemService.memberItemList(memberId);
 		model.addAttribute("itemList", itemList);
+		
 		return "content/manage/item_manage";
 	}
 	
-	//상품수정 화면으로 이동
+	//상품 수정 화면으로 이동
 	@GetMapping("/updateForm")
 	public String updateForm(String itemCode, Model model) {
 		System.out.println(itemCode);
 		model.addAttribute("itemInfo", itemService.selectItemDetail(itemCode));
+		
 		return "content/manage/update_item";
 	}
 	
-	//상품수정
+	//상품 수정
 	@PostMapping("/updateItem")
 	public String updateItem(ItemVO itemVO) {
 		itemService.updateItem(itemVO);
+		
 		return"redirect:/manage/itemManage";
 	}
 	
 	
-	//상품삭제
+	//상품 삭제
 	
 	@GetMapping("/deleteItem")
 	public String deleteItem(String itemCode) {
@@ -138,14 +143,18 @@ public class ManageController {
 	
 	
 	
-	//구매내역 페이지 이동
+	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
-	public String buyList() {
+	public String buyList(String itemCode) {
+		
+		//구매 내역 조회
+		
+		
 		
 		return "content/manage/buy_list";
 	}
 	
-	//판매내역 페이지 이동
+	//판매 내역 페이지 이동
 	@GetMapping("/sellList")
 	public String sellList() {
 		
