@@ -44,15 +44,6 @@ public class BuyController {
 		return "content/buy/buy_info";
 	}
 	
-	//구매목록조회
-	@GetMapping("/buyList")
-	public String buyList(Authentication authentication, Model model) {
-		//User user = (User)authentication.getPrincipal();
-		//회원정보 조회
-		//model.addAttribute("buyList", memberService.getBuyList(user.getUsername()));
-		
-		return "content/buy/buy_list";
-	}
 	
 	//결제
 	@ResponseBody
@@ -72,10 +63,14 @@ public class BuyController {
 		return "content/buy/buy_list";
 	}
 	
-	@ResponseBody
-	@PostMapping("/test")
-	public String test() {
-		return buyService.selectNextBuyCode();
+	//구매목록조회
+	@GetMapping("/buyList")
+	public String buyList(Authentication authentication, Model model) {
+		//User user = (User)authentication.getPrincipal();
+		//회원정보 조회
+		//model.addAttribute("buyList", memberService.getBuyList(user.getUsername()));
+		
+		return "content/buy/buy_detail";
 	}
 	
 	

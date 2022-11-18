@@ -6,108 +6,114 @@
 
 <div layout:fragment="content"> 
 	<div class="container">
-	
-	<div class="col-12 mb-3">
-		<div class="row">
-			<div class="col">
-				<h4>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-				</svg>
-				구매자 정보
-				</h4>
-			</div>
-		</div>
-	</div>
-	<div class="col-12">
-		<div class="row mb-2">
-			<div class="col-12" style="font-weight: bold;" id="buyerName" th:text="${memberInfo.memberName}"></div>
-		</div>
-		<div class="row mb-2">
-			<div class="col-12" id="buyerTell" th:text="${memberInfo.memberTell}"></div>
-		</div>
-		<div class="row mb-5">
-			<div class="col-12" id="buyerAddr" th:text="${memberInfo.memberAddr}"></div>
-		</div>
-	</div>
-	<div class="row">
-		<div class="col-12 mb-5">
-			<div class="row" >
-				<div class="col-12">
-					<h4>
-					<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-					  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-					</svg>
-					상품 정보
-					</h4>
-				</div>	
-			</div>
+		<div class="col">
 			<div class="row">
-		 		<div class="col-4">
-					<th:block th:each=" img : ${item.imgList}">
-						<th:block th:if="${img.isMain eq 'Y'}">
-							<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
-						</th:block>
-					</th:block>
-				</div> 
-				<div class="col-8" style="margin-left: -20rem; margin-top: 2rem;">
+				<div class="col-6">
+					<div class="col-12 mb-3">
+						<div class="row">
+							<div class="col">
+								<h4>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+								  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+								</svg>
+								구매자 정보
+								</h4>
+							</div>
+						</div>
+					</div>
+					<div class="col-12">
+						<div class="row mb-2">
+							<div class="col-12" style="font-weight: bold;" id="buyerName" th:text="${memberInfo.memberName}"></div>
+						</div>
+						<div class="row mb-2">
+							<div class="col-12" id="buyerTell" th:text="${memberInfo.memberTell}"></div>
+						</div>
+						<div class="row mb-5">
+							<div class="col-12" id="buyerAddr" th:text="${memberInfo.memberAddr}"></div>
+						</div>
+					</div>
+					<hr>
 					<div class="row">
-						<div class="col-6" id="buyerPrice" th:text="${item.itemPrice}"></div>
-						<div class="col-6" id="buyerItem" th:text="${item.itemName}"></div>
+						<div class="col-12 mb-5">
+							<div class="row" >
+								<div class="col-12">
+									<h4>
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+									  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+									</svg>
+									상품 정보
+									</h4>
+								</div>	
+							</div>
+							<div class="row">
+						 		<div class="col-4">
+									<th:block th:each=" img : ${item.imgList}">
+										<th:block th:if="${img.isMain eq 'Y'}">
+											<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
+										</th:block>
+									</th:block>
+								</div> 
+								<div class="col-8">
+									<div class="row" style=" margin-top: 2rem;">
+										<div class="col-12" id="buyerPrice" th:text="${item.itemPrice}"></div>
+										<div class="col-12" id="buyerItem" th:text="${item.itemName}"></div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-6">
+					<div class="row mt-3 mb-3">
+						<div class="row" >
+							<div class="col-12">
+								<h4>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+								  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+								</svg>
+								결제수단
+								</h4>
+							</div>	
+							<div class="col-12">
+							  <div class="form-check form-check-inline">
+							 	<input class="form-check-input" type="radio" name="" id="" value="신용/체크카드"> 
+								<label class="form-check-label" for="">신용/체크카드</label>
+							  </div>
+							</div>
+							<div class="col-12">
+							  <div class="form-check form-check-inline">
+							 	<input class="form-check-input" type="radio" name="" id="" value="무통장입금"> 
+								<label class="form-check-label" for="">무통장입금</label>
+							  </div>
+							 </div>
+						</div>
+					</div>
+					
+					<div class="row mt-3 mb-3">
+						<div class="row" >
+							<div class="col-12">
+								<h4>
+								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
+								  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
+								</svg>
+								최종 결제금액
+								</h4>
+								<div th:text="${#numbers.formatCurrency(item.itemPrice)}" style="font-size: 30px;"></div>
+							</div>	
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	
-	<div class="row mt-3 mb-3">
-		<div class="row" >
-			<div class="col-12">
-				<h4>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-				</svg>
-				결제수단
-				</h4>
-			</div>	
-			<div class="col-12">
-			  <div class="form-check form-check-inline">
-			 	<input class="form-check-input" type="radio" name="" id="" value="신용/체크카드"> 
-				<label class="form-check-label" for="">신용/체크카드</label>
-			  </div>
-			</div>
-			<div class="col-12">
-			  <div class="form-check form-check-inline">
-			 	<input class="form-check-input" type="radio" name="" id="" value="etc"> 
-				<label class="form-check-label" for="">간편결제</label>
-			  </div>
-			 </div>
-		</div>
-	</div>
-	
-	<div class="row mt-3 mb-3">
-		<div class="row" >
-			<div class="col-12">
-				<h4>
-				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-caret-down-fill" viewBox="0 0 16 16">
-				  <path d="M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z"/>
-				</svg>
-				최종 결제금액
-				</h4>
-				<div th:text="${#numbers.formatCurrency(item.itemPrice)}" style="font-size: 30px;"></div>
-			</div>	
-		</div>
-	</div>
-	
 	<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
 	<input type="hidden" id="nextBuyCode" name="buyCode" th:value="${nextBuyCode}">
 	<input type="hidden" id="itemCode" name="itemCode" th:value="${item.itemCode}">
-	
+	<input type="hidden" id="buyerEmail" name="memberEmail" th:value="${memberInfo.memberEmail}">
 	<button class="btn btn-warning" type="button" onclick="payBtn();">결제하기</button>
 <!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
 <!-- iamport.payment.js -->
- <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
-<script type="text/javascript" th:src="@{/js/buy/buy_info.js}"></script>       
-</div>
+	 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
+	<script type="text/javascript" th:src="@{/js/buy/buy_info.js}"></script>       
+	</div>
 </div>
 </html>

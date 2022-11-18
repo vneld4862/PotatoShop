@@ -5,7 +5,7 @@ function payBtn() {
 	const buyAddr = $('#buyerAddr').text();
 	const buyItem = $('#buyerItem').text();
 //	const buyPrice = $('#buyerPrice').text();
-	//const buyEmail =
+	const buyEmail = $('#buyerEmail').val();
 	
 	const merchant_uid = 'ORD_' + new Date().getTime();
 	
@@ -20,7 +20,7 @@ function payBtn() {
 		name: buyItem,
 //		amount: buyPrice,
 		amount: 100,
-		buyer_email: "gildong@gmail.com",
+		buyer_email: buyEmail,
 		buyer_name: buyName,
 		buyer_tel: buyTell,
 		buyer_addr: buyAddr,
@@ -33,14 +33,14 @@ function payBtn() {
 	            method: "POST",
 	            //headers: { "Content-Type": "application/json" },
 	            data: {
-	                'imp_uid': rsp.imp_uid,            //결제 고유번호     
-	                'merchant_uid': rsp.merchant_uid,   //주문번호
+	                imp_uid: rsp.imp_uid,            //결제 고유번호     
+	                merchant_uid: rsp.merchant_uid,   //주문번호
 	                'buyCode': merchant_uid,
 	                'itemCode': $('#itemCode').val()
 	            }
 	        }).done(function (data) {
 				alert('결제가 완료되었습니다.');
-				location.href = '/item/list';
+				location.href = '/buy/buyList';
 	        })
 	      }else {
 			console.log(rsp);
