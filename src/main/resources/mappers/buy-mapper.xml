@@ -9,6 +9,8 @@
 		<result column="BUY_DATE" 		property="buyDate"/>
 		<result column="ITEM_CODE"		property="itemCode"/>
 		<result column="IS_CONFIRMED"	property="isConfirmed"/>
+		<association property="itemVO" 	resultMap="itemMapper.item"/>
+		<collection property="imgList" 	resultMap="itemMapper.img"/>
 	</resultMap>
 
 	<!-- 구매  -->
@@ -36,9 +38,19 @@
 		SELECT BUY_CODE
 			, MEMBER_ID
 			, BUY_DATE
-			, ITEM_CODE
-		FROM SHOP_BUY
+			, S.ITEM_CODE
+			, (SELECT ITEM_NAME
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_NAME
+			, (SELECT ITEM_PRICE
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_PRICE
+			, ATTACHED_NAME
+			, IS_CONFIRMED
+		FROM SHOP_BUY S, ITEM_IMG I
 		WHERE MEMBER_ID = #{memberId}
+		AND S.ITEM_CODE = I.ITEM_CODE
+		AND IS_MAIN = 'Y'
 	</select>
 	
 	

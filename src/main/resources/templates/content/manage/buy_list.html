@@ -39,15 +39,19 @@
 				<table class="table">
 					<colgroup>
 						<col width="20%">
+						<col width="10%">
 						<col width="*">
 						<col width="10%">
-						<col width="10%">
 						<col width="15%">
+						<col width="20%">
 					</colgroup>
 					<thead>
 						<tr>
-							<th scope="col">주문일자[주문번호]</th>
-							<th scope="col">상품정보(사진/상품이름)</th>
+							<th scope="col">
+								<div>주문일자</div>
+								<div>[주문번호]</div>
+							</th>
+							<th scope="col" colspan="2">상품정보</th>
 							<th scope="col">금액</th>
 							<th scope="col">주문상태</th>
 							<th scope="col">구매확정/리뷰작성</th>
@@ -56,22 +60,25 @@
 					<tbody>
 						<th:block th:if="${#lists.size(buyList) == 0}">
 							<tr>
-								<td colspan="5">주문 내역이 없습니다.</td>
+								<td colspan="6">주문 내역이 없습니다.</td>
 							</tr>
 						</th:block>
 						<th:block th:unless="${#lists.size(buyList) == 0}">
 							<tr th:each="buy : ${buyList}">
 								<td>
-									<div>[[${buy.buyDate}]] [ [[${buy.buyCode}}]] ]</div>
-									<div>
-										<input type="button" value="구매 확정">
-										<input type="button" value="후기 작성" data-bs-toggle="modal" data-bs-target="#review_modal">
-									</div>							
+									<div>[[${buy.buyDate}]]</div>
+									<div><span>[</span>[[${buy.buyCode}]]<span>]</span></div>
 								</td>
+								<td class="text-end">
+									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">
+								</td>
+								<td class="text-start" th:text="${buy.itemVO.itemName}"></td>
+								<td th:text="${buy.itemVO.itemPrice}"></td>
 								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
+								<td>
+									<input type="button" value="구매 확정">
+									<input type="button" value="후기 작성" data-bs-toggle="modal" data-bs-target="#review_modal">
+								</td>
 							</tr>
 						</th:block>
 						
