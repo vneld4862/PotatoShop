@@ -73,7 +73,7 @@
 									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">
 								</td>
 								<td class="text-start" th:text="${buy.itemVO.itemName}"></td>
-								<td th:text="${buy.itemVO.itemPrice}"></td>
+								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}"></td>
 								<td></td>
 								<td>
 									<input type="button" value="구매 확정">

@@ -131,8 +131,8 @@
 						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="...">
 					</div>
 					<div class="card-body">
-						[[${item.itemName}]]
-						[[${item.itemPrice}]]
+						<div>[[${item.itemName}]]</div>
+						<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
 					</div>
 				</div>
 			</div>
