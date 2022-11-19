@@ -16,6 +16,7 @@ public class BoardVO{
 	private String memberId;
 	private String regDate;
 	private int starPoint;
+	private String isWritten;
 	private ReviewImgVO reviewImgVO;
 	private ItemVO itemVO;
 	private ReplyVO replyVO;

@@ -11,6 +11,7 @@
 		<result column="MEMBER_ID" 			property="memberId"/>
 		<result column="REG_DATE" 			property="regDate"/>
 		<result column="STAR_POINT" 		property="starPoint"/>
+		<result column="IS_WRITTEN" 		property="isWritten"/>
 		<association property="itemVO" 		resultMap="itemMapper.item"/>
 		<association property="reviewImgVO" resultMap="reviewImg"/>
 		<association property="replyVO" 	resultMap="reply"/>

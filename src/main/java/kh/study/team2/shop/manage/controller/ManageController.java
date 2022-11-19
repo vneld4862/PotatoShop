@@ -23,7 +23,7 @@ import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
-import retrofit2.http.POST;
+
 
 @Controller
 @RequestMapping("/manage")
@@ -155,9 +155,14 @@ public class ManageController {
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
-	public String buyList(String itemCode) {
+	public String buyList(String itemCode
+						, Model model
+						, Authentication authentication) {
+		
+		User user = (User)authentication.getPrincipal();
 		
 		//구매 내역 조회
+		model.addAttribute("buyList", manageService.selectBuyList(user.getUsername()));
 		
 		
 		

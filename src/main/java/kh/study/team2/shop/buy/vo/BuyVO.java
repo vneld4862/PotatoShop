@@ -12,4 +12,5 @@ public class BuyVO {
 	private String memberId;
 	private String buyDate;
 	private String itemCode;
+	private String isConfirmed;
 }

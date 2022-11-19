@@ -1,5 +1,6 @@
 package kh.study.team2.shop.item.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -15,10 +16,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.multipart.MultipartFile;
-
-import com.fasterxml.jackson.annotation.JsonCreator.Mode;
-
-import edu.emory.mathcs.backport.java.util.Arrays;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
@@ -71,6 +68,7 @@ public class ItemController {
 			
 			model.addAttribute("cookie_imgName",cookieList);
 		}
+		
 		return "content/shop_main";
 	}
 	
@@ -96,12 +94,14 @@ public class ItemController {
 		uploadList.add(uploadInfo);
 		itemVO.setImgList(uploadList);
 		itemVO.setItemCode(nextItemCode);
+		
 		//insert쿼리 실행
 		System.out.println(itemVO);
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		itemVO.setMemberId(memberId);
 		itemService.insertItem(itemVO);
+		
 		return "redirect:/manage/itemManage";
 	}
 	
@@ -109,7 +109,7 @@ public class ItemController {
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")
 	public String memberItemList(Authentication authentication
-			, Model model) {
+								, Model model) {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
@@ -121,6 +121,7 @@ public class ItemController {
 		System.out.println(wishList);
 		model.addAttribute("wishList", wishList);
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
+		
 		return"content/item/item_list";
 	}
 	
@@ -177,6 +178,7 @@ public class ItemController {
 		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
+		
 		return result;
 	}
 	

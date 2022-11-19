@@ -4,29 +4,29 @@
 <!-- 해당 파일에 모든 쿼리문을 작성 -->
 <mapper namespace="itemMapper">
 	<resultMap type="kh.study.team2.shop.item.vo.ItemVO" id="item">
-		<id column="ITEM_CODE" property="itemCode"/>
-		<result column="ITEM_NAME" property="itemName"/>
-		<result column="ITEM_PRICE" property="itemPrice"/>
-		<result column="REG_DATE" property="regDate"/>
-		<result column="ITEM_COMMENT" property="itemComment"/>
-		<result column="ITEM_STATUS" property="itemStatus"/>
-		<result column="TRADE_TYPE" property="tradeType"/>
-		<result column="TRADE_ADDR" property="tradeAddr"/>
-		<result column="VIEW_CNT" property="viewCnt"/>
-		<result column="MAIN_CATE_CODE" property="mainCateCode"/>
-		<result column="SUB_CATE_CODE" property="subCateCode"/>
-		<result column="DETAIL_CATE_CODE" property="detailCateCode"/>
-		<result column="MEMBER_ID" property="memberId"/>
-		<result column="CNT_WISH_LIST" property="cntWishList"/><!--이렇게 임시로 작성하면 되나? -->
-		<collection property="imgList" resultMap="img"/>
+		<id column="ITEM_CODE" 				property="itemCode"/>
+		<result column="ITEM_NAME" 			property="itemName"/>
+		<result column="ITEM_PRICE" 		property="itemPrice"/>
+		<result column="REG_DATE" 			property="regDate"/>
+		<result column="ITEM_COMMENT" 		property="itemComment"/>
+		<result column="ITEM_STATUS" 		property="itemStatus"/>
+		<result column="TRADE_TYPE" 		property="tradeType"/>
+		<result column="TRADE_ADDR" 		property="tradeAddr"/>
+		<result column="VIEW_CNT" 			property="viewCnt"/>
+		<result column="MAIN_CATE_CODE" 	property="mainCateCode"/>
+		<result column="SUB_CATE_CODE" 		property="subCateCode"/>
+		<result column="DETAIL_CATE_CODE" 	property="detailCateCode"/>
+		<result column="MEMBER_ID" 			property="memberId"/>
+		<result column="CNT_WISH_LIST" 		property="cntWishList"/><!--이렇게 임시로 작성하면 되나? -->
+		<collection property="imgList" 		resultMap="img"/>
 	</resultMap>
 	
 	<resultMap type="kh.study.team2.shop.item.vo.ImgVO" id="img">
-		<id column="IMG_CODE" property="imgCode"/>
-		<result column="ORIGIN_NAME" property="originName"/>
-		<result column="ATTACHED_NAME" property="attachedName"/>
-		<result column="IS_MAIN" property="isMain"/>
-		<result column="ITEM_CODE" property="itemCode"/>
+		<id column="IMG_CODE" 			property="imgCode"/>
+		<result column="ORIGIN_NAME" 	property="originName"/>
+		<result column="ATTACHED_NAME" 	property="attachedName"/>
+		<result column="IS_MAIN" 		property="isMain"/>
+		<result column="ITEM_CODE" 		property="itemCode"/>
 	</resultMap>
 	
 	<select id="getNextItemCode" resultType="String">
@@ -108,7 +108,7 @@
 	
 	
 	
-	<!-- 회원의 상품목록 조회 -->
+	<!-- 회원의 상품 목록 조회 -->
 	<select id="memberItemList" resultMap="item">
 		SELECT 
 		  I.ITEM_CODE
