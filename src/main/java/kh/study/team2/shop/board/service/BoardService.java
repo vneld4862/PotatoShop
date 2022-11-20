@@ -3,6 +3,7 @@ package kh.study.team2.shop.board.service;
 import java.util.List;
 
 import kh.study.team2.shop.board.vo.BoardVO;
+import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 
 public interface BoardService {
@@ -20,5 +21,10 @@ public interface BoardService {
 	
 	//리뷰 삭제
 	void deleteReview(String itemCode);
+	
+	//리뷰 댓글 작성
+	void insertReviewReply(ReplyVO replyVO);
+	
+	//리뷰 댓글 삭제
 	
 }

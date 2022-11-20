@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import kh.study.team2.shop.board.vo.BoardVO;
+import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 
 
@@ -46,6 +47,11 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteReview(String itemCode) {
 		sqlSession.delete("boardMapper.deleteReviewReply", itemCode);
 		sqlSession.delete("boardMapper.deleteReview", itemCode);
+	}
+
+	@Override
+	public void insertReviewReply(ReplyVO replyVO) {
+		sqlSession.insert("boardMapper.insertReviewReply", replyVO);
 	}
 
 

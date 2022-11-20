@@ -30,6 +30,12 @@
 	    object-fit:cover;
 	}
 	
+	div p{
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+	}
+	
 	
 	</style>
 
@@ -131,7 +137,7 @@
 						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="...">
 					</div>
 					<div class="card-body">
-						<div>[[${item.itemName}]]</div>
+						<div><p>[[${item.itemName}]]</p></div>
 						<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
 					</div>
 				</div>

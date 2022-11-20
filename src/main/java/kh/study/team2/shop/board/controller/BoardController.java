@@ -5,7 +5,6 @@ import javax.annotation.Resource;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -14,6 +13,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.board.vo.BoardVO;
+import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 import kh.study.team2.shop.config.UploadFileUtil2;
 import kh.study.team2.shop.item.service.ItemService;
@@ -52,7 +52,7 @@ public class BoardController {
 	//후기 상세 보기
 	@ResponseBody
 	@PostMapping("/reviewDetail")
-	public BoardVO reviewDetail(Model model, String itemCode) {
+	public BoardVO reviewDetail(String itemCode) {
 		
 		return boardService.selectBoardDetail(itemCode); //리턴 값을 ajax의 result로 전달
 	}
@@ -64,5 +64,18 @@ public class BoardController {
 		
 		boardService.deleteReview(itemCode);
 	}
+	
+	//후기 댓글 작성
+	@PostMapping("/regReply")
+	public String regReply(ReplyVO replyVO, Authentication authentication) {
+		
+		User user = (User)authentication.getPrincipal();
+		replyVO.setMemberId(user.getUsername());
+		
+		boardService.insertReviewReply(replyVO);
+		
+		return "redirect:/board/boardDetail";
+	}
+	
 	
 }

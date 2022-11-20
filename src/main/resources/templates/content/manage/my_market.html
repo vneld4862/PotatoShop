@@ -34,6 +34,12 @@
 			overflow: hidden;
 			pointer-events: none;
 		}
+		
+		#itemName {
+	        overflow: hidden;
+	        text-overflow: ellipsis;
+	        white-space: nowrap;
+		}
 	</style>
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
@@ -218,12 +224,13 @@
 										<th:block th:unless="${#lists.size(writtenReviewList) == 0}">
 											<tr th:each="review : ${writtenReviewList}">
 												<td th:text="${reviewStat.count}"></td>
-												<td th:text="${review.itemVO.itemName}"></td>
+												<td th:text="${review.itemVO.itemName}" id="itemName"></td>
 												<td>
 													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
 														<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
 													</svg>
 													[[${review.starPoint}]]
+													<input type="hidden" th:value="${review.itemCode}" id="hiddenItemCode">
 												</td>
 												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]]);"></td>
 												<td th:text="${review.memberId}"></td>
@@ -253,49 +260,37 @@
 				</div> 
 				<div class="modal-body reviewDetailDiv">
 				
-					
 					<div class="col-12 detailAjaxDiv"> <!-- 사진 클릭하면 원본 크기로 보이게 -->
+
+					</div>
 						
-						<div class="col-12 text-end mb-3"> <!-- 본인이 쓴 글에만 보이게 -->
-							<span>수정</span>
-							 |
-							<span th:onclick="deleteReviewAjax()">삭제</span>
+					<div class="row replyDiv">
+						<div>
+							<form th:action="@{/board/regReply}" method="post" id="regReplyForm">
+								<input type="hidden" name="itemCode" id="itemCodeInput">
+								<input type="hidden" name="memberId" id="memberIdInput"> 
+								<textarea rows="2" cols="90%" name="replyContent" id="replyContent" style="resize: none;" class="form-control"></textarea>
+							</form>
+							<input type="button" value="등록" th:onclick="regReply()" class="btn btn-primary" style="height: 62px; width: 58px;">
 						</div>
-						
-						
-						
-						
 					</div>
 					
-					<div class="col-12"> <!-- style="height: 300px; overflow-y: scroll;" -->
-						<div class="row replyDiv">
-							<div class="col-10">
-								<textarea rows="2" cols="90%" name="replyContent"
-											style="resize: none;" class="form-control"></textarea>
-							</div>
-							<div class="col-2">
-								<div>
-									<input type="button" value="등록" class="btn btn-primary"
-											style="height: 62px; width: 58px;">
-								</div>
-							</div>
+					
+					<hr>
+					
+					<!-- 조회만 전체 ajax 하면 되나..? -->
+					<div class="col-12 replyListDiv">
+						<div class="col-12 text-end">
+							<span style="font-size: 0.8rem;">댓글 등록일</span>
 						</div>
-						
+						<div class="col-12 text-start">댓글 작성자</div>
+						<div class="col-12">
+							댓글 내용
+						</div>
+						<div class="col-12 text-end">
+							<input type="button" value="삭제" class="btn btn-secondary">
+						</div>
 						<hr>
-						
-						<div class="col-12 replyListDiv">
-							<div class="col-12 text-end">
-								<span style="font-size: 0.8rem;">댓글 등록일</span>
-							</div>
-							<div class="col-12 text-start">댓글 작성자</div>
-							<div class="col-12">
-								댓글 내용
-							</div>
-							<div class="col-12 text-end">
-								<input type="button" value="삭제" class="btn btn-secondary">
-							</div>
-							<hr>
-						</div>
 					</div>
 
 				</div>
@@ -307,6 +302,18 @@
 			</div>
 		</div>
 	</div>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	<!-- 리뷰 수정 버튼 클릭시 실행되는 Modal -->
 	<div class="modal fade" id="review_update_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
