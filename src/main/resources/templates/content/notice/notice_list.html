@@ -5,7 +5,8 @@
 	  layout:decorate="~{layout/base_layout}">
 
 <div layout:fragment="content"> 
- 	<h3>공지사항</h3>
+	<br>
+ 	<div class="col-12 mb-3"><h3>공지사항</h3></div>
  	<table class="table text-center">
  		<colgroup>
 	       <col width="10%">
@@ -23,7 +24,9 @@
  			<td>2022-11-16</td>
  		</tr>
  	</table>
- 	<input type="button" class="btn btn-warning" value="글 등록" th:onclick="|location.href='@{/notice/regNotice}'|">
+ 	<div class="col-12 text-center">
+ 	<input type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
+ 	</div>
 </div>
 
 </html>

@@ -60,7 +60,7 @@ public class BuyController {
 		
 		buyService.buyItem(buyVO);
 		
-		return "content/buy/buy_list";
+		return "content/buy/buy_detail";
 	}
 	
 	//구매상세조회

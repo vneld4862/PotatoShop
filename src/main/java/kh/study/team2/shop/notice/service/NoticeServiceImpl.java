@@ -14,7 +14,7 @@ public class NoticeServiceImpl implements NoticeService{
 
 	@Override
 	public void insertNotice(NoticeVO noticeVO) {
-		sqlSession.insert("noticeMapper.insert", noticeVO);
+		sqlSession.insert("noticeMapper.insertNotice", noticeVO);
 	}
 	
 

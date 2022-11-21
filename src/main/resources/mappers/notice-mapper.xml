@@ -13,7 +13,7 @@
 	</resultMap>
 	
 <!-- 글 등록 -->
-<insert id="insert">
+<insert id="insertNotice">
 	INSERT INTO NOTICE(
 	    NOTICE_NUM
 	    , TITLE
