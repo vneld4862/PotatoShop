@@ -98,9 +98,19 @@
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 	        WHERE IS_MAIN ='Y'
 	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
+			<if test="mainCateCode != null and !mainCateCode.equals('')">
+				AND MAIN_CATE_CODE=#{mainCateCode}
+			</if>
+			<if test="subCateCode != null and !subCatecode.equals('')">
+			AND SUB_CATE_CODE=#{subCateCode}
+			</if>
+			<if test="detailCateCode != null and !detailCateCode.equals('')">
+			AND DETAIL_CATE_CODE=#{detailCateCode}
+			</if>
 		    ORDER BY ITEM_CODE DESC
 		))
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		
 	</select>
 	
 	<select id="selectItemDetail" resultMap="item">
@@ -164,6 +174,16 @@
 	<!-- 상품 전체 수량 -->
 	<select id="selectItemCnt" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SHOP_ITEM
+		
+		<if test="mainCateCode != null and !mainCateCode.equals('')">
+		WHERE MAIN_CATE_CODE=#{mainCateCode}
+		</if>
+		<if test="subCateCode != null and !subCatecode.equals('')">
+		WHERE SUB_CATE_CODE=#{subCateCode}
+		</if>
+		<if test="detailCateCode != null and !detailCateCode.equals('')">
+		WHERE DETAIL_CATE_CODE=#{detailCateCode}
+		</if>
 	</select>
 	
 </mapper>

@@ -15,9 +15,11 @@ import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
@@ -52,19 +54,33 @@ public class ItemController {
 	
 	@GetMapping("/list")
 	public String list(Model model
+					, MainCateVO mainCateVO
 					, SubCateVO subCateVO
 					, DetailCateVO detailCateVO
 					, @CookieValue(required = false)String imgName
-					, ItemVO itemVO) {
+					, ItemVO itemVO
+					, @RequestParam(name = "mainCode",required = false) String mainCode
+					, @RequestParam(name = "subCode",required = false) String subCode
+					, @RequestParam(name = "detailCode",required = false) String detailCode) {
 		
-		int totalCnt=itemService.selectItemCnt();
+		if(mainCode != null)
+		{
+			itemVO.setMainCateCode(mainCode);
+		}
+		else if (subCode !=null) {
+			itemVO.setSubCateCode(subCode);
+		}
+		else if (detailCode !=null) {
+			itemVO.setDetailCateCode(detailCode);
+		}
+		int totalCnt=itemService.selectItemCnt(itemVO);
 		itemVO.setTotalDataCnt(totalCnt);
 		itemVO.setPageInfo();
 		model.addAttribute("mainCateList",cateService.mainCateList());
 		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
 		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
-		model.addAttribute("itemList",itemService.selectItemList(itemVO));
 		
+		model.addAttribute("itemList",itemService.selectItemList(itemVO));
 		if(imgName !=null)
 		{
 			String[] cookieArr=imgName.split(",");
@@ -72,7 +88,6 @@ public class ItemController {
 			
 			model.addAttribute("cookie_imgName",cookieList);
 		}
-		
 		return "content/shop_main";
 	}
 	

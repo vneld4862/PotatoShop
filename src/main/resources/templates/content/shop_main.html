@@ -60,7 +60,7 @@
 						
 						<ul class="M01" th:each="mainCate:${mainCateList}" th:unless="${#lists.size(mainCateList)}==0">
 							<li>
-								<a href="#">[[${mainCate.mainCateName}]]</a>
+								<a th:href="@{/item/list(mainCode=${mainCate.mainCateCode})}">[[${mainCate.mainCateName}]]</a>
 								<ul class="M02">
 									<li th:each="subCate:${subCateList}" th:if="${subCate.mainCateCode==mainCate.mainCateCode}">
 										<a href="#">[[${subCate.subCateName}]]</a>
@@ -123,7 +123,7 @@
 		<div class="border clickItem">
 			<div class="text-center">최근본상품</div>
 			<div th:each="cookieImg:${cookie_imgName}">
-				<img th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="98%;">
+				<img alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;">
 			</div>
 		</div>
 	</div>
