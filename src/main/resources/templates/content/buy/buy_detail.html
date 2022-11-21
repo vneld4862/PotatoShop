@@ -6,9 +6,25 @@
 
 <div layout:fragment="content"> 
  	<div class="container">
- 		2022.11.18 주문
- 		결제 정보
- 		
+ 		<div class="row">
+	 		<div class="col-12">
+		 		2022.11.18 주문
+	 		</div>
+	 		<div class="col-12">
+		 		결제 정보
+	 		</div>
+ 		</div>
+		<div class="col-12">
+			<div class="row mb-2">
+				<div class="col-12" style="font-weight: bold;" id="buyerName" th:text="${memberInfo.memberName}"></div>
+			</div>
+			<div class="row mb-2">
+				<div class="col-12" id="buyerTell" th:text="${memberInfo.memberTell}"></div>
+			</div>
+			<div class="row mb-5">
+				<div class="col-12" id="buyerAddr" th:text="${memberInfo.memberAddr}"></div>
+			</div>
+		</div>
  		
  	</div>
 </div>

@@ -63,12 +63,12 @@ public class BuyController {
 		return "content/buy/buy_list";
 	}
 	
-	//구매목록조회
+	//구매상세조회
 	@GetMapping("/buyList")
 	public String buyList(Authentication authentication, Model model) {
-		//User user = (User)authentication.getPrincipal();
+		User user = (User)authentication.getPrincipal();
 		//회원정보 조회
-		//model.addAttribute("buyList", memberService.getBuyList(user.getUsername()));
+		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 		
 		return "content/buy/buy_detail";
 	}
