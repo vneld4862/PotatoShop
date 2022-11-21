@@ -113,6 +113,20 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<!--프로필 이미지 수정-->
+	<!-- <update id="">
+		
+	</update> -->
+	
+	<!-- 닉네임 수정 -->
+	<!-- <update id="">
+	
+	
+	</update> -->
+	
+	
+	
+	
 </mapper>
 
 

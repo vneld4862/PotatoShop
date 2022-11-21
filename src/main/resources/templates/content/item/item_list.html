@@ -238,7 +238,7 @@
 <!-- 프로필 수정Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
-   <form th:action="@{/manage/updateProfile}" method="post">
+   <form th:action="@{/manage/updateProfile}" method="post" enctype="multipart/form-data">
     <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
     <div class="modal-content">
       <div class="modal-header">

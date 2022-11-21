@@ -89,7 +89,7 @@ public class ManageController {
 		return "redirect:/item/memberItemList";//my_market으로 변경예정.
 	}
 	
-	//프로필 이미지 수정
+	//프로필 정보 수정
 	@PostMapping("/updateProfile")
 	public String updateProfile(String profileCode) {
 		System.out.println(profileCode);
