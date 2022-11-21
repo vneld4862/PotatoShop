@@ -135,6 +135,7 @@
 			<div class="col-3" th:each="item : ${itemList}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|">
 					<div class="image-box">
+						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="...">
 					</div>
 					<div class="card-body">
 						<div><p>[[${item.itemName}]]</p></div>
