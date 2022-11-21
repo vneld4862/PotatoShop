@@ -13,8 +13,15 @@ function insertWish(wishBtn){
 	   url: '/wish/insertWish', //요청경로
 	    type: 'post',
 	    data:{'itemCode': itemCode}, //필요한 데이터
-	    success: function(result) {
-	      alert('해당 상품을 찜했습니다.');
+	    success: function(wishCode) {
+		//	 alert(wishCode);
+			 if(wishCode == ''){
+				 alert('해당 상품을 찜목록에서 제거했습니다.');
+			  }
+			 else{
+				alert('해당 상품을 찜목록에 추가하였습니다.');
+			  }
+	         location.href = `/item/itemDetail?itemCode=${itemCode}`;
 	    },
 	    error: function(){
 	       alert('실패');

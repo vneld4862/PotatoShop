@@ -133,6 +133,7 @@ public class ItemController {
 	//상품상세보기 페이지로 이동
 	@GetMapping("/itemDetail")
 	public String itemDetail(String itemCode
+							, ItemVO itemVO
 							, Model model
 							, Authentication authentication
 							, HttpServletResponse response
@@ -169,6 +170,13 @@ public class ItemController {
 		response.addCookie(cookie_imgName);
 		model.addAttribute("itemInfo", itemInfo);
 		model.addAttribute("memberId", memberId);
+		
+		itemVO.setMemberId(memberId);
+		itemVO.setItemCode(itemCode);
+		
+		String wishCode =  wishService.selectWishCode(itemVO);
+		model.addAttribute("wishCode", wishCode);
+		System.out.println(wishCode);
 		
 		return"content/item/item_detail";
 	}

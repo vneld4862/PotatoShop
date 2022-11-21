@@ -85,8 +85,13 @@
 	</select>
 		<!-- AND MEMBER_ID = #{memberId} -->
 	
-	
-	
+	<!-- WISH_CODE 찾기 -->
+	<select id="selectWishCode" resultType="String">
+	SELECT WISH_CODE
+	FROM WISH_LIST
+	WHERE MEMBER_ID = #{memberId}
+	AND ITEM_CODE = #{itemCode}
+	</select>
 </mapper>
 
 

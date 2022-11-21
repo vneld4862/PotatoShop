@@ -90,8 +90,8 @@ public class ManageController {
 	}
 	
 	//프로필 이미지 수정
-	@PostMapping("/profileImg")
-	public String profileImg(String profileCode) {
+	@PostMapping("/updateProfile")
+	public String updateProfile(String profileCode) {
 		System.out.println(profileCode);
 		
 		return "redirect:/item/memberItemList";

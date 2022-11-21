@@ -15,7 +15,7 @@
 			<div>
 				<!-- 내 정보 -->
 				<div class="col mt-3 mb-3">
-						<h4><회원 닉네임>님의 상점</h4>
+						<h4>[[${profileInfo.memberVO.memberNickName}]] 님의 상점</h4>
 				</div>
 				<!--프로필 div  -->
 				<div class="col mt-3">
@@ -25,7 +25,7 @@
 								<!-- <img src="/images/1.png" width="200px;"> -->
 								<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
 							<br><br></div>
-							<div class="col">닉네임[[${profileInfo.profileCode}]]</div>
+							<div class="col">닉네임[[${profileInfo.memberVO.memberNickName}]]</div>
 							<div class="col">
 								<!-- <button class="btn btn-success" style="width: 30%" 
 								th:onclick="|location.href='@{/member/profileForm}'|">
@@ -173,84 +173,6 @@
 							 		  			</div>
 							 		  		</div>
 							 		  	
-								 		 
-								 		
-								 			
-								 			
-							 		   
-							 			<!-- <div class="col-5" style="background-color: aqua; margin: 0 auto; margin-top: 20px;">
-							 				<div class="row">
-							 					<div class="col-4">
-							 						이미지
-							 					    <img alt="" src="">
-							 					</div>
-							 					<div class="col-7">
-							 						상품설명
-							 						<div>상품명</div>
-							 						<div>상품가격</div>
-							 						<div>상품등록일</div>
-							 						<div>상품주소</div>
-							 					</div>
-							 					<div class="col-1">
-							 						<input type="checkbox">
-							 					</div>
-							 				</div>
-							 			</div>
-							 			<div class="col-5" style="background-color: green; margin: 0 auto; margin-top: 20px;">
-							 				<div class="row">
-							 					<div class="col-4">
-							 						이미지
-							 					    <img alt="" src="/images/0553d864-ad42-48d7-8fa2-79456baf27f8.jpg" width="100%;">
-							 					</div>
-							 					<div class="col-7">
-							 						상품설명
-							 						<div>상품명</div>
-							 						<div>상품가격</div>
-							 						<div>상품등록일</div>
-							 						<div>상품주소</div>
-							 					</div>
-							 					<div class="col-1">
-							 						<input type="checkbox">
-							 					</div>
-							 				</div>
-							 			</div>
-							 			<div class="col-5" style="background-color: lime; margin: 0 auto; margin-top: 20px;">
-							 				<div class="row">
-							 					<div class="col-4">
-							 						이미지
-							 					    <img alt="" src="">
-							 					</div>
-							 					<div class="col-7">
-							 						상품설명
-							 						<div>상품명</div>
-							 						<div>상품가격</div>
-							 						<div>상품등록일</div>
-							 						<div>상품주소</div>
-							 					</div>
-							 					<div class="col-1">
-							 						<input type="checkbox">
-							 					</div>
-							 				</div>
-							 			</div>
-							 			<div class="col-5" style="background-color: orange;  margin: 0 auto; margin-top: 20px;">
-							 				<div class="row">
-							 					<div class="col-4">
-							 						이미지
-							 					    <img alt="" src="">
-							 					</div>
-							 					<div class="col-7">
-							 						상품설명
-							 						<div>상품명</div>
-							 						<div>상품가격</div>
-							 						<div>상품등록일</div>
-							 						<div>상품주소</div>
-							 					</div>
-							 					<div class="col-1">
-							 						<input type="checkbox">
-							 					</div>
-							 				</div>
-							 			</div> -->
-							 			
 							 			
 						 		  </div>	
 						  	</div>
@@ -304,29 +226,19 @@
 			
 			
 			</div>
-			<!-- <div>상점후기</div>
-			탭 누르면 아코디언 형식으로 나오게
-			<div>위시리스트</div>
-			
-			본인만 보이는 탭
-			<div>다른 상점에 남긴 Q&A</div>
-			<div>구매내역</div> -->
 		</div>
 
 
 
 
 
-<!--모달-->
-<!-- Button trigger modal -->
-<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-  Launch static backdrop modal
-</button>
 
-<!-- Modal -->
+
+
+<!-- 프로필 수정Modal -->
 <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
-   <form th:action="@{/manage/profileImg}" method="post">
+   <form th:action="@{/manage/updateProfile}" method="post">
     <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
     <div class="modal-content">
       <div class="modal-header">
@@ -339,7 +251,7 @@
       		<div class="col-12">
       		  <label>닉네임</label>
       		  <div class="input-group flex-nowrap mb-3">
-      		  	<input type="text" class="form-control" name="memberNickName">
+      		  	<input type="text" class="form-control" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
       		  </div>
       		  <label>상점 이미지</label>
       	      <div class="input-group flex-nowrap mb-3">

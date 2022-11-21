@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
 
@@ -22,7 +23,8 @@ public class WishController {
 	//찜버튼 클릭 시 실행 
 	@ResponseBody
 	@PostMapping("/insertWish")
-	public void insertWish(WishVO wishVO
+	public String insertWish(WishVO wishVO
+						   ,ItemVO itemVO
 						   , Authentication authentication) {
 		
 		System.out.println("찜을 해보자^^");
@@ -33,6 +35,13 @@ public class WishController {
 		
 		//취소, 등록 중 하나가 실행
 		wishService.insertWish(wishVO);
+		String itemCode = wishVO.getItemCode();
+		itemVO.setMemberId(memberId);
+		itemVO.setItemCode(itemCode);
+		String wishCode = wishService.selectWishCode(itemVO);
+		
+		return wishCode;
+		
 	}
 	
 	
