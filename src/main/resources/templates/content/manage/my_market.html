@@ -53,7 +53,7 @@
 				<div class="row">
 					<div class="col">
 						<div class="col"><br><br>프로필 사진<br><br></div>
-						<div class="col">닉네임</div>
+						<div class="col mb-3">[[${memberInfo.memberNickName}]]</div>
 						<div class="col">
 							<button class="btn btn-success" style="width: 30%">프로필 수정</button>
 							<button class="btn btn-success" style="width: 30%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
@@ -264,40 +264,31 @@
 
 					</div>
 						
-					<div class="row replyDiv">
-						<div>
-							<form th:action="@{/board/regReply}" method="post" id="regReplyForm">
-								<input type="hidden" name="itemCode" id="itemCodeInput">
-								<input type="hidden" name="memberId" id="memberIdInput"> 
-								<textarea rows="2" cols="90%" name="replyContent" id="replyContent" style="resize: none;" class="form-control"></textarea>
-							</form>
-							<input type="button" value="등록" th:onclick="regReply()" class="btn btn-primary" style="height: 62px; width: 58px;">
+					<div class="row replyDiv"> <!-- 댓글 등록 -->
+						<div class="col-12">
+							<div class="row">
+								<div class="col-12">
+									<input type="hidden" name="itemCode" value="" id="replyItemCode">
+									<input type="hidden" name="memberId" th:value="${#authentication.name}"> 
+								</div>
+								<div class="col-10">
+									<textarea rows="2" name="replyContent" id="replyContent" style="resize: none;" class="form-control"></textarea>
+								</div>
+								<div class="col-2">
+									<input type="button" onclick="regReply();" class="btn btn-primary" value="등록" style="height: 62px; width: 100%;">
+								</div>
+							</div>
 						</div>
 					</div>
-					
-					
+				
+
 					<hr>
 					
-					<!-- 조회만 전체 ajax 하면 되나..? -->
 					<div class="col-12 replyListDiv">
-						<div class="col-12 text-end">
-							<span style="font-size: 0.8rem;">댓글 등록일</span>
-						</div>
-						<div class="col-12 text-start">댓글 작성자</div>
-						<div class="col-12">
-							댓글 내용
-						</div>
-						<div class="col-12 text-end">
-							<input type="button" value="삭제" class="btn btn-secondary">
-						</div>
-						<hr>
+						<!-- 댓글 목록 -->
 					</div>
 
 				</div>
-				
-		<!-- 	<div class="modal-footer">
-					
-				</div> -->
 				
 			</div>
 		</div>

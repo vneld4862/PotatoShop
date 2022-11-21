@@ -1,5 +1,8 @@
 package kh.study.team2.shop.board.controller;
 
+import java.util.Calendar;
+import java.util.List;
+
 import javax.annotation.Resource;
 
 import org.springframework.security.core.Authentication;
@@ -27,7 +30,7 @@ public class BoardController {
 	private ItemService itemService;
 	
 	
-	//후기 작성
+	//리뷰 작성
 	@PostMapping("/regReview")
 	public String regReview(BoardVO boardVO
 							, @RequestParam(required = false) ReviewImgVO reviewImgVO
@@ -49,7 +52,7 @@ public class BoardController {
 		return "redirect:/manage/myMarket";
 	}
 	
-	//후기 상세 보기
+	//리뷰 상세 보기
 	@ResponseBody
 	@PostMapping("/reviewDetail")
 	public BoardVO reviewDetail(String itemCode) {
@@ -57,7 +60,7 @@ public class BoardController {
 		return boardService.selectBoardDetail(itemCode); //리턴 값을 ajax의 result로 전달
 	}
 	
-	//후기 삭제
+	//리뷰 삭제
 	@ResponseBody
 	@PostMapping("/deleteReview")
 	public void deleteReview(String itemCode) {
@@ -65,16 +68,78 @@ public class BoardController {
 		boardService.deleteReview(itemCode);
 	}
 	
-	//후기 댓글 작성
-	@PostMapping("/regReply")
-	public String regReply(ReplyVO replyVO, Authentication authentication) {
+	//리뷰 댓글 작성
+//	@PostMapping("/regReply")
+//	public String regReply(ReplyVO replyVO, Authentication authentication) {
+//		
+//		User user = (User)authentication.getPrincipal();
+//		replyVO.setMemberId(user.getUsername());
+//		
+//		boardService.insertReviewReply(replyVO);
+//
+//		return "redirect:/manage/myMarket";
+//	}
+	
+	//리뷰 댓글 작성
+	@ResponseBody
+	@PostMapping("/regReplyAjax")
+	public ReplyVO regReplyAjax(ReplyVO replyVO, Authentication authentication) {
 		
 		User user = (User)authentication.getPrincipal();
 		replyVO.setMemberId(user.getUsername());
 		
 		boardService.insertReviewReply(replyVO);
+
+		ReplyVO resultData = new ReplyVO();
+		resultData.setMemberId(user.getUsername());
+		resultData.setReplyContent(replyVO.getReplyContent());
+		resultData.setReplyRegDate(getNowDateTime());
+		return resultData;
+	}
+	
+	//리뷰 댓글 조회
+	@ResponseBody
+	@PostMapping("/selectReviewReply")
+	public List<ReplyVO> selectReviewReply(int boardNum){
 		
-		return "redirect:/board/boardDetail";
+		return boardService.selectReviewReply(boardNum);
+	}
+	
+	//현재 날짜 및 시간 데이터 리턴
+	public String getNowDateTime() {
+		Calendar cal = Calendar.getInstance();
+		int year = cal.get(Calendar.YEAR);
+		int month = cal.get(Calendar.MONTH) + 1;
+		
+		String monthStr = "" + month;
+		//1~9월이면 앞에 '0'을 붙여줌
+		if(month / 10 == 0) {
+			monthStr = "0" + month;
+		}
+		
+		int date = cal.get(Calendar.DATE);
+		
+		String dateStr = "" + date;
+		//1~9일이면 앞에 '0'을 붙여줌
+		if(date / 10 == 0) {
+			dateStr = "0" + date;
+		}
+		
+		int hour = cal.get(Calendar.HOUR_OF_DAY);
+		String hourStr = "" + hour;
+		//1~9일이면 앞에 '0'을 붙여줌
+		if(hour / 10 == 0) {
+			hourStr = "0" + hour;
+		}
+		
+		int minute = cal.get(Calendar.MINUTE);
+		String minuteStr = "" + minute;
+		//1~9일이면 앞에 '0'을 붙여줌
+		if(minute / 10 == 0) {
+			minuteStr = "0" + minute;
+		}
+		
+		return year + "-" + monthStr + "-" + dateStr + " " + hourStr + ":" + minuteStr;
 	}
 	
 	

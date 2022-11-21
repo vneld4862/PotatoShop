@@ -54,6 +54,11 @@ public class BoardServiceImpl implements BoardService{
 		sqlSession.insert("boardMapper.insertReviewReply", replyVO);
 	}
 
+	@Override
+	public List<ReplyVO> selectReviewReply(int boardNum) {
+		return sqlSession.selectList("boardMapper.selectReviewReply", boardNum);
+	}
+
 
 	
 }

@@ -25,6 +25,9 @@ public interface BoardService {
 	//리뷰 댓글 작성
 	void insertReviewReply(ReplyVO replyVO);
 	
+	//리뷰 댓글 조회
+	List<ReplyVO> selectReviewReply(int boardNum);
+	
 	//리뷰 댓글 삭제
 	
 }

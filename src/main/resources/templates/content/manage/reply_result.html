@@ -4,9 +4,10 @@
 	xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	layout:decorate="~{layout/base_layout}">
 	
+<script type="text/javascript">
+	alert('댓글이 등록되었습니다.');
+	location.href = 'manage/my_market';
+</script>
 
-<div layout:fragment="content">
-	[[${review.boardTitle}]]
-</div>
 
 </html>

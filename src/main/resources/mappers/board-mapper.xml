@@ -112,6 +112,7 @@
 		AND R.ITEM_CODE = M.ITEM_CODE
 	</select>
 	
+	
 	<!-- 내가 작성한 리뷰 보기 -->
 	<select id="selectWrittenReviewList" resultMap="board">
 		SELECT BOARD_NUM
@@ -163,9 +164,18 @@
 		)
 	</insert>
 	
-	
-	
-	
+	<!-- 리뷰 댓글 조회 -->
+	<select id="selectReviewReply" resultMap="reply">
+		SELECT REPLY_NUM
+			, REPLY_CONTENT
+			, MEMBER_ID
+			, BOARD_NUM
+			, ITEM_CODE
+			, TO_CHAR(REPLY_REG_DATE, 'YYYY-MM-DD HH24:MI') AS REPLY_REG_DATE
+		FROM REVIEW_REPLY
+		WHERE BOARD_NUM = #{boardNum}
+		ORDER BY REPLY_NUM DESC 
+	</select>
 	
 	
 </mapper>

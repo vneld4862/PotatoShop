@@ -6,6 +6,10 @@ function reviewDetail(itemCode){
 	
 	const loginId = document.querySelector('#hiddenId').value;
 	
+	//제목 클릭과 동시에 댓글 폼에 있는 itemCode에 값 넣어 주기
+	const hiddenItemCode = document.querySelector('#hiddenItemCode').value;
+	document.querySelector('#replyItemCode').value = hiddenItemCode;
+	
 	//ajax start
 	$.ajax({
 		url: '/board/reviewDetail', //요청경로
@@ -14,7 +18,6 @@ function reviewDetail(itemCode){
 		success: function(result) {
 			
 			//리뷰 상세보기
-			
 			document.querySelector('.detailAjaxDiv').innerHTML = '';
 			
 			let str = '';
@@ -69,12 +72,7 @@ function reviewDetail(itemCode){
 			str += '<hr>';
 			
 			document.querySelector('.detailAjaxDiv').innerHTML = str;
-			
-			
-			//댓글 조회
-			
-			
-			
+			selectReviewReply(`${result.boardNum}`);
 			
 			reviewDetailModal.show();
 			
@@ -84,6 +82,92 @@ function reviewDetail(itemCode){
 		}
 	});
 //ajax end
+}
+
+
+//리뷰 댓글 조회
+function selectReviewReply(boardNum){
+	
+	//ajax start
+	$.ajax({
+		url: '/board/selectReviewReply', //요청경로
+		type: 'post',
+		data: {'boardNum':boardNum}, //필요한 데이터
+		success: function(result) {
+			
+			document.querySelector('.replyListDiv').innerHTML = '';
+			
+			let str = '';
+			
+			for(const reply of result){
+				str += '<div class="row">';
+				str += '<div class="col-12 text-end">';
+				str += `	<span style="font-size: 0.8rem;">${reply.replyRegDate}</span>`;
+				str += '</div>';
+				str += `<div class="col-12 text-start">${reply.memberId}</div>`;
+				str += '<div class="col-12">';
+				str += `	${reply.replyContent}`;
+				str += '</div>';
+				str += '<div class="col-12 text-end mb-3">';
+				str += '	<input type="button" value="삭제" class="btn btn-secondary">';
+				str += '</div>';
+				str += '<hr>';		
+				str += '</div>';
+			}
+		
+			
+			document.querySelector('.replyListDiv').innerHTML = str;
+			
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+//ajax end	
+	
+}
+
+
+//댓글 등록 버튼 시 실행되는 함수
+function regReply(){
+	const itemCode = document.querySelector('#replyItemCode').value;
+	const replyContent = document.querySelector('#replyContent').value;
+	
+	//ajax start
+	$.ajax({
+		url: '/board/regReplyAjax', //요청경로
+		type: 'post',
+		data: {'itemCode':itemCode
+				, 'replyContent':replyContent}, //필요한 데이터
+		success: function(result) {
+			let str = '';
+			
+			str += '<div class="row">';
+			str += '<div class="col-12 text-end">';
+			str += `	<span style="font-size: 0.8rem;">${result.replyRegDate}</span>`;
+			str += '</div>';
+			str += `<div class="col-12 text-start">${result.memberId}</div>`;
+			str += '<div class="col-12">';
+			str += `	${result.replyContent}`;
+			str += '</div>';
+			str += '<div class="col-12 text-end mb-3">';
+			str += '	<input type="button" value="삭제" class="btn btn-secondary">';
+			str += '</div>';
+			str += '<hr>';		
+			str += '</div>';
+			
+		
+			// $('.replyListDiv > div:nth-child(1)').before(str);	
+			//$('.replyListDiv').prepend(str);
+			document.querySelector('.replyListDiv').insertAdjacentHTML('afterbegin', str);
+			document.querySelector('#replyContent').value = '';
+			
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	
 }
 
 
@@ -108,53 +192,13 @@ function deleteReviewAjax(itemCode){
 }
 
 
-/*
-//리뷰에 댓글 등록시 실행되는 Ajax
-function regReplyAjax(){
-	const loginId = document.querySelector('#hiddenId').value;
-	const hiddenitemCode = document.querySelector('#hiddenItemCode').value;
-	const regReplyForm = document.querySelector('#regReplyForm');
-	
-	//ajax start
-	$.ajax({
-		url: '/board/regReply', //요청경로
-		type: 'post',
-		data: {'itemCode':hiddenitemCode, 'replyContent': replyContent, 'memberId': loginId}, //필요한 데이터
-		success: function(result) {
-			//데이터베이스에 등록
-			alert('@@@@@@@@@@@@@@@@@@@@@@@@@@');
-			
-			regReplyForm.submit();
-			
-		},
-		error: function() {
-			alert('실패');
-		}
-	});
-	//ajax end
-	
-}
 
-*/
 
-function regReply(){
-	
-	const itemCode = document.querySelector('#hiddenItemCode').value;
-	const memberId = document.querySelector('#hiddenId').value;
-	const replyContent = document.querySelector('#replyContent').innerText;
-	
-	document.querySelector('#memberIdInput').value = memberId;
-	document.querySelector('#itemCodeInput').value = itemCode;
-	
-	document.querySelector('#regReplyForm').submit();
 
-}
 
 
 //리뷰 수정 클릭시 실행되는 Ajax
-//수정을....... 꼭 해야되나? 그냥 삭제하고 다시 쓰세요....
-//모달을 다시 그려야 됨........................?
-//나중에 시간 남으면 함.................
+//나중에 시간 남으면.................
 function updateReviewAjax(itemCode){
 
 
@@ -172,4 +216,3 @@ function updateReviewAjax(itemCode){
 	});
 
 }
-	
