@@ -27,8 +27,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<ItemVO> selectItemList() {
-		return sqlSession.selectList("itemMapper.selectItemList");
+	public List<ItemVO> selectItemList(ItemVO itemVO) {
+		return sqlSession.selectList("itemMapper.selectItemList",itemVO);
 	}
 
 	@Override
@@ -49,6 +49,12 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void deleteItem(String itemCode) {
 		sqlSession.delete("itemMapper.deleteItem", itemCode);
+	}
+
+	@Override
+	public int selectItemCnt() 
+	{
+		return sqlSession.selectOne("itemMapper.selectItemCnt");
 	}
 
 }

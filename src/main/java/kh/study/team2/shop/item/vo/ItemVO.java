@@ -10,7 +10,7 @@ import lombok.ToString;
 @ToString
 @Getter
 @Setter
-public class ItemVO {
+public class ItemVO extends PageVO{
    private String itemCode;
    private String itemName;
    private int itemPrice;

@@ -55,7 +55,7 @@ public class ManageController {
 	
 	//내 상점 페이지 이동
 	@GetMapping("/myMarket")
-	public String myMarket(Model model, Authentication authentication) {
+	public String myMarket(Model model, Authentication authentication,ItemVO itemVO) {
 		User user = (User)authentication.getPrincipal();
 		
 		//회원 정보 조회
@@ -64,7 +64,7 @@ public class ManageController {
 		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
 		
-		List<ItemVO> itemList = itemService.selectItemList();
+		List<ItemVO> itemList = itemService.selectItemList(itemVO);
 		model.addAttribute("itemList", itemList);
 		
 		//내가 다른 상점에 남긴 후기 목록 조회

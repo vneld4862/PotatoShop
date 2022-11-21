@@ -78,14 +78,29 @@
 	</insert>
 	
 	<select id="selectItemList" resultMap="item">
-		SELECT ITEM.ITEM_CODE
-			,ITEM_NAME
-			,ITEM_PRICE
-			,ATTACHED_NAME
-		FROM SHOP_ITEM ITEM,ITEM_IMG IMG
-		WHERE ITEM.ITEM_CODE=IMG.ITEM_CODE
-		AND IS_MAIN='Y'
-		ORDER BY ITEM.ITEM_CODE DESC
+		SELECT ROW_NUM
+		    ,ITEM_CODE
+		    ,ITEM_NAME
+		    ,ITEM_PRICE
+	        ,ATTACHED_NAME
+		FROM (
+		SELECT  ROWNUM ROW_NUM
+		    ,ITEM_CODE
+		    ,ITEM_NAME
+		    ,ITEM_PRICE
+	        ,ATTACHED_NAME
+		FROM
+		(
+		    SELECT ITEM.ITEM_CODE
+		        ,ITEM_NAME
+		        ,ITEM_PRICE
+	            ,ATTACHED_NAME
+		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
+	        WHERE IS_MAIN ='Y'
+	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
+		    ORDER BY ITEM_CODE DESC
+		))
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 	<select id="selectItemDetail" resultMap="item">
@@ -146,6 +161,10 @@
 		WHERE ITEM_CODE = #{itemCode}
 	</delete>
 	
+	<!-- 상품 전체 수량 -->
+	<select id="selectItemCnt" resultType="int">
+		SELECT COUNT(ITEM_CODE) FROM SHOP_ITEM
+	</select>
 	
 </mapper>
 

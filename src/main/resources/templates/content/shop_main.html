@@ -114,6 +114,7 @@
 				<span class="visually-hidden">Next</span>
 			</button>
 		</div>
+		
 	</div>
 	
 	<!-- 최근 본 상품리모컨 -->
@@ -134,7 +135,6 @@
 			<div class="col-3" th:each="item : ${itemList}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|">
 					<div class="image-box">
-						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="...">
 					</div>
 					<div class="card-body">
 						<div><p>[[${item.itemName}]]</p></div>
@@ -144,7 +144,21 @@
 			</div>
 		</div>
 	</div>
-
+	<div class="text-center">
+		
+		<th:block th:if="${itemVO.prev}">
+	   		<a th:text="prev" th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}"></a>
+	   	</th:block>
+	   	
+	   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
+	   		<a th:text="${pageNum}" th:href="@{/item/list(nowPage=${pageNum})}"></a> 	
+	   	</th:block>
+	   	
+	   	<th:block th:if="${itemVO.next}">
+	   		<a th:text="next" th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}"></a>
+	   	</th:block>
+	   	
+	</div>
 
 
 

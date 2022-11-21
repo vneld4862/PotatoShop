@@ -54,12 +54,16 @@ public class ItemController {
 	public String list(Model model
 					, SubCateVO subCateVO
 					, DetailCateVO detailCateVO
-					, @CookieValue(required = false)String imgName) {
+					, @CookieValue(required = false)String imgName
+					, ItemVO itemVO) {
 		
+		int totalCnt=itemService.selectItemCnt();
+		itemVO.setTotalDataCnt(totalCnt);
+		itemVO.setPageInfo();
 		model.addAttribute("mainCateList",cateService.mainCateList());
 		model.addAttribute("subCateList",cateService.subCateList(subCateVO));
 		model.addAttribute("detailCateList",cateService.detailCateList(detailCateVO));
-		model.addAttribute("itemList",itemService.selectItemList());
+		model.addAttribute("itemList",itemService.selectItemList(itemVO));
 		
 		if(imgName !=null)
 		{
