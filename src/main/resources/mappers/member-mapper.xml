@@ -115,14 +115,17 @@
 	
 	<!--프로필 이미지 수정-->
 	<!-- <update id="">
-		
+	  UPDATE PROFILE
+	  SET CHANGED_NAME = #{changedName}
+	  WHERE MEMBER_ID = #{memberId}
 	</update> -->
 	
 	<!-- 닉네임 수정 -->
-	<!-- <update id="">
-	
-	
-	</update> -->
+	<update id="updateNickName">
+	  UPDATE SHOP_MEMBER
+	  SET MEMBER_NICKNAME = #{memberNickName}
+	  WHERE MEMBER_ID = #{memberId}
+	</update>
 	
 	
 	

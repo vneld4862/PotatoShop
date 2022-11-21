@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.study.team2.shop.buy.vo.BuyVO;
+import kh.study.team2.shop.member.vo.MemberVO;
 
 @Service("manageService")
 public class ManageServiceImpl implements ManageService{
@@ -16,6 +17,11 @@ public class ManageServiceImpl implements ManageService{
 	@Override
 	public List<BuyVO> selectBuyList(String memberId) {
 		return sqlSession.selectList("buyMapper.selectBuyList", memberId);
+	}
+
+	@Override
+	public void updateNickName(MemberVO memberVO) {
+		sqlSession.update("memberMapper.updateNickName", memberVO);
 	}
 
 

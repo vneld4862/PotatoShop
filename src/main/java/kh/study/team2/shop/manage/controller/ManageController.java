@@ -21,6 +21,7 @@ import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
+import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
 
@@ -91,8 +92,10 @@ public class ManageController {
 	
 	//프로필 정보 수정
 	@PostMapping("/updateProfile")
-	public String updateProfile(String profileCode) {
-		System.out.println(profileCode);
+	public String updateProfile(ProfileVO profileVO) {
+		System.out.println(profileVO);
+		
+	//	manageService.updateNickName(memberVO);
 		
 		return "redirect:/item/memberItemList";
 	}

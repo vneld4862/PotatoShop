@@ -242,6 +242,7 @@
   <div class="modal-dialog">
    <form th:action="@{/manage/updateProfile}" method="post" enctype="multipart/form-data">
     <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
+    <input type="hidden" th:value="${profileInfo.memberId}" name="memberId">
     <div class="modal-content">
       <div class="modal-header">
         <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필 수정</h1>
@@ -257,7 +258,7 @@
       		  </div>
       		  <label>상점 이미지</label>
       	      <div class="input-group flex-nowrap mb-3">
-					<input type="file" class="form-control" name="changedName">
+					<!-- <input type="file" class="form-control" name="changedName"> -->
 			   </div>
 			   <!-- <label>상점 닉네임</label>
       	       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value=""> -->
