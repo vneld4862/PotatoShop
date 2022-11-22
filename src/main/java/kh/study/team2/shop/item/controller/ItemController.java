@@ -83,6 +83,7 @@ public class ItemController {
 		model.addAttribute("itemList",itemService.selectItemList(itemVO));
 		if(imgName !=null)
 		{
+			model.addAttribute("cookiechk",imgName);
 			String[] cookieArr=imgName.split(",");
 			List<String> cookieList=Arrays.asList(cookieArr);
 			
@@ -149,6 +150,7 @@ public class ItemController {
 	@GetMapping("/itemDetail")
 	public String itemDetail(String itemCode
 							, ItemVO itemVO
+							, String cookieChk
 							, Model model
 							, Authentication authentication
 							, HttpServletResponse response
@@ -182,7 +184,22 @@ public class ItemController {
 			encodeImgName=getEncodeStr(imgName);
 		}
 		Cookie cookie_imgName=new Cookie("imgName",encodeImgName);
-		response.addCookie(cookie_imgName);
+		boolean check=true;
+		if(cookieChk !=null)
+		{
+			String[] chkArr=cookieChk.split(",");
+			for(String chk:chkArr)
+			{
+				if(chk.equals(imgName))
+				{
+					check=false;
+				}
+			}
+		}
+		if(check)
+		{
+			response.addCookie(cookie_imgName);
+		}
 		model.addAttribute("itemInfo", itemInfo);
 		model.addAttribute("memberId", memberId);
 		
@@ -191,7 +208,6 @@ public class ItemController {
 		
 		String wishCode =  wishService.selectWishCode(itemVO);
 		model.addAttribute("wishCode", wishCode);
-		System.out.println(wishCode);
 		
 		return"content/item/item_detail";
 	}

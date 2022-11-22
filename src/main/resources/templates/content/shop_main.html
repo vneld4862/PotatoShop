@@ -42,7 +42,6 @@
 
 	<div class="col">
 		<div class="row d-flex justify-content-start">
-		
 		<!-- 카테고리 목록 -->
 			<div class="dropdown" id="dropdownMenu" style="width: 65px;">
 				<button class="dropdown-button">
@@ -133,7 +132,7 @@
 	<div class="col-12">
 		<div class="row text-center">
 			<div class="col-3" th:each="item : ${itemList}">
-				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|">
+				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode},cookieChk=${cookiechk})}'|">
 					<div class="image-box">
 						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="...">
 					</div>
@@ -146,7 +145,6 @@
 		</div>
 	</div>
 	<div class="text-center">
-		
 		<th:block th:if="${itemVO.prev}">
 	   		<a th:text="prev" th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}"></a>
 	   	</th:block>
@@ -158,7 +156,6 @@
 	   	<th:block th:if="${itemVO.next}">
 	   		<a th:text="next" th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}"></a>
 	   	</th:block>
-	   	
 	</div>
 
 
