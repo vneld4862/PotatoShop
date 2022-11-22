@@ -118,7 +118,10 @@
 	
 	<!-- 최근 본 상품리모컨 -->
 	<div class="banner">
-		<div class="border like_it text-center">찜한상품</div>
+		<div class="border like_it text-center">
+			<div class="col">찜</div>
+			<div class="col">[[${wishAmount}]]</div>
+		</div>
 		<div class="border clickItem">
 			<div class="text-center">최근본상품</div>
 			<div th:each="cookieImg:${cookie_imgName}">

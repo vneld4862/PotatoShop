@@ -92,6 +92,10 @@
 	WHERE MEMBER_ID = #{memberId}
 	AND ITEM_CODE = #{itemCode}
 	</select>
+	
+	<select id="selectWishAmount" resultType="int">
+		SELECT COUNT(WISH_CODE) FROM WISH_LIST WHERE MEMBER_ID=#{memberId}
+	</select>
 </mapper>
 
 

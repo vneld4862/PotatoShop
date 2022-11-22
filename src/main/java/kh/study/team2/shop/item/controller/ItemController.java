@@ -61,7 +61,8 @@ public class ItemController {
 					, ItemVO itemVO
 					, @RequestParam(name = "mainCode",required = false) String mainCode
 					, @RequestParam(name = "subCode",required = false) String subCode
-					, @RequestParam(name = "detailCode",required = false) String detailCode) {
+					, @RequestParam(name = "detailCode",required = false) String detailCode
+					, Authentication authentication) {
 		
 		if(mainCode != null)
 		{
@@ -88,6 +89,11 @@ public class ItemController {
 			List<String> cookieList=Arrays.asList(cookieArr);
 			
 			model.addAttribute("cookie_imgName",cookieList);
+		}
+		if (authentication!=null) {
+			User user=(User)authentication.getPrincipal();
+			System.out.println("@@@@@@@@@@@@@@@@@@@@"+user.getUsername());
+			model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		}
 		return "content/shop_main";
 	}
