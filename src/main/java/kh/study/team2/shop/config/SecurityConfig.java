@@ -22,7 +22,7 @@ public class SecurityConfig {
 							, "/member/login"
 							, "/item/itemDetail").permitAll() //회원가입, 로그인, 게시글 목록, 게시글 상세보기
 				.antMatchers("/admin/**").hasRole("ADMIN")
-				//.anyRequest().authenticated() //로그인한 유저는 접근 허용
+				.anyRequest().authenticated() //로그인한 유저는 접근 허용
 				//제일 마지막에 권한 해제
 			.and()
 				.formLogin()
