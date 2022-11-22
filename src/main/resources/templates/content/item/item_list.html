@@ -25,7 +25,7 @@
 								<!-- <img src="/images/1.png" width="200px;"> -->
 								<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
 							<br><br></div>
-							<div class="col">닉네임[[${profileInfo.memberVO.memberNickName}]]</div>
+							<div class="col"></div>
 							<div class="col">
 								<!-- <button class="btn btn-success" style="width: 30%" 
 								th:onclick="|location.href='@{/member/profileForm}'|">
@@ -252,17 +252,14 @@
        
       	<div class="row">
       		<div class="col-12">
-      		  <label>닉네임</label>
-      		  <div class="input-group flex-nowrap mb-3">
-      		  	<input type="text" class="form-control" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
-      		  </div>
-      		  <label>상점 이미지</label>
-      	      <div class="input-group flex-nowrap mb-3">
-					<!-- <input type="file" class="form-control" name="changedName"> -->
-			   </div>
-			   <!-- <label>상점 닉네임</label>
-      	       <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value=""> -->
-
+	      		  <label>닉네임</label>
+	      		  <div class="input-group flex-nowrap mb-3">
+	      		  	<input type="text" class="form-control" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
+	      		  </div>
+	      		  <label>상점 이미지</label>
+	      	      <div class="input-group flex-nowrap mb-3">
+						<input type="file" class="form-control" name="profileImg">
+				  </div>
       		</div>
       	</div>
          

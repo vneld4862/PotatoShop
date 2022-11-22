@@ -15,11 +15,13 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.config.UploadFileUtil_profile;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
@@ -92,8 +94,8 @@ public class ManageController {
 	@PostMapping("/updateMyInfo")
 	public String updateMyInfo(MemberVO memberVO) {
 		//비밀번호 암호화
-		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
-		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
+//		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
+//		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
 		
 		memberService.updateMyInfo(memberVO);
 		return "redirect:/item/memberItemList";//my_market으로 변경예정.
@@ -101,10 +103,20 @@ public class ManageController {
 	
 	//프로필 정보 수정
 	@PostMapping("/updateProfile")
-	public String updateProfile(MemberVO memberVO) {
+	public String updateProfile(MemberVO memberVO
+								, @RequestParam(required = false)MultipartFile profileImg) {
 	//	System.out.println(profileVO);
-		System.out.println(memberVO);
-		
+	//	System.out.println(memberVO);
+		System.out.println(profileImg);
+		if(!profileImg.getOriginalFilename().equals("")) {
+	//		System.out.println("!!!!!");
+			String memberId = memberVO.getMemberId();
+			ProfileVO uploadInfo = UploadFileUtil_profile.uploadFile(profileImg);
+			uploadInfo.setMemberId(memberId);
+			
+			manageService.updateProfileImg(uploadInfo);
+			
+		}
 		manageService.updateNickName(memberVO);
 		
 		return "redirect:/item/memberItemList";

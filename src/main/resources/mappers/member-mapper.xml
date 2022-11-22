@@ -82,10 +82,9 @@
 	    SET MEMBER_ADDR = #{memberAddr}
 	        , MEMBER_TELL = #{memberTell}
 	        , MEMBER_EMAIL = #{memberEmail}
-	        , MEMBER_PW = #{memberPw} 
 	    WHERE MEMBER_ID = #{memberId}    
 	</update>
-	<!-- , MEMBER_PW = #{memberPw} --><!-- 추가예정 -->
+	<!-- , MEMBER_PW = #{memberPw} -->
 	
 	<!-- 프로필생성 -->
 	<insert id="insertProfile">
@@ -114,11 +113,11 @@
 	</select>
 	
 	<!--프로필 이미지 수정-->
-	<!-- <update id="">
+	<update id="updateProfileImg">
 	  UPDATE PROFILE
 	  SET CHANGED_NAME = #{changedName}
 	  WHERE MEMBER_ID = #{memberId}
-	</update> -->
+	</update>
 	
 	<!-- 닉네임 수정 -->
 	<update id="updateNickName">
