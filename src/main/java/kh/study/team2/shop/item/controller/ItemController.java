@@ -105,7 +105,7 @@ public class ItemController {
 	@PostMapping("/regItem")
 	public String regItem(ItemVO itemVO
 						  , MultipartFile mainImg
-						  , List<MultipartFile> subImgs
+						  , @RequestParam(required = false)List<MultipartFile> subImgs
 						  , Authentication authentication) {
 		
 		String nextItemCode = itemService.getNextItemCode();
