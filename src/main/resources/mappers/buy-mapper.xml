@@ -10,6 +10,7 @@
 		<result column="ITEM_CODE"		property="itemCode"/>
 		<result column="IS_CONFIRMED"	property="isConfirmed"/>
 		<association property="itemVO" 	resultMap="itemMapper.item"/>
+		<association property="boardVO" resultMap="boardMapper.board"/>
 		<collection property="imgList" 	resultMap="itemMapper.img"/>
 	</resultMap>
 
@@ -47,6 +48,9 @@
 				WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_PRICE
 			, ATTACHED_NAME
 			, IS_CONFIRMED
+			, (SELECT IS_WRITTEN
+				FROM REVIEW_BOARD
+				WHERE MEMBER_ID = S.MEMBER_ID) AS IS_WRITTEN
 		FROM SHOP_BUY S, ITEM_IMG I
 		WHERE MEMBER_ID = #{memberId}
 		AND S.ITEM_CODE = I.ITEM_CODE

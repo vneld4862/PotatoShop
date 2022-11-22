@@ -72,12 +72,26 @@
 								<td class="text-end">
 									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">
 								</td>
-								<td class="text-start" th:text="${buy.itemVO.itemName}"></td>
+								<td class="text-start" th:text="${buy.itemVO.itemName}"
+									th:data-item-code="${buy.itemVO.itemName}" id="itemName"></td>
 								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}"></td>
 								<td></td>
 								<td>
-									<input type="button" value="구매 확정">
-									<input type="button" value="후기 작성" data-bs-toggle="modal" data-bs-target="#review_modal">
+									<!-- <input type="hidden" th:value="${buy.itemVO.itemName}" id="hiddenItemName"> -->
+									<input type="hidden" th:value="${buy.itemVO.itemCode}" id="hiddenItemCode">
+									
+									<th:block th:if="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정을 했으면 -->
+										<input type="button" value="구매 확정" disabled>
+									</th:block>
+									<th:block th:unless="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정을 안 했으면 -->
+										<input type="button" value="구매 확정">
+									</th:block>
+									<th:block th:if="${buy.boardVO.isWritten} == 'Y'"> <!-- 후기 작성 했으면 -->
+										<input type="button" value="후기 작성" disabled>
+									</th:block>
+									<th:block th:unless="${buy.boardVO.isWritten} == 'Y'"> <!-- 후기 작성 안 했으면 -->
+										<input type="button" value="후기 작성" th:onclick="regReview(this);" >
+									</th:block>
 								</td>
 							</tr>
 						</th:block>
@@ -86,8 +100,6 @@
 				</table>
 			</div>
 		</div>
-		
-		
 		
 	</div>
 
@@ -103,7 +115,8 @@
 						<form class="row g-3" th:action="@{/board/regReview}" method="post" enctype="multipart/form-data">
 							<div class="col-12">
 								<div class="mt-3">
-									상품명 | 상품명
+									상품명 | <span id="modalItemName"></span>
+									<input type="text" name="itemCode" value="" id="modalItemCode">
 								</div>
 								<div class="mt-3"> 별점 | 
 									<span class="star">
@@ -141,6 +154,8 @@
 			    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
 			  }
 	</script>
+
+	<script type="text/javascript" th:src="@{/js/buy/buy_list.js}"></script>
 
 
 

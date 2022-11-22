@@ -12,15 +12,10 @@
 <div layout:fragment ="content">
 <div class="container">
    <form action="/manage/updateMyInfo" method="post">
+      <input type="hidden" th:value="${myInfo.memberId}" name="memberId">
 		<div class="row">
 			<div class="col-12 mt-3">
 				<h2>내정보 수정</h2>
-				가입할때 입력한 정보를 띄워주고,
-				비밀번호
-				비밀번호 확인
-				이메일
-				휴대폰번호
-				주소변경
 				
 			</div>
 			<div class="col-12">
@@ -33,14 +28,14 @@
 								      <th scope="col">기본정보</th>
 								      <th scope="col">
 								      	<div>
-								      		 (기본값 세팅 +, 변경 가능하게 할 곳 #)
+								      	
 								      	</div>
 								      </th>
 								    </tr>
 								  </thead>
 								  <tbody>
 								    <tr>
-								      <th scope="row">아이디 +</th>
+								      <th scope="row">아이디</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -48,8 +43,8 @@
 								      	 </div>
 								      </td>
 								    </tr>
-								    <tr>
-								      <th scope="row">비밀번호 #</th>
+								   <!--  <tr>
+								      <th scope="row">비밀번호</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -58,15 +53,15 @@
 								      </td>
 								    </tr>
 								    <tr>
-								      <th scope="row">비밀번호 확인 #</th>
+								      <th scope="row">비밀번호 확인</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1"  name="memberPw1">
 								      	 </div>
 								      </td>
-								    </tr>
+								    </tr> -->
 								    <tr>
-								      <th scope="row">이름 +</th>
+								      <th scope="row">이름</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -75,7 +70,7 @@
 								      </td>
 								    </tr>
 								    <tr>
-								      <th scope="row">주소 + #</th>
+								      <th scope="row">주소</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -84,7 +79,7 @@
 								      </td>
 								    </tr>
 								    <tr>
-								      <th scope="row">휴대폰 + #</th>
+								      <th scope="row">휴대폰</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -93,7 +88,7 @@
 								      </td>
 								    </tr>
 								    <tr>
-								      <th scope="row">이메일 + #</th>
+								      <th scope="row">이메일</th>
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
@@ -108,7 +103,7 @@
 				</div>
 			</div>
 			<div class="text-end">
-				<button type="submit">수정하기</button>
+				<button type="submit" class="btn btn-info">수정하기</button>
 			</div>
 		</div>
      </form>

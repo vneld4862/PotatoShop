@@ -32,6 +32,7 @@
 						    </div>
 					    </th:block>
 					  </div>
+					  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" style="position: relative; rigth: 20px;"> -->
 					  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
 					    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
 					    <span class="visually-hidden">Previous</span>
@@ -58,7 +59,9 @@
 	          </div>
 	          <div class="col-12">
 	            <div>
-	               [찜/ 조회수 / [[${itemInfo.regDate}]]]
+	               [ 찜 [[${wishAmount}]] / 조회수 / <div class="col" id="insertDate" style="display: inline-block;"></div>]
+	               
+	               <input id="regDate" type="hidden" th:value="${itemInfo.regDate}">
 	            </div>
 	           
 	          </div>

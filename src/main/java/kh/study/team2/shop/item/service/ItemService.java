@@ -12,5 +12,5 @@ public interface ItemService {
 	List<ItemVO> memberItemList(String memberId);
 	void updateItem(ItemVO itemVO);
 	void deleteItem(String itemCode);
-	int selectItemCnt();
+	int selectItemCnt(ItemVO itemVO);
 }

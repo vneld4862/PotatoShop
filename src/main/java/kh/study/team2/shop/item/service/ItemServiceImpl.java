@@ -52,9 +52,9 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public int selectItemCnt() 
+	public int selectItemCnt(ItemVO itemVO) 
 	{
-		return sqlSession.selectOne("itemMapper.selectItemCnt");
+		return sqlSession.selectOne("itemMapper.selectItemCnt",itemVO);
 	}
 
 }

@@ -24,7 +24,8 @@ public class BoardServiceImpl implements BoardService{
 		if(uploadInfo.getSavedName() != null) {
 			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
 		}
-		System.out.println(boardVO.getItemCode());
+		
+		sqlSession.update("boardMapper.updateReview", boardVO);
 	}
 
 	@Override
@@ -57,6 +58,12 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public List<ReplyVO> selectReviewReply(int boardNum) {
 		return sqlSession.selectList("boardMapper.selectReviewReply", boardNum);
+	}
+
+	@Override
+	public void updateReview(BoardVO boardVO) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

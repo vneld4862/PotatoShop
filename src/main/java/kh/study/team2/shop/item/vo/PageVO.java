@@ -25,7 +25,6 @@ public class PageVO extends SearchVO
 		//화면에 보이는 마지막 페이지 번호
 		//ceil : 올림함수
 		endPage=displayPageCnt * (int)Math.ceil(nowPage/(double)displayPageCnt);
-		System.out.println("@@@@@@@@@@@@@@end"+endPage);
 		beginPage=endPage-displayPageCnt+1;
 		//전체페이지수
 		int totalPageCnt=(int)Math.ceil(totalDataCnt/(double)displayCnt);
@@ -44,8 +43,6 @@ public class PageVO extends SearchVO
 		
 		startNum=(nowPage-1) * displayCnt+1;
 		endNum=displayCnt * nowPage;
-		System.out.println("@@@@@@@@@@@@@@s"+startNum);
-		System.out.println("@@@@@@@@@@@@@@e"+endNum);
 	}
 	
 	public void setNowPage(int nowPage)

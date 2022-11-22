@@ -4,8 +4,10 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -13,14 +15,17 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.config.UploadFileUtil_profile;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
+import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
 
@@ -45,6 +50,9 @@ public class ManageController {
 	
 	@Resource(name="buyService")
 	private BuyService buyService;
+	
+	@Autowired
+	private PasswordEncoder encoder;
 	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
@@ -85,14 +93,31 @@ public class ManageController {
 	//내 정보 수정
 	@PostMapping("/updateMyInfo")
 	public String updateMyInfo(MemberVO memberVO) {
+		//비밀번호 암호화
+//		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
+//		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
+		
 		memberService.updateMyInfo(memberVO);
 		return "redirect:/item/memberItemList";//my_market으로 변경예정.
 	}
 	
-	//프로필 이미지 수정
+	//프로필 정보 수정
 	@PostMapping("/updateProfile")
-	public String updateProfile(String profileCode) {
-		System.out.println(profileCode);
+	public String updateProfile(MemberVO memberVO
+								, @RequestParam(required = false)MultipartFile profileImg) {
+	//	System.out.println(profileVO);
+	//	System.out.println(memberVO);
+		System.out.println(profileImg);
+		if(!profileImg.getOriginalFilename().equals("")) {
+	//		System.out.println("!!!!!");
+			String memberId = memberVO.getMemberId();
+			ProfileVO uploadInfo = UploadFileUtil_profile.uploadFile(profileImg);
+			uploadInfo.setMemberId(memberId);
+			
+			manageService.updateProfileImg(uploadInfo);
+			
+		}
+		manageService.updateNickName(memberVO);
 		
 		return "redirect:/item/memberItemList";
 	}

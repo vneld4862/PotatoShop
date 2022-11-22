@@ -98,17 +98,28 @@
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 	        WHERE IS_MAIN ='Y'
 	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
+			<if test="mainCateCode != null and !mainCateCode.equals('')">
+				AND MAIN_CATE_CODE=#{mainCateCode}
+			</if>
+			<if test="subCateCode != null and !subCatecode.equals('')">
+			AND SUB_CATE_CODE=#{subCateCode}
+			</if>
+			<if test="detailCateCode != null and !detailCateCode.equals('')">
+			AND DETAIL_CATE_CODE=#{detailCateCode}
+			</if>
 		    ORDER BY ITEM_CODE DESC
 		))
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		
 	</select>
 	
+	<!-- 상품 상세정보 조회 -->
 	<select id="selectItemDetail" resultMap="item">
 		SELECT I.ITEM_CODE
 		 	, MEMBER_ID
 			, ITEM_NAME
 			, ITEM_PRICE
-			, REG_DATE
+			, TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') REG_DATE
 			, ITEM_COMMENT
 			, ITEM_STATUS
 			, TRADE_TYPE
@@ -118,6 +129,7 @@
 		FROM SHOP_ITEM S, ITEM_IMG I
 		WHERE I.ITEM_CODE = #{itemCode}
 		AND S.ITEM_CODE = I.ITEM_CODE
+		ORDER BY IS_MAIN DESC
 		<!-- 카테고리, 조회수 추후 추가예정 -->
 	</select>
 	
@@ -164,6 +176,16 @@
 	<!-- 상품 전체 수량 -->
 	<select id="selectItemCnt" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SHOP_ITEM
+		
+		<if test="mainCateCode != null and !mainCateCode.equals('')">
+		WHERE MAIN_CATE_CODE=#{mainCateCode}
+		</if>
+		<if test="subCateCode != null and !subCatecode.equals('')">
+		WHERE SUB_CATE_CODE=#{subCateCode}
+		</if>
+		<if test="detailCateCode != null and !detailCateCode.equals('')">
+		WHERE DETAIL_CATE_CODE=#{detailCateCode}
+		</if>
 	</select>
 	
 </mapper>

@@ -11,5 +11,6 @@ public interface WishService {
 	List<WishVO> selectWishList(String memberId);
 	void deleteWish(WishVO wishVO);
 	String selectWishCode(ItemVO itemVO);
-	
+	int wishAmount(String memberId);
+	int itemDetailWish(String itemCode);
 }
