@@ -39,9 +39,9 @@ public class BoardController {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
 		
-		uploadInfo.setItemCode("ITEM_002"); //임시
+		uploadInfo.setItemCode(boardVO.getItemCode());
 		
-		boardVO.setItemCode("ITEM_002"); //임시
+		boardVO.setItemCode(boardVO.getItemCode());
 
 		User user = (User)authentication.getPrincipal();
 		boardVO.setMemberId(user.getUsername());

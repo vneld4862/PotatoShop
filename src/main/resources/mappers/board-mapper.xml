@@ -88,7 +88,7 @@
 		ORDER BY BOARD_NUM DESC
 	</select>
 	
-	<!-- 리뷰 상세 보기 -->
+	<!-- 리뷰 상세 보기 --> 
  	<select id="selectBoardDetail" resultMap="board">
 		SELECT BOARD_NUM
 			, R.ITEM_CODE
@@ -113,7 +113,7 @@
 	</select>
 	
 	
-	<!-- 내가 작성한 리뷰 보기 -->
+	<!-- 내가 작성한 리뷰 보기 --> <!-- 남이 판매한 상품에 내가 작성한 리뷰 -->
 	<select id="selectWrittenReviewList" resultMap="board">
 		SELECT BOARD_NUM
 			, ITEM_CODE
