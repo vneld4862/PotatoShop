@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+
+<div layout:fragment="content"> 
+ 	<form action="/notice/correctNotice" method="post" th:object="${noticeVO}">
+		<input type="hidden" name="boardNum" th:value="${board.boardNum}"> 
+		<div class="col-12">
+			<label for="title" class="form-label">제목</label> 
+			<input type="text" class="form-control" th:field="*{title}">
+		</div>
+		
+		
+		<input type="submit"  class="btn btn-warning" value="수정하기">
+	</form>
+</div>
+
+</html>

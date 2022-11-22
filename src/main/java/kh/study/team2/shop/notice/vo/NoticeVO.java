@@ -13,7 +13,7 @@ public class NoticeVO {
 	private String title;
 	private String content;
 	private String memberId;
-	private int createDate;
+	private String createDate;
 	private int readCnt;
 	
 }

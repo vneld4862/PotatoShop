@@ -18,16 +18,39 @@
 	    NOTICE_NUM
 	    , TITLE
 	    , CONTENT
-	    , MEMBER_ID
 	    ) VALUES(
 	   (SELECT NVL(MAX(NOTICE_NUM), 0) + 1 FROM NOTICE)
 	    , #{title}
 	    , #{content}
-	    , #{memberId}
 	    )	
 </insert>
 
-	
+<!-- 글 목록 조회 -->
+<select id="selectNoticeList" resultMap="notice">
+SELECT NOTICE_NUM
+	, TITLE
+	, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD')AS CREATE_DATE
+FROM NOTICE
+</select>	
+
+<!-- 글 상세 정보 조회 -->
+<select id="selectNoticeDetail" resultMap="notice">
+SELECT NOTICE_NUM
+	, TITLE
+	, CONTENT
+	, TO_CHAR(CREATE_DATE, 'YYYY-MM-DD')AS CREATE_DATE
+FROM NOTICE
+WHERE NOTICE_NUM = #{noticeNum}
+</select>
+
+<!-- 글 수정  -->
+<update id="correctNotice">
+UPDATE NOTICE
+SET TITLE = #{title}
+	, CONTENT = #{content}
+WHERE NOTICE_NUM = #{noticeNum}
+</update>
+
 </mapper>
 
 

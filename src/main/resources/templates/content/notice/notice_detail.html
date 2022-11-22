@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+
+<div layout:fragment="content"> 
+ <table class="table">
+   		<colgroup>
+	       <col width="15%">
+	       <col width="25%">
+	       <col width="45%">
+	       <col width="*">
+		</colgroup>
+	  	<tr>
+			<td>No.</td>	  	
+			<td>제목</td>	  	
+			<td>내용</td>	  	
+			<td>작성일</td>	  	
+	  	</tr>
+	  	<tr th:each="notice : ${noticeDetailList}">
+			<td th:text=${notice.noticeNum}></td>	  	
+			<td th:text="${notice.title}"></td>	  	
+			<td th:text="${notice.content}"></td>	  	
+			<td th:text="${notice.createDate}"></td>	  	
+	  	</tr>
+	</table>
+ 	<div class="col-12 text-center">
+	 	<input type="button" class="btn btn-warning" value="수정"
+	 	       th:onclick="|location.href='@{/notice/correctNotice(noticeNum=${noticeNum})}'|">
+	 	<input type="button" class="btn btn-warning"  value="삭제">
+ 	</div>
+</div>
+
+</html>

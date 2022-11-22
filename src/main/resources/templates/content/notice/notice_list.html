@@ -15,17 +15,17 @@
 		</colgroup>
  		<tr>
  			<th>번호</th>
- 			<th>내용</th>
+ 			<th>제목</th>
  			<th>등록일</th>
  		</tr>
- 		<tr>
- 			<td>1</td>
- 			<td>제목</td>
- 			<td>2022-11-16</td>
+ 		<tr th:each= "notice : ${noticeList}">
+ 			<td th:text=${notice.noticeNum}></td>
+ 			<td><a th:href="@{/notice/noticeDetail(noticeNum=${notice.noticeNum})}"  th:text=${notice.title}></a></td>
+ 			<td th:text=${notice.createDate}></td>
  		</tr>
  	</table>
  	<div class="col-12 text-center">
- 	<input type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
+ 		<input type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
  	</div>
 </div>
 
