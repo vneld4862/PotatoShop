@@ -69,17 +69,6 @@ public class BoardController {
 		boardService.deleteReview(itemCode);
 	}
 	
-	//리뷰 댓글 작성
-//	@PostMapping("/regReply")
-//	public String regReply(ReplyVO replyVO, Authentication authentication) {
-//		
-//		User user = (User)authentication.getPrincipal();
-//		replyVO.setMemberId(user.getUsername());
-//		
-//		boardService.insertReviewReply(replyVO);
-//
-//		return "redirect:/manage/myMarket";
-//	}
 	
 	//리뷰 댓글 작성
 	@ResponseBody
@@ -105,6 +94,15 @@ public class BoardController {
 		
 		return boardService.selectReviewReply(boardNum);
 	}
+	
+	//리뷰 댓글 삭제
+	@ResponseBody
+	@PostMapping("/deleteReply")
+	public void deleteReply(String itemCode) {
+		
+		boardService.deleteReview(itemCode);
+	}	
+	
 	
 	//현재 날짜 및 시간 데이터 리턴
 	public String getNowDateTime() {
@@ -142,6 +140,35 @@ public class BoardController {
 		
 		return year + "-" + monthStr + "-" + dateStr + " " + hourStr + ":" + minuteStr;
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	//리뷰 댓글 작성
+//	@PostMapping("/regReply")
+//	public String regReply(ReplyVO replyVO, Authentication authentication) {
+//		
+//		User user = (User)authentication.getPrincipal();
+//		replyVO.setMemberId(user.getUsername());
+//		
+//		boardService.insertReviewReply(replyVO);
+//
+//		return "redirect:/manage/myMarket";
+//	}
 	
 	
 }

@@ -32,5 +32,6 @@ public interface BoardService {
 	List<ReplyVO> selectReviewReply(int boardNum);
 	
 	//리뷰 댓글 삭제
+	void deleteReply(String itemCode);
 	
 }

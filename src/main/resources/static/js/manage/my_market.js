@@ -109,7 +109,7 @@ function selectReviewReply(boardNum){
 				str += `	${reply.replyContent}`;
 				str += '</div>';
 				str += '<div class="col-12 text-end mb-3">';
-				str += '	<input type="button" value="삭제" class="btn btn-secondary">';
+				str += `	<input type="button" value="삭제" class="btn btn-secondary" onclick="deleteReplyAjax('${reply.itemCode}, ${reply.replyNum}')">`;
 				str += '</div>';
 				str += '<hr>';		
 				str += '</div>';
@@ -151,7 +151,7 @@ function regReply(){
 			str += `	${result.replyContent}`;
 			str += '</div>';
 			str += '<div class="col-12 text-end mb-3">';
-			str += '	<input type="button" value="삭제" class="btn btn-secondary">';
+			str += `	<input type="button" value="삭제" class="btn btn-secondary" onclick="deleteReplyAjax('${result.itemCode}, ${result.replyNum}')">`;
 			str += '</div>';
 			str += '<hr>';		
 			str += '</div>';
@@ -191,6 +191,25 @@ function deleteReviewAjax(itemCode){
 	
 }
 
+//리뷰 댓글 삭제 클릭시 실행되는 Ajax
+function deleteReplyAjax(itemCode, replyNum){
+	
+	//ajax start
+	$.ajax({
+		url: '/board/deleteReply', //요청경로
+		type: 'post',
+		data: {'itemCode':itemCode, 'replyNum':replyNum}, //필요한 데이터 를 가지고 컨트롤러로 가서 성공하면 밑에 석세스문이 실행
+		success: function(result) {
+			alert('댓글이 삭제되었습니다.');
+			location.href="/manage/myMarket"
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	//ajax end
+	
+}
 
 
 

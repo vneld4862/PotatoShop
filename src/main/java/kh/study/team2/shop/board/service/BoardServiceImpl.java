@@ -17,6 +17,7 @@ public class BoardServiceImpl implements BoardService{
 	@Autowired
 	SqlSessionTemplate sqlSession;
 
+	//리뷰 작성
 	@Override
 	public void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo) {
 		sqlSession.insert("boardMapper.insertReview", boardVO);
@@ -24,7 +25,11 @@ public class BoardServiceImpl implements BoardService{
 		if(uploadInfo.getSavedName() != null) {
 			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
 		}
-		
+	}
+
+	//리뷰 작성 후 작성 여부 Y로 변경
+	@Override
+	public void updateReview(BoardVO boardVO) {
 		sqlSession.update("boardMapper.updateReview", boardVO);
 	}
 
@@ -61,10 +66,10 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void updateReview(BoardVO boardVO) {
-		// TODO Auto-generated method stub
-		
+	public void deleteReply(String itemCode) {
+		sqlSession.delete("boardMapper.deleteReview", itemCode);
 	}
+
 
 
 	

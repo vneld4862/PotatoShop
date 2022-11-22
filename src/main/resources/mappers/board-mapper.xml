@@ -90,6 +90,7 @@
 			, MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
+			, IS_WRITTEN
 		FROM REVIEW_BOARD R
 		WHERE MEMBER_ID = #{memberId}
 		ORDER BY BOARD_NUM DESC
@@ -113,6 +114,7 @@
 				FROM ITEM_IMG
 				WHERE ITEM_CODE = R.ITEM_CODE
 				AND IS_MAIN = 'Y') AS ATTACHED_NAME
+			, IS_WRITTEN
 		FROM REVIEW_BOARD R, REVIEW_IMG I, ITEM_IMG M
 		WHERE R.ITEM_CODE = #{itemCode}
 		AND R.ITEM_CODE = I.ITEM_CODE(+)
@@ -144,6 +146,11 @@
 	</delete>
 	
 	<!-- 리뷰 삭제 시 리뷰 작성 여부 변경 -->
+	<update id="updateReviewBefore">
+		UPDATE REVIEW_BOARD
+		SET IS_WRITTEN = 'N'
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
 	
 	<!-- 리뷰 댓글 삭제 -->
 	<delete id="deleteReviewReply">
