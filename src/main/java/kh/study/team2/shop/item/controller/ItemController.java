@@ -93,8 +93,8 @@ public class ItemController {
 		if (authentication!=null) {
 			User user=(User)authentication.getPrincipal();
 			System.out.println("@@@@@@@@@@@@@@@@@@@@"+user.getUsername());
-			model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		}
+//		model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		return "content/shop_main";
 	}
 	
@@ -208,7 +208,7 @@ public class ItemController {
 		}
 		model.addAttribute("itemInfo", itemInfo);
 		model.addAttribute("memberId", memberId);
-		
+		model.addAttribute("wishAmount",wishService.itemDetailWish(itemCode));
 		itemVO.setMemberId(memberId);
 		itemVO.setItemCode(itemCode);
 		

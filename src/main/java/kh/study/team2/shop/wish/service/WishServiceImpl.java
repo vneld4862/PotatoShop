@@ -44,6 +44,12 @@ public class WishServiceImpl implements WishService{
 	public int wishAmount(String memberId) {
 		return sqlSession.selectOne("wishMapper.selectWishAmount",memberId);
 	}
+
+
+	@Override
+	public int itemDetailWish(String itemCode) {
+		return sqlSession.selectOne("wishMapper.itemDetailWish",itemCode);
+	}
 	
 
 

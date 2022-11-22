@@ -96,6 +96,10 @@
 	<select id="selectWishAmount" resultType="int">
 		SELECT COUNT(WISH_CODE) FROM WISH_LIST WHERE MEMBER_ID=#{memberId}
 	</select>
+	
+	<select id="itemDetailWish" resultType="int">
+		SELECT COUNT(WISH_CODE) FROM WISH_LIST WHERE ITEM_CODE=#{itemCode}
+	</select>
 </mapper>
 
 
