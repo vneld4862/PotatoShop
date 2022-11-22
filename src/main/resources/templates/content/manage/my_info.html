@@ -12,15 +12,10 @@
 <div layout:fragment ="content">
 <div class="container">
    <form action="/manage/updateMyInfo" method="post">
+      <input type="hidden" th:value="${myInfo.memberId}" name="memberId">
 		<div class="row">
 			<div class="col-12 mt-3">
 				<h2>내정보 수정</h2>
-				가입할때 입력한 정보를 띄워주고,
-				비밀번호
-				비밀번호 확인
-				이메일
-				휴대폰번호
-				주소변경
 				
 			</div>
 			<div class="col-12">
@@ -33,7 +28,7 @@
 								      <th scope="col">기본정보</th>
 								      <th scope="col">
 								      	<div>
-								      		 (기본값 세팅 +, 변경 가능하게 할 곳 #)
+								      	
 								      	</div>
 								      </th>
 								    </tr>
