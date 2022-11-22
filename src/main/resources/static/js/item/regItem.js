@@ -11,3 +11,29 @@ function searchTrAddr(){
 		    }).open();
 	
 }
+
+const mainSelect=document.querySelector('.mainCate select');
+const subCate=document.querySelector('.subCate');
+const detailCate=document.querySelector('.detailCate');
+mainSelect.addEventListener('change',function(){
+	
+	$.ajax({
+	   url: '/cate/selectSubCateAjax', //요청경로
+	    type: 'post',
+	    data:{}, //필요한 데이터
+	    success: function(result) {
+			subCate.innerText='';
+			let str='';
+			str+=`<select name='subCateCode' class="form-select form-select-sm mt-2">`
+			for(const subCate of result)
+			{
+				str+=`<option value=${subCate.subCateCode}>${subCate.subCateName}</option>`;
+			}
+			str+=`</select>`;
+			subCate.insertAdjacentHTML('afterbegin',str);
+	    },
+	    error: function(){
+	       alert('실패');
+	    }
+	});
+})
