@@ -10,6 +10,9 @@ public interface BoardService {
 	//리뷰 등록
 	void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo);	
 	
+	//리뷰 작성 여부 업데이트
+	void updateReview(BoardVO boardVO);
+	
 	//내 상점에 작성된 리뷰 조회(매개변수 수정 필요)
 	List<BoardVO> selectBoardList(String memberId);
 
