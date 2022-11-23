@@ -31,7 +31,7 @@ function mainCate(selectBtn)
 			const nextMainCateCode=result;
 			
 			let str='<tr>';
-			str+='<td><input class="form-check-input" name="cbox" type="checkbox" value=""></td>';
+			str+='<td><input class="form-check-input" name="mainCbox" type="checkbox" value=""></td>';
 			str+=`<td class="text-center mainCountList">${mainCount+1}</td>`;
 			str+=`<td>${nextMainCateCode}</td>`;
 			str+=`<td class="noneText">${mainCateName}</td>`;
