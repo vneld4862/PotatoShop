@@ -5,15 +5,20 @@
 	  layout:decorate="~{layout/base_layout}">
 
 <div layout:fragment="content"> 
- 	<form action="/notice/correctNotice" method="post" th:object="${noticeVO}">
-		<input type="hidden" name="boardNum" th:value="${board.boardNum}"> 
-		<div class="col-12">
-			<label for="title" class="form-label">제목</label> 
-			<input type="text" class="form-control" th:field="*{title}">
-		</div>
+ 	<form th:action="@{/notice/correctNotice}" method="post">
+		<div>
+			<input type="hidden" name="noticeNum" value="noticeNum"> 
+		     <label for="title" class="form-label">TITLE</label>
+		     <input type="text" class="form-control" name="title">
+	  	</div>
+	  	<div class="col-12 mb-3">
+		     <label for="content" class="form-label">CONTENT</label>
+		     <textarea rows="5" cols="40" class="form-control" name="content"></textarea>
+	  	</div>
 		
-		
-		<input type="submit"  class="btn btn-warning" value="수정하기">
+		<div class="col-12 text-center">
+			<input type="submit" class="btn btn-warning" value="수정완료">
+ 		</div>
 	</form>
 </div>
 

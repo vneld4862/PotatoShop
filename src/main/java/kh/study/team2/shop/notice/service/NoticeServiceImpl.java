@@ -25,13 +25,23 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public NoticeVO selectNoticeDetail(NoticeVO noticeVO) {
-		return sqlSession.selectOne("noticeMapper.selectNoticeDetail", noticeVO);
+	public NoticeVO selectNoticeDetail(int noticeNum) {
+		return sqlSession.selectOne("noticeMapper.selectNoticeDetail", noticeNum);
 	}
 
 	@Override
 	public void correctNotice(NoticeVO noticeVO) {
 		sqlSession.update("noticeMapper.correctNotice", noticeVO);
+	}
+
+	@Override
+	public void deleteNotice(int noticeNum) {
+		sqlSession.delete("noticeMapper.deleteNotice", noticeNum);
+	}
+
+	@Override
+	public int selectBoardCnt() {
+		return sqlSession.selectOne("noticeMapper.selectBoardCnt");
 	}
 	
 

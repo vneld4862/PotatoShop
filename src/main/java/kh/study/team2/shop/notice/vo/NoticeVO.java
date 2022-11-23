@@ -7,7 +7,7 @@ import lombok.Setter;
 @ToString
 @Getter
 @Setter
-public class NoticeVO {
+public class NoticeVO extends PageVO{
 
 	private int noticeNum;
 	private String title;

@@ -8,7 +8,9 @@ public interface NoticeService {
 
 	void insertNotice(NoticeVO noticeVO);
 	List<NoticeVO> selectNoticeList();
-	NoticeVO selectNoticeDetail(NoticeVO noticeVO);
+	NoticeVO selectNoticeDetail(int noticeNum);
 	void correctNotice(NoticeVO noticeVO);
-	
+	void deleteNotice(int noticeNum);
+	//게시글 총 개수 조회
+	int selectBoardCnt();
 }
