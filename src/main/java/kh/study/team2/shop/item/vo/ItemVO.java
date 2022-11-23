@@ -27,6 +27,7 @@ public class ItemVO extends PageVO{
    
    private List<ImgVO> imgList;
    private int cntWishList;
+   private List<String> itemCodeList;
    
  
 }

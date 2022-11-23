@@ -1,5 +1,6 @@
 package kh.study.team2.shop.manage.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import edu.emory.mathcs.backport.java.util.Arrays;
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
@@ -167,22 +169,61 @@ public class ManageController {
 	}
 	
 	
-	//상품 삭제
-	@GetMapping("/deleteItem")
-	public String deleteItem(String itemCode) {
-		itemService.deleteItem(itemCode);
+	//상품 선택삭제
+//	@RequestMapping("/deleteItem")
+//	public String deleteItem(String itemCodes, ItemVO itemVO) {
 		
-		return"redirect:/manage/itemManage";
-	}
+			  
+//			 String[] itemCodeArr = itemCodes.split(","); 
+//			 List<String> itemCodeList = java.util.Arrays.asList(itemCodeArr);
+//			 itemVO.setItemCodeList(itemCodeList);
+			  
+		 
+			
+		
+//		itemService.deleteItem(itemVO);
+//		System.out.println(itemVO.getItemCode());
+//		System.out.println(itemVO.getItemCodeList().get(0));
+//		return"redirect:/manage/itemManage";
+//	}
 	
-	/*
-	 * //상품 삭제
-	 * 
-	 * @GetMapping("/deleteItem") public String deleteItem(String itemCode) {
-	 * itemService.deleteItem(itemCode);
-	 * 
-	 * return"redirect:/manage/itemManage"; }
-	 */
+	//상품 삭제
+//	@GetMapping("/deleteItem") public String deleteItem(ItemVO itemVO) {
+//	    itemService.deleteItem(itemVO);
+	  
+//	  return"redirect:/manage/itemManage"; 
+	  
+ //    }
+	
+	  
+	  //상품 선택삭제  (나중에 명현이랑 도전해보기,,,)
+//	  @RequestMapping("/deleteItem") public String deleteItem(String itemCodes,
+//	  ItemVO itemVO
+//	  ,  List<String> itemCodeList) {
+	  
+//	  if(itemCodes != null) {
+	  
+//		  String[] itemCodeArr = itemCodes.split(","); 
+//		  itemCodeList = java.util.Arrays.asList(itemCodeArr);
+//		  itemVO.setItemCodeList(itemCodeList);
+		  
+//	  }
+	  
+//	  else {
+//		  itemCodeList.add(itemVO.getItemCode());
+//		  itemVO.setItemCodeList(itemCodeList);
+//	  }
+	  
+//	  itemService.deleteItem(itemVO);
+	  
+//	  return"redirect:/manage/itemManage"; }
+	 
+	
+	
+	 
+	 
+	
+	 
 	
 	
 	

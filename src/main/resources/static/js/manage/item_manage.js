@@ -32,7 +32,7 @@ $(document).on("click", "input:checkbox[name=checkbox]", function(e) {
 //선택삭제 버튼 클릭 시 실행
 function deleteItem(){
 	alert(1111);
-	
+	const itemCodesForm = document.querySelector('#itemCodesForm');
 	const checkBoxes = document.querySelectorAll('.checkbox:checked');
 	
 	if(checkBoxes.length == 0){
@@ -48,7 +48,9 @@ function deleteItem(){
 		
 	}
 	
-	alert(itemCodes);
+	itemCodesForm.querySelector('input[type="hidden"]').value = itemCodes;
+	itemCodesForm.action = "/manage/deleteItem";
+	itemCodesForm.submit();
 }
 
 
