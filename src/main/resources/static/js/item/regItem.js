@@ -26,6 +26,7 @@ mainSelect.addEventListener('change',function(){
 			detailCate.innerText='';
 			let str='';
 			str+=`<select name='subCateCode' class="form-select form-select-sm mt-2">`
+			str+='<option>선택해주세요.</option>';
 			for(const subCate of result)
 			{
 				str+=`<option value=${subCate.subCateCode}>${subCate.subCateName}</option>`;
@@ -54,6 +55,7 @@ function subCateList(){
 			detailCate.innerText='';
 			let str='';
 			str+=`<select name='detailCateCode' class="form-select form-select-sm mt-2">`
+			str+='<option>선택해주세요.</option>';
 			for(const detailCate of result)
 			{
 				str+=`<option value=${detailCate.detailCateCode}>${detailCate.detailCateName}</option>`;
