@@ -23,12 +23,11 @@
 	    <div class="row mb-3">
 	      
 	      <div class="col-3 text-end">
-				<div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+				<div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
 					  <div class="carousel-inner">
 					     <th:block th:each="img:${itemInfo.imgList}">
-					   
-						    <div class="carousel-item active">
-						     	 <img th:src="|@{/images/}${img.attachedName}|" width="250px;" height="330px;">
+						    <div class="carousel-item active" style="position: static;">
+						     	 <img th:src="|@{/images/}${img.attachedName}|" width="220px;" height="330px;" style="position: relative;right: 40px;">
 						    </div>
 					    </th:block>
 					  </div>
