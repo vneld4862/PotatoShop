@@ -1,4 +1,4 @@
-//alert("상품관리 화면연결~");
+//전체선택 checkbox
 function checkAll() {
    if($("#AllCbox").is(':checked')) {
       $("input[name=checkboxes]").prop("checked", true);
@@ -27,4 +27,17 @@ $(document).on("click", "input:checkbox[name=checkboxes]", function(e) {
    }
    
 });
+
+
+//선택삭제 버튼 클릭 시 실행
+
+
+
+
+
+
+
+
+
+
 

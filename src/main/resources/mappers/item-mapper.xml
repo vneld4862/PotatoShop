@@ -44,6 +44,13 @@
 			  , ITEM_STATUS
 			  , TRADE_TYPE
 			  , TRADE_ADDR
+			  , MAIN_CATE_CODE
+			  <if test="subCateCode != null and !subCateCode.equals('')">
+			 	 , SUB_CATE_CODE
+			  </if>
+			   <if test="detailCateCode != null and !detailCateCode.equals('')">
+			 	 , DETAIL_CATE_CODE
+			  </if>
 			  , MEMBER_ID
 		  ) VALUES (
 		  	  #{itemCode}	
@@ -53,6 +60,13 @@
 		      , #{itemStatus}
 		      , #{tradeType}
 		      , #{tradeAddr}
+		      , #{mainCateCode}
+		       <if test="subCateCode != null and !subCateCode.equals('')">
+		      	, #{subCateCode}
+		      </if>
+		      <if test="detailCateCode != null and !detailCateCode.equals('')">
+		     	 , #{detailCateCode}
+		      </if>
 		      , #{memberId}
 		)
 	</insert>

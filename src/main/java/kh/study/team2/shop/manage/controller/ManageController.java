@@ -168,13 +168,21 @@ public class ManageController {
 	
 	
 	//상품 삭제
-	
 	@GetMapping("/deleteItem")
 	public String deleteItem(String itemCode) {
 		itemService.deleteItem(itemCode);
 		
 		return"redirect:/manage/itemManage";
 	}
+	
+	/*
+	 * //상품 삭제
+	 * 
+	 * @GetMapping("/deleteItem") public String deleteItem(String itemCode) {
+	 * itemService.deleteItem(itemCode);
+	 * 
+	 * return"redirect:/manage/itemManage"; }
+	 */
 	
 	
 	
