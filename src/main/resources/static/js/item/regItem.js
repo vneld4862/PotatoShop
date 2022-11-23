@@ -32,9 +32,11 @@ mainSelect.addEventListener('change',function(){
 				str+=`<option value=${subCate.subCateCode}>${subCate.subCateName}</option>`;
 			}
 			str+=`</select>`;
-			subCate.insertAdjacentHTML('afterbegin',str);
-			
-			subCateList();
+			if(!result.length==0)
+			{
+				subCate.insertAdjacentHTML('afterbegin',str);
+				subCateList();
+			}
 	    },
 	    error: function(){
 	       alert('실패');
@@ -61,9 +63,10 @@ function subCateList(){
 				str+=`<option value=${detailCate.detailCateCode}>${detailCate.detailCateName}</option>`;
 			}
 			str+=`</select>`;
-			detailCate.insertAdjacentHTML('afterbegin',str);
-			
-			subCateList();
+			if(!result.length==0)
+			{
+				detailCate.insertAdjacentHTML('afterbegin',str);
+			}
 	    },
 	    error: function(){
 	       alert('실패');
