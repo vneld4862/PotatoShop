@@ -41,6 +41,9 @@ function mainCate(selectBtn)
 			mainCount+=1;
 			inputMainCate.value='';
 			alert('등록되었습니다.');
+			let op='';
+			op+=`<option class="mainCateCodeList" value="${nextMainCateCode}">${mainCateName}</option>`;
+			subCateSelect.insertAdjacentHTML("beforeend",op);
 		},
 		error: function() {
 			alert('실패');
