@@ -44,6 +44,10 @@ public class MemberContorller {
 		return "redirect:/item/list";
 	}
 	
+	@GetMapping("/accessDenied")
+	public String accessDenied() {
+		return "content/member/accessDenied";
+	}
 	
 	@GetMapping("/login")
 	public String login(MemberVO memberVO) {
