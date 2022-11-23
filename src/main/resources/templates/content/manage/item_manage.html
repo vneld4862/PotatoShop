@@ -24,11 +24,11 @@
 		    </div>
 		    <hr>
 		    <div class="col-12">
-		    	<table class="table">
+		    	<table class="table align-middle text-center">
 				  <thead>
 				    <tr>
 				      <th scope="col">
-				      	<input type="checkbox">전체선택
+				      	<input type="checkbox" onclick="checkAll();" id="AllCbox">전체선택
 				      </th>
 				      <th scope="col">사진</th>
 				      <th scope="col">판매상태</th>
@@ -36,13 +36,13 @@
 				      <th scope="col">가격</th>
 				      <th scope="col">찜</th>
 				      <th scope="col">최근수정일</th>
-				      <th scope="col">기능(수정)</th>
+				      <th scope="col">기능</th>
 				    </tr>
 				  </thead>
 				  <tbody th:each="item : ${itemList}">
 				    <tr>
 				      <th scope="row">
-				      	  <input type="checkbox">
+				      	  <input type="checkbox" name="checkboxes">
 				      </th>
 				      <td>
 				      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
@@ -61,8 +61,10 @@
 				      <td>[[${item.cntWishList}]]</td>
 				      <td>수정일</td>
 				      <td>
-				      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|">수정</button>
-				      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|">삭제</button>
+				      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
+				      	 	class="btn btn-warning btn-sm">수정</button>
+				      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
+				      		class="btn btn-secondary btn-sm">삭제</button>
 				      </td>
 				    </tr>
 				  
