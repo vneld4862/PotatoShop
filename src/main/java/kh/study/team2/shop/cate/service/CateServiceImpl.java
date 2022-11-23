@@ -65,6 +65,21 @@ public class CateServiceImpl implements CateService{
 	public String selectNextDetailCateCode() {
 		return sqlSession.selectOne("cateMapper.selectNextDetailCateCode");
 	}
+
+	@Override
+	public void deleteMainCateList(MainCateVO mainCateVO) {
+		sqlSession.delete("cateMapper.deleteMainCateCode",mainCateVO);
+	}
+
+	@Override
+	public void deleteSubCateList(SubCateVO subCateVO) {
+		sqlSession.delete("cateMapper.deleteSubCateCode",subCateVO);
+	}
+	
+	@Override
+	public void deleteDetailCateList(DetailCateVO detailCateVO) {
+		sqlSession.delete("cateMapper.deleteSubCateCode",detailCateVO);
+	}
 	
 	
 }

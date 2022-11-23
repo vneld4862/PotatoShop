@@ -119,6 +119,27 @@
 		SELECT 'DETAIL_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(DETAIL_CATE_CODE, 8))), 0) +0, 4, 0)
 	    FROM DETAIL_CATE
 	</select>
+	
+	<delete id="deleteMainCateCode">
+		DELETE MAIN_CATE WHERE MAIN_CATE_CODE IN
+		<foreach collection="mainCateCodeList" item="mainCateCode" separator="," open="(" close=")">
+			#{mainCateCode}
+		</foreach>
+	</delete> 
+	
+	<delete id="deleteSubCateCode">
+		DELETE SUB_CATE WHERE SUB_CATE_CODE IN
+		<foreach collection="subCateCodeList" item="subCateCode" separator="," open="(" close=")">
+			#{subCateCode}
+		</foreach>
+	</delete> 
+	
+	<delete id="deleteDetailCateCode">
+		DELETE DETAIL_CATE WHERE DETAIL_CATE_CODE IN
+		<foreach collection="detailCateCodeList" item="detailCateCode" separator="," open="(" close=")">
+			#{detailCateCode}
+		</foreach>
+	</delete> 
 </mapper>
 
 

@@ -1,6 +1,8 @@
 package kh.study.team2.shop.cate.vo.sub;
 
 
+import java.util.List;
+
 import groovy.transform.ToString;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import lombok.Getter;
@@ -14,4 +16,5 @@ public class SubCateVO {
 	private String subCateName;
 	private String mainCateCode;
 	private MainCateVO mainCateVO;
+	List<String> subCateCodeList;
 }

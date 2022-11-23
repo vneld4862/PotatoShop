@@ -23,4 +23,9 @@ public interface CateService {
 	String selectNextMainCateCode();
 	String selectNextSubCateCode();
 	String selectNextDetailCateCode();
+	
+	//ajax로 카테고리 삭제
+	void deleteMainCateList(MainCateVO mainCateVO);
+	void deleteSubCateList(SubCateVO subCateVO);
+	void deleteDetailCateList(DetailCateVO detailCateVO);
 }

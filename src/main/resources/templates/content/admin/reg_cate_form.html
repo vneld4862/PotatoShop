@@ -9,7 +9,7 @@
 			<h4>MAIN CATEGORY MANAGE</h4>
 			<div>
 				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
-					<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
+					<input type="text" class="form-control inputCateName" name="cateName">
 					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="mainCate(this);" data-cate="main">등록</button>
 				</form>
 			</div>
@@ -31,7 +31,7 @@
 						<td colspan="4" class="text-center noneText">등록된 카테고리가 없습니다.</td>
 					</tr>
 					<tr th:unless="${#lists.size(mainCateList)}==0" th:each="mainCate:${mainCateList}">
-						<td><input class="form-check-input" name="mainCbox" type="checkbox" value=""></td>
+						<td><input class="form-check-input mainChk" name="mainCbox" type="checkbox" th:value="${mainCate.mainCateCode}"></td>
 						<td class="text-center mainCountList" th:text="${mainCateStat.count}"></td>
 						<td class="noneText" th:text="${mainCate.mainCateCode}"></td>
 						<td th:text="${mainCate.mainCateName}"></td>
@@ -40,7 +40,7 @@
 					</tr>
 				</tbody>			</table>
 			<div align="center">
-				<input type="button" class="btn btn-danger" value="삭제">
+				<input type="button" class="btn btn-danger" value="삭제" onclick="mainDelete();">
 			</div>
 		</div>
 		<div class="col-4 border-end" style="height: 500px;overflow-y: scroll">
@@ -75,7 +75,7 @@
 						<td colspan="4" class="text-center noneText">등록된 카테고리가 없습니다.</td>
 					</tr>
 					<tr th:unless="${#lists.size(subCateList)}==0" th:each="subCate:${subCateList}">
-						<td><input class="form-check-input" type="checkbox" name="subCbox" value=""></td>
+						<td><input class="form-check-input subChk" type="checkbox" name="subCbox" th:value="${subCate.subCateCode}"></td>
 						<td class="text-center subCountList" th:text="${subCateStat.count}"></td>
 						<td class="noneText" th:text="${subCate.subCateCode}"></td>
 						<td th:text="${subCate.subCateName}"></td>
@@ -83,7 +83,7 @@
 					</tr>
 				</tbody>			</table>
 			<div align="center">
-				<input type="button" class="btn btn-danger" value="삭제">
+				<input type="button" class="btn btn-danger" value="삭제" onclick="subDelete();">
 			</div>
 		</div>
 		<div class="col-4" style="height: 500px;overflow-y: scroll">
@@ -115,7 +115,7 @@
 						<td colspan="4" class="text-center noneText">등록된 카테고리가 없습니다.</td>
 					</tr>
 					<tr th:unless="${#lists.size(detailCateList)}==0" th:each="detailCate:${detailCateList}" >
-						<td><input class="form-check-input" type="checkbox" name="detailCbox" value=""></td>
+						<td><input class="form-check-input detailChk" type="checkbox" name="detailCbox" th:value="${detailCate.detailCateCode}"></td>
 						<td class="text-center detailCountList" th:text="${detailCateStat.count}"></td>
 						<td class="noneText" th:text="${detailCate.detailCateCode}"></td>
 						<td th:text="${detailCate.detailCateName}"></td>
@@ -124,7 +124,7 @@
 				</tbody>
 			</table>
 			<div align="center">
-				<input type="button" class="btn btn-danger" value="삭제">
+				<input type="button" class="btn btn-danger" value="삭제" onclick="detailDelete();">
 			</div>
 		</div>
 	</div>

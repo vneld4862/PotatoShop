@@ -31,7 +31,7 @@ function mainCate(selectBtn)
 			const nextMainCateCode=result;
 			
 			let str='<tr>';
-			str+='<td><input class="form-check-input" name="mainCbox" type="checkbox" value=""></td>';
+			str+=`<td><input class="form-check-input mainChk" name="mainCbox" type="checkbox" value="${nextMainCateCode}"></td>`;
 			str+=`<td class="text-center mainCountList">${mainCount+1}</td>`;
 			str+=`<td>${nextMainCateCode}</td>`;
 			str+=`<td class="noneText">${mainCateName}</td>`;
@@ -92,7 +92,7 @@ function subCate(selectBtn)
 			const nextSubCateCode=result;
 			
 			let str='<tr>';
-			str+='<td><input class="form-check-input" type="checkbox" name="subCbox" value=""></td>';
+			str+=`<td><input class="form-check-input subChk" type="checkbox" name="subCbox" value="${nextSubCateCode}"></td>`;
 			str+=`<td class="text-center subCountList">${subCount+1}</td>`;
 			str+=`<td>${nextSubCateCode}</td>`;
 			str+=`<td class="noneText">${subCateName}</td>`;
@@ -155,7 +155,7 @@ function detailCate(selectBtn)
 			const nextDetailCateCode=result;
 			
 			let str='<tr>';
-			str+='<td><input class="form-check-input" type="checkbox" name="detailCbox" value=""></td>';
+			str+=`<td><input class="form-check-input detailChk" type="checkbox" name="detailCbox" value="${nextDetailCateCode}"></td>`;
 			str+=`<td class="text-center detailCountList">${detailCount+1}</td>`;
 			str+=`<td class="noneText">${nextDetailCateCode}</td>`;
 			str+=`<td>${detailCateName}</td>`;
@@ -306,7 +306,93 @@ $(document).on("click", "input:checkbox[name=detailCbox]", function(e) {
 
 //선택 삭제
 
+function mainDelete()
+{
+	const checkedBoxes=document.querySelectorAll('.mainChk:checked');
+	if(checkedBoxes.length==0)
+	{
+		alert('선택된 항목이 없습니다.')
+		return
+	}
+	let mainCateCodes='';
+	for(const checkedBox of checkedBoxes)
+	{
+		mainCateCodes+=checkedBox.value+',';
+	}
+	$.ajax({
+		url: '/admin/deleteMainCateAjax', //요청경로
+		type: 'post',
+		data: {'mainCateCodes':mainCateCodes}, //필요한 데이터
+		success: function(result) {
+			alert('삭제되었습니다.');
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	setTimeout(function(){
+		location.href='/admin/regCateForm';
+	},10);
+}
 
+function subDelete()
+{
+	const checkedBoxes=document.querySelectorAll('.subChk:checked');
+	if(checkedBoxes.length==0)
+	{
+		alert('선택된 항목이 없습니다.')
+		return
+	}
+	let subCateCodes='';
+	for(const checkedBox of checkedBoxes)
+	{
+		subCateCodes+=checkedBox.value+',';
+	}
+	$.ajax({
+		url: '/admin/deleteSubCateAjax', //요청경로
+		type: 'post',
+		data: {'subCateCodes':subCateCodes}, //필요한 데이터
+		success: function(result) {
+			alert('삭제되었습니다.');
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	setTimeout(function(){
+		location.href='/admin/regCateForm';
+	},10);
+}
+
+function detailDelete()
+{
+	const checkedBoxes=document.querySelectorAll('.detailChk:checked');
+	if(checkedBoxes.length==0)
+	{
+		alert('선택된 항목이 없습니다.')
+		return
+	}
+	let detailCateCodes='';
+	for(const checkedBox of checkedBoxes)
+	{
+		detailCateCodes+=checkedBox.value+',';
+	}
+	$.ajax({
+		url: '/admin/deleteDetailCateAjax', //요청경로
+		type: 'post',
+		data: {'detailCateCodes':detailCateCodes}, //필요한 데이터
+		success: function(result) {
+			alert('삭제되었습니다.');
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+	
+	setTimeout(function(){
+		location.href='/admin/regCateForm';
+	},10);
+}
 
 
 

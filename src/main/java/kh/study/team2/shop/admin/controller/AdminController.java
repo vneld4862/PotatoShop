@@ -1,5 +1,6 @@
 package kh.study.team2.shop.admin.controller;
 
+import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
@@ -122,4 +123,33 @@ public class AdminController {
 		return cateService.subCateInMainCate(mainCateCode);
 	}
 	
+	@ResponseBody
+	@PostMapping("/deleteMainCateAjax")
+	public void deleteMainCate(String mainCateCodes,MainCateVO mainCateVO)
+	{
+		String[] mainCateArr=mainCateCodes.split(",");
+		List<String> mainCateCodeList=Arrays.asList(mainCateArr);
+		mainCateVO.setMainCateCodeList(mainCateCodeList);
+		cateService.deleteMainCateList(mainCateVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteSubCateAjax")
+	public void deleteSubCate(String subCateCodes,SubCateVO subCateVO)
+	{
+		String[] subCateArr=subCateCodes.split(",");
+		List<String> subCateCodeList=Arrays.asList(subCateArr);
+		subCateVO.setSubCateCodeList(subCateCodeList);
+		cateService.deleteSubCateList(subCateVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/deleteDetailCateAjax")
+	public void deleteDetailCate(String detailCateCodes,DetailCateVO detailCateVO)
+	{
+		String[] detailCateArr=detailCateCodes.split(",");
+		List<String> detailCateCodeList=Arrays.asList(detailCateArr);
+		detailCateVO.setDetailCateCodeList(detailCateCodeList);
+		cateService.deleteDetailCateList(detailCateVO);
+	}
 }
