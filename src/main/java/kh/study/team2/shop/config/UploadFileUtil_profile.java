@@ -5,7 +5,6 @@ import java.util.UUID;
 
 import org.springframework.web.multipart.MultipartFile;
 
-import kh.study.team2.shop.board.vo.ReviewImgVO;
 import kh.study.team2.shop.manage.vo.ProfileVO;
 
 public class UploadFileUtil_profile {

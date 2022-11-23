@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 
 @Controller
@@ -21,8 +22,14 @@ public class CateController
 	
 	@ResponseBody
 	@PostMapping("/selectSubCateAjax")
-	public List<SubCateVO> selectSubCateAjax(SubCateVO cateVO)
+	public List<SubCateVO> selectSubCateAjax(SubCateVO subCateVO)
 	{
-		return cateService.subCateList(cateVO);
+		return cateService.subCateList(subCateVO);
+	}
+	@ResponseBody
+	@PostMapping("/selectDetailCateAjax")
+	public List<DetailCateVO> selectDetailCateAjax(DetailCateVO detailCateVO)
+	{
+		return cateService.detailCateList(detailCateVO);
 	}
 }

@@ -36,10 +36,10 @@
 			,MAIN_CATE_CODE
 			,(SELECT MAIN_CATE_NAME FROM MAIN_CATE WHERE MAIN_CATE_CODE=SUB_CATE.MAIN_CATE_CODE) MAIN_CATE_NAME
 		FROM SUB_CATE
-		ORDER BY SUB_CATE_CODE
 		<if test="mainCateCode != null">
 		WHERE MAIN_CATE_CODE=#{mainCateCode}		
 		</if>
+		ORDER BY SUB_CATE_CODE
 	</select>
 	
 	<select id="detailCateList" resultMap="detailCate">

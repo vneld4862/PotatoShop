@@ -2,7 +2,6 @@ package kh.study.team2.shop.buy.controller;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
