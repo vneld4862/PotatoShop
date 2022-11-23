@@ -42,7 +42,7 @@
 				  <tbody th:each="item : ${itemList}">
 				    <tr>
 				      <th scope="row">
-				      	  <input type="checkbox" name="checkboxes" th:value="${item.itemCode}">
+				      	  <input type="checkbox" name="checkbox" class="checkbox" th:value="${item.itemCode}">
 				      </th>
 				      <td>
 				      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
@@ -72,7 +72,10 @@
 				</table>
 		    </div>
 		    <div class="col-12 text-end">
-		    	<button th:onclick="deleteItem();">
+		        <form action="" method="post" id="itemCodesForm">
+		        	<input type="hidden" name="itemCodes" value="">
+		        </form>
+		    	<button th:onclick="deleteItem();" class="btn btn-warning">
 		    		선택삭제
 		    	</button>
 		    </div>

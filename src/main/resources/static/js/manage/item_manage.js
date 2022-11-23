@@ -1,15 +1,15 @@
 //전체선택 checkbox
 function checkAll() {
    if($("#AllCbox").is(':checked')) {
-      $("input[name=checkboxes]").prop("checked", true);
+      $("input[name=checkbox]").prop("checked", true);
    } else {
-      $("input[name=checkboxes]").prop("checked", false);
+      $("input[name=checkbox]").prop("checked", false);
    }
 }
 
-$(document).on("click", "input:checkbox[name=checkboxes]", function(e) {
+$(document).on("click", "input:checkbox[name=checkbox]", function(e) {
    
-   var chks = document.getElementsByName("checkboxes");
+   var chks = document.getElementsByName("checkbox");
    var chksChecked = 0;
    
    for(var i=0; i<chks.length; i++) {
@@ -30,7 +30,26 @@ $(document).on("click", "input:checkbox[name=checkboxes]", function(e) {
 
 
 //선택삭제 버튼 클릭 시 실행
-
+function deleteItem(){
+	alert(1111);
+	
+	const checkBoxes = document.querySelectorAll('.checkbox:checked');
+	
+	if(checkBoxes.length == 0){
+		alert('선택된 상품이 없습니다.\n 상품을 먼저 선택해주세요.')
+		return;
+	}
+	
+	
+	let itemCodes = '';
+	for(const checkBox of checkBoxes){
+		const itemCode = checkBox.value;
+		itemCodes = itemCodes + itemCode + ',';
+		
+	}
+	
+	alert(itemCodes);
+}
 
 
 
