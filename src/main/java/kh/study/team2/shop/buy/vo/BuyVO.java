@@ -14,7 +14,8 @@ import lombok.ToString;
 @ToString
 public class BuyVO {
 	private String buyCode;
-	private String memberId;
+	private String buyer;
+	private String seller;
 	private String buyDate;
 	private String itemCode;
 	private String isConfirmed;

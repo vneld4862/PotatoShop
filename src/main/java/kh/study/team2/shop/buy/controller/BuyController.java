@@ -2,6 +2,7 @@ package kh.study.team2.shop.buy.controller;
 
 import javax.annotation.Resource;
 
+import org.apache.ibatis.annotations.Insert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -55,7 +56,7 @@ public class BuyController {
 		System.out.println("---------------------------------------");
 		
 		User user = (User)authentication.getPrincipal();
-		buyVO.setMemberId(user.getUsername());
+		buyVO.setBuyer(user.getUsername());
 		
 		buyService.buyItem(buyVO);
 		

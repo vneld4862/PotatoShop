@@ -5,7 +5,8 @@
 <mapper namespace="buyMapper">
 	<resultMap type="kh.study.team2.shop.buy.vo.BuyVO" id="buy">
 		<id column="BUY_CODE" 			property="buyCode"/>
-		<result column="MEMBER_ID"	 	property="memberId"/>
+		<result column="BUYER"	 	property="buyer"/>
+		<result column="SELLER"	 	property="seller"/>
 		<result column="BUY_DATE" 		property="buyDate"/>
 		<result column="ITEM_CODE"		property="itemCode"/>
 		<result column="IS_CONFIRMED"	property="isConfirmed"/>
@@ -18,11 +19,11 @@
 	<insert id="buyItem">
 		INSERT INTO SHOP_BUY(
 			BUY_CODE
-			, MEMBER_ID
+			, BUYER
 			, ITEM_CODE
 		) VALUES(
 			#{buyCode}
-			, #{memberId}
+			, #{buyer}
 			, #{itemCode}
 		)
 	</insert>
@@ -37,7 +38,7 @@
 	<!-- 구매 내역 조회 -->
 	<select id="selectBuyList" resultMap="buy">
 		SELECT BUY_CODE
-			, MEMBER_ID
+			, BUYER
 			, BUY_DATE
 			, S.ITEM_CODE
 			, (SELECT ITEM_NAME
@@ -50,9 +51,9 @@
 			, IS_CONFIRMED
 			, (SELECT IS_WRITTEN
 				FROM REVIEW_BOARD
-				WHERE MEMBER_ID = S.MEMBER_ID) AS IS_WRITTEN
+				WHERE BUYER = S.BUYER) AS IS_WRITTEN
 		FROM SHOP_BUY S, ITEM_IMG I
-		WHERE MEMBER_ID = #{memberId}
+		WHERE BUYER = #{buyer}
 		AND S.ITEM_CODE = I.ITEM_CODE
 		AND IS_MAIN = 'Y'
 	</select>
