@@ -26,9 +26,9 @@
 	  	</tr>
 	</table>
  	<div class="col-12 text-center">
-	 	<input type="button" class="btn btn-warning" value="수정"
+	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning" value="수정"
 	 		   th:onclick="|location.href='@{/notice/correctNotice(noticeNum=${notice.noticeNum})}'|">
-	 	<input type="button" class="btn btn-warning"  value="삭제"
+	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning"  value="삭제"
 	 		   th:onclick="|location.href='@{/notice/deleteNotice(noticeNum=${notice.noticeNum})}'|"> 
  	</div>
 </div>

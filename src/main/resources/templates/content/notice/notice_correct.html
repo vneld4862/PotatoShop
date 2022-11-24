@@ -6,14 +6,14 @@
 
 <div layout:fragment="content"> 
  	<form th:action="@{/notice/correctNotice}" method="post">
-		<div>
-			<input type="hidden" name="noticeNum" value="noticeNum"> 
+		<div class="col-12 mb-3">
+			<input type="hidden" name="noticeNum" th:value="${notice.noticeNum}"> 
 		     <label for="title" class="form-label">TITLE</label>
-		     <input type="text" class="form-control" name="title">
+		     <input type="text" class="form-control" name="title" th:value="${notice.title}">
 	  	</div>
 	  	<div class="col-12 mb-3">
 		     <label for="content" class="form-label">CONTENT</label>
-		     <textarea rows="5" cols="40" class="form-control" name="content"></textarea>
+		     <textarea rows="5" cols="40" class="form-control" name="content">[[${notice.content}]]</textarea>
 	  	</div>
 		
 		<div class="col-12 text-center">

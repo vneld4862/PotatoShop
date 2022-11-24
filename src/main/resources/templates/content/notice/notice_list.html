@@ -9,19 +9,22 @@
  	<div class="col-12 mb-3"><h3>공지사항</h3></div>
  	<table class="table text-center">
  		<colgroup>
-	       <col width="10%">
-	       <col width="75%">
+	       <col width="15%">
+	       <col width="45%">
+	       <col width="30%">
 	       <col width="*">
 		</colgroup>
  		<tr>
  			<th>번호</th>
  			<th>제목</th>
  			<th>등록일</th>
+ 			<th>조회수</th>
  		</tr>
  		<tr th:each= "notice : ${noticeList}">
  			<td th:text=${notice.noticeNum}></td>
  			<td><a th:href="@{/notice/noticeDetail(noticeNum=${notice.noticeNum})}"  th:text=${notice.title}></a></td>
  			<td th:text=${notice.createDate}></td>
+ 			<td th:text=${notice.readCnt}></td>
  		</tr>
  	</table>
  	
@@ -30,7 +33,7 @@
 			<a th:text="prev" th:href="@{/notice/list(nowPage=${noticeVO.beginPage-1})}"></a>
 		</th:block>
 		<th:block th:each="pageNum : ${#numbers.sequence(noticeVO.beginPage, noticeVO.endPage)}">
-			<a th:text="${pageNum}" th:href="@{/notice/list(nowPage=${pageNum})}"></a>
+			<a th:text="${pageNum}" th:href="@{/notice/list(nowPage=${pageNum})}" style="margin-right: 0.8rem; margin-left: 0.5rem;"></a>
 		</th:block>
 		<th:block th:if="${noticeVO.next}">
 			<a th:text="next" th:href="@{/notice/list(nowPage=${noticeVO.endPage+1})}"></a>
@@ -38,7 +41,7 @@
 	</div>
  	
  	<div class="col-12 text-center">
- 		<input type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
+ 		<input sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
  	</div>
 </div>
 

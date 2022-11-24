@@ -20,8 +20,8 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public List<NoticeVO> selectNoticeList() {
-		return sqlSession.selectList("noticeMapper.selectNoticeList");
+	public List<NoticeVO> selectNoticeList(NoticeVO noticeVO) {
+		return sqlSession.selectList("noticeMapper.selectNoticeList", noticeVO);
 	}
 
 	@Override
@@ -40,8 +40,13 @@ public class NoticeServiceImpl implements NoticeService{
 	}
 
 	@Override
-	public int selectBoardCnt() {
-		return sqlSession.selectOne("noticeMapper.selectBoardCnt");
+	public int selectNoticeCnt() {
+		return sqlSession.selectOne("noticeMapper.selectNoticeCnt");
+	}
+
+	@Override
+	public int updateReadCnt(int noticeNum) {
+		return sqlSession.update("noticeMapper.updateReadCnt", noticeNum);
 	}
 	
 

@@ -15,5 +15,6 @@ public class NoticeVO extends PageVO{
 	private String memberId;
 	private String createDate;
 	private int readCnt;
+	private int rowNum;
 	
 }

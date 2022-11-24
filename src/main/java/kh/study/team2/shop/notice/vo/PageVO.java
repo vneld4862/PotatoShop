@@ -1,5 +1,6 @@
 package kh.study.team2.shop.notice.vo;
 
+
 public class PageVO {
 	private int nowPage; //현재 선택된 페이지
 	private int totalDataCnt; //전체 데이터 수
