@@ -8,7 +8,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class ProfileVO {
+public class ProfileVO extends PageVO{
    private String profileCode;
    private String originName;
    private String changedName;

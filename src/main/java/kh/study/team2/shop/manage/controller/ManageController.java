@@ -142,11 +142,25 @@ public class ManageController {
 	public String itemManage(Authentication authentication, Model model, @RequestParam(defaultValue = "2") String menu) {
 		model.addAttribute("menu", menu);
 		
+		
+		//전체 데이터 수
+//		 int totalCnt = boardService.selectBoardCnt();
+//		      //전체 데이터 수가 필요하다. 쿼리에서 조회필요
+//		      //전체 데이터 수를 알아야 페이지 정보를 세팅할 수 있다.
+		
+		//페이지 정보 세팅
+//		boardVO.setTotalDataCnt(totalCnt);//조회한 전체 데이터 수를 가지고 --????
+//		boardVO.setPageInfo(); //해당 메소드가 실행되어야 안의 값들이 자동으로 세팅된다.
+		
+		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		
 		List<ItemVO> itemList = itemService.memberItemList(memberId);
 		model.addAttribute("itemList", itemList);
+		
+		
+		
 		
 		return "content/manage/item_manage";
 	}
