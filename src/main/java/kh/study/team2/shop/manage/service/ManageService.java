@@ -11,9 +11,14 @@ public interface ManageService {
 
 	//구매 내역 조회
 	List<BuyVO> selectBuyList(String memberId);
+	
+	//판매 내역 조회
+	List<BuyVO> selectSalesList(String memberId);
+	
 	//닉네임 수정
 	void updateNickName(MemberVO memberVO);
 	void updateProfileImg(ProfileVO profileVO);
 	void salesStatus(ItemVO itemVO);
+	
 	
 }

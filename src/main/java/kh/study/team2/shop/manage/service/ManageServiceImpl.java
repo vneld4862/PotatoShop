@@ -36,6 +36,11 @@ public class ManageServiceImpl implements ManageService{
 		sqlSession.update("itemMapper.salesStatus", itemVO);
 	}
 
+	@Override
+	public List<BuyVO> selectSalesList(String memberId) {
+		return sqlSession.selectList("buyMapper.selectSalesList", memberId);
+	}
+
 
 
 	

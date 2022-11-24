@@ -201,23 +201,25 @@ public class ManageController {
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
-	public String buyList(Model model
-						, Authentication authentication) {
+	public String buyList(Model model, Authentication authentication) {
 		
 		User user = (User)authentication.getPrincipal();
 		
 		//구매 내역 조회
 		model.addAttribute("buyList", manageService.selectBuyList(user.getUsername()));
 		
-		
-		
 		return "content/manage/buy_list";
 	}
 	
 	//판매 내역 페이지 이동
-	@GetMapping("/sellList")
-	public String sellList() {
+	@GetMapping("/salesList")
+	public String sellList(Model model, Authentication authentication) {
 		
-		return "content/manage/sell_list";
+		User user = (User)authentication.getPrincipal();
+		
+		//판매 내역 조회
+		model.addAttribute("salesList", manageService.selectSalesList(user.getUsername()));		
+		
+		return "content/manage/sales_list";
 	}
 }

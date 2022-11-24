@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/manage_layout}">
+
+<div layout:fragment ="content">
+
+	<div class="mt-3">
+		<div>
+			<div class="col text-center">
+				<table class="table">
+					<colgroup>
+						<col width="20%">
+						<col width="10%">
+						<col width="*">
+						<col width="10%">
+						<col width="15%">
+						<col width="20%">
+					</colgroup>
+					<thead>
+						<tr>
+							<th scope="col">
+								<div>주문일자</div>
+								<div>[주문번호]</div>
+							</th>
+							<th scope="col" colspan="2">상품정보</th>
+							<th scope="col">금액</th>
+							<th scope="col">주문상태</th>
+							<th scope="col">구매확정여부</th>
+						</tr>
+					</thead>
+					<tbody>
+						<th:block th:if="${#lists.size(salesList) == 0}">
+							<tr>
+								<td colspan="6">주문 내역이 없습니다.</td>
+							</tr>
+						</th:block>
+						<th:block th:unless="${#lists.size(salesList) == 0}">
+							<tr th:each="sales : ${salesList}">
+								<td>
+									<div>[[${sales.buyDate}]]</div>
+									<div><span>[</span>[[${sales.buyCode}]]<span>]</span></div>
+								</td>
+								<td class="text-end">
+									<img th:src="|@{/images/}${sales.imgList[0].attachedName}|" height="100px;">
+								</td>
+								<td class="text-start" th:text="${sales.itemVO.itemName}"
+									th:data-item-code="${sales.itemVO.itemName}" id="itemName"></td>
+								<td th:text="${#numbers.formatCurrency(sales.itemVO.itemPrice)}"></td>
+								<td></td>
+								<td>
+									<th:block th:if="${sales.isConfirmed} == 'Y'"> <!-- 구매 확정을 했으면 -->
+										구매 확정 완료
+									</th:block>
+									<th:block th:unless="${sales.isConfirmed} == 'Y'"> <!-- 구매 확정을 안 했으면 -->
+										구매 확정 전
+									</th:block>
+								</td>
+							</tr>
+						</th:block>
+						
+					</tbody>
+				</table>
+			</div>
+		</div>
+		
+	</div>
+
+
+
+
+
+</div>
+</html>
