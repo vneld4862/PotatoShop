@@ -168,64 +168,26 @@ public class ManageController {
 		return"redirect:/manage/itemManage";
 	}
 	
-	
-	//상품 선택삭제
-//	@RequestMapping("/deleteItem")
-//	public String deleteItem(String itemCodes, ItemVO itemVO) {
+	//상품 (선택)삭제
+	@RequestMapping("/deleteItem")
+	public String deleteItem(String itemCodes, ItemVO itemVO) {
 		
-			  
-//			 String[] itemCodeArr = itemCodes.split(","); 
-//			 List<String> itemCodeList = java.util.Arrays.asList(itemCodeArr);
-//			 itemVO.setItemCodeList(itemCodeList);
-			  
-		 
-			
+		if(itemCodes != null) {
+			String[] itemCodeArr = itemCodes.split(","); 
+			List<String> itemCodeList = java.util.Arrays.asList(itemCodeArr);
+			itemVO.setItemCodeList(itemCodeList);
+		}
 		
-//		itemService.deleteItem(itemVO);
-//		System.out.println(itemVO.getItemCode());
-//		System.out.println(itemVO.getItemCodeList().get(0));
-//		return"redirect:/manage/itemManage";
-//	}
-	
-	//상품 삭제
-//	@GetMapping("/deleteItem") public String deleteItem(ItemVO itemVO) {
-//	    itemService.deleteItem(itemVO);
-	  
-//	  return"redirect:/manage/itemManage"; 
-	  
- //    }
-	
-	  
-	  //상품 선택삭제  (나중에 명현이랑 도전해보기,,,)
-//	  @RequestMapping("/deleteItem") public String deleteItem(String itemCodes,
-//	  ItemVO itemVO
-//	  ,  List<String> itemCodeList) {
-	  
-//	  if(itemCodes != null) {
-	  
-//		  String[] itemCodeArr = itemCodes.split(","); 
-//		  itemCodeList = java.util.Arrays.asList(itemCodeArr);
-//		  itemVO.setItemCodeList(itemCodeList);
-		  
-//	  }
-	  
-//	  else {
-//		  itemCodeList.add(itemVO.getItemCode());
-//		  itemVO.setItemCodeList(itemCodeList);
-//	  }
-	  
-//	  itemService.deleteItem(itemVO);
-	  
-//	  return"redirect:/manage/itemManage"; }
-	 
-	
-	
-	 
-	 
-	
-	 
-	
-	
+		else {
+			String itemCode = itemVO.getItemCode();
+			List<String> itemCodeList = new ArrayList<>();
+			itemCodeList.add(itemCode);
+			System.out.println("@@@@@@@@@@@@성공기원^^ :" + itemCodeList);
+			itemVO.setItemCodeList(itemCodeList);
+		}
+		itemService.deleteItem(itemVO);
+		return"redirect:/manage/itemManage";
+	}
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
