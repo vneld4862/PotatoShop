@@ -17,6 +17,7 @@ public class BuyServiceImpl implements BuyService{
 	@Override
 	public void buyItem(BuyVO buyVO) {
 		sqlSession.insert("buyMapper.buyItem", buyVO);
+		sqlSession.update("buyMapper.itemSalesStatus", buyVO); //트랜잭션 처리필요.
 	}
 
 	@Override

@@ -71,6 +71,7 @@ public class ItemController {
 			itemVO.setDetailCateCode(detailCode);
 		}
 		int totalCnt=itemService.selectItemCnt(itemVO);
+		itemVO.setDisplayCnt(20);
 		itemVO.setTotalDataCnt(totalCnt);
 		itemVO.setPageInfo();
 		model.addAttribute("mainCateList",cateService.mainCateList());

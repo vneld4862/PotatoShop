@@ -28,6 +28,13 @@
 		)
 	</insert>
 	
+	<!--상품 구매 시 -> 판매상태 변경-->
+	<update id="itemSalesStatus">
+		UPDATE SHOP_ITEM
+		SET SALES_STATUS = 'SOLD_OUT'
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
+	
 	<!-- 다음에 들어갈 구매코드 조회 -->
 	<select id="selectNextBuyCode" resultType="String">
 		SELECT 'ORD'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(BUY_CODE, 5))), 0) +1, 3, 0) 
