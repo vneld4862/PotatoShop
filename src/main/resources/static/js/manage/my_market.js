@@ -59,8 +59,11 @@ function reviewDetail(itemCode){
 			
 			//사진 있는 후기만 사진 조회
 			if(result.reviewImgVO.savedName != null){
-				str += '	<div class="col">';
-				str += `		<img src="/images/${result.reviewImgVO.savedName}" style="width: 200px;">`;
+				str += '	<div class="col mb-4">';
+				str += '		<div style="font-size:0.8rem; color:#B2B2B2;" class="mb-4">'
+				str += '			<span>사진 클릭 시 새로운 탭에서 원본 사이즈로 볼 수 있습니다.</span>'
+				str += '		</div>'
+				str += `		<img src="/images/${result.reviewImgVO.savedName}" style="width: 200px;" onclick="window.open(this.src)">`;
 				str += '	</div>';
 				str += `	<div class="col">${result.boardContent}</div>`;
 				str += '</th:block>';
