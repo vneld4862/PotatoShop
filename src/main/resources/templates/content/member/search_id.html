@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+<div layout:fragment="content"> 
+
+<div class="container">
+		<div class="row">
+			<div class="col-sm-9 col-md-7 col-lg-5 mx-auto">
+				<div class="card card-signin my-5">
+					<div class="card-body">
+					<h3 class="card-title text-center">아이디 찾기</h3>
+						<form method="post" class="form-signin" action="find_id" name="findform">
+							<div class="form-label-group mb-3">
+								<label for="memberName">이름</label>
+								<input type="text" id="memberName" name="memberName" class="form-control"/>
+							</div>
+							<div class="form-label-group mb-3">
+								<label for="memberTell">휴대폰 번호</label>
+								<input type="text" id="memberTell" name="memberTell" class="form-control"/>
+							</div>
+							<div class="col-12 d-grid gap-2 mt-3">
+								<input class="btn btn-secondary" type="submit" value="아이디 찾기">
+							</div>
+							<!-- 이름과 전화번호가 일치하지 않을 때-->
+							<th:block th:if="${check == 1}">
+								<script>
+									opener.document.findform.name.value = "";
+									opener.document.findform.phone.value = "";
+								</script>
+								<label>일치하는 정보가 존재하지 않습니다.</label>
+							</th:block>
+					
+							<!-- 이름과 비밀번호가 일치하지 않을 때 -->
+							<th:block th:unless="${check == 1}">
+							<label>찾으시는 아이디는' ${id}' 입니다.</label>
+								<div class="col-12 d-grid gap-2 mt-3">
+									<input class="btn btn-secondary" type="button" value="닫기" onclick="closethewindow()">
+								</div>
+							</th:block>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+</html>

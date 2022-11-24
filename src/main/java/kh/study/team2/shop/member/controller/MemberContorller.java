@@ -62,6 +62,7 @@ public class MemberContorller {
 		return "content/member/login_result";
 	}
 
+	//아이디 중복확인
 	@ResponseBody
 	@PostMapping("/checkDuplId")
 	public boolean ID_Check(String memberId) {
@@ -76,6 +77,34 @@ public class MemberContorller {
 			return false;
 		}
 	}
+	
+	//아이디 찾기 페이지 이동
+	@GetMapping("/searchId")
+	public String searchId(){
+		return "content/member/search_id";
+	}
+	
+	//아이디 찾기 실행
+	@PostMapping("/doSearchId")
+	public String doSearchId(MemberVO memberVO, Model model){
+		MemberVO member = memberService.searchId(memberVO);
+		
+		if(member == null) {
+			model.addAttribute("check", 1);
+		}else {
+			model.addAttribute("check", 0);
+			model.addAttribute("id", member.getMemberId());
+		}
+		
+		return "content/member/search_id";
+	}
+	
+	//비밀번호 찾기 페이지 이동
+	@GetMapping("/serachPw")
+	public String serachPw(){
+		return "content/member/search_pw";
+	}
+	
 	
 	
 	

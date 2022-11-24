@@ -11,5 +11,6 @@ public interface MemberService {
 	MemberVO selectMemberInfo(String memberId);
 	ProfileVO profileInfo(String memberId);
 	void updateMyInfo(MemberVO memberVO);
+	MemberVO searchId(MemberVO memberVO);
 	
 }

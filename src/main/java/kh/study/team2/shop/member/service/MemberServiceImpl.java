@@ -40,6 +40,10 @@ public class MemberServiceImpl implements MemberService{
 	public void updateMyInfo(MemberVO memberVO) {
 		sqlSession.update("memberMapper.updateMyInfo", memberVO);
 	}
+	@Override
+	public MemberVO searchId(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.searchId", memberVO);
+	}
 	
 	
 }
