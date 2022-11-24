@@ -65,8 +65,9 @@ function changeStatus(statSelect){
 	   url: '/manage/salesStatus', //요청경로
 	    type: 'post',
 	    data:{'salesStatus':salesStatus, 'itemCode':itemCode}, //필요한 데이터
-	    success: function(result) {
+	    success: function(salesStatus) {
 	      alert('상태 업데이트 성공');
+	      alert(salesStatus);
 	    },
 	    error: function(){
 	       alert('업데이트 실패');
@@ -74,6 +75,8 @@ function changeStatus(statSelect){
 	});
 	//ajax end
 	
+
+		
 	
 	
 }

@@ -210,7 +210,7 @@ public class ItemController {
 		
 		String wishCode =  wishService.selectWishCode(itemVO);
 		model.addAttribute("wishCode", wishCode);
-		
+		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
 		return"content/item/item_detail";
 	}
 	
