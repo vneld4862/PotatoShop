@@ -50,10 +50,9 @@
 				      	</a>
 				      </td>
 				      <td>
-				      	<select>
-				      		<option>판매 중</option>
-				      		<option>예약 중</option>
-				      		<option>예약완료</option>
+				      	<select class="form-select" aria-label="Default select example" onchange="changeStatus(this);" th:data-item-code="${item.itemCode}">
+				      		<option value="ON_SALE" th:selected>판매 중</option>
+				      		<option value="SOLD_OUT">판매 완료</option>
 				      	</select>
 				      </td>
 				      <td>[[${item.itemName}]]</td>

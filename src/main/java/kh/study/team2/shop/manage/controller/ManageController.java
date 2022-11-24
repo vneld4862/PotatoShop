@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
@@ -187,6 +188,16 @@ public class ManageController {
 		itemService.deleteItem(itemVO);
 		return"redirect:/manage/itemManage";
 	}
+	
+	//판매상태 변경
+	@ResponseBody
+	@PostMapping("/salesStatus")
+	public void salesStatus(ItemVO itemVO) {
+		System.out.println(itemVO);
+		System.out.println(itemVO.getItemCode());
+		manageService.salesStatus(itemVO);
+	}
+	
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")

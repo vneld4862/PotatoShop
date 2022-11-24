@@ -25,6 +25,7 @@ public class ItemVO extends PageVO{
 	private String detailCateCode;
 	private String memberId;
 	private String isWritten;
+	private String salesStatus;
 
 	private List<ImgVO> imgList;
 	private int cntWishList;

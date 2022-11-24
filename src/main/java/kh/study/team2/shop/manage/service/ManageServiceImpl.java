@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import kh.study.team2.shop.buy.vo.BuyVO;
+import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
@@ -28,6 +29,11 @@ public class ManageServiceImpl implements ManageService{
 	@Override
 	public void updateProfileImg(ProfileVO profileVO) {
 		sqlSession.update("memberMapper.updateProfileImg", profileVO);
+	}
+
+	@Override
+	public void salesStatus(ItemVO itemVO) {
+		sqlSession.update("itemMapper.salesStatus", itemVO);
 	}
 
 

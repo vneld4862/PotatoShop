@@ -18,6 +18,7 @@
 		<result column="DETAIL_CATE_CODE" 	property="detailCateCode"/>
 		<result column="MEMBER_ID" 			property="memberId"/>
 		<result column="IS_WRITTEN" 		property="isWritten"/>
+		<result column="SALES_STATUS" 		property="salesStatus"/>
 		<result column="CNT_WISH_LIST" 		property="cntWishList"/><!--이렇게 임시로 작성하면 되나? -->
 		<collection property="imgList" 		resultMap="img"/>
 	</resultMap>
@@ -81,17 +82,17 @@
 				, IS_MAIN
 				, ITEM_CODE
 			) 
-	<foreach collection="imgList" item="img" separator="UNION ALL" index="i">
-		SELECT (SELECT 'IMG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))), 0) +1 + #{i}, 3, 0) FROM ITEM_IMG)
-				, #{img.originName}
-				, #{img.attachedName}
-				, #{img.isMain}
-				, #{img.itemCode}
-		FROM DUAL
-	</foreach>	
-		
+		<foreach collection="imgList" item="img" separator="UNION ALL" index="i">
+			SELECT (SELECT 'IMG_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(IMG_CODE, 5))), 0) +1 + #{i}, 3, 0) FROM ITEM_IMG)
+					, #{img.originName}
+					, #{img.attachedName}
+					, #{img.isMain}
+					, #{img.itemCode}
+			FROM DUAL
+		</foreach>	
 	</insert>
 	
+	<!--  -->
 	<select id="selectItemList" resultMap="item">
 		SELECT ROW_NUM
 		    ,ITEM_CODE
@@ -181,7 +182,6 @@
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
-	
 	<!--상품 (선택)삭제-->
 	<delete id="deleteItem">
 		DELETE SHOP_ITEM
@@ -190,6 +190,15 @@
 			#{itemCode}
 		</foreach>
 	</delete>
+	
+	<!--판매상태 변경-->
+	<update id="salesStatus">
+		UPDATE SHOP_ITEM
+		SET SALES_STATUS = #{salesStatus}
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
+	
+	
 	
 	<!-- 상품 전체 수량 -->
 	<select id="selectItemCnt" resultType="int">
