@@ -29,7 +29,6 @@ import kh.study.team2.shop.item.vo.ItemVO;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import kh.study.team2.shop.member.service.MemberService;
-import kh.study.team2.shop.sell.service.SellService;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
 
@@ -41,9 +40,6 @@ public class ItemController {
 	
 	@Resource(name = "cateService")
 	private CateService cateService;
-	
-	@Resource(name = "sellService")
-	private SellService sellService;
 	
 	@Resource(name = "wishService")
 	private WishService wishService;
