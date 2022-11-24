@@ -44,6 +44,10 @@ public class MemberServiceImpl implements MemberService{
 	public MemberVO searchId(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.searchId", memberVO);
 	}
+	@Override
+	public void deleteMember(String memberId) {
+		sqlSession.update("memberMapper.deleteMember", memberId);
+	}
 	
 	
 }

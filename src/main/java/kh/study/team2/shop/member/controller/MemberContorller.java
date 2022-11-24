@@ -106,6 +106,14 @@ public class MemberContorller {
 	}
 	
 	
+	//회원 탈퇴
+	@ResponseBody
+	@PostMapping("/deleteMember")
+	public void deleteMember(String memberId) {
+		
+		memberService.deleteMember(memberId);
+	}
+	
 	
 	
 	

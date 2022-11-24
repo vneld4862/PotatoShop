@@ -9,7 +9,7 @@
 <body>
 <div sec:authorize="isAnonymous()"> <!-- 로그인 안 됐을 때 -->
 	<script type="text/javascript">
-		alert('로그인 실패');
+		alert('가입되지 않은 아이디 혹은 탈퇴한 아이디입니다.');
 		location.href='/member/login';
 	</script>
 </div>

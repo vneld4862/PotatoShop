@@ -13,4 +13,6 @@ public interface MemberService {
 	void updateMyInfo(MemberVO memberVO);
 	MemberVO searchId(MemberVO memberVO);
 	
+	//회원 탈퇴
+	void deleteMember(String memberId);
 }
