@@ -5,8 +5,8 @@
 <mapper namespace="buyMapper">
 	<resultMap type="kh.study.team2.shop.buy.vo.BuyVO" id="buy">
 		<id column="BUY_CODE" 			property="buyCode"/>
-		<result column="BUYER"	 	property="buyer"/>
-		<result column="SELLER"	 	property="seller"/>
+		<result column="BUYER"	 		property="buyer"/>
+		<result column="SELLER"	 		property="seller"/>
 		<result column="BUY_DATE" 		property="buyDate"/>
 		<result column="ITEM_CODE"		property="itemCode"/>
 		<result column="IS_CONFIRMED"	property="isConfirmed"/>
@@ -39,6 +39,7 @@
 	<select id="selectBuyList" resultMap="buy">
 		SELECT BUY_CODE
 			, BUYER
+			, SELLER
 			, BUY_DATE
 			, S.ITEM_CODE
 			, (SELECT ITEM_NAME
@@ -50,8 +51,8 @@
 			, ATTACHED_NAME
 			, IS_CONFIRMED
 			, (SELECT IS_WRITTEN
-				FROM REVIEW_BOARD
-				WHERE BUYER = S.BUYER) AS IS_WRITTEN
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = S.ITEM_CODE) AS IS_WRITTEN
 		FROM SHOP_BUY S, ITEM_IMG I
 		WHERE BUYER = #{buyer}
 		AND S.ITEM_CODE = I.ITEM_CODE

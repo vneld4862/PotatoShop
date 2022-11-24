@@ -86,10 +86,10 @@
 									<th:block th:unless="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정을 안 했으면 -->
 										<input type="button" value="구매 확정">
 									</th:block>
-									<th:block th:if="${buy.boardVO.isWritten} == 'Y'"> <!-- 후기 작성 했으면 -->
+									<th:block th:if="${buy.itemVO.isWritten} == 'Y'"> <!-- 후기 작성 했으면 -->
 										<input type="button" value="후기 작성" disabled>
 									</th:block>
-									<th:block th:unless="${buy.boardVO.isWritten} == 'Y'"> <!-- 후기 작성 안 했으면 -->
+									<th:block th:unless="${buy.itemVO.isWritten} == 'Y'"> <!-- 후기 작성 안 했으면 -->
 										<input type="button" value="후기 작성" th:onclick="regReview(this);" >
 									</th:block>
 								</td>

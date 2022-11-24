@@ -17,6 +17,7 @@
 		<result column="SUB_CATE_CODE" 		property="subCateCode"/>
 		<result column="DETAIL_CATE_CODE" 	property="detailCateCode"/>
 		<result column="MEMBER_ID" 			property="memberId"/>
+		<result column="IS_WRITTEN" 		property="isWritten"/>
 		<result column="CNT_WISH_LIST" 		property="cntWishList"/><!--이렇게 임시로 작성하면 되나? -->
 		<collection property="imgList" 		resultMap="img"/>
 	</resultMap>
