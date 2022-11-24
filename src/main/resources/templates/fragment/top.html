@@ -17,12 +17,14 @@
 						</a>
 					</div>
 					<div class="col-6">
-						<div class="input-group mb-3">
-							<input type="text" class="form-control border-danger searchInput" placeholder="어떻게 해야될꼬..." aria-describedby="button-addon2" style="border-radius: 0;">
-							<button class="btn btn-outline-danger searchBtn" type="button" id="button-addon2" style="border-radius: 0;" th:onclick="location.href='#'">
-								<img alt="" src="https://m.bunjang.co.kr/pc-static/resource/2be3c66fa47ccd5ece2a.png">
-							</button>
-						</div>
+						<form action="/item/searchResult" method="get" class="searchForm">
+							<div class="input-group mb-3">
+								<input type="text" name="searchKeyword" class="form-control border-danger searchInput" placeholder="어떻게 해야될꼬..." aria-describedby="button-addon2" style="border-radius: 0;">
+								<button onclick="searchSubmit();" class="btn btn-outline-danger searchBtn" type="button" id="button-addon2" style="border-radius: 0;">
+									<img alt="" src="https://m.bunjang.co.kr/pc-static/resource/2be3c66fa47ccd5ece2a.png">
+								</button>
+							</div>
+						</form>
 					</div>
 					<div class="col-3 text-center">
 						<div sec:authorize="isAnonymous()">

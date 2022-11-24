@@ -31,5 +31,5 @@ public class ItemVO extends PageVO{
 	private int cntWishList;
 	private List<String> itemCodeList;
    
- 
+	private String searchKeyword;
 }

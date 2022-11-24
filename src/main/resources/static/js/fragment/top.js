@@ -4,3 +4,9 @@ function potatoChat()
 	const url='/potatoChat/pop';
 	window.open(url, 'popup', option);
 }
+
+function searchSubmit()
+{
+	const searchForm=document.querySelector('.searchForm');
+	searchForm.submit();
+}

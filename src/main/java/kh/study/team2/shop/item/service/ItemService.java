@@ -14,4 +14,8 @@ public interface ItemService {
 	void deleteItem(ItemVO itemVO);
 //	void deleteItem(String itemCode);
 	int selectItemCnt(ItemVO itemVO);
+	List<ItemVO> searchItemName(ItemVO itemVO);
+	List<ItemVO> searchCateName(ItemVO itemVO);
+	int searchNameCnt(ItemVO itemVO);
+	int searchCateCnt(ItemVO itemVO);
 }

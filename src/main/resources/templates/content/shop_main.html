@@ -136,7 +136,7 @@
 				<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;">
 				<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
 					<img alt="..." src="https://cdn-icons-png.flaticon.com/512/38/38488.png" width="80%">
-					<div>최근본 상품이 없습니다.</div>
+					<div style="font-size: .8rem;">상품이 없습니다.</div>
 				</div>
 			</div>
 		</div>
@@ -161,7 +161,7 @@
 	</div>
 	<div class="text-center" th:if="${!#lists.isEmpty(itemList)}">
 		<th:block th:if="${itemVO.prev}">
-	   		<a th:text="prev" th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}"></a>
+	   		<a th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}">&lt;</a>
 	   	</th:block>
 	   	
 	   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
@@ -169,7 +169,7 @@
 	   	</th:block>
 	   	
 	   	<th:block th:if="${itemVO.next}">
-	   		<a th:text="next" th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}"></a>
+	   		<a th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}">&gt;</a>
 	   	</th:block>
 	</div>
 

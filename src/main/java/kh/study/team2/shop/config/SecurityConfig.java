@@ -23,6 +23,7 @@ public class SecurityConfig {
 							, "/member/loginResult"
 							, "/member/accessDenied"
 							, "/item/itemDetail"
+							, "/item/searchResult"
 							, "/member/searchId"
 							, "/member/searchPw").permitAll() //회원가입, 로그인, 게시글 목록, 게시글 상세보기, 아이디/비밀번호 찾기
 				.antMatchers("/admin/**").hasRole("ADMIN")

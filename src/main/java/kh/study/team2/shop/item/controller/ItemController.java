@@ -214,6 +214,31 @@ public class ItemController {
 		return"content/item/item_detail";
 	}
 	
+	@GetMapping("/searchResult")
+	public String searchResult(Model model,ItemVO itemVO)
+	{
+		
+		itemVO.setDisplayCnt(10);
+		int nameCnt=itemService.searchNameCnt(itemVO);
+		int cateCnt=itemService.searchCateCnt(itemVO);
+		if(nameCnt>cateCnt)
+		{
+			itemVO.setTotalDataCnt(nameCnt);
+		}
+		else
+		{
+			itemVO.setTotalDataCnt(cateCnt);
+		}
+		itemVO.setPageInfo();
+		List<ItemVO> itemNameList=itemService.searchItemName(itemVO);
+		List<ItemVO> itemCateList=itemService.searchCateName(itemVO);
+		
+		model.addAttribute("searchKeyword",itemVO.getSearchKeyword());
+		model.addAttribute("searchItemList",itemNameList);
+		model.addAttribute("searchCateList",itemCateList);
+		return "content/item/search_result.html";
+	}
+	
 	
 	public String getEncodeStr(String str)
 	{

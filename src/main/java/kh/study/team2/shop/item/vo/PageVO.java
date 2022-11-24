@@ -16,7 +16,6 @@ public class PageVO extends SearchVO
 	public PageVO()
 	{
 		nowPage=1;
-		displayCnt=20;
 		displayPageCnt=5;
 	}
 	//페이지 정보
@@ -68,6 +67,12 @@ public class PageVO extends SearchVO
 	public boolean getPrev() 
 	{
 		return prev;
+	}
+	public int getDisplayCnt() {
+		return displayCnt;
+	}
+	public void setDisplayCnt(int displayCnt) {
+		this.displayCnt = displayCnt;
 	}
 	public void setNext(boolean next)
 	{
