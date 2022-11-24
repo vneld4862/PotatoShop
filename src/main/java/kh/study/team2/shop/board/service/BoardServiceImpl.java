@@ -51,7 +51,9 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteReview(String itemCode) {
-		sqlSession.delete("boardMapper.deleteReviewReply", itemCode);
+		//그 상품의 리뷰에 달린 모든 댓글 삭제
+		sqlSession.delete("boardMapper.deleteReviewReplyAll", itemCode);
+		//상품 리뷰 삭제
 		sqlSession.delete("boardMapper.deleteReview", itemCode);
 	}
 
@@ -66,8 +68,8 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public void deleteReply(String itemCode) {
-		sqlSession.delete("boardMapper.deleteReview", itemCode);
+	public void deleteReply(int replyNum) {
+		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
 	}
 
 

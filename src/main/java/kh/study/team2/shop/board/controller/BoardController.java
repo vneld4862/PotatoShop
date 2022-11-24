@@ -50,8 +50,11 @@ public class BoardController {
 		boardService.insertReview(boardVO, uploadInfo);
 		boardService.updateReview(boardVO);
 		
-		return "redirect:/manage/myMarket";
+		return "content/board/reg_review_result";
+//		return "redirect:/manage/buyList";
 	}
+	
+	
 	
 	//리뷰 상세 보기
 	@ResponseBody
@@ -98,9 +101,9 @@ public class BoardController {
 	//리뷰 댓글 삭제
 	@ResponseBody
 	@PostMapping("/deleteReply")
-	public void deleteReply(String itemCode) {
+	public void deleteReply(int replyNum) {
 		
-		boardService.deleteReview(itemCode);
+		boardService.deleteReply(replyNum);
 	}	
 	
 	

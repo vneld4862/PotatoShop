@@ -18,7 +18,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
-import edu.emory.mathcs.backport.java.util.Arrays;
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
@@ -191,8 +190,7 @@ public class ManageController {
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
-	public String buyList(String itemCode
-						, Model model
+	public String buyList(Model model
 						, Authentication authentication) {
 		
 		User user = (User)authentication.getPrincipal();

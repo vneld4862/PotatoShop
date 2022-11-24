@@ -149,8 +149,14 @@
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
-	<!-- 리뷰 댓글 삭제 -->
+	<!-- 리뷰 특정 댓글 삭제 -->
 	<delete id="deleteReviewReply">
+		DELETE REVIEW_REPLY
+		WHERE REPLY_NUM = #{replyNum}
+	</delete>
+	
+	<!-- 리뷰 모든 댓글 삭제 -->
+	<delete id="deleteReviewReplyAll">
 		DELETE REVIEW_REPLY
 		WHERE ITEM_CODE = #{itemCode}
 	</delete>

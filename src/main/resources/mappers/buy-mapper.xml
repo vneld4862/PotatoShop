@@ -59,6 +59,12 @@
 		AND IS_MAIN = 'Y'
 	</select>
 	
+	<!-- 구매 확정 시 구매 확정 여부 변경 -->
+	<update id="updateBuyConfirm">
+		UPDATE SHOP_BUY
+		SET IS_CONFIRMED = 'Y'
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
 	
 
 

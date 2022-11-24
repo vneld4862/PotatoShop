@@ -24,6 +24,11 @@ public class BuyServiceImpl implements BuyService{
 		return sqlSession.selectOne("buyMapper.selectNextBuyCode");
 	}
 
+	@Override
+	public void updateBuyConfirm(String itemCode) {
+		sqlSession.update("buyMapper.updateBuyConfirm", itemCode);
+	}
+
 	
 	
 

@@ -2,7 +2,6 @@ package kh.study.team2.shop.buy.controller;
 
 import javax.annotation.Resource;
 
-import org.apache.ibatis.annotations.Insert;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
@@ -73,7 +72,13 @@ public class BuyController {
 		return "content/buy/buy_detail";
 	}
 	
-	
+	//구매 확정
+	@ResponseBody
+	@PostMapping("/buyConfirm")
+	public void buyConfirm(String itemCode) {
+		
+		buyService.updateBuyConfirm(itemCode);
+	}
 	
 	
 	
