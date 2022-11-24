@@ -1,20 +1,14 @@
 function mainCate(selectBtn)
 {
-	const inputMainCate=selectBtn.closest('form').querySelector('.inputCateName');
+	const inputMainCate=selectBtn.closest('.form').querySelector('.inputCateName');
 	const mainCateName=inputMainCate.value;
 	const mainCountList=document.querySelectorAll('.mainCountList');
 	let mainCount=parseInt(mainCountList[mainCountList.length-1].innerText);
 	const mainCateList=document.querySelector('#mainCateList');
 	const textChk=mainCateList.querySelector('.noneText');
-	const reg=/\s/g;
 	if(mainCateName=='')
 	{
 		alert('입력이 잘못되었습니다.\n다시입력해주십시오.')
-		return
-	}
-	if(mainCateName.match(reg))
-	{
-		alert('입력란에 공백이 존재합니다.\n다시입력해주십시오.')
 		return
 	}
 	if(textChk.innerText=='등록된 카테고리가 없습니다.')
@@ -52,15 +46,14 @@ function mainCate(selectBtn)
 }
 function subCate(selectBtn)
 {
-	const inputSubCate=selectBtn.closest('form').querySelector('.inputCateName');
+	const inputSubCate=selectBtn.closest('.form').querySelector('.inputCateName');
 	const subCateName=inputSubCate.value;
-	const subSelectBox=selectBtn.closest('form').querySelector('#subCateSelect');
+	const subSelectBox=selectBtn.closest('.form').querySelector('#subCateSelect');
 	const mainCateCode=subSelectBox.value;
 	const subCountList=document.querySelectorAll('.subCountList');
 	let subCount=parseInt(subCountList[subCountList.length-1].innerText);
 	const subCateList=document.querySelector('#subCateList');
 	const textChk=subCateList.querySelector('.noneText');
-	const reg=/\s/g;
 	
 	const selectMainName=subSelectBox.options[subSelectBox.selectedIndex].text;
 	if(mainCateCode=='not')
@@ -71,11 +64,6 @@ function subCate(selectBtn)
 	if(subCateName=='')
 	{
 		alert('입력이 잘못되었습니다.\n다시입력해주십시오.')
-		return
-	}
-	if(subCateName.match(reg))
-	{
-		alert('입력란에 공백이 존재합니다.\n다시입력해주십시오.')
 		return
 	}
 	if(textChk.innerText=='등록된 카테고리가 없습니다.')
@@ -112,15 +100,14 @@ function subCate(selectBtn)
 }
 function detailCate(selectBtn)
 {
-	const inputDetailCate=selectBtn.closest('form').querySelector('.inputCateName');
+	const inputDetailCate=selectBtn.closest('.form').querySelector('.inputCateName');
 	const detailCateName=inputDetailCate.value;
 	const detailCateList=document.querySelector('#detailCateList');
 	const subCateCode=document.querySelector('#detailCateSelect').value;
 	const textChk=detailCateList.querySelector('.noneText');
 	const detailCountList=document.querySelectorAll('.detailCountList');
 	let detailCount=parseInt(detailCountList[detailCountList.length-1].innerText);
-	const detailSelectBox=selectBtn.closest('form').querySelector('#detailCateSelect');
-	const reg=/\s/g;
+	const detailSelectBox=selectBtn.closest('.form').querySelector('#detailCateSelect');
 	
 	const selectSubName=detailSelectBox.options[detailSelectBox.selectedIndex].text;
 	if(subCateCode=='not')
@@ -131,12 +118,6 @@ function detailCate(selectBtn)
 	if(detailCateName=='')
 	{
 		alert('입력이 잘못되었습니다.\n다시입력해주십시오.')
-		inputDetailCate.value='';
-		return
-	}
-	if(detailCateName.match(reg))
-	{
-		alert('입력이 공백이 존재합니다.\n다시입력해주십시오.')
 		inputDetailCate.value='';
 		return
 	}
@@ -344,7 +325,7 @@ function mainDelete()
 	});
 	setTimeout(function(){
 		location.href='/admin/regCateForm';
-	},10);
+	},20);
 	}
 }
 
@@ -377,7 +358,7 @@ function subDelete()
 	});
 	setTimeout(function(){
 		location.href='/admin/regCateForm';
-	},10);
+	},20);
 	}
 }
 
@@ -411,7 +392,7 @@ function detailDelete()
 		
 		setTimeout(function(){
 			location.href='/admin/regCateForm';
-		},10);
+		},20);
 	}
 	
 }

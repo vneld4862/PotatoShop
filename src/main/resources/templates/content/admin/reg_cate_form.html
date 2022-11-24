@@ -7,11 +7,9 @@
 	<div class="row justify-content mt-5" style="height: 400px;">
 		<div class="col-4 border-end" style="height: 500px;overflow-y: scroll">
 			<h4>MAIN CATEGORY MANAGE</h4>
-			<div>
-				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
-					<input type="text" class="form-control inputCateName" name="cateName">
-					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="mainCate(this);" data-cate="main">등록</button>
-				</form>
+			<div class="input-group mb-3 form">
+				<input type="text" class="form-control inputCateName" name="cateName">
+				<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="mainCate(this);" data-cate="main">등록</button>
 			</div>
 			<table class="table table-striped">
 				<thead>
@@ -45,17 +43,15 @@
 		</div>
 		<div class="col-4 border-end" style="height: 500px;overflow-y: scroll">
 			<h4>SUB CATEGORY MANAGE</h4>
-			<div>
-				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
-					<select id="subCateSelect" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
-						<option value="not" selected>선택</option>
-						<th:block th:each="mainCate:${mainCateList}">
-							<option class="mainCateCodeList" th:value="${mainCate.mainCateCode}">[[${mainCate.mainCateName}]]</option>
-						</th:block>
-					</select>
-					<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
-					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="subCate(this);" data-cate="sub">등록</button>
-				</form>
+			<div class="input-group mb-3 form">
+				<select id="subCateSelect" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
+					<option value="not" selected>선택</option>
+					<th:block th:each="mainCate:${mainCateList}">
+						<option class="mainCateCodeList" th:value="${mainCate.mainCateCode}">[[${mainCate.mainCateName}]]</option>
+					</th:block>
+				</select>
+				<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
+				<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="subCate(this);" data-cate="sub">등록</button>
 			</div>
 			<table class="table table-striped">
 				<thead>
@@ -88,14 +84,12 @@
 		</div>
 		<div class="col-4" style="height: 500px;overflow-y: scroll">
 			<h4>DETAIL CATEGORY MANAGE</h4>
-			<div>
-				<form th:action="@{/admin/cateInsert}" method="post" class="input-group mb-3">
-					<select id="detailCateSelect" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
-						<option selected value="not">선택</option>
-					</select>
-					<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
-					<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="detailCate(this);" data-cate="">등록</button>
-				</form>
+			<div class="input-group mb-3 form">
+				<select id="detailCateSelect" class="form-select border" aria-expanded="false" style="padding-top: 10px;flex: .3;">
+					<option selected value="not">선택</option>
+				</select>
+				<input type="text" class="form-control inputCateName" aria-describedby="button-addon2" name="cateName">
+				<button class="btn btn-secondary" type="button"	id="button-addon2" th:onclick="detailCate(this);" data-cate="">등록</button>
 			</div>
 			<table class="table table-striped">
 				<thead>
