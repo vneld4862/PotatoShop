@@ -98,6 +98,11 @@ public class MemberContorller {
 		
 		return "content/member/search_id";
 	}
+	//아이디 찾기 결과 페이지
+	@PostMapping("/searchIdResult")
+	public String searchIdResult() {
+		return "content/member/search_id_result";
+		}
 	
 	//비밀번호 찾기 페이지 이동
 	@GetMapping("/serachPw")
@@ -105,6 +110,18 @@ public class MemberContorller {
 		return "content/member/search_pw";
 	}
 	
+	//비밀번호 찾기 실행
+	@PostMapping("/doSearchPw")
+	public String doSearchPw(MemberVO memberVO, Model model){
+		
+		return "redirect:/member/login";
+	}
+	//비밀번호 찾기 결과
+	@PostMapping("/searchPwResult")
+	public String searchPwResult(MemberVO memberVO, Model model){
+		
+		return "redirect:/member/login";
+	}
 	
 	//회원 탈퇴
 	//탈퇴 후 로그아웃까지 되게 해야 함
