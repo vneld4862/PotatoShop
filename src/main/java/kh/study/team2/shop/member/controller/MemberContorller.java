@@ -9,6 +9,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 //import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
@@ -87,23 +88,50 @@ public class MemberContorller {
 	//아이디 찾기 실행
 	@PostMapping("/doSearchId")
 	public String doSearchId(MemberVO memberVO, Model model){
-		MemberVO member = memberService.searchId(memberVO);
 		
-		if(member == null) {
-			model.addAttribute("check", 1);
-		}else {
-			model.addAttribute("check", 0);
-			model.addAttribute("id", member.getMemberId());
+		return "redirect:/member/login";
+	}
+	//아이디 찾기 결과 페이지
+	@PostMapping("/searchIdResult")
+	public String searchIdResult(@RequestParam(required = true, value = "myName") String myName,
+								@RequestParam(required = true, value = "myTell") String myTell,
+								MemberVO memberVO, Model model){
+		
+		try {
+			memberVO.setMemberName(myName);
+		    memberVO.setMemberTell(myTell);
+		    MemberVO memberSearch = memberService.searchId(memberVO);
+		    
+		    model.addAttribute("memberVO", memberSearch);
+		 
+		} catch (Exception e) {
+		    System.out.println(e.toString());
+		    model.addAttribute("msg", "오류가 발생되었습니다.");
 		}
-		
-		return "content/member/search_id";
+		 
+		return "content/member/search_id_result";
 	}
 	
 	//비밀번호 찾기 페이지 이동
-	@GetMapping("/serachPw")
-	public String serachPw(){
+	@GetMapping("/searchPw")
+	public String searchPw(){
 		return "content/member/search_pw";
 	}
+	
+	//비밀번호 찾기 실행
+	@PostMapping("/doSearchPw")
+	public String doSearchPw(MemberVO memberVO, Model model){
+		
+		return "redirect:/member/login";
+	}
+	//비밀번호 찾기 결과
+	@PostMapping("/searchPwResult")
+	public String searchPwResult(MemberVO memberVO, Model model){
+		
+		return "redirect:/member/login";
+	}
+	
+	
 	
 	
 	//회원 탈퇴
