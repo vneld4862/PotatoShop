@@ -15,4 +15,7 @@ public interface AdminService {
 	//회원 상태별 조회
 	List<MemberVO> getMemberList(String memberStatus);
 	
+	//회원 상태 변경
+	void updateMemberStatus(MemberVO memberVO);
+	
 }

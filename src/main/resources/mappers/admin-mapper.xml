@@ -58,6 +58,12 @@
 		ORDER BY REG_DATE
 	</select>	
 	
+	<update id="updateMemberStatus">
+		UPDATE SHOP_MEMBER
+		SET MEMBER_STATUS = #{memberStatus}
+		WHERE MEMBER_ID = #{memberId}
+	</update>
+	
 	
 </mapper>
 
