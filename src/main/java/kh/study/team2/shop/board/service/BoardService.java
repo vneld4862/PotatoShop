@@ -13,14 +13,14 @@ public interface BoardService {
 	//리뷰 작성 여부 업데이트
 	void updateReview(BoardVO boardVO);
 	
-	//내 상점에 작성된 리뷰 조회(매개변수 수정 필요)
-	List<BoardVO> selectBoardList(String memberId);
-
 	//리뷰 상세 조회
 	BoardVO selectBoardDetail(String itemCode);
 	
+	//내 상점에 작성된 리뷰 조회
+	List<BoardVO> selectBoardList(String seller);
+	
 	//내가 작성한 리뷰 조회
-	List<BoardVO> selectWrittenReviewList(String memberId);
+	List<BoardVO> selectWrittenReviewList(String buyer);
 	
 	//리뷰 삭제
 	void deleteReview(String itemCode);

@@ -77,10 +77,10 @@
 		)
 	</insert>
 	
-	<!-- 리뷰 작성 목록 조회 -->
+	<!-- 상점 리뷰 목록 조회 -->
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM
-			, ITEM_CODE
+			, R.ITEM_CODE
 			, (SELECT ITEM_NAME
 				FROM SHOP_ITEM
 				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
@@ -89,10 +89,32 @@
 			, MEMBER_ID
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
-		FROM REVIEW_BOARD R
-		WHERE MEMBER_ID = #{memberId}
+		FROM REVIEW_BOARD R, SHOP_BUY B
+		WHERE SELLER = #{seller}
+		AND R.ITEM_CODE = B.ITEM_CODE
 		ORDER BY BOARD_NUM DESC
 	</select>
+	
+	<!-- 내가 작성한 리뷰 보기 --> <!-- 남이 판매한 상품에 내가 작성한 리뷰 -->
+	<select id="selectWrittenReviewList" resultMap="board">
+		SELECT BOARD_NUM
+			, R.ITEM_CODE
+			, (SELECT ITEM_NAME
+				FROM SHOP_ITEM
+				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
+			, BOARD_TITLE
+			, BOARD_CONTENT
+			, MEMBER_ID
+			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
+			, STAR_POINT
+		FROM REVIEW_BOARD R, SHOP_BUY B
+		WHERE BUYER = #{buyer}
+		AND R.ITEM_CODE = B.ITEM_CODE
+		ORDER BY BOARD_NUM DESC		
+	</select>
+	
+	
+	
 	
 	<!-- 리뷰 상세 보기 --> 
  	<select id="selectBoardDetail" resultMap="board">
@@ -118,23 +140,7 @@
 		AND R.ITEM_CODE = M.ITEM_CODE
 	</select>
 	
-	
-	<!-- 내가 작성한 리뷰 보기 --> <!-- 남이 판매한 상품에 내가 작성한 리뷰 -->
-	<select id="selectWrittenReviewList" resultMap="board">
-		SELECT BOARD_NUM
-			, ITEM_CODE
-			, (SELECT ITEM_NAME
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = R.ITEM_CODE) AS ITEM_NAME
-			, BOARD_TITLE
-			, BOARD_CONTENT
-			, MEMBER_ID
-			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
-			, STAR_POINT
-		FROM REVIEW_BOARD R
-		WHERE MEMBER_ID = #{memberId}
-		ORDER BY BOARD_NUM DESC		
-	</select>
+
 	
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview">

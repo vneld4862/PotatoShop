@@ -8,6 +8,8 @@
       <link rel="stylesheet" th:href="@{}">
 </th:block> -->	
 
+<!-- 아이템 상세보기에서 판매자 상점 클릭하면 들어오는 페이지 -->
+
 <div layout:fragment="content">
 
 	<style>
@@ -45,19 +47,14 @@
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
 		<div>
 			<hr>
-			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
-					<h4>[[${memberInfo.memberNickName}]]님의 상점</h4>
+					<h4>[[${.memberNickName}]]님의 상점</h4>
 			</div>
 			<div class="col mt-3">
 				<div class="row">
 					<div class="col">
 						<div class="col"><br><br>프로필 사진<br><br></div>
 						<div class="col mb-3">[[${memberInfo.memberNickName}]]</div>
-						<div class="col">
-							<button class="btn btn-success" style="width: 30%">프로필 수정</button>
-							<button class="btn btn-success" style="width: 30%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
-						</div>
 					</div>
 					<div class="col text-start">
 						<div class="row">
@@ -65,9 +62,6 @@
 							<div class="col-6">[상점오픈일]</div>
 							<div class="col-6">[상점방문수]</div>
 							<div class="col-6">[판매횟수]</div>
-							<div class="col-12 text-end">
-								<div th:onclick="deleteMember([[${#authentication.name}]]);">탈퇴하기</div>
-							</div>
 						</div>
 					</div>
 				</div>
@@ -93,14 +87,6 @@
 							상점 리뷰
 						</button>
 					</li>
-					
-					<!-- 본인만 보이는 탭 -->
-					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="writtenReview-tab" data-bs-toggle="tab" data-bs-target="#writtenReview-tab-pane" type="button" role="tab" aria-controls="writtenReview-tab-pane" aria-selected="false">
-							다른 상점에 작성한 리뷰
-						</button>
-					</li>
-					
 
 				</ul>
 				<div class="tab-content mt-3" id="myTabContent">
@@ -196,56 +182,6 @@
 							</div>
 						</div>
 					</div>
-										
-					<div class="tab-pane fade" id="writtenReview-tab-pane" role="tabpanel" aria-labelledby="writtenReview-tab" tabindex="0">
-						<div class="col mt-3">
-							<div>
-								<table class="table">
-									<colgroup>
-										<col width="10%">
-										<col width="15%">
-										<col width="10%">
-										<col width="*">
-										<col width="15%">
-										<col width="15%">
-									</colgroup>
-									<thead>
-										<tr>
-											<td>No</td>
-											<td>상품명</td>
-											<td>별점</td>
-											<td>제목</td>
-											<td>작성자</td>
-											<td>등록일</td>
-										</tr>
-									</thead>
-									<tbody>
-										<th:block th:if="${#lists.size(writtenReviewList) == 0}">
-											<tr>
-												<td colspan="6">작성한 후기가 없습니다.</td>
-											</tr>
-										</th:block>
-										<th:block th:unless="${#lists.size(writtenReviewList) == 0}">
-											<tr th:each="review : ${writtenReviewList}">
-												<td th:text="${reviewStat.count}"></td>
-												<td th:text="${review.itemVO.itemName}" id="itemName"></td>
-												<td>
-													<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-														<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-													</svg>
-													[[${review.starPoint}]]
-													<input type="hidden" th:value="${review.itemCode}" id="hiddenItemCode">
-												</td>
-												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]]);"></td>
-												<td th:text="${review.memberId}"></td>
-												<td th:text="${review.regDate}"></td>
-											</tr>
-										</th:block>
-									</tbody>
-								</table>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</div>
@@ -297,17 +233,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	<!-- 리뷰 수정 버튼 클릭시 실행되는 Modal -->

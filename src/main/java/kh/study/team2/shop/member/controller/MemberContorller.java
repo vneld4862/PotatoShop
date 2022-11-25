@@ -107,6 +107,7 @@ public class MemberContorller {
 	
 	
 	//회원 탈퇴
+	//탈퇴 후 로그아웃까지 되게 해야 함
 	@ResponseBody
 	@PostMapping("/deleteMember")
 	public void deleteMember(String memberId) {

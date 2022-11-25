@@ -32,22 +32,26 @@ public class BoardServiceImpl implements BoardService{
 	public void updateReview(BoardVO boardVO) {
 		sqlSession.update("boardMapper.updateReview", boardVO);
 	}
-
-	@Override
-	public List<BoardVO> selectBoardList(String memberId) {
-		return sqlSession.selectList("boardMapper.selectBoardList", memberId);
-	}
-
+	
+	//리뷰 상세 조회
 	@Override
 	public BoardVO selectBoardDetail(String itemCode) {
 		return sqlSession.selectOne("boardMapper.selectBoardDetail", itemCode);
 	}
-
+	
+	//내 상점에 작성된 리뷰 조회
 	@Override
-	public List<BoardVO> selectWrittenReviewList(String memberId) {
-		return sqlSession.selectList("boardMapper.selectWrittenReviewList", memberId);
+	public List<BoardVO> selectBoardList(String seller) {
+		return sqlSession.selectList("boardMapper.selectBoardList", seller);
 	}
-
+	
+	//내가 작성한 리뷰 조회
+	@Override
+	public List<BoardVO> selectWrittenReviewList(String buyer) {
+		return sqlSession.selectList("boardMapper.selectWrittenReviewList", buyer);
+	}
+	
+	//리뷰 삭제
 	@Override
 	@Transactional(rollbackFor = Exception.class)
 	public void deleteReview(String itemCode) {
@@ -56,17 +60,20 @@ public class BoardServiceImpl implements BoardService{
 		//상품 리뷰 삭제
 		sqlSession.delete("boardMapper.deleteReview", itemCode);
 	}
-
+	
+	//리뷰 댓글 작성
 	@Override
 	public void insertReviewReply(ReplyVO replyVO) {
 		sqlSession.insert("boardMapper.insertReviewReply", replyVO);
 	}
-
+	
+	//리뷰 댓글 조회
 	@Override
 	public List<ReplyVO> selectReviewReply(int boardNum) {
 		return sqlSession.selectList("boardMapper.selectReviewReply", boardNum);
 	}
-
+	
+	//리뷰 댓글 삭제
 	@Override
 	public void deleteReply(int replyNum) {
 		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
