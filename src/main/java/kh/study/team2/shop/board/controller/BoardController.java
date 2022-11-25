@@ -51,11 +51,8 @@ public class BoardController {
 		boardService.updateReview(boardVO);
 		
 		return "content/board/reg_review_result";
-//		return "redirect:/manage/buyList";
 	}
-	
-	
-	
+		
 	//리뷰 상세 보기
 	@ResponseBody
 	@PostMapping("/reviewDetail")
@@ -71,7 +68,6 @@ public class BoardController {
 		
 		boardService.deleteReview(itemCode);
 	}
-	
 	
 	//리뷰 댓글 작성
 	@ResponseBody
@@ -105,7 +101,6 @@ public class BoardController {
 		
 		boardService.deleteReply(replyNum);
 	}	
-	
 	
 	//현재 날짜 및 시간 데이터 리턴
 	public String getNowDateTime() {

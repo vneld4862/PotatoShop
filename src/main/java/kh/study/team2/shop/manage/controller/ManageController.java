@@ -71,11 +71,11 @@ public class ManageController {
 		//회원 정보 조회
 		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 				
-		//내 상점 후기 목록 조회
-		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
-		
 		List<ItemVO> itemList = itemService.selectItemList(itemVO);
 		model.addAttribute("itemList", itemList);
+		
+		//내 상점 후기 목록 조회
+		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
 		
 		//내가 다른 상점에 남긴 후기 목록 조회
 		model.addAttribute("writtenReviewList", boardService.selectWrittenReviewList(user.getUsername()));
@@ -173,6 +173,18 @@ public class ManageController {
 		
 		return "content/manage/update_item";
 	}
+	
+	//이미지 삭제
+		@ResponseBody
+		@PostMapping("/deleteImg")
+		public ItemVO deleteImg(String imgCode, String itemCode) {
+			manageService.deleteImg(imgCode);
+		    ItemVO itemInfo = itemService.selectItemDetail(itemCode);
+		    
+		    return itemInfo;
+		}
+		
+	
 	
 	//상품 수정
 	@PostMapping("/updateItem")

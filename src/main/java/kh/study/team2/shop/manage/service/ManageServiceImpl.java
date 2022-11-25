@@ -41,6 +41,11 @@ public class ManageServiceImpl implements ManageService{
 		return sqlSession.selectList("buyMapper.selectSalesList", memberId);
 	}
 
+	@Override
+	public void deleteImg(String imgCode) {
+		sqlSession.delete("itemMapper.deleteImg", imgCode);
+	}
+
 
 
 	

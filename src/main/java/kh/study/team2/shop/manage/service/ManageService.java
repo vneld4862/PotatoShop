@@ -20,5 +20,7 @@ public interface ManageService {
 	void updateProfileImg(ProfileVO profileVO);
 	void salesStatus(ItemVO itemVO);
 	
+	//이미지 삭제
+	void deleteImg(String imgCode);
 	
 }

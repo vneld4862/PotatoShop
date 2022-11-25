@@ -71,7 +71,12 @@ public class AdminController {
 		return list; //Ajax의 result로 전달
 	}
 	
-	
+	//회원 상태 변경 라디오 버튼 클릭 시 실행
+	@ResponseBody
+	@PostMapping("/changeStatusAjax")
+	public void changeStatus(MemberVO memberVO) {
+		adminService.updateMemberStatus(memberVO);
+	}
 	
 	
 	

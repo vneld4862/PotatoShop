@@ -73,14 +73,29 @@ function changeStatus(){
 			//추가할 태그 생성
 			let str = '';
 			str += '<tbody>';
-			for(const member of result) {
+			for(const member, status of result) {
 				str += '<tr>';
 				str += '	<td></td>';
 				str += '	<td>';
 				str += `<span onclick="getMemberDetail('${member.memberId}')">${member.memberNickName}(${member.memberId})</td>`;
 				str += '	<td>등급</td>';
 				str += `	<td>${member.regDate}</td>`;
-				str += `	<td>${member.memberStatus}</td>`;
+				str += '	<td>';
+				str += '		<div class="form-check form-check-inline">';
+				str += '			<input class="form-check-input" type="radio"';
+				str += `				name="test_${status.count}" id="" value=""`;
+				str += `				checked="${member.memberStatus == 'ACTIVE'}"`;
+				str += `				onclick="changeMemberStatus('${member.memberId}', 'ACTIVE');">`;
+				str += '			<label class="form-check-label" for="">활동 중</label>';
+				str += '		</div>';
+				str += '		<div class="form-check form-check-inline">';
+				str += '			<input class="form-check-input" type="radio"';
+				str += `				name="test_${status.count}" id="" value=""`;
+				str += `				checked="${member.memberStatus == 'DELETED'}"`;
+				str += `				onclick="changeMemberStatus('${member.memberId}', 'DELETED');">`;
+				str += '			<label class="form-check-label" for="">탈퇴</label>';
+				str += '		</div>';
+				str += '	</td>';
 				str += '</tr>';
 			
 			}
@@ -98,4 +113,25 @@ function changeStatus(){
 
 }
 
+//회원 상태 변경
+function changeMemberStatus(memberId, memberStatus){
+	const result = confirm('회원 상태를 변경하시겠습니까?');
+	
+	if(result){
+		//ajax start
+		$.ajax({
+			url: '/admin/changeStatusAjax', //요청경로
+			type: 'post',
+			data: {'memberId':memberId, 'memberStatus':memberStatus}, //필요한 데이터
+			success: function(result) {
+				alert('회원 상태 변경이 완료되었습니다.');
+				changeStatus();
+			},
+			error: function() {
+				alert('실패');
+			}
+		});
+		//ajax end
+	}
+}
 

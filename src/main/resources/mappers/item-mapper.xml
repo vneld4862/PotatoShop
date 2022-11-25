@@ -141,7 +141,9 @@
 			, TRADE_TYPE
 			, TRADE_ADDR
 			, ATTACHED_NAME
+			, IMG_CODE
 			, IS_MAIN
+			, SALES_STATUS
 		FROM SHOP_ITEM S, ITEM_IMG I
 		WHERE I.ITEM_CODE = #{itemCode}
 		AND S.ITEM_CODE = I.ITEM_CODE
@@ -191,6 +193,13 @@
 			#{itemCode}
 		</foreach>
 	</delete>
+	
+	<!--이미지 삭제-->
+	<delete id="deleteImg">
+		DELETE ITEM_IMG
+		WHERE IMG_CODE = #{imgCode}
+	</delete>
+	
 	
 	<!--판매상태 변경-->
 	<update id="salesStatus">
