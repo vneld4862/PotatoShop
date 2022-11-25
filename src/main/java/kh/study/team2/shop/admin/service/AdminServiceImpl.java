@@ -27,5 +27,10 @@ public class AdminServiceImpl implements AdminService{
 	public List<MemberVO> getMemberList(String memberStatus) {
 		return sqlSession.selectList("adminMapper.getMemberList", memberStatus);
 	}
+
+	@Override
+	public void updateMemberStatus(MemberVO memberVO) {
+		sqlSession.update("adminMapper.updateMemberStatus", memberVO);
+	}
 	
 }
