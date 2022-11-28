@@ -137,6 +137,7 @@ public class ItemController {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
+		itemVO.setMemberId(memberId);
 	    List<ItemVO> itemList = itemService.memberItemList(itemVO);
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);

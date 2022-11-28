@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+	  layout:decorate="~{layout/base_layout}">
+
+<div layout:fragment="content"> 
+<br>
+<div class="col-12 mb-3"><h2>F&Q</h2>자주묻는질문</div>
+ 
+<form action="/qna/list" method="post" class="mb-4">
+	<input type="text" name="searchValue" placeholder="무엇을 도와드릴까요?" value="" style="font-size: 20px;">
+	<input type="submit" class="btn btn-dark" value="F&Q 검색"><br>
+</form>
+ <br>
+ <div class="accordion accordion-flush" id="accordionFlushExample">
+  <div class="accordion-item">
+    <h6 class="accordion-header" id="flush-headingOne">
+       <table class="table text-center border">
+			<colgroup>
+		       <col width="15%">
+		       <col width="*">
+			</colgroup>
+	 		<tr>
+	 			<th>구분</th>
+	 			<th>제목</th>
+	 		</tr>
+      	</table>
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      </button>
+    </h6>
+    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingTwo">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+        Accordion Item #2
+      </button>
+    </h2>
+    <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+    </div>
+  </div>
+  <div class="accordion-item">
+    <h2 class="accordion-header" id="flush-headingThree">
+      <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+        Accordion Item #3
+      </button>
+    </h2>
+    <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
+      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+    </div>
+  </div>
+</div>
+
+ 
+ 
+ 	
+<!--  	<div class="text-center mb-4" style="margin-left: -4rem;">
+		<th:block th:if="${noticeVO.prev}">
+			<a th:text="prev" th:href="@{/notice/list(nowPage=${noticeVO.beginPage-1})}"></a>
+		</th:block>
+		<th:block th:each="pageNum : ${#numbers.sequence(noticeVO.beginPage, noticeVO.endPage)}">
+			<a th:text="${pageNum}" th:href="@{/notice/list(nowPage=${pageNum})}" style="margin-right: 0.8rem; margin-left: 0.5rem;"></a>
+		</th:block>
+		<th:block th:if="${noticeVO.next}">
+			<a th:text="next" th:href="@{/notice/list(nowPage=${noticeVO.endPage+1})}"></a>
+		</th:block>
+	</div> -->
+ 	
+ 	<div class="col-12 text-center">
+ 		<input sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
+ 	</div> 
+</div>
+
+</html>
