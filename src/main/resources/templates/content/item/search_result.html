@@ -11,29 +11,55 @@
 <div layout:fragment="content" class="mb-5">
 	<div class="col" style="position: static;">
 		<div class="row">
-			<div class="col">
-				<div class="row">
-					<h4>상품이름 검색 결과입니다.</h4>
-					<div th:each="name:${searchItemList}" class="mb-2">
-						상품명: <a th:text="${name.itemName}" href='#'></a>
-					</div>
-					<div th:if="${#lists.isEmpty(searchItemList)}">
-						검색결과가 없습니다.
+			<div class="col" style="min-height: 550px;">
+				<div class="row" style="min-height: 50%;">
+					<div class="col">
+						<h4>상품이름 검색 결과입니다.</h4>
+						<div th:each="name:${searchItemList}" class="row mb-2">
+							<div class="col-1">
+								<img th:onclick="|location.href='@{/item/itemDetail(itemCode=${name.itemCode})}'|" th:src="|@{/images/}${name.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="..." style="min-width: 90px;height: 100%">
+							</div>
+							<div class="col-11">
+								<div class="row">
+									<div style="margin-bottom: 1rem;">
+										<a th:text="${name.itemName}" th:href="@{/item/itemDetail(itemCode=${name.itemCode})}"></a>
+									</div>
+									<div style="margin-bottom: 1rem;">[[${#numbers.formatCurrency(name.itemPrice)}]]</div>
+									<div>판매자 [[${name.memberId}]]</div>
+								</div>
+							</div>
+						</div>
+						<div th:if="${#lists.isEmpty(searchItemList)}">
+							검색결과가 없습니다.
+						</div>
 					</div>
 				</div>
-				<div class="row border-top">
-					<h4 class="mt-3">카테고리 검색 결과</h4>
-					<div th:each="cate:${searchCateList}">
-						<a th:text="${cate.itemName}" href='#'></a>
-					</div>
-					<div th:if="${#lists.isEmpty(searchCateList)}">
-						검색결과가 없습니다.
+				<div class="row border-top" style="min-height: 50%;">
+					<div class="col">
+						<h4 class="mt-3">카테고리 검색 결과</h4>
+						<div th:each="cate:${searchCateList}" class="row" style="margin-bottom: 25px;">
+							<div class="col-1">
+								<img th:onclick="|location.href='@{/item/itemDetail(itemCode=${cate.itemCode})}'|" th:src="|@{/images/}${cate.imgList[0].attachedName}|" class="card-img-top image-thumbnail" alt="..."  style="min-width: 90px;height: 100%">
+							</div>
+							<div class="col-11">
+								<div class="row">
+									<div style="margin-bottom: 1rem;">
+										<a th:text="${cate.itemName}" th:href="@{/item/itemDetail(itemCode=${cate.itemCode})}"></a>
+									</div>
+									<div style="margin-bottom: 1rem;">[[${#numbers.formatCurrency(cate.itemPrice)}]]</div>
+									<div>판매자 [[${cate.memberId}]]</div>
+								</div>
+							</div>
+						</div>
+						<div th:if="${#lists.isEmpty(searchCateList)}">
+							검색결과가 없습니다.
+						</div>
 					</div>
 				</div>
 			</div>
 			
 			
-			<div class="row text-center" th:unless="${#lists.isEmpty(searchCateList) and #lists.isEmpty(searchNameList)}" style="margin-top: 400px;">
+			<div class="row text-center" th:unless="${#lists.isEmpty(searchCateList) and #lists.isEmpty(searchNameList)}">
 				<div>
 					<th:block th:if="${itemVO.prev}">
 				   		<a th:href="@{/item/searchResult(nowPage=${itemVO.beginPage}-1,searchKeyword=${searchKeyword})}">&lt;</a>

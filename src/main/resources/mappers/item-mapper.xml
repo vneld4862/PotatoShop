@@ -271,59 +271,79 @@
 		SELECT ROW_NUM
 		    ,ITEM_CODE
 		    ,ITEM_NAME
+		    ,ITEM_PRICE
+		    ,MEMBER_ID
 		    ,ATTACHED_NAME
+		    ,IS_MAIN
 		FROM (
 		SELECT  ROWNUM ROW_NUM
 		    ,ITEM_CODE
 			,ITEM_NAME
+			,ITEM_PRICE
+			,MEMBER_ID
 			,ATTACHED_NAME
+			,IS_MAIN
 		FROM
 		(
 		    SELECT ITEM.ITEM_CODE
 		        ,ITEM_NAME
+		        ,MEMBER_ID
 		        ,ITEM_PRICE
 		        ,ATTACHED_NAME
+		        ,IS_MAIN
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 	        WHERE ITEM_NAME LIKE '%'||#{searchKeyword}||'%' 
 	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
-	        AND IS_MAIN='Y'
+	        AND SALES_STATUS='ON_SALE'
 		    ORDER BY ITEM_CODE DESC
 		))
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		AND IS_MAIN='Y'
 	</select>
 	
 	<select id="searchCateName" resultMap="item">
 		SELECT ROW_NUM
 		    ,ITEM_CODE
 		    ,ITEM_NAME
+		    ,ITEM_PRICE
+		    ,MEMBER_ID
 		    ,MAIN_CATE_CODE
 		    ,SUB_CATE_CODE
 		    ,DETAIL_CATE_CODE
 		    ,ATTACHED_NAME
+		    ,IS_MAIN
 		FROM (
 		SELECT  ROWNUM ROW_NUM
 		    ,ITEM_CODE
 			,ITEM_NAME
+			,ITEM_PRICE
+			,MEMBER_ID
 			,MAIN_CATE_CODE
 			,SUB_CATE_CODE
 			,DETAIL_CATE_CODE
 			,ATTACHED_NAME
+			,IS_MAIN
 		FROM
 		(
 		    SELECT ITEM.ITEM_CODE
 		        ,ITEM_NAME
+		        ,ITEM_PRICE
+		        ,MEMBER_ID
 				,MAIN_CATE_CODE
 				,SUB_CATE_CODE
 				,DETAIL_CATE_CODE
 				,ATTACHED_NAME
+				,IS_MAIN
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 			WHERE (SELECT MAIN_CATE_NAME FROM MAIN_CATE WHERE MAIN_CATE_CODE=ITEM.MAIN_CATE_CODE) LIKE '%'||#{searchKeyword}||'%'
 			OR (SELECT SUB_CATE_NAME FROM SUB_CATE WHERE SUB_CATE_CODE=ITEM.SUB_CATE_CODE) LIKE '%'||#{searchKeyword}||'%'
 			OR (SELECT DETAIL_CATE_NAME FROM DETAIL_CATE WHERE DETAIL_CATE_CODE=ITEM.DETAIL_CATE_CODE) LIKE '%'||#{searchKeyword}||'%'
-			AND IS_MAIN='Y'
+			AND ITEM.ITEM_CODE=IMG.ITEM_CODE
+			AND SALES_STATUS='ON_SALE'
 		    ORDER BY ITEM_CODE DESC
 		))
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
+		AND IS_MAIN='Y'
 	</select>
 	
 	<select id="searchNameCnt" resultType="int">
