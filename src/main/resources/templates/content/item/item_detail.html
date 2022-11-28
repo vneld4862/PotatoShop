@@ -46,7 +46,7 @@
 								</div>
 	      					  </th:block>
 	      					   <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
-	      			  		 		<img th:src="@{/images/1.png}" width="220px;" height="330px;">
+	      			  		 		<img th:src="@{/images/sold_out.jpeg}" width="220px;" height="330px;">
 	      			  		 		<div>
 	      			  		 			<span>
 	      			  		 				판매완료
@@ -109,7 +109,7 @@
 									             </div>
 									             <div>
 									             	<th:block th:if="${memberId eq itemInfo.memberId}">
-									                  <button class="btn btn-warning" style="width:45%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
+									            	      <button class="btn btn-warning" style="width:45%" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
 									             	</th:block>
 									             </div>
 								          </div>
@@ -174,9 +174,14 @@
 				        </div>
 			       </div>
 			        <div>
-			             <button class="btn btn-success">감자톡</button>
-			             <button class="btn btn-success" th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|">바로구매</button>
-			             
+			        	<th:block th:unless="${memberId eq itemInfo.memberId}">
+				             <button class="btn btn-success">감자톡</button>
+				             <button class="btn btn-success" th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|">바로구매</button>
+			            </th:block>
+			            <th:block th:if="${memberId eq itemInfo.memberId}">
+							 <button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
+						</th:block>
+			            
 			        </div>
 		      </div>
 	    </div>
