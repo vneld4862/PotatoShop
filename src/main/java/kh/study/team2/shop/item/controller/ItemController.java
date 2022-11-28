@@ -218,7 +218,7 @@ public class ItemController {
 	@GetMapping("/searchResult")
 	public String searchResult(Model model,ItemVO itemVO)
 	{
-		
+		itemVO.setSearchKeyword(itemVO.getSearchKeyword().replaceAll("\\s", "%"));
 		itemVO.setDisplayCnt(10);
 		int nameCnt=itemService.searchNameCnt(itemVO);
 		int cateCnt=itemService.searchCateCnt(itemVO);

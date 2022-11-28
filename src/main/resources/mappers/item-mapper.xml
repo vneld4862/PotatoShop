@@ -117,7 +117,7 @@
 			<if test="mainCateCode != null and !mainCateCode.equals('')">
 				AND MAIN_CATE_CODE=#{mainCateCode}
 			</if>
-			<if test="subCateCode != null and !subCatecode.equals('')">
+			<if test="subCateCode != null and !subCateCode.equals('')">
 			AND SUB_CATE_CODE=#{subCateCode}
 			</if>
 			<if test="detailCateCode != null and !detailCateCode.equals('')">
@@ -217,7 +217,7 @@
 		<if test="mainCateCode != null and !mainCateCode.equals('')">
 		WHERE MAIN_CATE_CODE=#{mainCateCode}
 		</if>
-		<if test="subCateCode != null and !subCatecode.equals('')">
+		<if test="subCateCode != null and !subCateCode.equals('')">
 		WHERE SUB_CATE_CODE=#{subCateCode}
 		</if>
 		<if test="detailCateCode != null and !detailCateCode.equals('')">

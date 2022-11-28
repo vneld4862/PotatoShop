@@ -9,21 +9,44 @@
 </th:block>
 
 <div layout:fragment="content" class="mb-5">
-	<div class="col">
-		<div class="row"></div>
-		<div class="text-center">
-			<div class="row" style="bottom: 5px;">
-				<th:block th:if="${itemVO.prev}">
-			   		<a th:href="@{/item/searchResult(nowPage=${itemVO.beginPage}-1,searchKeyword=${searchKeyword})}">&lt;</a>
-			   	</th:block>
-			   	
-			   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
-			   		<a th:text="${pageNum}" th:href="@{/item/searchResult(nowPage=${pageNum},searchKeyword=${searchKeyword})}"></a> 	
-			   	</th:block>
-			   	
-			   	<th:block th:if="${itemVO.next}">
-			   		<a th:href="@{/item/searchResult(nowPage=${itemVO.endPage}+1,searchKeyword=${searchKeyword})}">&gt;</a>
-			   	</th:block>
+	<div class="col" style="position: static;">
+		<div class="row">
+			<div class="col">
+				<div class="row">
+					<h4>상품이름 검색 결과입니다.</h4>
+					<div th:each="name:${searchItemList}" class="mb-2">
+						상품명: <a th:text="${name.itemName}" href='#'></a>
+					</div>
+					<div th:if="${#lists.isEmpty(searchItemList)}">
+						검색결과가 없습니다.
+					</div>
+				</div>
+				<div class="row border-top">
+					<h4 class="mt-3">카테고리 검색 결과</h4>
+					<div th:each="cate:${searchCateList}">
+						<a th:text="${cate.itemName}" href='#'></a>
+					</div>
+					<div th:if="${#lists.isEmpty(searchCateList)}">
+						검색결과가 없습니다.
+					</div>
+				</div>
+			</div>
+			
+			
+			<div class="row text-center" th:unless="${#lists.isEmpty(searchCateList) and #lists.isEmpty(searchNameList)}">
+				<div>
+					<th:block th:if="${itemVO.prev}">
+				   		<a th:href="@{/item/searchResult(nowPage=${itemVO.beginPage}-1,searchKeyword=${searchKeyword})}">&lt;</a>
+				   	</th:block>
+				   	
+				   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
+				   		<a th:text="${pageNum}" th:href="@{/item/searchResult(nowPage=${pageNum},searchKeyword=${searchKeyword})}"></a> 	
+				   	</th:block>
+				   	
+				   	<th:block th:if="${itemVO.next}">
+				   		<a th:href="@{/item/searchResult(nowPage=${itemVO.endPage}+1,searchKeyword=${searchKeyword})}">&gt;</a>
+				   	</th:block>
+				</div>
 			</div>
 		</div>
 	</div>

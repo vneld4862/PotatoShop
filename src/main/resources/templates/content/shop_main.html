@@ -62,10 +62,10 @@
 								<a th:href="@{/item/list(mainCode=${mainCate.mainCateCode})}">[[${mainCate.mainCateName}]]</a>
 								<ul class="M02">
 									<li th:each="subCate:${subCateList}" th:if="${subCate.mainCateCode==mainCate.mainCateCode}">
-										<a href="#">[[${subCate.subCateName}]]</a>
+										<a th:href="@{/item/list(subCode=${subCate.subCateCode})}">[[${subCate.subCateName}]]</a>
 										<ul class="M03">
 											<li th:each="detailCate:${detailCateList}" th:if="${detailCate.subCateCode==subCate.subCateCode}">
-												<a href="#">[[${detailCate.detailCateName}]]</a>
+												<a th:href="@{/item/list(detailCode=${detailCate.detailCateCode})}">[[${detailCate.detailCateName}]]</a>
 											</li>
 										</ul>
 									</li>
