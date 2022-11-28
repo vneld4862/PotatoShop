@@ -20,12 +20,19 @@
  			<th>등록일</th>
  			<th>조회수</th>
  		</tr>
- 		<tr th:each= "notice : ${noticeList}">
- 			<td th:text=${notice.noticeNum}></td>
- 			<td><a th:href="@{/notice/noticeDetail(noticeNum=${notice.noticeNum})}"  th:text=${notice.title}></a></td>
- 			<td th:text=${notice.createDate}></td>
- 			<td th:text=${notice.readCnt}></td>
- 		</tr>
+		<th:block th:if="${#lists.size(noticeList) == 0}">
+			<tr>
+				<td colspan="4">작성된 공지사항이 없습니다.</td>
+			</tr>
+		</th:block>
+		<th:block th:unless="${#lists.size(noticeList) == 0}">
+	 		<tr th:each= "notice : ${noticeList}">
+	 			<td th:text=${notice.noticeNum}></td>
+	 			<td><a th:href="@{/notice/noticeDetail(noticeNum=${notice.noticeNum})}"  th:text=${notice.title}></a></td>
+	 			<td th:text=${notice.createDate}></td>
+	 			<td th:text=${notice.readCnt}></td>
+	 		</tr>
+ 		</th:block>
  	</table>
  	
  	<div class="text-center mb-4" style="margin-left: -4rem;">
