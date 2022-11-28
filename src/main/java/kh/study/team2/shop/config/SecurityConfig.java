@@ -22,7 +22,7 @@ public class SecurityConfig {
 							, "/member/login"
 							, "/member/loginResult"
 							, "/member/accessDenied"
-							, "/item/itemDetail"
+//							, "/item/itemDetail"
 							, "/item/searchResult"
 							, "/member/searchId"
 							, "/member/searchPw"

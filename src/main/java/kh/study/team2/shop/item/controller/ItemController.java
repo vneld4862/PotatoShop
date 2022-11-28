@@ -153,7 +153,6 @@ public class ItemController {
 	@GetMapping("/itemDetail")
 	public String itemDetail(String itemCode
 							, ItemVO itemVO
-							, String cookieChk
 							, Model model
 							, Authentication authentication
 							, HttpServletResponse response
@@ -188,9 +187,10 @@ public class ItemController {
 		}
 		Cookie cookie_imgName=new Cookie("imgName",encodeImgName);
 		boolean check=true;
-		if(cookieChk !=null)
+		
+		if(cookieImgName !=null)
 		{
-			String[] chkArr=cookieChk.split(",");
+			String[] chkArr=cookieImgName.split(",");
 			for(String chk:chkArr)
 			{
 				if(chk.equals(imgName))

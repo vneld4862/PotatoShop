@@ -144,8 +144,8 @@
 	
 	<div class="row">인기 상품목록</div>
 	
-	<div class="col-12">
-		<div class="row text-center">
+	<div class="container col-12">
+		<div class="row border text-center" style="padding-top: .75rem;">
 			<div class="col-3" th:each="item : ${itemList}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode},cookieChk=${cookiechk})}'|">
 					<div class="image-box">

@@ -33,7 +33,7 @@
 			</div>
 			
 			
-			<div class="row text-center" th:unless="${#lists.isEmpty(searchCateList) and #lists.isEmpty(searchNameList)}">
+			<div class="row text-center" th:unless="${#lists.isEmpty(searchCateList) and #lists.isEmpty(searchNameList)}" style="margin-top: 400px;">
 				<div>
 					<th:block th:if="${itemVO.prev}">
 				   		<a th:href="@{/item/searchResult(nowPage=${itemVO.beginPage}-1,searchKeyword=${searchKeyword})}">&lt;</a>
