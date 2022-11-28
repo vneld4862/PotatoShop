@@ -139,7 +139,10 @@ public class ManageController {
 	
 	//상품관리 페이지 이동
 	@GetMapping("/itemManage")
-	public String itemManage(Authentication authentication, Model model, @RequestParam(defaultValue = "2") String menu) {
+	public String itemManage(Authentication authentication
+							, Model model
+							, ItemVO itemVO
+							, @RequestParam(defaultValue = "2") String menu) {
 		model.addAttribute("menu", menu);
 		
 		
@@ -156,7 +159,13 @@ public class ManageController {
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
 		
-		List<ItemVO> itemList = itemService.memberItemList(memberId);
+		itemVO.setMemberId(memberId);
+		int totalCnt=itemService.selectItemCnt(itemVO);
+		itemVO.setDisplayCnt(5);
+		itemVO.setTotalDataCnt(totalCnt);
+		itemVO.setPageInfo();
+		
+		List<ItemVO> itemList = itemService.memberItemList(itemVO);
 		model.addAttribute("itemList", itemList);
 		
 		

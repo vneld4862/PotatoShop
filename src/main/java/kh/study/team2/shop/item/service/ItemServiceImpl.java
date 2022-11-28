@@ -37,8 +37,8 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
-	public List<ItemVO> memberItemList(String memberId) {
-		return sqlSession.selectList("itemMapper.memberItemList", memberId);
+	public List<ItemVO> memberItemList(ItemVO itemVO) {
+		return sqlSession.selectList("itemMapper.memberItemList", itemVO);
 	}
 
 	@Override

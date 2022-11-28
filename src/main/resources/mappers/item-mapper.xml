@@ -155,6 +155,48 @@
 	
 	<!-- 회원의 상품 목록 조회 -->
 	<select id="memberItemList" resultMap="item">
+		SELECT ROW_NUM
+		    , ITEM_CODE
+		    , ITEM_NAME
+		    , ITEM_PRICE
+	        , ATTACHED_NAME
+            , (SELECT COUNT(WISH_CODE)
+                FROM WISH_LIST
+                WHERE ITEM_CODE = ITEM_CODE) AS CNT_WISH_LIST
+            , SALES_STATUS 
+		FROM (
+		SELECT  ROWNUM ROW_NUM
+		    , ITEM_CODE
+		    , ITEM_NAME
+		    , ITEM_PRICE
+	        , ATTACHED_NAME
+            , (SELECT COUNT(WISH_CODE)
+                FROM WISH_LIST
+                WHERE ITEM_CODE = ITEM_CODE) AS CNT_WISH_LIST
+            , SALES_STATUS 
+		FROM
+		(
+		    SELECT 
+              I.ITEM_CODE
+              , ITEM_NAME
+              , ITEM_PRICE
+              , ATTACHED_NAME
+              , (SELECT COUNT(WISH_CODE)
+                FROM WISH_LIST
+                WHERE ITEM_CODE = S.ITEM_CODE) AS CNT_WISH_LIST
+              , SALES_STATUS  
+            FROM SHOP_ITEM S, ITEM_IMG I, WISH_LIST W
+            WHERE S.ITEM_CODE = I.ITEM_CODE
+            AND S.ITEM_CODE = W.ITEM_CODE(+)
+            AND S.MEMBER_ID = #{memberId}
+            AND IS_MAIN = 'Y'
+            ORDER BY ITEM_CODE DESC
+		)
+    )
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum} 
+	</select>
+	
+	<!-- <select id="memberItemList" resultMap="item">
 		SELECT 
 		  I.ITEM_CODE
 		  , ITEM_NAME
@@ -171,7 +213,7 @@
 		AND IS_MAIN = 'Y'
 		ORDER BY ITEM_CODE DESC
 	</select>
-	
+	 -->
 	<!--상품수정-->
 	<update id="updateItem">
 		UPDATE SHOP_ITEM

@@ -9,7 +9,7 @@ public interface ItemService {
 	String getNextItemCode();
 	List<ItemVO> selectItemList(ItemVO itemVO);
 	ItemVO selectItemDetail(String itemCode);
-	List<ItemVO> memberItemList(String memberId);
+	List<ItemVO> memberItemList(ItemVO itemVO);
 	void updateItem(ItemVO itemVO);
 	void deleteItem(ItemVO itemVO);
 //	void deleteItem(String itemCode);

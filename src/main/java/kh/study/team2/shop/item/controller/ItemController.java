@@ -132,11 +132,12 @@ public class ItemController {
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")
 	public String memberItemList(Authentication authentication
+								, ItemVO itemVO
 								, Model model) {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
-	    List<ItemVO> itemList = itemService.memberItemList(memberId);
+	    List<ItemVO> itemList = itemService.memberItemList(itemVO);
 		model.addAttribute("itemList", itemList);
 		System.out.println(itemList);
 		
