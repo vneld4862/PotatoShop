@@ -5,6 +5,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -15,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.admin.service.AdminService;
+import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
@@ -35,6 +39,9 @@ public class AdminController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 	
+	@Resource(name="boardService")
+	private BoardService boardService;
+	
 	
 	//모든 메소드가 실행되기 전에 무조건 실행되는 메소드
 	@ModelAttribute
@@ -46,10 +53,16 @@ public class AdminController {
 	//회원관리 페이지 이동
 	@RequestMapping("/memberManage")
 	public String memberManage(Model model
-							, MemberVO memberVO) {
+							, MemberVO memberVO
+							, Authentication authentication) {
 		
 		//회원 목록 조회
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
+		
+		User user = (User)authentication.getPrincipal();
+		
+		//내가 쓴 글 조회
+		model.addAttribute("writtenReviewList", boardService.selectWrittenReviewList(user.getUsername()));
 		
 		return "content/admin/member_manage";
 	}
@@ -60,6 +73,14 @@ public class AdminController {
 	public MemberVO selectMemberDetail(String memberId) {
 		
 		return adminService.selectMemberDetail(memberId);
+	}
+	
+	//다른 상점에 남긴 후기 조회
+	@ResponseBody
+	@PostMapping("/selectWrittenReview")
+	public List<BoardVO> selectWrittenReview(String buyer) {
+
+		return boardService.selectWrittenReviewList(buyer);
 	}
 	
 	//회원 상태별 조회

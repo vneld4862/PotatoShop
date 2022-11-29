@@ -66,6 +66,12 @@ public class BoardServiceImpl implements BoardService{
 		//상품 리뷰 삭제
 		sqlSession.delete("boardMapper.deleteReview", itemCode);
 	}
+
+	//리뷰 작성 후 작성 여부 Y로 변경
+	@Override
+	public void updateReviewBefore(String itemCode) {
+		sqlSession.update("boardMapper.updateReviewBefore", itemCode);
+	}
 	
 	//리뷰 댓글 작성
 	@Override
@@ -84,6 +90,7 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteReply(int replyNum) {
 		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
 	}
+	
 	
 
 

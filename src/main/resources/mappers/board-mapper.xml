@@ -114,9 +114,6 @@
 		ORDER BY BOARD_NUM DESC		
 	</select>
 	
-	
-	
-	
 	<!-- 리뷰 상세 보기 --> 
  	<select id="selectBoardDetail" resultMap="board">
 		SELECT BOARD_NUM
@@ -140,9 +137,7 @@
 		WHERE R.ITEM_CODE = #{itemCode}
 		AND R.ITEM_CODE = I.ITEM_CODE(+)
 	</select>
-	
 
-	
 	<!-- 리뷰 삭제 -->
 	<delete id="deleteReview">
 		DELETE REVIEW_BOARD
@@ -170,8 +165,6 @@
 			, STAR_POINT = #{starPoint}
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
-	
-
 	
 	<!-- 리뷰 댓글 작성 -->
 	<insert id="insertReviewReply">

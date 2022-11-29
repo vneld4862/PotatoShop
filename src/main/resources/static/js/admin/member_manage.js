@@ -9,44 +9,95 @@ function getMemberDetail(memberId){
 			
 			let str = '';
 			str += '<div class="row">                                                      '
-			str += '		<div class="mb-3">                                                '
-			str += '			<회원 상세 정보>                                              '
-			str += '		</div>                                                            '
-			str += '		<table class="table table-striped text-center">                   '
-			str += '			<colgroup>'
-			str += '				<col width="30%">'
-			str += '				<col width="70%">'
-			str += '			</colgroup>	'
-			str += '			<tr>                                                          '
-			str += '				<td>이름</td>                                             '
-			str += '				<td>주소</td>                                             '
-			str += '			</tr>                                                         '
-			str += `			<tr>`
-			str += `				<td>${result.memberName}</td>`
-			str += `				<td>${result.memberAddr} ${result.addrDetail}</td>`
-			str += '			</tr>                                                         '
-			str += '			<tr>                                                          '
-			str += '				<td>연락처</td>                                           '
-			str += '				<td>이메일</td>                                           '
-			str += '			</tr>                                                         '
-			str += `			<tr>                         `
-			str += `				<td>${result.memberTell}</td>                  `
-			str += `				<td>${result.memberEmail}</td>                 `
-			str += '			</tr>                                                         '
-			str += '		</table>                                                          '
+			str += '	<div class="mb-3">                                                '
+			str += '		<회원 상세 정보>                                              '
+			str += '	</div>                                                            '
+			str += '	<table class="table table-striped text-center">                   '
+			str += '		<colgroup>'
+			str += '			<col width="30%">'
+			str += '			<col width="70%">'
+			str += '		</colgroup>	'
+			str += '		<tr>                                                          '
+			str += '			<td>이름</td>                                             '
+			str += '			<td>주소</td>                                             '
+			str += '		</tr>                                                         '
+			str += `		<tr>`
+			str += `			<td>${result.memberName}</td>`
+			str += `			<td>${result.memberAddr} ${result.addrDetail}</td>`
+			str += '		</tr>                                                         '
+			str += '		<tr>                                                          '
+			str += '			<td>연락처</td>                                           '
+			str += '			<td>이메일</td>                                           '
+			str += '		</tr>                                                         '
+			str += `		<tr>                         `
+			str += `			<td>${result.memberTell}</td>                  `
+			str += `			<td>${result.memberEmail}</td>                 `
+			str += '		</tr>                                                         '
+			str += '	</table>                                                          '
 			str += '</div>                                                                 '
-			
 			
 			detailDiv.innerHTML = '';
 			document.querySelector('#detailDiv').insertAdjacentHTML('beforeend', str);
-
-			
-			
 		},
 		error: function() {
 			alert('실패');
 		}
-	}); //ajax end
+	}); //ajax end			
+			
+	//ajax start
+	$.ajax({
+		url: '/admin/selectWrittenReview', //요청경로
+		type: 'post',
+		data: {'buyer':memberId}, //필요한 데이터
+		success: function(result) {
+
+			let str = '';
+			
+			str += '<div class="row">';
+			str += '	<div class="mb-3">';
+			str += '		<다른 상점에 남긴 후기>';
+			str += '	</div>';
+
+			str += '	<div class="col">';
+			str += '		<table class="table text-center">';
+			str += '			<colgroup>';
+			str += '				<col width="10%">';
+			str += '				<col width="*">';
+			str += '				<col width="30%">';
+			str += '			</colgroup>';
+			str += '			<thead>';
+			str += '				<tr>';
+			str += '					<th scope="col">No</th>';
+			str += '					<th scope="col">제목</th>';
+			str += '					<th scope="col">작성일</th>';
+			str += '				</tr>';
+			str += '			</thead>';
+			str += '			<tbody>';
+			
+			for(const review of result) {
+				str += '				<tr>';
+				str += '					<td>1</td>';
+				str += `					<td onclick="reviewDetail('${review.itemCode}');">${review.boardTitle}</td>`;
+				str += `					<td>${review.regDate}</td>`;
+				str += '				</tr>';
+			}
+			
+			str += '			</tbody>';
+			str += '		</table>';
+			str += '	</div>';
+			str += '</div>';
+			
+			reviewDiv.innerHTML = '';
+			document.querySelector("#reviewDiv").insertAdjacentHTML('beforeend', str);
+
+		},
+		error: function() {
+			alert('실패');
+		}
+	}); //ajax end	
+				
+			
+
 	
 }
 
@@ -73,26 +124,31 @@ function changeStatus(){
 			//추가할 태그 생성
 			let str = '';
 			str += '<tbody>';
-			for(const member of result) {
+			//for(const member of result) {
+			for(let i = 0 ; i < result.length ; i++) {
 				str += '<tr>';
-				str += '	<td></td>';
+				str += `	<td>${i+1}</td>`;
 				str += '	<td>';
-				str += `<span onclick="getMemberDetail('${member.memberId}')">${member.memberNickName}(${member.memberId})</td>`;
+				str += `<span onclick="getMemberDetail('${result[i].memberId}')">${result[i].memberNickName}(${result[i].memberId})</td>`;
 				str += '	<td>등급</td>';
-				str += `	<td>${member.regDate}</td>`;
+				str += `	<td>${result[i].regDate}</td>`;
 				str += '	<td>';
 				str += '		<div class="form-check form-check-inline">';
 				str += '			<input class="form-check-input" type="radio"';
-				str += `				name="test_${status.count}" id="" value=""`;
-				str += `				checked="${member.memberStatus == 'ACTIVE'}"`;
-				str += `				onclick="changeMemberStatus('${member.memberId}', 'ACTIVE');">`;
+				str += `				name="test_${i}" id="" value=""`;
+				if(result[i].memberStatus == 'ACTIVE'){
+					str += `				checked`;
+				}		
+				str += `				onclick="changeMemberStatus('${result[i].memberId}', 'ACTIVE');">`;
 				str += '			<label class="form-check-label" for="">활동 중</label>';
 				str += '		</div>';
 				str += '		<div class="form-check form-check-inline">';
 				str += '			<input class="form-check-input" type="radio"';
-				str += `				name="test_${status.count}" id="" value=""`;
-				str += `				checked="${member.memberStatus == 'DELETED'}"`;
-				str += `				onclick="changeMemberStatus('${member.memberId}', 'DELETED');">`;
+				str += `				name="test_${i}" id="" value=""`;
+				if(result[i].memberStatus == 'DELETED'){
+					str += `				checked`;
+				}
+				str += `				onclick="changeMemberStatus('${result[i].memberId}', 'DELETED');">`;
 				str += '			<label class="form-check-label" for="">탈퇴</label>';
 				str += '		</div>';
 				str += '	</td>';

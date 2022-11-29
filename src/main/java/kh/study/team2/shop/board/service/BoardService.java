@@ -10,7 +10,7 @@ public interface BoardService {
 	//리뷰 등록
 	void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo);	
 	
-	//리뷰 작성 여부 업데이트
+	//리뷰 작성 여부 업데이트(Y)
 	void ifWittenReview(BoardVO boardVO);
 	
 	//리뷰 상세 조회
@@ -24,6 +24,9 @@ public interface BoardService {
 	
 	//리뷰 삭제
 	void deleteReview(String itemCode);
+	
+	//리뷰 작성 여부 업데이트(N)
+	void updateReviewBefore(String itemCode);
 	
 	//리뷰 수정
 	void updateReview(BoardVO boardVO);

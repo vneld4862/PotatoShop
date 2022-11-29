@@ -236,7 +236,7 @@ function deleteMember(memberId){
 			data: {'memberId':memberId}, //필요한 데이터 를 가지고 컨트롤러로 가서 성공하면 밑에 석세스문이 실행
 			success: function(result) {
 				alert('탈퇴가 완료되었습니다.');
-				location.href="/item/list"
+				location.href="/logout"
 			},
 			error: function() {
 				alert('실패');
@@ -274,6 +274,9 @@ function updateReviewAjax(itemCode){
 	str += '</div>';
 	str += '<div class="mt-3">';
 	str += `	<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요">${boardContent}</textarea>`;
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `<input class="form-control" type="file" name="reviewImg">`;
 	str += '</div>';
 	
 	document.querySelector('.updateReviewAjaxDiv').insertAdjacentHTML('afterbegin', str);

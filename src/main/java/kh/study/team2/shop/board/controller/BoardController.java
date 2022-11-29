@@ -65,8 +65,8 @@ public class BoardController {
 	@ResponseBody
 	@PostMapping("/deleteReview")
 	public void deleteReview(String itemCode) {
-		
 		boardService.deleteReview(itemCode);
+		boardService.updateReviewBefore(itemCode);
 	}
 	
 
@@ -80,19 +80,7 @@ public class BoardController {
 	}
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//리뷰 댓글 작성
 	@ResponseBody

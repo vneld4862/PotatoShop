@@ -83,7 +83,9 @@
 							</th:block>
 							<th:block th:unless="${#lists.size(memberList) == 0}">
 								<tr th:each="member : ${memberList}">
-									<td th:text="${memberStat.count}"></td>
+									<td th:text="${memberStat.count}">
+										<input type="hidden" th:value="${#authentication.name}" id="hiddenId">
+									</td>
 									<td th:onclick="getMemberDetail([[${member.memberId}]]);">[[${member.memberNickName}]]([[${member.memberId}]])</td>
 									<td>등급</td>
 									<td th:text="${member.regDate}"></td>
@@ -125,51 +127,102 @@
 				</div>
 			</div>
 			
-			<div class="col">
-			
+			<div class="col" id="reviewDiv">
 				<div class="row">
 					<div class="mb-3">
 						<다른 상점에 남긴 후기>
 					</div>
 				</div>
-				
-				<div class="row">
-					<div class="mb-3">
-						<감자마켓 Q&A>
-					</div>
-					
-					<div class="col">
-						<table class="table text-center">
-							<colgroup>
-								<col width="10%">
-								<col width="*">
-								<col width="30%">
-							</colgroup>
-							<thead>
-								<tr>
-									<th scope="col">No</th>
-									<th scope="col">제목</th>
-									<th scope="col">작성일</th>
-								</tr>
-							</thead>
-							<tbody>
-								<tr>
-									<td>1</td>
-									<td></td>
-									<td></td>
-								</tr>
-							</tbody>
-						</table>
-					</div>
-				</div>
 
 			</div>
 		</div>
-		
-
+	
 	</div>
 	
-<script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script>
+	
+	<!-- 리뷰 제목 클릭시 실행되는 Modal -->
+	<div class="modal fade" id="reviewDetailModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+			 	<div class="modal-header">
+					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+				</div> 
+				<div class="modal-body">
+				
+					<div class="col-12 detailAjaxDiv">
+
+					</div>
+						
+					<div class="row replyDiv"> <!-- 댓글 등록 -->
+						<div class="col-12">
+							<div class="row">
+								<div class="col-12">
+									<input type="hidden" name="itemCode" value="" id="replyItemCode">
+									<input type="hidden" name="memberId" th:value="${#authentication.name}"> 
+								</div>
+								<div class="col-10">
+									<textarea rows="2" name="replyContent" id="replyContent" style="resize: none;" class="form-control"></textarea>
+								</div>
+								<div class="col-2">
+									<input type="button" onclick="regReply();" class="btn btn-primary" value="등록" style="height: 62px; width: 100%;">
+								</div>
+							</div>
+						</div>
+					</div>
+				
+
+					<hr>
+					
+					<div class="col-12 replyListDiv">
+						<!-- 댓글 목록 -->
+					</div>
+
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- 리뷰 수정 버튼 클릭시 실행되는 Modal -->
+	<div class="modal fade" id="review_update_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+		<div class="modal-dialog">
+			<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="exampleModalLabel">리뷰 수정</h5>
+						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+					</div>
+					<div class="modal-body">
+						<form class="row g-3" th:action="@{/board/updateReview}" method="post"> <!-- enctype="multipart/form-data" -->
+
+							<div class="col-12 updateReviewAjaxDiv">
+							
+								<!-- Ajax로 그려 줌 -->
+								
+							</div>
+
+							<div class="col-12 text-end">
+								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
+								<button type="submit" class="btn btn-primary">수정</button>
+							</div>
+						</form>
+					</div>
+				<!-- 	<div class="modal-footer">
+					
+					</div> -->
+			</div>
+		</div>
+	</div>	
+
+	<script type="text/javascript">
+		 const drawStar = (target) => {
+			    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
+			  }
+	</script>
+	
+	<script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script>
+	<script type="text/javascript" th:src="@{/js/manage/my_market.js}"></script>
 
 </div>
 </html>
