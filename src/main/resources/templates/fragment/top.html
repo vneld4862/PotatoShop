@@ -42,7 +42,7 @@
 									<a th:href="@{/manage/regItemForm}">판매하기</a> | 
 									<a th:href="@{/manage/myMarket}">내 상점</a> | 
 									<a target="_blank" onclick="potatoChat();" style="cursor: pointer;">감자톡</a>
-									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/regCateForm}"> | (관리기능)</a><!-- 임시로 생성 -->
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/memberManage}"> | (관리기능)</a><!-- 임시로 생성 -->
 								</div>
 							</div>
 						</div>

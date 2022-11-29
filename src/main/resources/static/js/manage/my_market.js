@@ -22,9 +22,9 @@ function reviewDetail(itemCode){
 			
 			let str = '';
 			
-			if(result.buyer = loginId) { //글 쓴 사람과 로그인한 사람이 일치하면
+			if(result.buyer == loginId) { //글 쓴 사람(구매자)과 로그인한 사람이 일치하면
 				str += '<div class="col-12 text-end mb-3">'
-				str += '	<span data-bs-toggle="modal" data-bs-target="#review_update_modal">수정</span>|'
+				str += `	<span data-bs-toggle="modal" data-bs-target="#review_update_modal" onclick="updateReviewAjax('${result.itemVO.itemCode}')">수정</span>|`
 				str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`
 				str += '</div>'	
 			}
@@ -38,7 +38,7 @@ function reviewDetail(itemCode){
 			str += `		<img src="/images/${result.itemVO.imgList[0].attachedName}" style="width: 100px;">`;
 			str += '	</div>';
 			str += '	<div class="col-9 text-start">';
-			str += '		<div class="col">';
+			str += '		<div class="col modalItemName">';
 			str += `			${result.itemVO.itemName}`
 			str += '		</div>';
 			str += '		<div class="col">';
@@ -53,7 +53,9 @@ function reviewDetail(itemCode){
 			str += '<hr>';
 				
 			str += `<div class="col text-end">${result.regDate}</div>`;
-			str += `<div class="col">${result.boardTitle}</div>`;
+			str += '<div class="col modalBoardTitle">'
+			str += `	${result.boardTitle}`
+			str += '</div>';
 				
 			str += '<hr>';
 			
@@ -65,11 +67,15 @@ function reviewDetail(itemCode){
 				str += '		</div>'
 				str += `		<img src="/images/${result.reviewImgVO.savedName}" style="width: 200px;" onclick="window.open(this.src)">`;
 				str += '	</div>';
-				str += `	<div class="col">${result.boardContent}</div>`;
+				str += '	<div class="col modalBoardContent">'
+				str += `		${result.boardContent}`
+				str += '	</div>';
 				str += '</th:block>';
 			}
 			else{
-				str += `	<div class="col">${result.boardContent}</div>`;
+				str += '	<div class="col modalBoardContent">'
+				str += `		${result.boardContent}`
+				str += '	</div>';
 			}
 			
 			str += '<hr>';
@@ -241,24 +247,37 @@ function deleteMember(memberId){
 }
 
 
-
-
 //리뷰 수정 클릭시 실행되는 Ajax
-//나중에 시간 남으면.................
 function updateReviewAjax(itemCode){
-
-
-	//ajax start
-	$.ajax({
-		url: '/board/updateReview', //요청경로
-		type: 'post',
-		data: {'itemCode':itemCode}, //필요한 데이터
-		success: function(result) {
-
-		},
-		error: function() {
-			alert('실패');
-		}
-	});
+	
+	const itemName = document.querySelector('.modalItemName').innerText;
+	const boardTitle = document.querySelector('.modalBoardTitle').innerText;
+	const boardContent = document.querySelector('.modalBoardContent').innerText;
+	
+	document.querySelector('.updateReviewAjaxDiv').innerHTML = '';
+	
+	let str = '';
+	
+	str += '<div class="mt-3">';
+	str += `	상품명 | ${itemName}`;
+	str += `	<input type="hidden" name="itemCode" value="${itemCode}">`;
+	str += '</div>';
+	str += '<div class="mt-3"> 별점 | ';
+	str += '	<span class="star">';
+	str += '		★★★★★';
+	str += '		<span>★★★★★</span>';
+	str += '		<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="starPoint">';
+	str += '	</span>';
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `	<input type="text" class="form-control" name="boardTitle" placeholder="제목을 입력하세요" value="${boardTitle}">`;
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `	<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요">${boardContent}</textarea>`;
+	str += '</div>';
+	
+	document.querySelector('.updateReviewAjaxDiv').insertAdjacentHTML('afterbegin', str);
 
 }
+
+

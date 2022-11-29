@@ -29,14 +29,20 @@ public class BoardServiceImpl implements BoardService{
 
 	//리뷰 작성 후 작성 여부 Y로 변경
 	@Override
-	public void updateReview(BoardVO boardVO) {
-		sqlSession.update("boardMapper.updateReview", boardVO);
+	public void ifWittenReview(BoardVO boardVO) {
+		sqlSession.update("boardMapper.ifWittenReview", boardVO);
 	}
 	
 	//리뷰 상세 조회
 	@Override
 	public BoardVO selectBoardDetail(String itemCode) {
 		return sqlSession.selectOne("boardMapper.selectBoardDetail", itemCode);
+	}
+	
+	//리뷰 수정
+	@Override
+	public void updateReview(BoardVO boardVO) {
+		sqlSession.update("boardMapper.updateReview", boardVO);
 	}
 	
 	//내 상점에 작성된 리뷰 조회
@@ -78,6 +84,8 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteReply(int replyNum) {
 		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
 	}
+	
+
 
 
 

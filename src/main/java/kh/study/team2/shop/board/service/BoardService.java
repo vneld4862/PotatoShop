@@ -11,7 +11,7 @@ public interface BoardService {
 	void insertReview(BoardVO boardVO, ReviewImgVO uploadInfo);	
 	
 	//리뷰 작성 여부 업데이트
-	void updateReview(BoardVO boardVO);
+	void ifWittenReview(BoardVO boardVO);
 	
 	//리뷰 상세 조회
 	BoardVO selectBoardDetail(String itemCode);
@@ -24,6 +24,9 @@ public interface BoardService {
 	
 	//리뷰 삭제
 	void deleteReview(String itemCode);
+	
+	//리뷰 수정
+	void updateReview(BoardVO boardVO);
 	
 	//리뷰 댓글 작성
 	void insertReviewReply(ReplyVO replyVO);

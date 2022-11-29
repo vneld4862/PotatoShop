@@ -73,7 +73,7 @@ function changeStatus(){
 			//추가할 태그 생성
 			let str = '';
 			str += '<tbody>';
-			for(const member, status of result) {
+			for(const member of result) {
 				str += '<tr>';
 				str += '	<td></td>';
 				str += '	<td>';

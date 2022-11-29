@@ -48,14 +48,14 @@ public class BoardController {
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);
-		boardService.updateReview(boardVO);
+		boardService.ifWittenReview(boardVO);
 		
 		return "content/board/reg_review_result";
 	}
 		
 	//리뷰 상세 보기
 	@ResponseBody
-	@PostMapping("/reviewDetail")
+	@RequestMapping("/reviewDetail")
 	public BoardVO reviewDetail(String itemCode) {
 		
 		return boardService.selectBoardDetail(itemCode); //리턴 값을 ajax의 result로 전달
@@ -68,6 +68,31 @@ public class BoardController {
 		
 		boardService.deleteReview(itemCode);
 	}
+	
+
+	//리뷰 수정
+	@PostMapping("/updateReview")
+	public String updateReview(BoardVO boardVO) {
+
+		boardService.updateReview(boardVO);
+		
+		return "content/board/update_review_result";
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//리뷰 댓글 작성
 	@ResponseBody
@@ -101,6 +126,26 @@ public class BoardController {
 		
 		boardService.deleteReply(replyNum);
 	}	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 	//현재 날짜 및 시간 데이터 리턴
 	public String getNowDateTime() {
