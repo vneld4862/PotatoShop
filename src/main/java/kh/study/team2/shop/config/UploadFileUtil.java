@@ -19,11 +19,11 @@ public class UploadFileUtil {
 	//예진(노트북) 경로
 //	private static final String UPLOAD_PATH = "C:\\dev\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//연지 경로
-//	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
 //	private static final String UPLOAD_PATH = "D:\\dev\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
 //	private static final String UPLOAD_PATH = "/Users/yz/git/PotatoShop/src/main/resources/static/images/";
 	//명현 경로
-	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";
+//	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//민하 경로
 //	private static final String UPLOAD_PATH = "C:\\Users\\202-30\\git\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	

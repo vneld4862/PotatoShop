@@ -187,7 +187,7 @@
 													<input type="hidden" th:value="${board.itemCode}" id="hiddenItemCode">
 												</td>
 												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
-												<td th:text="${board.memberId}"></td>
+												<td th:text="${board.buyer}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>
 										</th:block>
@@ -237,7 +237,7 @@
 													<input type="hidden" th:value="${review.itemCode}" id="hiddenItemCode">
 												</td>
 												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]]);"></td>
-												<td th:text="${review.memberId}"></td>
+												<td th:text="${review.buyer}"></td>
 												<td th:text="${review.regDate}"></td>
 											</tr>
 										</th:block>

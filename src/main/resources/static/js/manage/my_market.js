@@ -22,7 +22,7 @@ function reviewDetail(itemCode){
 			
 			let str = '';
 			
-			if(result.memberId = loginId) { //글 쓴 사람과 로그인한 사람이 일치하면
+			if(result.buyer = loginId) { //글 쓴 사람과 로그인한 사람이 일치하면
 				str += '<div class="col-12 text-end mb-3">'
 				str += '	<span data-bs-toggle="modal" data-bs-target="#review_update_modal">수정</span>|'
 				str += `	<span onclick="deleteReviewAjax('${result.itemVO.itemCode}')">삭제</span>`

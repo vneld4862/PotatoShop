@@ -44,7 +44,7 @@ public class BoardController {
 		boardVO.setItemCode(boardVO.getItemCode());
 
 		User user = (User)authentication.getPrincipal();
-		boardVO.setMemberId(user.getUsername());
+		boardVO.setBuyer(user.getUsername());
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);
