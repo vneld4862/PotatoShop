@@ -85,7 +85,7 @@
 																			<th:block th:each="img : ${itemInfo.imgList}">
 																				 <th:block th:if="${img.isMain eq 'Y'}">
 																				 	  <div class="col-3 mainDiv">
-																				 	  		<img th:src="|@{/images/}${img.attachedName}|" 
+																				 	  		<img id="preview" th:src="|@{/images/}${img.attachedName}|" 
 																				 	  		  width="230px;" height="230px;">
 																				 	  		 <input type="hidden" th:value="${itemInfo.itemCode}">  
 																				 	  		
