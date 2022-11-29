@@ -23,8 +23,10 @@ import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.config.UploadFileUtil_profile;
 import kh.study.team2.shop.item.service.ItemService;
+import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.manage.vo.ProfileVO;
@@ -107,11 +109,8 @@ public class ManageController {
 	@PostMapping("/updateProfile")
 	public String updateProfile(MemberVO memberVO
 								, @RequestParam(required = false)MultipartFile profileImg) {
-	//	System.out.println(profileVO);
-	//	System.out.println(memberVO);
 		System.out.println(profileImg);
 		if(!profileImg.getOriginalFilename().equals("")) {
-	//		System.out.println("!!!!!");
 			String memberId = memberVO.getMemberId();
 			ProfileVO uploadInfo = UploadFileUtil_profile.uploadFile(profileImg);
 			uploadInfo.setMemberId(memberId);
@@ -197,7 +196,27 @@ public class ManageController {
 	
 	//상품 수정
 	@PostMapping("/updateItem")
-	public String updateItem(ItemVO itemVO) {
+	public String updateItem(ItemVO itemVO
+							, @RequestParam(required = false)MultipartFile mainImg
+							, @RequestParam(required = false)List<MultipartFile> subImgs) {
+		System.out.println(itemVO);
+		
+		List<ImgVO> uploadList = UploadFileUtil.multiUploadFile(subImgs);
+		for(ImgVO img : uploadList) {
+			img.setItemCode(itemVO.getItemCode());
+		}
+		
+		if(!mainImg.getOriginalFilename().equals("")) {
+			ImgVO uploadInfo = UploadFileUtil.uploadFile(mainImg);
+			uploadInfo.setItemCode(itemVO.getItemCode());
+			uploadList.add(uploadInfo);
+		}
+		
+		
+		itemVO.setImgList(uploadList);
+		itemVO.setItemCode(itemVO.getItemCode());
+		
+		
 		itemService.updateItem(itemVO);
 		
 		return"redirect:/manage/itemManage";

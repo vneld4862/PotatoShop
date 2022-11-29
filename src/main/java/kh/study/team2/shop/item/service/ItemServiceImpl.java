@@ -43,6 +43,7 @@ public class ItemServiceImpl implements ItemService {
 
 	@Override
 	public void updateItem(ItemVO itemVO) {
+		sqlSession.insert("itemMapper.insertImgs", itemVO);
 	    sqlSession.update("itemMapper.updateItem", itemVO);
 	}
 
