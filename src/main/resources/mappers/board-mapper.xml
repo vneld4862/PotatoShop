@@ -78,6 +78,13 @@
 		)
 	</insert>
 	
+	<!-- 리뷰 이미지 삭제 -->
+	<delete id="deleteReviewImg">
+		DELETE REVIEW_IMG
+		WHERE ITEM_CODE = #{itemCode}
+	</delete>
+	
+	
 	<!-- 상점 리뷰 목록 조회 -->
 	<select id="selectBoardList" resultMap="board">
 		SELECT BOARD_NUM

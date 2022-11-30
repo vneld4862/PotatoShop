@@ -43,6 +43,18 @@ public class BoardServiceImpl implements BoardService{
 	@Override
 	public void updateReview(BoardVO boardVO) {
 		sqlSession.update("boardMapper.updateReview", boardVO);
+		
+		//리뷰 수정 시 사진을 새로 업로드했을 경우
+			//리뷰 등록 시 사진을 업로드했을 경우
+			//1. 기존 사진 Delete
+			//2. 새로 업로드한 사진 insert
+			
+		//리뷰 등록 시 사진을 업로드하지 않았을 경우
+			//1. 새로 업로드한 사진 insert
+		
+//		if(uploadInfo.getSavedName() != null) {
+//			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
+//		}
 	}
 	
 	//내 상점에 작성된 리뷰 조회

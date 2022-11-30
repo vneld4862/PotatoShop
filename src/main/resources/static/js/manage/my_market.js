@@ -276,7 +276,7 @@ function updateReviewAjax(itemCode){
 	str += `	<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요">${boardContent}</textarea>`;
 	str += '</div>';
 	str += '<div class="mt-3">';
-	str += `<input class="form-control" type="file" name="reviewImg">`;
+	str += `	<input class="form-control" type="file" name="reviewImg">`;
 	str += '</div>';
 	
 	document.querySelector('.updateReviewAjaxDiv').insertAdjacentHTML('afterbegin', str);

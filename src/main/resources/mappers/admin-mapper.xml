@@ -15,12 +15,12 @@
 			, MEMBER_EMAIL
 			, MEMBER_ROLE
 			, MEMBER_STATUS
-			, REG_DATE
+			, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 		FROM SHOP_MEMBER
 		<if test="searchValue != null and !searchValue.equals('')">
 			WHERE UPPER(${searchType}) LIKE '%'||UPPER(#{searchValue})||'%'			
 		</if>
-		ORDER BY REG_DATE
+		ORDER BY MEMBER_ROLE, REG_DATE
 	</select>
 	
 	<select id="selectMemberDetail" resultMap="memberMapper.member">
@@ -34,7 +34,7 @@
 			, MEMBER_EMAIL
 			, DECODE(MEMBER_ROLE, 'MEMBER', '회원', '관리자') AS MEMBER_ROLE
 			, DECODE(MEMBER_STATUS, 'ACTIVE', '활동중', '탈퇴') AS MEMBER_STATUS
-			, REG_DATE
+			, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
@@ -50,12 +50,12 @@
 			, MEMBER_EMAIL
 			, MEMBER_ROLE
 			, MEMBER_STATUS
-			, REG_DATE
+			, TO_CHAR(REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 		FROM SHOP_MEMBER
 		<if test="_parameter != 'ALL'">
 		WHERE MEMBER_STATUS = #{memberStatus}
 		</if>
-		ORDER BY REG_DATE
+		ORDER BY MEMBER_ROLE, REG_DATE
 	</select>	
 	
 	<update id="updateMemberStatus">

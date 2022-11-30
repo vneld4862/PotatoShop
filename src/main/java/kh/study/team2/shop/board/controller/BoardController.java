@@ -72,15 +72,20 @@ public class BoardController {
 
 	//리뷰 수정
 	@PostMapping("/updateReview")
-	public String updateReview(BoardVO boardVO) {
+	public String updateReview(BoardVO boardVO
+								, @RequestParam(required = false) ReviewImgVO reviewImgVO
+								, @RequestParam(required = false) MultipartFile reviewImg) {
+		
+		//ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+		//uploadInfo.setItemCode(boardVO.getItemCode());
+		//boardVO.setItemCode(boardVO.getItemCode());
 
+		//boardVO.setReviewImgVO(uploadInfo);	
 		boardService.updateReview(boardVO);
 		
 		return "content/board/update_review_result";
 	}
 	
-	
-
 	
 	//리뷰 댓글 작성
 	@ResponseBody
@@ -125,15 +130,7 @@ public class BoardController {
 	
 	
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+
 	
 	//현재 날짜 및 시간 데이터 리턴
 	public String getNowDateTime() {
@@ -173,33 +170,5 @@ public class BoardController {
 	}
 
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	//리뷰 댓글 작성
-//	@PostMapping("/regReply")
-//	public String regReply(ReplyVO replyVO, Authentication authentication) {
-//		
-//		User user = (User)authentication.getPrincipal();
-//		replyVO.setMemberId(user.getUsername());
-//		
-//		boardService.insertReviewReply(replyVO);
-//
-//		return "redirect:/manage/myMarket";
-//	}
-	
-	
+
 }
