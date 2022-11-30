@@ -26,6 +26,8 @@ public class ItemVO extends PageVO{
 	private String memberId;
 	private String isWritten;
 	private String salesStatus;
+	private int totalSales;
+	private int SALES_CNT;
 
 	private List<ImgVO> imgList;
 	private int cntWishList;

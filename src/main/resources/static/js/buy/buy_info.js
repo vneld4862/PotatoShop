@@ -4,7 +4,8 @@ function payBtn() {
 	const buyTell = $('#buyerTell').text();
 	const buyAddr = $('#buyerAddr').text();
 	const buyItem = $('#buyerItem').text();
-//	const buyPrice = $('#buyerPrice').text();
+	const seller=$('#seller').text();
+	const buyPrice = $('#buyerPrice').text();
 	const buyEmail = $('#buyerEmail').val();
 	
 	const merchant_uid = 'ORD_' + new Date().getTime();
@@ -36,7 +37,10 @@ function payBtn() {
 	                imp_uid: rsp.imp_uid,            //결제 고유번호     
 	                merchant_uid: rsp.merchant_uid,   //주문번호
 	                'buyCode': merchant_uid,
-	                'itemCode': $('#itemCode').val()
+	                'itemCode': $('#itemCode').val(),
+	                'seller':seller,
+	                'itemPrice':buyPrice
+	                
 	            }
 	        }).done(function (data) {
 				alert('결제가 완료되었습니다.');

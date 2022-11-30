@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.buy.vo.BuyVO;
 import kh.study.team2.shop.item.service.ItemService;
+import kh.study.team2.shop.item.vo.ItemVO;
 import kh.study.team2.shop.member.service.MemberService;
 
 @Controller
@@ -47,17 +48,19 @@ public class BuyController {
 	//결제
 	@ResponseBody
 	@PostMapping("/doPay")
-	public String doPay(BuyVO buyVO, String imp_uid, String merchant_uid , Authentication authentication) {
+	public String doPay(BuyVO buyVO,ItemVO itemVO, String imp_uid, String merchant_uid , Authentication authentication) {
 		
 		System.out.println("---------------------------------------");
 		System.out.println("imp_uid : " + imp_uid);
 		System.out.println("merchant_uid : " + merchant_uid);
 		System.out.println("---------------------------------------");
 		
+		
+		System.out.println("@@@@@@@@@@"+itemVO);
 		User user = (User)authentication.getPrincipal();
 		buyVO.setBuyer(user.getUsername());
-		
-		buyService.buyItem(buyVO);
+		itemVO.setMemberId(buyVO.getSeller());
+		buyService.buyItem(buyVO,itemVO);
 		
 		return "content/buy/buy_detail";
 	}

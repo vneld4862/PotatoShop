@@ -19,10 +19,12 @@
 	<insert id="buyItem">
 		INSERT INTO SHOP_BUY(
 			BUY_CODE
+			, SELLER
 			, BUYER
 			, ITEM_CODE
 		) VALUES(
 			#{buyCode}
+			, #{seller}
 			, #{buyer}
 			, #{itemCode}
 		)
@@ -99,7 +101,12 @@
 		AND SALES_STATUS = 'SOLD_OUT'
 	</select>
 
-
+	<update id="memberInfoUpdate">
+		UPDATE SHOP_MEMBER SET
+			TOTAL_SALES=TOTAL_SALES+#{itemPrice}
+			,SALES_CNT=SALES_CNT+1
+		WHERE MEMBER_ID=#{memberId}
+	</update>
 
 </mapper>
 
