@@ -12,28 +12,7 @@
 	</resultMap>
 	
 	
-	<!--찜 등록 -->
-	<!-- <insert id="insertWish">
-		INSERT INTO WISH_LIST (
-		     WISH_CODE
-		    , MEMBER_ID
-		     , ITEM_CODE
-		   ) VALUES (
-			(SELECT 'WISH_'||LPAD(NVL(MAX(TO_NUMBER(SUBSTR(WISH_CODE, 6))), 0) +1, 3, 0) FROM WISH_LIST)
-			, #{memberId}
-			, #{itemCode}
-		)
-	   </insert>
-	<delete id="deleteWish">
-		DELETE 
-   		WHERE ITEM_CODE = #{itemCode}
-   		AND MEMBER_ID = #{memberId} 
-	</delete> -->
-	<!-- DELETE 
-	     WHERE WISH_CODE = #{wishCode} -->
-	
-	
-	
+	<!--찜 등록 OR 삭제  -->
 	<insert id="insertWish">
 		MERGE INTO WISH_LIST
 		USING DUAL
@@ -60,10 +39,6 @@
 			    )
 	</insert>
 	
-	
-	
-	
-	
 	<!-- 찜 목록 조회 -->
 	<select id="selectWishList" resultMap="wish">
 		SELECT 
@@ -85,6 +60,15 @@
 	</select>
 		<!-- AND MEMBER_ID = #{memberId} -->
 	
+	<!--찜 선택삭제  -->
+	<delete id="deleteWish">
+		DELETE WISH_LIST
+		WHERE WISH_CODE IN
+		<foreach collection="wishCodeList" item="wishCode" separator="," open="(" close=")">
+			#{wishCode}
+		</foreach>
+	</delete>
+	
 	<!-- WISH_CODE 찾기 -->
 	<select id="selectWishCode" resultType="String">
 	SELECT WISH_CODE
@@ -100,6 +84,8 @@
 	<select id="itemDetailWish" resultType="int">
 		SELECT COUNT(WISH_CODE) FROM WISH_LIST WHERE ITEM_CODE=#{itemCode}
 	</select>
+	
+	
 </mapper>
 
 

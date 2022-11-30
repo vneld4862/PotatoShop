@@ -118,8 +118,7 @@
 						  		</div>
 						  		<div class="row">
 						  			<div class="col-6 text-start">
-						  				<input type="checkbox">
-						  				<input type="button" value="선택삭제">
+						  				<input type="checkbox" onclick="checkAll();" id="AllCbox">전체선택
 						  			</div>
 						  			<div class="col-6 text-end">
 						  				([최신순][인기순][저가순][고가순])<br>
@@ -132,7 +131,6 @@
 							 		  				<!-- <div class="row" style="background-color: blue;"> -->
 							 		  				<div class="row">
 											 		 <th:block th:each="wish : ${wishList}">
-																 		  	
 															 <!-- <div class="col-5" style="background-color: aqua;  margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;"> -->
 															 <div class="col-5" style="margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
 													 				<div class="row">
@@ -156,7 +154,8 @@
 													 						</div>
 													 					</div>
 													 					<div class="col-1">
-													 						<input type="checkbox">
+													 						<input type="checkbox" name="checkbox" 
+													 						class="checkbox" th:value="${wish.wishCode}">
 													 					</div>
 													 				</div>
 													 			</div> 
@@ -164,9 +163,18 @@
 							 		  				</div>
 							 		  			</div>
 							 		  		</div>
-							 		  	
-							 			
+						 		  </div>
+						 		  <div class="row">
+						 		  		<div class="col text-end">
+						 		  		    <form action="" method="post" id="wishCodesForm">
+		        								<input type="hidden" name="wishCodes" value="">
+		       							    </form>
+						 		  			<button th:onclick="deleteWish();" class="btn btn-warning">
+		    								 선택삭제
+		    								</button>
+						 		  		</div>
 						 		  </div>	
+						 		  
 						  	</div>
 						  </div>
 						  
@@ -272,7 +280,7 @@
 
 
 
-
+<script type="text/javascript" th:src="@{/js/item/item_list.js}"></script>
 
 </div>
 </html>

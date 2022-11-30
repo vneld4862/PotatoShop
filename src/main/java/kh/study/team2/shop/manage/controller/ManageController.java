@@ -136,6 +136,16 @@ public class ManageController {
 		return "redirect:/item/memberItemList";
 	}
 	
+	//찜 선택삭제
+	@PostMapping("/deleteWish")
+	public String deleteWish(String wishCodes, WishVO wishVO) {
+		
+		String[] wishCodeArr = wishCodes.split(","); 
+		List<String> wishCodeList = java.util.Arrays.asList(wishCodeArr);
+		wishVO.setWishCodeList(wishCodeList);
+		wishService.deleteWish(wishVO);
+		return"redirect:/item/memberItemList";
+	}
 
 	
 	//상품등록 페이지로 이동
@@ -156,17 +166,6 @@ public class ManageController {
 							, ItemVO itemVO
 							, @RequestParam(defaultValue = "2") String menu) {
 		model.addAttribute("menu", menu);
-		
-		
-		//전체 데이터 수
-//		 int totalCnt = boardService.selectBoardCnt();
-//		      //전체 데이터 수가 필요하다. 쿼리에서 조회필요
-//		      //전체 데이터 수를 알아야 페이지 정보를 세팅할 수 있다.
-		
-		//페이지 정보 세팅
-//		boardVO.setTotalDataCnt(totalCnt);//조회한 전체 데이터 수를 가지고 --????
-//		boardVO.setPageInfo(); //해당 메소드가 실행되어야 안의 값들이 자동으로 세팅된다.
-		
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();

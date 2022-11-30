@@ -1,5 +1,7 @@
 package kh.study.team2.shop.wish.vo;
 
+import java.util.List;
+
 import kh.study.team2.shop.item.vo.ItemVO;
 import lombok.Getter;
 import lombok.Setter;
@@ -15,4 +17,5 @@ public class WishVO {
     private String wishStatus;
     
     private ItemVO itemVO;
+    private List<String> wishCodeList;
 }
