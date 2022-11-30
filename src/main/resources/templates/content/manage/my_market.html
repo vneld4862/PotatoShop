@@ -48,8 +48,46 @@
 			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
 					<h4>[[${memberInfo.memberNickName}]]님의 상점</h4>
+					<!-- <h4>[[${profileInfo.memberVO.memberNickName}]]님의 상점</h4> -->
 			</div>
+			
+			<!--프로필 div  -->
 			<div class="col mt-3">
+				<div class="row">
+					<div class="col">
+						<div class="col"><br><br>
+							<!-- <img src="/images/1.png" width="200px;"> -->
+							<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
+						<br><br></div>
+						<div class="col"></div>
+						<div class="col">
+							<!-- <button class="btn btn-success" style="width: 30%" 
+							th:onclick="|location.href='@{/member/profileForm}'|">
+							프로필 수정
+							</button> -->
+							
+							<button class="btn btn-success" style="width: 30%" 
+							th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
+							 내정보 수정
+							</button>
+							<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+								    프로필이미지 수정
+							</button>
+						</div>
+					</div>
+					<div class="col text-start">
+						<div class="row">
+							<div class="col-6">[등급]</div>
+							<div class="col-6">[상점오픈일]</div>
+							<div class="col-6">[상점방문수]</div>
+							<div class="col-6">[판매횟수]</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			
+			
+			<!-- <div class="col mt-3">
 				<div class="row">
 					<div class="col">
 						<div class="col"><br><br>프로필 사진<br><br></div>
@@ -71,7 +109,7 @@
 						</div>
 					</div>
 				</div>
-			</div>
+			</div> -->
 		</div>
 		<br>
 		<hr>
@@ -104,46 +142,105 @@
 
 				</ul>
 				<div class="tab-content mt-3" id="myTabContent">
-					<div class="tab-pane fade show active" id="home-tab-pane"
-						role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-						<div class="row">
-							<div class="col-12">
-								<div class="row">
-									<th:block th:each="item : ${itemList}">
-										<div class="col-3">
-											<div class="card" style="width: 18rem;">
-												<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
-
-
-													<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
-													width="100%;" height="350px;">
-
-												</a>
-												<!-- 이미지나 상품명 클릭하면 해당 상품 상세보기 페이지로 이동 -->
-
-												<div class="card-body">
-													<h5 class="card-title">[[${item.itemName}]]</h5>
-													<p class="card-text"
-														th:text="${#numbers.formatCurrency(item.itemPrice)}"></p>
-													<!-- <p class="card-text">[[${item.itemComment}]]</p> -->
-
-												</div>
-											</div>
-										</div>
-									</th:block>
-								</div>
-
-								<!-- <table>
-										<tr th:each="item : ${itemList}">
-										  <td th:text="${item.itemCode}"></td>		
-										</tr>
-									</table>	 -->
-							</div>
-						</div>
-					</div>
+					  <!-- 상품 -->	
+					  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+						    <div class="row">
+							        <div class="col-12">
+							        	<div class="row text-start mt-3">
+							        		<div class="col">
+							        		    <h3>상품</h3>
+							        		    <hr>
+							        		</div>
+							        	</div>
+							        </div>
+									<div class="col-12">
+										<div class="row">
+											<th:block th:each="item : ${itemList}">
+												<div class="col-2 mt-3 mb-3" >
+													<div class="card" style="width:10rem">
+														<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
+														<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
+														width="100%;" height="200px;">
+														</a><!-- 이미지나 상품명 클릭하면 해당 상품 상세보기 페이지로 이동 -->
+													<div class="card-body">
+														<h5 class="card-title">[[${item.itemName}]]</h5>
+														<p class="card-text"
+															th:text="${#numbers.formatCurrency(item.itemPrice)}"></p>
+															<!-- <p class="card-text">[[${item.itemComment}]]</p> -->
+													</div>
+													</div>
+											     </div>
+											  </th:block> 
+									  	   </div>
+									   </div>
+						        </div>
+					  	 </div>
 					
 					<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-						찜
+							<div class="row">
+								  	<div class="col-12">
+								  		<div class="row text-start mt-3">
+								  			<div class="col">
+					        		    		<h3>찜</h3>
+					        		    		<hr>
+								 			</div>
+								  		</div>
+								  		<div class="row">
+								  			<div class="col-6 text-start">
+								  				<input type="checkbox">
+								  				<input type="button" value="선택삭제">
+								  			</div>
+								  			<div class="col-6 text-end">
+								  				([최신순][인기순][저가순][고가순])<br>
+								  				가능하면 구현...
+								  			</div>
+								  		</div>
+								 		<div class="row">
+									 		  		<div class="row  justify-content-center">
+									 		  			<div class="col-11">
+									 		  				<div class="row">
+													 			 <th:block th:each="wish : ${wishList}">
+																	 <div class="col-5" style="margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
+															 				<div class="row">
+															 					<div class="col-4" style="margin: 0 auto;">
+															 						<a th:href="@{/item/itemDetail(itemCode=${wish.itemVO.itemCode})}">
+															 					    	<img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+															 						</a>
+															 					</div>
+															 					<div class="col-7" style="margin: 0 auto; margin-top: 30px;">
+															 						<div>
+															 							[[${wish.itemVO.itemName}]]
+															 						</div>
+															 						<div>
+															 							[[${wish.itemVO.itemPrice}]]
+															 						</div>
+															 						<div>
+															 							[[${wish.itemVO.regDate}]]
+															 						</div>
+															 						<div>
+															 							[[${wish.itemVO.tradeAddr}]]
+															 						</div>
+															 					</div>
+															 					<div class="col-1">
+															 						<input type="checkbox">
+															 					</div>
+															 				</div>
+															 			</div> 
+									 		  					 </th:block> 	
+									 		  				</div>
+									 		  			</div>
+									 		  		</div>
+								 		 	 </div>	
+								  		</div>
+						  		</div>
+
+
+
+
+
+
+
+
 					</div>
 					
 					<div class="tab-pane fade" id="myMarketReview-tab-pane" role="tabpanel" aria-labelledby="myMarketReview-tab" tabindex="0">
@@ -329,6 +426,44 @@
 			</div>
 		</div>
 	</div>	
+	
+	
+
+<!-- 프로필 수정Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+	   <form th:action="@{/manage/updateProfile}" method="post" enctype="multipart/form-data">
+		    <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
+		    <input type="hidden" th:value="${profileInfo.memberId}" name="memberId">
+		    <div class="modal-content">
+			      <div class="modal-header">
+			       	 <h1 class="modal-title fs-5" id="staticBackdropLabel">프로필 수정</h1>
+			         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+			      </div>
+			      <div class="modal-body">
+				      	<div class="row">
+				      		<div class="col-12">
+					      		  <label>닉네임</label>
+					      		  <div class="input-group flex-nowrap mb-3">
+					      		  	<input type="text" class="form-control" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
+					      		  </div>
+					      		  <label>상점 이미지</label>
+					      	      <div class="input-group flex-nowrap mb-3">
+										<input type="file" class="form-control" name="profileImg">
+								  </div>
+				      		</div>
+				      	</div>
+			      </div>
+			      <div class="modal-footer">
+			        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">수정</button>
+			        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
+			      </div>
+		    </div>
+	   </form>
+  </div>
+</div>
+
+	
 
 	<script type="text/javascript">
 		 const drawStar = (target) => {

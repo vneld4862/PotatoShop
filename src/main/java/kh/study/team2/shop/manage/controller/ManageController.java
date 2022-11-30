@@ -32,6 +32,8 @@ import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.service.MemberService;
 import kh.study.team2.shop.member.vo.MemberVO;
+import kh.study.team2.shop.wish.service.WishService;
+import kh.study.team2.shop.wish.vo.WishVO;
 
 
 @Controller
@@ -55,6 +57,9 @@ public class ManageController {
 	@Resource(name="buyService")
 	private BuyService buyService;
 	
+	@Resource(name="wishService")
+	private WishService wishService;
+	
 	@Autowired
 	private PasswordEncoder encoder;
 	
@@ -67,7 +72,9 @@ public class ManageController {
 	
 	//내 상점 페이지 이동
 	@GetMapping("/myMarket")
-	public String myMarket(Model model, Authentication authentication,ItemVO itemVO) {
+	public String myMarket(Model model
+						  , Authentication authentication
+						  ,ItemVO itemVO) {
 		User user = (User)authentication.getPrincipal();
 		
 		//회원 정보 조회
@@ -82,6 +89,12 @@ public class ManageController {
 		//내가 다른 상점에 남긴 후기 목록 조회
 		model.addAttribute("writtenReviewList", boardService.selectWrittenReviewList(user.getUsername()));
 		
+		//찜 목록 조회
+		List<WishVO> wishList = wishService.selectWishList(user.getUsername());
+		model.addAttribute("wishList", wishList);
+		
+		//프로필정보 조회
+		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
 		
 		return "content/manage/my_market"; 
 	}	
