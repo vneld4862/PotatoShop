@@ -30,6 +30,7 @@ import kh.study.team2.shop.item.vo.ItemVO;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import kh.study.team2.shop.member.service.MemberService;
+import kh.study.team2.shop.member.vo.MemberVO;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
 
@@ -90,9 +91,10 @@ public class ItemController {
 		}
 		if (authentication!=null) {
 			User user=(User)authentication.getPrincipal();
-			System.out.println("@@@@@@@@@@@@@@@@@@@@"+user.getUsername());
 		}
 //		model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
+		List<String> rankerList=memberService.memberRank();
+		model.addAttribute("bestSalerItems",itemService.bestFourSalersItem(rankerList));
 		return "content/shop_main";
 	}
 	

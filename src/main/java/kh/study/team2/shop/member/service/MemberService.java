@@ -1,5 +1,7 @@
 package kh.study.team2.shop.member.service;
 
+import java.util.List;
+
 import kh.study.team2.shop.manage.vo.ProfileVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
@@ -15,4 +17,5 @@ public interface MemberService {
 	
 	//회원 탈퇴
 	void deleteMember(String memberId);
+	List<String> memberRank();
 }

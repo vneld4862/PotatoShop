@@ -22,6 +22,7 @@ public class MemberVO extends SearchVO {
 	 private String memberRole;
 	 private String memberStatus;
 	 private String regDate; 
+	 private int memberRank;
 	 
 	
 }

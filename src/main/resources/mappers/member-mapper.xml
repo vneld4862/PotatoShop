@@ -15,6 +15,7 @@
 		<result column="MEMBER_ROLE" property="memberRole"/>
 		<result column="MEMBER_STATUS" property="memberStatus"/>
 		<result column="REG_DATE" property="regDate"/>
+		<result column="MEMBER_RANK" property="memberRank"/>
 	</resultMap> 
 	
 	<resultMap type="kh.study.team2.shop.manage.vo.ProfileVO" id="profile">
@@ -142,7 +143,16 @@
 		WHERE MEMBER_ID = #{memberId}
 	</update>
 	
-	
+	<select id="memberRank" resultMap="member">
+		SELECT MEMBER_ID
+		FROM(
+			SELECT MEMBER_ID
+				,DENSE_RANK() OVER (ORDER BY TOTAL_SALES DESC) MEMBER_RANK
+			 FROM SHOP_MEMBER 
+			 WHERE TOTAL_SALES!=0 
+			 ORDER BY TOTAL_SALES DESC) 
+		 WHERE MEMBER_RANK&lt;=4
+	</select>
 </mapper>
 
 

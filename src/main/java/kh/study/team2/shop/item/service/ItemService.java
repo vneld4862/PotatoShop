@@ -19,4 +19,5 @@ public interface ItemService {
 	int searchNameCnt(ItemVO itemVO);
 	int searchCateCnt(ItemVO itemVO);
 	void updateViewCnt(String itemCode);
+	List<ItemVO> bestFourSalersItem(List<String> memberList);
 }

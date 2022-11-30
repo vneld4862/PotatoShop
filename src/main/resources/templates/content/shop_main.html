@@ -78,7 +78,7 @@
 		
 		
 	</div>
-		<div id="carouselExampleDark" class="carousel carousel-dark slide" data-bs-ride="carousel" style="width: 100%; height: 200px;">
+		<div id="carouselExampleDark" class="carousel carousel-white slide" data-bs-ride="carousel" style="width: 100%; height: 200px;">
 			<div class="carousel-indicators">
 				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
 				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
@@ -86,21 +86,18 @@
 			</div>
 			<div class="carousel-inner">
 				<div class="carousel-item active" data-bs-interval="10000">
-					<img src="/images/slide01.jpg" class="d-block w-100" alt="..." height="200px;">
+					<img src="https://media.bunjang.co.kr/images/nocrop/919673566_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>First slide label</h5>
 					</div>
 				</div>
 				<div class="carousel-item" data-bs-interval="2000">
-					<img src="/images/slide02.jpg" class="d-block w-100" alt="..." height="200px;">
+					<img src="https://media.bunjang.co.kr/images/nocrop/919158390_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Second slide label</h5>
 					</div>
 				</div>
 				<div class="carousel-item">
-					<img src="/images/slide03.jpg" class="d-block w-100" alt="..." height="200px;">
+					<img src="https://media.bunjang.co.kr/images/nocrop/907207228_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
 					<div class="carousel-caption d-none d-md-block">
-						<h5>Third slide label</h5>
 					</div>
 				</div>
 			</div>
@@ -141,15 +138,26 @@
 			</div>
 		</div>
 	</div>
-	
-	<div class="container col-12" style="margin-top: 5rem;margin-bottom: 1.5rem;height: 338px;">
-		<div class="row" style="padding-top: .75rem;height: 322px;border: 1px solid gray;">
-			인기상품,추천상품
+	<div class="container col-12" style="margin-top: 5rem;margin-bottom: 1.5rem;">
+		<h4>인기 판매자의 최신상품</h4>
+		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(180,180,180);">
+			<div class="col-3" th:each="item : ${bestSalerItems}">
+				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
+					<div class="image-box">
+						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
+					</div>
+					<div class="card-body" style="background-color: rgb(244, 244, 245);">
+						<div><p>[[${item.itemName}]]</p></div>
+						<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
+					</div>
+				</div>
+			</div>
 		</div>
 	</div>
 	
 	<div class="container col-12">
-		<div class="row border text-center" style="padding-top: .75rem;">
+		<h5>상품 목록</h5>
+		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(195,195,195);">
 			<div class="col-3" th:each="item : ${itemList}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
 					<div class="image-box">

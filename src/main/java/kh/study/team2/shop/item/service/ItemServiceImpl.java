@@ -79,4 +79,9 @@ public class ItemServiceImpl implements ItemService {
 	public void updateViewCnt(String itemCode) {
 		sqlSession.update("itemMapper.updateViewCnt",itemCode);
 	}
+
+	@Override
+	public List<ItemVO> bestFourSalersItem(List<String> memberList) {
+		return sqlSession.selectList("itemMapper.bestSalersItem",memberList);
+	}
 }

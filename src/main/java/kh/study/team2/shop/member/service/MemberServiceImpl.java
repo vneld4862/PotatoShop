@@ -1,5 +1,7 @@
 package kh.study.team2.shop.member.service;
 
+import java.util.List;
+
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,6 +49,10 @@ public class MemberServiceImpl implements MemberService{
 	@Override
 	public void deleteMember(String memberId) {
 		sqlSession.update("memberMapper.deleteMember", memberId);
+	}
+	@Override
+	public List<String> memberRank() {
+		return sqlSession.selectList("memberMapper.memberRank");
 	}
 	
 	
