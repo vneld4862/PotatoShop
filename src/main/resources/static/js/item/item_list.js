@@ -1,5 +1,3 @@
-alert(222);
-
 //전체선택 checkbox
 function checkAll() {
    if($("#AllCbox").is(':checked')) {

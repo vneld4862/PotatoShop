@@ -146,7 +146,7 @@ public class ItemController {
 		System.out.println(itemList);
 		
 		List<WishVO> wishList = wishService.selectWishList(memberId);
-		System.out.println(wishList);
+		System.out.println(wishList + "@@@@@@@@@@@@");
 		model.addAttribute("wishList", wishList);
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
 		
