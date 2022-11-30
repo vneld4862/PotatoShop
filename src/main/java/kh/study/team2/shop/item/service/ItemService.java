@@ -18,4 +18,5 @@ public interface ItemService {
 	List<ItemVO> searchCateName(ItemVO itemVO);
 	int searchNameCnt(ItemVO itemVO);
 	int searchCateCnt(ItemVO itemVO);
+	void updateViewCnt(String itemCode);
 }

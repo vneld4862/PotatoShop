@@ -5,6 +5,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
+import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.security.core.Authentication;
@@ -158,7 +159,8 @@ public class ItemController {
 							, Model model
 							, Authentication authentication
 							, HttpServletResponse response
-							, @CookieValue(required = false,name = "imgName")String cookieImgName) {
+							, @CookieValue(required = false,name = "imgName")String cookieImgName
+							, @CookieValue(required = false,name = "cookieUser")String cookieUser) {
 		
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
@@ -211,6 +213,8 @@ public class ItemController {
 		itemVO.setMemberId(memberId);
 		itemVO.setItemCode(itemCode);
 		
+		itemService.updateViewCnt(itemCode);
+				
 		String wishCode =  wishService.selectWishCode(itemVO);
 		model.addAttribute("wishCode", wishCode);
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));

@@ -75,5 +75,8 @@ public class ItemServiceImpl implements ItemService {
 	public int searchCateCnt(ItemVO itemVO) {
 		return sqlSession.selectOne("itemMapper.searchCateCnt",itemVO);
 	}
-
+	@Override
+	public void updateViewCnt(String itemCode) {
+		sqlSession.update("itemMapper.updateViewCnt",itemCode);
+	}
 }
