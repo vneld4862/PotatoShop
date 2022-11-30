@@ -4,7 +4,8 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
 	  layout:decorate="~{layout/base_layout}">
 
-<div layout:fragment="content"> 
+<div layout:fragment="content">
+<br><br> 
  <table class="table">
    		<colgroup>
 	       <col width="15%">
@@ -25,6 +26,9 @@
 			<td th:text="${notice.createDate}"></td>	  	
 	  	</tr>
 	</table>
+	<div class="col-12">
+		<a th:href="@{/notice/list}"><input type="button" class="btn btn-warning" value="목록"></a>
+	</div>
  	<div class="col-12 text-center">
 	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning" value="수정"
 	 		   th:onclick="|location.href='@{/notice/correctNotice(noticeNum=${notice.noticeNum})}'|">

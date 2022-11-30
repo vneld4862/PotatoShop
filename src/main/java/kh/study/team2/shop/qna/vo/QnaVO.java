@@ -7,7 +7,7 @@ import lombok.Setter;
 @ToString
 @Getter
 @Setter
-public class QnaVO extends PageVO{
+public class QnaVO extends SearchVO{
 
 
 }

@@ -89,24 +89,24 @@ public class MemberContorller {
 	public String doSearchId(MemberVO memberVO, Model model){
 		MemberVO member = memberService.searchId(memberVO);
 		
-		if(member == null) {
+		if(member == null) { 
 			model.addAttribute("check", 1);
-		}else {
+		} else { 
 			model.addAttribute("check", 0);
 			model.addAttribute("id", member.getMemberId());
 		}
-		
-		return "content/member/search_id";
+		return "redirect:/member/login";
 	}
-	//아이디 찾기 결과 페이지
-	@PostMapping("/searchIdResult")
-	public String searchIdResult() {
-		return "content/member/search_id_result";
-		}
+	/*
+	 * //아이디 찾기 결과 페이지
+	 * 
+	 * @PostMapping("/searchIdResult") public String searchIdResult() { return
+	 * "content/member/search_id_result"; }
+	 */
 	
 	//비밀번호 찾기 페이지 이동
-	@GetMapping("/serachPw")
-	public String serachPw(){
+	@GetMapping("/searchPw")
+	public String searchPw(){
 		return "content/member/search_pw";
 	}
 	
@@ -132,7 +132,7 @@ public class MemberContorller {
 	}
 	
 	
-	
+
 	
 	
 }

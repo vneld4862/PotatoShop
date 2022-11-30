@@ -9,7 +9,7 @@
 <div class="col-12 mb-3"><h2>F&Q</h2>자주묻는질문</div>
  
 <form action="/qna/list" method="post" class="mb-4">
-	<input type="text" name="searchValue" placeholder="무엇을 도와드릴까요?" value="" style="font-size: 20px;">
+	<input type="text" name="searchValue" placeholder="무엇을 도와드릴까요?" th:value="${searchValue}" style="font-size: 20px;">
 	<input type="submit" class="btn btn-dark" value="F&Q 검색"><br>
 </form>
  <br>
@@ -27,52 +27,64 @@
 	 		</tr>
       	</table>
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+      <div class="col-12">
+      	<span style="margin-right: 9rem; margin-left: 2rem;">로그인/정보</span>
+      	<span>아이디와 비밀번호가 기억나지 않아요.</span>
+      </div>
       </button>
     </h6>
     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the first item's accordion body.</div>
-    </div>
-  </div>
+      <div class="accordion-body" style="margin-right: 10rem; margin-left: 15.5rem;">
+	      	로그인 화면에서  아이디 찾기/비밀번호 찾기를 통해 확인 가능합니다.<br>
+			아이디 찾기는 아래 3가지 방법 중 하나로 진행해 주세요.<br>
+			■ 휴대전화<br>
+			회원 정보에 등록된 본인의 휴대전화 번호를 인증하는 방법입니다.<br>
+			■ 이메일<br>
+			회원 정보에 등록된 본인의 이메일 주소를 인증하는 방법입니다.<br>
+			■ 본인인증<br>
+			이용 중인 통신사와 휴대전화 번호를 인증하는 방법입니다.<br>
+			※ 비밀번호 재설정을 완료한 휴면 회원은 휴면 해제 및 탈퇴 신청이 취소됩니다.<br>
+			※ 비밀번호 찾기는 휴대전화 본인 인증으로만 가능합니다.
+		</div>
+	   </div>
+	 </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingTwo">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
-        Accordion Item #2
+	      <div class="col-12">
+	      	<span style="margin-right: 10rem; margin-left: 2rem;">상품 문의</span>
+	      	<span>상품 문의는 어떻게 작성하나요?</span>
+	      </div>
       </button>
     </h2>
     <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the second item's accordion body. Let's imagine this being filled with some actual content.</div>
+      <div class="accordion-body" style="margin-right: 10rem; margin-left: 15.5rem;">
+       문의 하는 상품의 상세 페이지 > 하단의 상품 문의 목록에서 작성할 수 있습니다.<br>
+		※ 재입고, 사이즈, 배송 등 상품과 관련된 문의를 할 수 있습니다.<br>
+		※ 상품과 관련 없는 욕설, 비방, 회원 간 거래 글, 명예훼손, 타 쇼핑몰 언급, 허위사실 유포, 광고성 등의 문의는 숨김 처리됩니다.<br>
+		※ 주문번호, 연락처, 계좌번호 등의 개인 정보 관련 내용은 노출이 되지 않도록 비밀글로 문의해 주세요.<br>
+		※ 개인정보 노출된 공개 글은 비밀글로 전환될 수 있고, 개인 정보 노출로 인한 피해는 무신사 스토어가 책임지지 않습니다.</div>
     </div>
   </div>
   <div class="accordion-item">
     <h2 class="accordion-header" id="flush-headingThree">
       <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
-        Accordion Item #3
+         <div class="col-12">
+	      	<span style="margin-right: 10rem; margin-left: 2rem;">가입 인증</span>
+	      	<span>본인인증 문자가 오지 않아요.</span>
+	      </div>
       </button>
     </h2>
     <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushExample">
-      <div class="accordion-body">Placeholder content for this accordion, which is intended to demonstrate the <code>.accordion-flush</code> class. This is the third item's accordion body. Nothing more exciting happening here in terms of content, but just filling up the space to make it look, at least at first glance, a bit more representative of how this would look in a real-world application.</div>
+      <div class="accordion-body" style="margin-right: 10rem; margin-left: 15.5rem;">
+    	사용 중인 통신사 및 휴대전화 번호를 정확하게 입력했는지 확인해 주세요.<br>
+		이후에도 인증번호가 오지 않을 경우 아래 내용을 확인해 주세요.<br>
     </div>
   </div>
 </div>
 
  
- 
- 	
-<!--  	<div class="text-center mb-4" style="margin-left: -4rem;">
-		<th:block th:if="${noticeVO.prev}">
-			<a th:text="prev" th:href="@{/notice/list(nowPage=${noticeVO.beginPage-1})}"></a>
-		</th:block>
-		<th:block th:each="pageNum : ${#numbers.sequence(noticeVO.beginPage, noticeVO.endPage)}">
-			<a th:text="${pageNum}" th:href="@{/notice/list(nowPage=${pageNum})}" style="margin-right: 0.8rem; margin-left: 0.5rem;"></a>
-		</th:block>
-		<th:block th:if="${noticeVO.next}">
-			<a th:text="next" th:href="@{/notice/list(nowPage=${noticeVO.endPage+1})}"></a>
-		</th:block>
-	</div> -->
- 	
- 	<div class="col-12 text-center">
- 		<input sec:authorize="hasRole('ROLE_ADMIN')" type="button" class="btn btn-warning" value="글 작성" style="margin-right: 4rem;" th:onclick="|location.href='@{/notice/regNotice}'|">
- 	</div> 
+
 </div>
 
 </html>
