@@ -5,43 +5,44 @@
    xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div layout:fragment ="content">
-<style>
 
-	/* .testImg{
-	  postiion : relative;
-	  width: 230px;
-	  height: 230px;
+	<style>
+	
+		/* .testImg{
+		  postiion : relative;
+		  width: 230px;
+		  height: 230px;
+		} */
+		/* .testBtn {
+		  position: absolute;
+		  top: 170px;
+		  left : 35px; 
+		} */
+		
+		/*  .testBtn {
+		  position: absolute;
+		  top: 5px;
+		  left: 12px;
+		}  */
+		
+		/* .testBtn{
+		position:absolute;
+		text-align: center;
+		
+		height: 20px;
+		margin-top: 80%;
+		background-color: grey;
+		cursor: pointer;
+	
 	} */
-	/* .testBtn {
-	  position: absolute;
-	  top: 170px;
-	  left : 35px; 
-	} */
-	
-	/*  .testBtn {
-	  position: absolute;
-	  top: 5px;
-	  left: 12px;
-	}  */
-	
-	/* .testBtn{
-	position:absolute;
-	text-align: center;
-	
-	height: 20px;
-	margin-top: 80%;
-	background-color: grey;
-	cursor: pointer;
-
-} */
-	
-	
-	/* button.btn2 {
-	  position: absolute;
-	  top: 85px;
-	  left : 95px;
-	} */
-</style>
+		
+		
+		/* button.btn2 {
+		  position: absolute;
+		  top: 85px;
+		  left : 95px;
+		} */
+	</style>
 
 
 
@@ -87,7 +88,8 @@
 																				 	  <div class="col-3 mainDiv">
 																				 	  		<img id="preview" th:src="|@{/images/}${img.attachedName}|" 
 																				 	  		  width="230px;" height="230px;">
-																				 	  		 <input type="hidden" th:value="${itemInfo.itemCode}">  
+																				 	  		 <input type="hidden" th:value="${img.imgCode}" id="mainImgCode">  
+																				 	  		 <input type="hidden" th:value="${itemInfo.itemCode}" id="mainItemCode">  
 																				 	  		
 																				 	  </div>
 																				 	 <!--  <div class="col-3">
@@ -121,12 +123,9 @@
 															   <div class="row text-center allSubImgDiv">
 																	 <th:block th:each="img : ${itemInfo.imgList}">
 																			 <th:block th:if="${img.isMain eq 'N'}">
-																			   <div class="col-3 imgDiv testImg loadImgDiv">
+																			   <div class="col-3 subDiv loadImgDiv">
 																			   			<img th:src="|@{/images/}${img.attachedName}|" width="230px;" height="230px;"><br>
 																			   			<input type="hidden" th:value="${itemInfo.itemCode}"> 
-																			   			<!--    <th:block th:if="${img.isMain eq 'Y'}">
-																				         	 <h5>메인 이미지</h5>
-																				          </th:block>	 -->
 																			     		<button type="button" class="testBtn"
 																			     			th:onclick="deleteImg(this);" 
 																			     			th:data-img-code="${img.imgCode}"

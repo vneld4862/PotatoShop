@@ -1,20 +1,20 @@
-//이미지 삭제 버튼 클릭 시(서브 이미지 삭제)
+//서브 이미지  목록 삭제(버튼 클릭 시)
 function deleteImg(deleteBtn){
 	alert('이미지 삭제 구현하기');
 	const imgCode = deleteBtn.dataset.imgCode;
 	const itemCode = deleteBtn.dataset.itemCode;
 	alert(itemCode);
+	alert(imgCode);
+	
 	//ajax start
 	$.ajax({
 	   url: '/manage/deleteImg', //요청경로
 	    type: 'post',
 	    data:{'imgCode':imgCode, 'itemCode':itemCode}, //필요한 데이터
 	    success: function(itemInfo) {
+		
 	      alert('이미지 삭제 성공');
 	      alert(itemInfo.itemCode);
-	      /*여기서 그림 다시 그려주기 구현...*/
-	     
-	      
 	      $(deleteBtn).closest('div').remove(); //j쿼리문법 **** 
 	      
 	    },
@@ -26,12 +26,17 @@ function deleteImg(deleteBtn){
 	
 }
 
+//서브이미지 미리보기 삭제 
+
+
+
 //메인 이미지 삭제
 function deleteMainImg(){
-	alert('이미지 삭제 구현하기');
-	const imgCode = deleteBtn.dataset.imgCode;
-	const itemCode = deleteBtn.dataset.itemCode;
-	alert(itemCode);
+	alert('메인이미지 이미지 삭제');
+	const imgCode = document.querySelector('#mainImgCode').value;
+	alert(imgCode)
+	$('#mainDiv').remove(); //j쿼리문법 **** 
+	
 	//ajax start
 	$.ajax({
 	   url: '/manage/deleteImg', //요청경로
@@ -59,16 +64,27 @@ function deleteMainImg(){
 function readURL(input) {
   if (input.files && input.files[0]) {
 	//원본이미지를 db에서 삭제
-       //  deleteImg(deleteBtn);이렇게 함수를 적어서 실행시켜주면 된다.
+    //  deleteImg(deleteBtn);이렇게 함수를 적어서 실행시켜주면 된다.
+    
 
     var reader = new FileReader();
     reader.onload = function(e) {
-		document.getElementById('preview').src = e.target.result;
+			let str = '';
+			str += '<div class="col-3 mainDiv">';
+			str += `<img src=${e.target.result} width="230px;" height="230px;">`;
+		//	str += `<button type="button" class="testBtn"`
+		//	str += `th:onclick="delSubPreview(this);"`
+		//	str += `>x</button>`
+			str += '</div>';
+			$('.mainImgDiv').append(str);
+
+	
+	//	document.getElementById('preview').src = e.target.result;
     };
     reader.readAsDataURL(input.files[0]);
     
   } else {
-    //document.getElementById('preview').src = "";
+	
   }
 }
 
@@ -81,21 +97,27 @@ function readURL2(input) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				let str = '';
-				str += '<div class="col-3 imgDiv testImg">';
+				str += '<div class="col-3 subDiv">';
 				str += `<img src=${e.target.result} width="230px;" height="230px;"><br>`;
 				str += `<input type="hidden" th:value="">`
 				str += `<button type="button" class="testBtn"`
-				str += `th:onclick="deleteImg(this);"`
-				str += `th:data-img-code=""`
-				str += `th:data-item-code="">x</button>`
+				str += `th:onclick="delSubPreview(this);"`
+				str += `>x</button>`
 				str += '</div>';
 				$('.allSubImgDiv').append(str);
 				
 			};
 			reader.readAsDataURL(img_file);
 		} else {
-			//document.getElementById('preview').src = "";
-			//document.querySelectorAll('.preview').src = "";
+			
 		}
 	}
+}
+
+//서브이미지 미리보기 삭제
+function delSubPreview(deleteBtn){
+	alert('서브 미리보기 삭제');
+	$(deleteBtn).closest('div').remove(); //j쿼리문법 **** 
+	
+	
 }
