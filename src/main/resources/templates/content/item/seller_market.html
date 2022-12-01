@@ -8,8 +8,6 @@
       <link rel="stylesheet" th:href="@{}">
 </th:block> -->	
 
-<!-- 아이템 상세보기에서 판매자 상점 클릭하면 들어오는 페이지 -->
-
 <div layout:fragment="content">
 
 	<style>
@@ -47,14 +45,20 @@
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
 		<div>
 			<hr>
+			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
-					<h4>[[${.memberNickName}]]님의 상점</h4>
+					<h4>[[${memberInfo.memberNickName}]]님의 상점</h4>
+					<!-- <h4>[[${profileInfo.memberVO.memberNickName}]]님의 상점</h4> -->
 			</div>
+			
+			<!--프로필 div  -->
 			<div class="col mt-3">
 				<div class="row">
 					<div class="col">
-						<div class="col"><br><br>프로필 사진<br><br></div>
-						<div class="col mb-3">[[${memberInfo.memberNickName}]]</div>
+						<div class="col"><br><br>
+							<!-- <img src="/images/1.png" width="200px;"> -->
+							<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
+						<br><br></div>
 					</div>
 					<div class="col text-start">
 						<div class="row">
@@ -66,6 +70,7 @@
 					</div>
 				</div>
 			</div>
+			
 		</div>
 		<br>
 		<hr>
@@ -86,52 +91,128 @@
 						<button class="nav-link" id="myMarketReview-tab" data-bs-toggle="tab" data-bs-target="#myMarketReview-tab-pane" type="button" role="tab" aria-controls="myMarketReview-tab-pane" aria-selected="false">
 							상점 리뷰
 						</button>
-					</li>
+					</li>					
 
 				</ul>
 				<div class="tab-content mt-3" id="myTabContent">
-					<div class="tab-pane fade show active" id="home-tab-pane"
-						role="tabpanel" aria-labelledby="home-tab" tabindex="0">
-						<div class="row">
-							<div class="col-12">
+					  <!-- 상품 -->	
+					  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
+						    <div class="row">
+							        <div class="col-12">
+							        	<div class="row text-start mt-3">
+							        		<div class="col">
+							        		    <h3>ITEM LIST</h3>
+							        		    <hr>
+							        		</div>
+							        	</div>
+							        </div>
+									<div class="col-12 mb-3 mt-3">
+									  <th:block th:unless="${#lists.size(itemList) == 0}">	
+											<div class="row">
+												<th:block th:each="item : ${itemList}">
+													<div class="col-2 mt-3 mb-3" >
+														<div class="card" style="width:10rem">
+															<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
+															<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
+															width="100%;" height="200px;">
+															</a><!-- 이미지나 상품명 클릭하면 해당 상품 상세보기 페이지로 이동 -->
+														<div class="card-body">
+															<h5 class="card-title">[[${item.itemName}]]</h5>
+															<p class="card-text"
+																th:text="${#numbers.formatCurrency(item.itemPrice)}"></p>
+																<!-- <p class="card-text">[[${item.itemComment}]]</p> -->
+														</div>
+														</div>
+												     </div>
+												  </th:block> 
+										  	   </div>
+										  </th:block>  
+										  <th:block th:if="${#lists.size(itemList) == 0}">
+										  	  <h5>등록된 상품이 없습니다.</h5>
+										  </th:block>
+									   </div>
+						        </div>
+					  	 </div>
+					    <!-- 찜 -->
+						<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 								<div class="row">
-									<th:block th:each="item : ${itemList}">
-										<div class="col-3">
-											<div class="card" style="width: 18rem;">
-												<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
-
-
-													<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
-													width="100%;" height="350px;">
-
-												</a>
-												<!-- 이미지나 상품명 클릭하면 해당 상품 상세보기 페이지로 이동 -->
-
-												<div class="card-body">
-													<h5 class="card-title">[[${item.itemName}]]</h5>
-													<p class="card-text"
-														th:text="${#numbers.formatCurrency(item.itemPrice)}"></p>
-													<!-- <p class="card-text">[[${item.itemComment}]]</p> -->
-
-												</div>
-											</div>
-										</div>
-									</th:block>
-								</div>
-
-								<!-- <table>
-										<tr th:each="item : ${itemList}">
-										  <td th:text="${item.itemCode}"></td>		
-										</tr>
-									</table>	 -->
-							</div>
+									  	<div class="col-12">
+									  		<div class="row text-start mt-3">
+									  			<div class="col">
+						        		    		<h3>WISH LIST</h3>
+						        		    		<hr>
+									 			</div>
+									  		</div>
+									  		
+									  	<th:block th:if="${#lists.size(wishList) != 0}">
+ 											<div class="row">
+									  			<div class="col-6 text-start">
+									  				<input type="checkbox" onclick="checkAll();" id="AllCbox">전체선택
+									  			</div>
+									  			<div class="col-6 text-end">
+									  				<!-- ([최신순][인기순][저가순][고가순])<br>
+									  				가능하면 구현... -->
+									  			</div>
+									  		</div>
+									 		<div class="row">
+										 		  		<div class="row  justify-content-center">
+										 		  			<div class="col-11">
+										 		  				<div class="row">
+										 		  					
+														 			 <th:block th:each="wish : ${wishList}">
+																		 <div class="col-5" style="margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
+																 				<div class="row">
+																 					<div class="col-4" style="margin: 0 auto;">
+																 						<a th:href="@{/item/itemDetail(itemCode=${wish.itemVO.itemCode})}">
+																 					    	<img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+																 						</a>
+																 					</div>
+																 					<div class="col-7" style="margin: 0 auto; margin-top: 30px;">
+																 						<div>
+																 							[[${wish.itemVO.itemName}]]
+																 						</div>
+																 						<div>
+																 							[[${wish.itemVO.itemPrice}]]
+																 						</div>
+																 						<div>
+																 							[[${wish.itemVO.regDate}]]
+																 						</div>
+																 						<div>
+																 							[[${wish.itemVO.tradeAddr}]]
+																 						</div>
+																 					</div>
+																 					<div class="col-1">
+																 						<input type="checkbox" name="checkbox" 
+													 									class="checkbox" th:value="${wish.wishCode}">
+																 					</div>
+																 				</div>
+																 			</div> 
+										 		  					 </th:block> 	
+										 		  				</div>
+										 		  			</div>
+										 		  		</div>
+									 		 	 </div>	
+									 		 	 <div class="row mb-3 mt-3">
+										 		  		<div class="col text-end">
+										 		  		    <form action="" method="post" id="wishCodesForm">
+						        								<input type="hidden" name="wishCodes" value="">
+						       							    </form>
+										 		  			<button th:onclick="deleteWish();" class="btn btn-warning">
+						    								 선택삭제
+						    								</button>
+										 		  		</div>
+						 		 				 </div>		
+									  	</th:block>
+									  	<th:block th:if="${#lists.size(wishList) == 0}">
+									  			<div class="row mb-3 mt-3">
+									  				<h5>찜한 상품이 없습니다.</h5>
+									  			</div>
+									  	</th:block>	
+									  		
+									 		 	 
+									  		</div>
+							  		</div>
 						</div>
-					</div>
-					
-					<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
-						찜
-					</div>
-					
 					<div class="tab-pane fade" id="myMarketReview-tab-pane" role="tabpanel" aria-labelledby="myMarketReview-tab" tabindex="0">
 						<div class="col mt-3">
 							<div><input type="hidden" th:value="${#authentication.name}" id="hiddenId"></div>
@@ -173,7 +254,7 @@
 													<input type="hidden" th:value="${board.itemCode}" id="hiddenItemCode">
 												</td>
 												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
-												<td th:text="${board.memberId}"></td>
+												<td th:text="${board.buyer}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>
 										</th:block>
@@ -198,9 +279,9 @@
 			 	<div class="modal-header">
 					<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 				</div> 
-				<div class="modal-body reviewDetailDiv">
+				<div class="modal-body">
 				
-					<div class="col-12 detailAjaxDiv"> <!-- 사진 클릭하면 원본 크기로 보이게 -->
+					<div class="col-12 detailAjaxDiv">
 
 					</div>
 						
@@ -235,6 +316,7 @@
 	</div>
 	
 	
+	
 	<!-- 리뷰 수정 버튼 클릭시 실행되는 Modal -->
 	<div class="modal fade" id="review_update_modal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 		<div class="modal-dialog">
@@ -245,29 +327,15 @@
 					</div>
 					<div class="modal-body">
 						<form class="row g-3" th:action="@{/board/updateReview}" method="post" enctype="multipart/form-data">
-							<div class="col-12">
-								<div class="mt-3">
-									상품명 | 수정중
-								</div>
-								<div class="mt-3"> 별점 | 
-									<span class="star">
-										★★★★★
-										<span>★★★★★</span>
-										<input type="range" oninput="drawStar(this)" value="7" step="1" min="0" max="10" name="starPoint">
-									</span>
-								</div>
+
+							<div class="col-12 updateReviewAjaxDiv">
 							
-								<div class="mt-3">
-									<input type="text" class="form-control" name="boardTitle" placeholder="제목을 입력하세요">
-								</div>
-								<div class="mt-3">
-									<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요"></textarea>
-								</div>
-								<div class="mt-3">
-									<input class="form-control" type="file" name="reviewImg">
-								</div>
+								<!-- Ajax로 그려 줌 -->
+								
 							</div>
+
 							<div class="col-12 text-end">
+								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
 								<button type="submit" class="btn btn-primary">수정</button>
 							</div>
 						</form>
@@ -278,6 +346,11 @@
 			</div>
 		</div>
 	</div>	
+	
+	
+
+
+	
 
 	<script type="text/javascript">
 		 const drawStar = (target) => {

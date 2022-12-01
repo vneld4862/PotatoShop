@@ -74,7 +74,7 @@ public class ManageController {
 	@GetMapping("/myMarket")
 	public String myMarket(Model model
 						  , Authentication authentication
-						  ,ItemVO itemVO) {
+						  , ItemVO itemVO) {
 		User user = (User)authentication.getPrincipal();
 		
 		//회원 정보 조회

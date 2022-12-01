@@ -5,7 +5,6 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.validation.Valid;
 
@@ -20,6 +19,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
+
+import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
@@ -32,7 +33,6 @@ import kh.study.team2.shop.item.vo.ItemVO;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import kh.study.team2.shop.member.service.MemberService;
-import kh.study.team2.shop.member.vo.MemberVO;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
 
@@ -50,6 +50,9 @@ public class ItemController {
 	
 	@Resource(name="memberService")
 	private MemberService memberService;
+
+	@Resource(name="boardService")
+	private BoardService boardService;
 	
 	
 	@GetMapping("/list")
@@ -273,6 +276,32 @@ public class ItemController {
 		}
 		
 		return result;
+	}
+	
+	//판매자 상점 페이지 이동
+	@GetMapping("/sellerMarket")
+	public String sellerMarket(Model model, ItemVO itemVO, String memberId) {
+		
+		//회원 정보 조회
+		model.addAttribute("memberInfo", memberService.selectMemberInfo(memberId));
+		
+		//상품 목록 조회
+		itemVO.setMemberId(memberId);
+		List<ItemVO> itemList = itemService.memberItemList(itemVO);
+		
+	    model.addAttribute("itemList", itemList);
+	    
+		//상점 후기 목록 조회
+		model.addAttribute("boardList", boardService.selectBoardList(memberId));
+
+		//찜 목록 조회
+		List<WishVO> wishList = wishService.selectWishList(memberId);
+		model.addAttribute("wishList", wishList);
+
+		//프로필 정보 조회
+		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
+
+		return "content/item/seller_market";
 	}
 	
 	
