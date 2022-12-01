@@ -380,13 +380,14 @@
 		        ,ROW_NUMBER() OVER (PARTITION BY MEMBER_ID ORDER BY ITEM.ITEM_CODE DESC) AS ROW_CODE
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 		    WHERE ITEM.ITEM_CODE=IMG.ITEM_CODE
-		    AND IS_MAIN='Y'
-		    <!-- AND SALES_STATUS!='SOLD_OUT' -->)
+		    AND IS_MAIN='Y')
 		    WHERE ROW_CODE='1'
-		    AND MEMBER_ID IN 
-		    <foreach collection="list" item="member" separator="," open="(" close=")">
-		    	#{member.memberId}
-		    </foreach>
+		    <if test="list.size!= 0">  
+			    AND MEMBER_ID IN
+			    <foreach collection="list" item="member" separator="," open="(" close=")">
+			    	#{member.memberId}
+			    </foreach>
+		    </if>
 	</select>
 </mapper>
 

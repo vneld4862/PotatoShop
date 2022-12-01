@@ -94,6 +94,7 @@ public class ItemController {
 		}
 //		model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		List<String> rankerList=memberService.memberRank();
+		System.out.println("@@@@@@@@@@@@@@@@@@@"+rankerList.size());
 		model.addAttribute("bestSalerItems",itemService.bestFourSalersItem(rankerList));
 		return "content/shop_main";
 	}
