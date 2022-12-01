@@ -96,7 +96,7 @@ public class ManageController {
 		//찜 목록 조회
 		List<WishVO> wishList = wishService.selectWishList(user.getUsername());
 		model.addAttribute("wishList", wishList);
-		
+		System.out.println(wishList);
 		//프로필정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
 		
