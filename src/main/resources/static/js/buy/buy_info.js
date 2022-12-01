@@ -1,11 +1,11 @@
 	 
 function payBtn() {
-	const buyName = $('#buyerName').text();
-	const buyTell = $('#buyerTell').text();
-	const buyAddr = $('#buyerAddr').text();
-	const buyItem = $('#buyerItem').text();
-	const seller=$('#seller').text();
-	const buyPrice = $('#buyerPrice').text();
+	const buyName = $('#buyerName').val();
+	const buyTell = $('#buyerTell').val();
+	const buyAddr = $('#buyerAddr').val();
+	const buyItem = $('#buyerItem').val();
+	const seller = $('#seller').val();
+	const buyPrice = $('#buyerPrice').val();
 	const buyEmail = $('#buyerEmail').val();
 	
 	const merchant_uid = 'ORD_' + new Date().getTime();
