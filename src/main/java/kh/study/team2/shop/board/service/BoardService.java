@@ -28,8 +28,23 @@ public interface BoardService {
 	//리뷰 작성 여부 업데이트(N)
 	void updateReviewBefore(String itemCode);
 	
+	
+///////////////////리뷰 수정///////////////////	
+
+	//리뷰 이미지 여부 조회
+	ReviewImgVO selectReviewImg(String itemCode);
+	
 	//리뷰 수정
 	void updateReview(BoardVO boardVO);
+	
+	//이미지 있는 리뷰 수정 시 이미지 업데이트
+	void updateReviewImg(ReviewImgVO reviewImgVO);
+	
+	//이미지 없는 리뷰 수정 시 이미지 등록
+	void insertReviewImg(BoardVO boardVO);
+	
+	
+///////////////////리뷰 댓글///////////////////		
 	
 	//리뷰 댓글 작성
 	void insertReviewReply(ReplyVO replyVO);

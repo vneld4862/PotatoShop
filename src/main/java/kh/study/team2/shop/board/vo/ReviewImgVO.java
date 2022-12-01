@@ -10,7 +10,7 @@ import lombok.ToString;
 @Setter
 @ToString
 public class ReviewImgVO {
-	private String ReviewImgCode;
+	private String reviewImgCode;
 	private String originName;
 	private String savedName;
 	private String itemCode;

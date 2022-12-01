@@ -39,23 +39,33 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.selectOne("boardMapper.selectBoardDetail", itemCode);
 	}
 	
+	
+	
+	//리뷰 수정 전 기존 리뷰에 이미지가 첨부돼 있는지 확인
+	@Override
+	public ReviewImgVO selectReviewImg(String itemCode) {
+		return sqlSession.selectOne("boardMapper.reviewImgChk", itemCode);
+	}
+	
 	//리뷰 수정
 	@Override
 	public void updateReview(BoardVO boardVO) {
 		sqlSession.update("boardMapper.updateReview", boardVO);
-		
-		//리뷰 수정 시 사진을 새로 업로드했을 경우
-			//리뷰 등록 시 사진을 업로드했을 경우
-			//1. 기존 사진 Delete
-			//2. 새로 업로드한 사진 insert
-			
-		//리뷰 등록 시 사진을 업로드하지 않았을 경우
-			//1. 새로 업로드한 사진 insert
-		
-//		if(uploadInfo.getSavedName() != null) {
-//			sqlSession.insert("boardMapper.insertReviewImg", boardVO);
-//		}
 	}
+	
+	//리뷰 이미지 수정
+	@Override
+	public void updateReviewImg(ReviewImgVO reviewImgVO) {
+		sqlSession.update("boardMapper.updateReviewImg", reviewImgVO);
+	}
+	
+	//리뷰 이미지 추가
+	@Override
+	public void insertReviewImg(BoardVO boardVO) {
+		sqlSession.insert("boardMapper.insertReviewImg", boardVO);
+	}
+	
+	
 	
 	//내 상점에 작성된 리뷰 조회
 	@Override
@@ -77,6 +87,7 @@ public class BoardServiceImpl implements BoardService{
 		sqlSession.delete("boardMapper.deleteReviewReplyAll", itemCode);
 		//상품 리뷰 삭제
 		sqlSession.delete("boardMapper.deleteReview", itemCode);
+		sqlSession.delete("boardMapper.deleteReviewImg", itemCode);
 	}
 
 	//리뷰 작성 후 작성 여부 Y로 변경
@@ -102,8 +113,12 @@ public class BoardServiceImpl implements BoardService{
 	public void deleteReply(int replyNum) {
 		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
 	}
-	
-	
+
+
+
+
+
+
 
 
 

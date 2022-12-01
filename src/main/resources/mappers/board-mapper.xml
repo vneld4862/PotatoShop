@@ -164,12 +164,29 @@
 		WHERE ITEM_CODE = #{itemCode}
 	</delete>
 	
+	<!-- 리뷰에 이미지가 있는지 확인 -->
+	<select id="reviewImgChk" resultMap="reviewImg">
+		SELECT REVIEW_IMG_CODE
+			, ORIGIN_NAME
+			, SAVED_NAME
+			, ITEM_CODE
+		FROM REVIEW_IMG
+		WHERE ITEM_CODE = #{itemCode}
+	</select>
+	
 	<!-- 리뷰 수정 쿼리 -->
  	<update id="updateReview">
 		UPDATE REVIEW_BOARD
 		SET BOARD_TITLE = #{boardTitle}
 			, BOARD_CONTENT = #{boardContent}
 			, STAR_POINT = #{starPoint}
+		WHERE ITEM_CODE = #{itemCode}
+	</update>
+	
+	<!-- 리뷰 이미지 수정 -->
+	<update id="updateReviewImg">
+		UPDATE REVIEW_IMG
+		SET SAVED_NAME = #{savedName}
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	

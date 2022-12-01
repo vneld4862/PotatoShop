@@ -102,13 +102,16 @@
 					</div>
 				</div>
 			</div>
-			<div class="text-end">
+			<div class="col-6 text-start">
+				<button type="button" class="btn btn-secondary" th:onclick="deleteMember([[${#authentication.name}]]);">탈퇴하기</button>
+			</div>
+			<div class="col-6 text-end">
 				<button type="submit" class="btn btn-info">수정하기</button>
 			</div>
 		</div>
      </form>
 </div>
 
-
+	<script type="text/javascript" th:src="@{/js/manage/my_info.js}"></script>
 </div>
 </html>

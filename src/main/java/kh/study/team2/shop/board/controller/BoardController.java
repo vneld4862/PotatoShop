@@ -73,14 +73,36 @@ public class BoardController {
 	//리뷰 수정
 	@PostMapping("/updateReview")
 	public String updateReview(BoardVO boardVO
-								, @RequestParam(required = false) ReviewImgVO reviewImgVO
 								, @RequestParam(required = false) MultipartFile reviewImg) {
 		
-		//ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
-		//uploadInfo.setItemCode(boardVO.getItemCode());
-		//boardVO.setItemCode(boardVO.getItemCode());
-
-		//boardVO.setReviewImgVO(uploadInfo);	
+		//select 쿼리 먼저 실행
+		ReviewImgVO review = boardService.selectReviewImg(boardVO.getItemCode());
+		
+		//리뷰에 첨부된 사진이 없었다면
+		if(review == null) {
+			//수정한 리뷰에 첨부 파일이 있다면
+			if(!reviewImg.getOriginalFilename().equals("")) {
+				String itemCode = boardVO.getItemCode();
+				ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+				uploadInfo.setItemCode(itemCode);
+				
+				boardVO.setReviewImgVO(uploadInfo);
+				boardService.insertReviewImg(boardVO);
+			}
+		}
+		
+		//리뷰에 첨부된 사진이 있었다면
+		else {
+			//수정한 리뷰에 첨부 파일이 있다면
+			if(!reviewImg.getOriginalFilename().equals("")) {
+				String itemCode = boardVO.getItemCode();
+				ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+				uploadInfo.setItemCode(itemCode);
+				
+				boardService.updateReviewImg(uploadInfo);
+			}
+		}
+		
 		boardService.updateReview(boardVO);
 		
 		return "content/board/update_review_result";
