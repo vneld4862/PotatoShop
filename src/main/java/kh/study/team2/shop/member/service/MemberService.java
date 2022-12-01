@@ -17,6 +17,9 @@ public interface MemberService {
 	ProfileVO detailProfile(String itemCode);
 	void updateMyInfo(MemberVO memberVO);
 	MemberVO searchId(MemberVO memberVO);
+	String searchPw(String memberEmail);
+	void sendEmail(String memberEmail, String memberName);
+
 	
 	//회원 탈퇴
 	void deleteMember(String memberId);

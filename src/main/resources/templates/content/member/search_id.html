@@ -22,24 +22,15 @@
 							</div>
 							<!-- <p class="check" id="check" th:value="${check}"></p> -->
 							<div class="col-12 d-grid gap-2 mt-3">
-								<input class="btn btn-secondary" type="submit" value="check" >
+								<input class="btn btn-secondary" type="submit" value="아이디 찾기" >
 								<input class="btn btn-secondary" type="button" value="비밀번호 찾기" th:onclick="|location.href='@{/member/searchPw}'|" >
 							</div>
-						
-							<!-- 이름과 전화번호가 일치하지 않을 때-->
-							<th:block th:if="${check == 1}">
-								<label>일치하는 정보가 존재하지 않습니다.</label>
-							</th:block>
-							<th:block th:unless="${check == 1}">
-								<label>찾으시는 아이디는 "${memberId}" 입니다.</label>
-							</th:block>
 						</form>
-						
+					</div>
 				</div>
 			</div>
 		</div>
+	  <script type="text/javascript" th:src="@{/js/member/search_id.js}"></script>  
 	</div>
-<script type="text/javascript" th:src="@{/js/member/search_id.js}"></script>  
-</div>
 </div>
 </html>

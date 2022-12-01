@@ -1,0 +1,31 @@
+
+	$("#pwBtn").click(function() {
+		const email = $("#memberEmail").val();
+			alert(111);
+		if (!emailCheck(email)) {
+			swal("이메일을 정확히 입력해주세요");
+			return;
+		}
+ 
+		$.ajax({
+			url: "/member/sendEmail",
+			type: "POST",
+			data: { "email": email }
+		})
+		.done(function() {
+			const html =
+			   `<div>
+					<h3>${email }</h3>
+					<span>으로 아이디를 전송했습니다</span><br>
+					<div>가입한 적이 없는 이메일 주소나 올바르지 않은 이메일 주소를 입력하신 경우에는 메일을 받을 수 없습니다.</div>
+				</div>`;
+ 
+			$("main").html(html);
+ 
+		})
+		.fail(function() {
+			alert("에러가 발생했습니다");
+		})
+	})
+ 
+ 

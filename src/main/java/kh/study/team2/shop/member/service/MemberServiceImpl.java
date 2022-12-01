@@ -58,6 +58,34 @@ public class MemberServiceImpl implements MemberService{
 	public ProfileVO detailProfile(String itemCode) {
 		return sqlSession.selectOne("memberMapper.detailProfile", itemCode);
 	}
-	
+	@Override
+	public String searchPw(String memberEmail) {
+		return sqlSession.selectOne("memberMapper.searchPw", memberEmail);
+	}
+	@Override
+	public void sendEmail(String memberEmail, String memberName) {
+//		SimpleMailMessage simpleMailMessage = new  SimpleMailMessage();
+//		simpleMailMessage.setTo(memberEmail);
+//		simpleMailMessage.setSubject("비밀번호 찾기");
+//		
+//		StringBuffer sb = new StringBuffer();
+//		sb.append("가입하신 아이디는");
+//		sb.append(System.lineSeparator());
+//		
+//		for(int i=0;i<memberName.size()-1;i++) {
+//			sb.append(memberName.get(i));
+//			sb.append(System.lineSeparator());
+//		}
+//		sb.append(memberName.get(memberName.size()-1)).append("입니다");
+//		
+//		simpleMailMessage.setText(sb.toString());
+//		
+//		
+//		new Thread(new Runnable() {
+//			public void run() {
+//				mailSender.send(simpleMailMessage);
+//			}
+//		}).start();
+	}
 	
 }
