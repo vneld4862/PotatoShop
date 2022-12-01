@@ -5,8 +5,10 @@
 	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 
 <div layout:fragment="content"> 
-	<div class="container"><br>
-	<div class="col-12 mb-3"><h3>주문/결제</h3></div><br>
+<div class="container"><br>
+<div class="card card-signin my-5">
+	<div class="card-body">
+	<h3 class="card-title text-center mb-5">주문/결제</h3>
 		<div class="row justify-content-md-center">
 			<div class="row">
 					<div class="col-12 mb-2">
@@ -21,7 +23,7 @@
 							</div>
 						</div>
 					</div>
-					<div class="border">
+					<div class="border mb-5">
 						<div class="col-12" style="margin-top: 1rem;">
 						 	<span>수령인</span>
 							<span class=""  style="margin-left: 10rem;" id="buyerName" th:text="${memberInfo.memberName}"></span>
@@ -44,93 +46,80 @@
 						</div>
 					</div>
 					<div class="row">
-						<div class="col-12 mb-3">
-							<div class="row" >
-								<div class="w-75 p-3">
-									<h4>
-									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-emoji-smile" viewBox="0 0 16 16">
-									  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-									  <path d="M4.285 9.567a.5.5 0 0 1 .683.183A3.498 3.498 0 0 0 8 11.5a3.498 3.498 0 0 0 3.032-1.75.5.5 0 1 1 .866.5A4.498 4.498 0 0 1 8 12.5a4.498 4.498 0 0 1-3.898-2.25.5.5 0 0 1 .183-.683zM7 6.5C7 7.328 6.552 8 6 8s-1-.672-1-1.5S5.448 5 6 5s1 .672 1 1.5zm4 0c0 .828-.448 1.5-1 1.5s-1-.672-1-1.5S9.448 5 10 5s1 .672 1 1.5z"/>
-									</svg>
-									상품 정보
-									</h4>
-								</div>	
-							</div>
-							<table class="table text-center border">
-						 		<colgroup>
-							       <col width="65%">
-							       <col width="10%">
-							       <col width="*">
-								</colgroup>
-						 		<tr>
-						 			<th>상품정보</th>
-						 			<th>수량</th>
-						 			<th>주문금액</th>
-						 		</tr>
-						 		<tr>
-						 			<td>
-						 			<div class="col-12">
-						 				<span style="margin-left: -10rem;">
-											<th:block th:each=" img : ${item.imgList}">
-												<th:block th:if="${img.isMain eq 'Y'}">
-													<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
-												</th:block>
-											</th:block>
-										</span>
-										<span style="margin-left: 4rem;">
-											<th:block th:text="${item.itemName}">
-											</th:block>
-										</span>
-									</div>
-									</td>
-						 			<td><span style="margin-top: 5rem;">1개</span></td>
-						 			<td th:text="${item.itemPrice}"></td>
-						 		</tr>
-						 	</table>
-<!-- 						 	
-							<div class="row">
-							<div class="border">
-						 		<div class="col-4">
-								</div> 
-								<div class="col-8">
-									<div class="row" style=" margin-top: 2rem;">
-										<div class="col-12" id="seller" th:text="${item.memberId}"></div>
-										<div class="col-12" id="buyerPrice" th:text="${item.itemPrice}"></div>
-										<div class="col-12" id="buyerItem" th:text="${item.itemName}"></div>
-									</div>
-								</div>
-								</div>
-							</div> -->
-						</div>
-					</div>
-				<hr>	
-				<div class="col-6">
-					<div class="row mt-3 mb-3">
-						<div class="row" >
-							<div class="w-75 p-3">
+					<div class="col-12 mb-2">
+						<div class="row">
+							<div class="w-75">
 								<h4>
 								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
 								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
 								</svg>
-								결제 정보 <!-- / 주문자 동의 -->
+								상품 정보
 								</h4>
-							</div>	
-							<div class="col-12 mb-3">
-							  <div class="form-check form-check-inline">
-							 	<input class="form-check-input" type="radio" name="" id="" value="신용/체크카드" checked> 
-								<label class="form-check-label" for="">신용/체크카드</label>
-							  </div>
 							</div>
+						</div>
+					</div>
+					<table class="table text-center border mb-5">
+				 		<colgroup>
+					       <col width="65%">
+					       <col width="10%">
+					       <col width="*">
+						</colgroup>
+				 		<tr>
+				 			<th>상품정보</th>
+				 			<th>수량</th>
+				 			<th>주문금액</th>
+				 		</tr>
+				 		<tr>
+				 			<td>
+				 			<div class="col-12">
+				 				<span style="margin-left: -10rem;">
+									<th:block th:each=" img : ${item.imgList}">
+										<th:block th:if="${img.isMain eq 'Y'}">
+											<img th:src="|@{/images/}${img.attachedName}|" width="90rem;">
+										</th:block>
+									</th:block>
+								</span>
+								<span style="margin-left: 4rem;">
+									<th:block th:text="${item.itemName}">
+									</th:block>
+								</span>
+							</div>
+							</td>
+				 			<td class="align-middle">1개</td>
+				 			<td class="align-middle" th:text="${item.itemPrice}"></td>
+				 		</tr>
+				 	</table>
+				</div>
+				</div>
+				<div class="row">
+				<div class="col-12">
+					<div class="row">
+						<div class="w-75">
+							<h4>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+							  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+							</svg>
+							결제 정보 <!-- / 주문자 동의 -->
+							</h4>
+							<br>
+						</div>
+					</div>
+				</div>
+				<div class="col-12 mb-4">
+				  <div class="form-check form-check-inline">
+				 	<input class="form-check-input" type="radio" name="" id="" value="신용/체크카드" checked> 
+					<label class="form-check-label" for="">신용/체크카드</label>
+				  </div>
+				</div>
 <!-- 							<div class="col-12">
 							  <div class="form-check form-check-inline">
 							 	<input class="form-check-input" type="radio" name="" id="" value="무통장입금"> 
 								<label class="form-check-label" for="">무통장입금</label>
 							  </div>
 							 </div> -->
-						</div>
-						</div>
-					</div>
-					<hr>
+						
+				</div>
+				<hr>
 					<div class="row mt-3 mb-3">
 						<div class="row" >
 							<div class="w-75 p-3">
@@ -140,12 +129,14 @@
 								</svg>
 								최종 결제금액
 								</h4>
-								<div th:text="${item.itemPrice}" style="font-size: 30px; margin-left: 1rem;"></div>
+								<div th:text="|${#numbers.formatInteger((item.itemPrice),3,'COMMA')}원|" style="font-size: 30px; margin-left: 1rem;"></div>
 							</div>	
 						</div>
 					</div>
 				</div>
-			</div>
+				</div>
+				</div>
+			
 	<input type="hidden" id="seller" th:value="${item.memberId}"></div>
 	<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
 	<input type="hidden" id="nextBuyCode" name="buyCode" th:value="${nextBuyCode}">
