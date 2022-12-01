@@ -5,30 +5,14 @@
 	  layout:decorate="~{layout/base_layout}">
 
 <div layout:fragment="content">
-<br><br> 
- <table class="table">
-   		<colgroup>
-	       <col width="15%">
-	       <col width="25%">
-	       <col width="45%">
-	       <col width="*">
-		</colgroup>
-	  	<tr>
-			<td>No.</td>	  	
-			<td>제목</td>	  	
-			<td>내용</td>	  	
-			<td>작성일</td>	  	
-	  	</tr>
-	  	<tr>
-			<td th:text=${notice.noticeNum}></td>	  	
-			<td th:text="${notice.title}"></td>	  	
-			<td th:text="${notice.content}"></td>	  	
-			<td th:text="${notice.createDate}"></td>	  	
-	  	</tr>
-	</table>
-	<div class="col-12">
-		<a th:href="@{/notice/list}"><input type="button" class="btn btn-warning" value="목록"></a>
+<br>
+ 	<div class="col-12 mb-3"><h3>공지사항</h3></div><br>
+			<h4><div th:text=${notice.title}></div></h4>	  	
+	<div class="col-12 border mb-5">
+			<div style="margin-left: 1rem; margin-top: 1rem;" th:text=${notice.createDate} class="mb-2"></div>	  	
+			<div style="margin-left: 1rem; margin-bottom: 1rem;" th:text=${notice.content}></div>	  	
 	</div>
+	<a th:href="@{/notice/list}"><input type="button" class="btn btn-warning" value="목록"></a>
  	<div class="col-12 text-center">
 	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning" value="수정"
 	 		   th:onclick="|location.href='@{/notice/correctNotice(noticeNum=${notice.noticeNum})}'|">
