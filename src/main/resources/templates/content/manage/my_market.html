@@ -68,10 +68,13 @@
 							
 							<button class="btn btn-success" style="width: 30%" 
 							th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
-							 내정보 수정
+								내정보 수정
 							</button>
 							<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-								    프로필이미지 수정
+								프로필이미지 수정
+							</button>
+							<button class="btn btn-success" style="width: 30%" th:onclick="|location.href='@{/manage/itemManage}'|">
+								내 상점 관리
 							</button>
 						</div>
 					</div>
