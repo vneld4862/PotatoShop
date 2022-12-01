@@ -23,14 +23,14 @@
 	   		     <div class="row mb-3">
 	      			  <!-- 상품 이미지 -->
 	      			  
-	      			  		 <div class="col-3 text-end">
+	      			  		 <div class="col-6 text-end">
 	      			  		 <!-- 판매상태 조건 -->
 	      					  <th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
 								<div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
 									  <div class="carousel-inner" align="center">
 									     <th:block th:each="img:${itemInfo.imgList}">
 										    <div class="carousel-item active">
-										     	 <img th:src="|@{/images/}${img.attachedName}|" width="220px;" height="330px;">
+										     	 <img th:src="|@{/images/}${img.attachedName}|" width="300px;" height="330px;">
 										    </div>
 									    </th:block>
 									  </div>
@@ -57,7 +57,7 @@
 	      			    
 	      			 
 				     
-						      <div class="col-9 text-start">
+						      <div class="col-6 text-start">
 						            <!-- 상품설명 -->
 							        <div class="row">
 								          <div class="col-12">
@@ -136,7 +136,7 @@
 	    <div class="row">
 		      <div class="col-9">
 			        <div class="row text-start mt-3 mb-3">
-				         <div>
+				         <div class="row">
 					           <h3>상품정보</h3>
 					           <hr>
 				         </div>
@@ -146,26 +146,47 @@
 		      </div>
 		      <!-- 상점정보 -->
 		      <div class="col-3">
-			       <div class="row text-start mt-3 mb-3">
-				         <div>
+			       <div class="row mt-3 mb-3">
+				         <div class="row text-start">
 					          <h3>상점정보</h3>
 					          <hr>
 				         </div>
-				         <div>
-				         	<div class="row">
-				         		<div class="col-5">
-						         	<!-- 상점이미지 -->
-						         	<img th:src="|@{/images/}${profileInfo.changedName}|" width="85px;" height="100px;">
-				         		</div>
-				         		<div class="col-5">
-				         		      [[${profileInfo.memberVO.memberNickName}]]
-				         		</div>
-				         	</div>
-				         		
+				         
+			         	<div class="row text-center">
+			         		<div class="col-6">
+					         	<!-- 상점이미지 -->
+					         	<img th:src="|@{/images/}${profileInfo.changedName}|" width="100px;" height="125px;">
+			         		</div>
+			         		<div class="col-6">
+			         		      [[${profileInfo.memberVO.memberNickName}]]
+			         		</div>
+			         	</div>
+				         <!-- 상품목록 -->
+				         <div class="row">
+				              [[상품목록]]
+				        		 <div class="col-12">
+				        		 	<div class="row">
+				        		 	   <th:block th:if="${#lists.size(itemList) == 0}">
+				        		 	   		해당 상점에 등록된 상품이 없습니다.
+				        		 	   </th:block>
+				        		 	   <th:block th:unless="${#lists.size(itemList) == 0}">
+				        		 	   	  <th:block th:each="itemInfo:${itemList}">
+				        		 	   	  	<div class="col-6">
+				        		 	   	  		<img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" width="100px;" height="100px;">
+				        		 	   	  		[[${itemInfo.itemPrice}]]
+				        		 	   	  	</div>
+				        		 	   	  
+				        		 	   	 </th:block>
+				        		 	   </th:block>
+				        		 	</div>
+				        		 </div>
+				        		 <div class="col text-center">
+									 <button>상품 더보기</button>				        		 
+				        		 </div>
 				         </div>
-				         <div>상품목록</div>
-				         <div>
-						        <table class="table"><!--상품후기 목록 -->
+				         <!-- 상품후기 목록 -->
+				         <div class="row">
+						        <table class="table">
 									  <thead>
 										    <tr>
 											      <th scope="col">상품후기</th>

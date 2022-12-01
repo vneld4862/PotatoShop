@@ -122,6 +122,22 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<!-- 프로필 정보 조회(상품상세화면) -->
+	<select id="detailProfile" resultMap="profile">
+		SELECT 
+			PROFILE_CODE
+			, CHANGED_NAME
+			, MEMBER_ID
+			, (SELECT MEMBER_NICKNAME
+               FROM SHOP_MEMBER
+               WHERE MEMBER_ID = PROFILE.MEMBER_ID) AS MEMBER_NICKNAME
+		FROM PROFILE
+		WHERE MEMBER_ID = (SELECT MEMBER_ID
+                            FROM SHOP_ITEM
+                            WHERE ITEM_CODE = #{itemCode})
+	
+	</select>
+	
 	<!--프로필 이미지 수정-->
 	<update id="updateProfileImg">
 	  UPDATE PROFILE

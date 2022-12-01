@@ -54,6 +54,10 @@ public class MemberServiceImpl implements MemberService{
 	public List<String> memberRank() {
 		return sqlSession.selectList("memberMapper.memberRank");
 	}
+	@Override
+	public ProfileVO detailProfile(String itemCode) {
+		return sqlSession.selectOne("memberMapper.detailProfile", itemCode);
+	}
 	
 	
 }

@@ -8,6 +8,8 @@ public interface ItemService {
 	void insertItem(ItemVO itemVO);
 	String getNextItemCode();
 	List<ItemVO> selectItemList(ItemVO itemVO);
+	//상점정보 - 상품목록 조회
+    List<ItemVO> marketItemList(String itemCode);
 	ItemVO selectItemDetail(String itemCode);
 	List<ItemVO> memberItemList(ItemVO itemVO);
 	void updateItem(ItemVO itemVO);

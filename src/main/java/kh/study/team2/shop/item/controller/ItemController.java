@@ -236,7 +236,8 @@ public class ItemController {
 				
 		String wishCode =  wishService.selectWishCode(itemVO);
 		model.addAttribute("wishCode", wishCode);
-		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
+		model.addAttribute("profileInfo", memberService.detailProfile(itemCode));
+		model.addAttribute("itemList", itemService.marketItemList(itemCode));
 		return"content/item/item_detail";
 	}
 	

@@ -91,4 +91,9 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemVO> bestFourSalersItem(List<String> memberList) {
 		return sqlSession.selectList("itemMapper.bestSalersItem",memberList);
 	}
+
+	@Override
+	public List<ItemVO> marketItemList(String itemCode) {
+		return sqlSession.selectList("itemMapper.marketItemList", itemCode);
+	}
 }
