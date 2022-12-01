@@ -80,8 +80,12 @@ public class ManageController {
 		//회원 정보 조회
 		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 				
-		List<ItemVO> itemList = itemService.selectItemList(itemVO);
-		model.addAttribute("itemList", itemList);
+		//상품목록 조회
+		itemVO.setMemberId(user.getUsername());
+		List<ItemVO> itemList = itemService.memberItemList(itemVO);
+	    model.addAttribute("itemList", itemList);
+//		List<ItemVO> itemList = itemService.selectItemList(itemVO);
+//		model.addAttribute("itemList", itemList);
 		
 		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
@@ -189,12 +193,24 @@ public class ManageController {
 	@GetMapping("/updateForm")
 	public String updateForm(String itemCode, Model model) {
 		System.out.println(itemCode);
-		model.addAttribute("itemInfo", itemService.selectItemDetail(itemCode));
+		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
+		
+		model.addAttribute("itemInfo", itemInfo);
+		
+		//서브이미지 개수
+//		int subImgCnt = 0;
+//		for(ImgVO e : itemInfo.getImgList()) {
+//			if(e.getIsMain().equals("N")) {
+//				subImgCnt++;
+//			}
+//		}
+//		System.out.println("@@@@@@@@" + subImgCnt);
+//		model.addAttribute("subImgCnt", subImgCnt);
 		
 		return "content/manage/update_item";
 	}
 	
-	//이미지 삭제
+	//상품수정 페이지 - 이미지 삭제
 		@ResponseBody
 		@PostMapping("/deleteImg")
 		public ItemVO deleteImg(String imgCode, String itemCode) {
@@ -210,22 +226,30 @@ public class ManageController {
 	@PostMapping("/updateItem")
 	public String updateItem(ItemVO itemVO
 							, @RequestParam(required = false)MultipartFile mainImg
-							, @RequestParam(required = false)List<MultipartFile> subImgs) {
+							, @RequestParam(required = false)List<MultipartFile> subImgs
+							, String imgCode) {
 		System.out.println(itemVO);
+		System.out.println(imgCode);
+		System.out.println("@@@@@@@"+subImgs.get(0));
+		List<ImgVO> uploadList2 = new ArrayList<>();
 		
+		if(subImgs != null) {
 		List<ImgVO> uploadList = UploadFileUtil.multiUploadFile(subImgs);
-		for(ImgVO img : uploadList) {
-			img.setItemCode(itemVO.getItemCode());
+			for(ImgVO img : uploadList) {
+				img.setItemCode(itemVO.getItemCode());
+			}
+			uploadList2.addAll(uploadList);
 		}
 		
 		if(!mainImg.getOriginalFilename().equals("")) {
+			manageService.deleteImg(imgCode);
 			ImgVO uploadInfo = UploadFileUtil.uploadFile(mainImg);
 			uploadInfo.setItemCode(itemVO.getItemCode());
-			uploadList.add(uploadInfo);
+			uploadList2.add(uploadInfo);
 		}
 		
 		
-		itemVO.setImgList(uploadList);
+		itemVO.setImgList(uploadList2);
 		itemVO.setItemCode(itemVO.getItemCode());
 		
 		

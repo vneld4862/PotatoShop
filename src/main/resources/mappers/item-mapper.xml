@@ -156,7 +156,7 @@
 	
 	
 	<!-- 회원의 상품 목록 조회 -->
-	<select id="memberItemList" resultMap="item">
+	<!-- <select id="memberItemList" resultMap="item">
 		SELECT ROW_NUM
 		    , ITEM_CODE
 		    , ITEM_NAME
@@ -196,9 +196,9 @@
 		)
     )
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum} 
-	</select>
+	</select> -->
 	
-	<!-- <select id="memberItemList" resultMap="item">
+	<select id="memberItemList" resultMap="item">
 		SELECT 
 		  I.ITEM_CODE
 		  , ITEM_NAME
@@ -215,7 +215,7 @@
 		AND IS_MAIN = 'Y'
 		ORDER BY ITEM_CODE DESC
 	</select>
-	 -->
+	 
 	<!--상품수정-->
 	<update id="updateItem">
 		UPDATE SHOP_ITEM

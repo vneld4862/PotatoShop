@@ -60,21 +60,21 @@ function deleteMainImg(){
 }
 
 
-//메인 이미지 수정
+//메인 이미지 미리보기(파일 선택 시)
 function readURL(input) {
+    $('.mainImgDiv div.loadMainDiv').remove();
   if (input.files && input.files[0]) {
 	//원본이미지를 db에서 삭제
     //  deleteImg(deleteBtn);이렇게 함수를 적어서 실행시켜주면 된다.
+    
     
 
     var reader = new FileReader();
     reader.onload = function(e) {
 			let str = '';
-			str += '<div class="col-3 mainDiv">';
+			str += '<div class="col-3 mainDiv loadMainDiv">';
+			str += '[수정될 메인 이미지]';
 			str += `<img src=${e.target.result} width="230px;" height="230px;">`;
-		//	str += `<button type="button" class="testBtn"`
-		//	str += `th:onclick="delSubPreview(this);"`
-		//	str += `>x</button>`
 			str += '</div>';
 			$('.mainImgDiv').append(str);
 
@@ -88,7 +88,7 @@ function readURL(input) {
   }
 }
 
-//서브 이미지 수정
+//서브 이미지 미리보기(파일 선택 시)
 function readURL2(input) {
 	$('.allSubImgDiv div:not(.loadImgDiv)').remove();
 	
@@ -100,9 +100,6 @@ function readURL2(input) {
 				str += '<div class="col-3 subDiv">';
 				str += `<img src=${e.target.result} width="230px;" height="230px;"><br>`;
 				str += `<input type="hidden" th:value="">`
-				str += `<button type="button" class="testBtn"`
-				str += `th:onclick="delSubPreview(this);"`
-				str += `>x</button>`
 				str += '</div>';
 				$('.allSubImgDiv').append(str);
 				
