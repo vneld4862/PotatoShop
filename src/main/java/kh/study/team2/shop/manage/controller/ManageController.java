@@ -154,7 +154,7 @@ public class ManageController {
 	
 	//상품등록 페이지로 이동
 	@GetMapping("/regItemForm")
-	public String regItemForm(Model model) {
+	public String regItemForm(ItemVO itemVO,Model model) {
 		List<MainCateVO> mainCateList = cateService.mainCateList();
 		System.out.println(mainCateList);
 		model.addAttribute("mainCateList", mainCateList);

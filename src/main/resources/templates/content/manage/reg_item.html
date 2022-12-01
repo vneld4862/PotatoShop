@@ -14,7 +14,7 @@
 		   	  </div>	
 			  <div class="col-12 text-center">
 			  		
-					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data">
+					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}">
 						<div class="row">
 							<div class="col">
 							   <hr>
@@ -34,7 +34,8 @@
 									</thead>
 									<tbody>
 										<tr>
-											<th class="align-middle" scope="row">상품이미지*</th>
+											
+											<th class="align-middle" scope="row">상품이미지<br>(메인이미지 필수)</th>
 											<td>
 												  <div class="input-group flex-nowrap mb-3">
 											  		    <span class="input-group-text" id="addon-wrapping">Main Images</span>
@@ -49,8 +50,8 @@
 										<tr>
 										  <th scope="row">상품명*</th>
 										  <td>
-							              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요" name="itemName" value="">
-											
+							              <div th:if="${#fields.hasErrors('itemName')}" th:errors="*{itemName}" class="hasError text-start"></div>
+							              <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품명을 입력해주세요" name="itemName" value="" th:field="*{itemName}">
 										  </td>
 										</tr>
 										<tr>
@@ -58,10 +59,11 @@
 											<td class="align-top">
 						 					  <!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
 						 					  	<div class="mainCate">
+						 					  		<div th:if="${#fields.hasErrors('mainCateCode')}" th:errors="*{mainCateCode}" class="hasError text-start"></div>
 											    	<select name="mainCateCode" class="form-select form-select-sm" aria-label=".form-select-sm example">
-												       <option selected >카테고리</option>
+												       <option value="" th:field="*{mainCateCode}">카테고리</option>
 												         <th:block th:each="mainCate:${mainCateList}">
-												    	   <option th:value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
+												    	   <option th:value="${mainCate.mainCateCode}" th:selected="${mainCate.mainCateCode eq mainChk}">[[${mainCate.MainCateName}]]</option>
 												         </th:block>
 												    </select>
 						 					  	</div>
@@ -72,12 +74,13 @@
 										<tr>
 										  <th scope="row">상품가격*</th>
 										  <td>
-								          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" value="">
+										  <div th:if="${#fields.hasErrors('itemPrice')}" class="hasError text-start">올바른 가격을 입력해주세요</div>
+								          <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요" name="itemPrice" th:field="*{itemPrice}">
 										
 										  </td>
 										</tr>
 										<tr>
-											<th scope="row">상품설명*</th>
+											<th scope="row">상품설명</th>
 											<td>
 										      <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요" name="itemComment" value=""> -->
 										      <textarea rows="" cols="20" class="form-control" name="itemComment" style="resize: none;" placeholder="상품에 대한 정보를 입력해주세요"></textarea>
@@ -92,17 +95,18 @@
 										<tr>
 											<th scope="row">상품상태*</th>
 											<td>
+											<div th:if="${#fields.hasErrors('itemStatus')}" th:errors="*{itemStatus}" class="hasError text-start"></div>
 											<div class="form-check form-check-inline">
 															<input class="form-check-input" type="radio"
 																name="itemStatus" id="inlineRadio1"
-																value="중고" checked> 
+																value="중고" th:checked="${statusChk} eq '중고'"> 
 																<label class="form-check-label"
 																for="inlineRadio1">중고</label>
 											  </div>
 										      <div class="form-check form-check-inline">
 											 	<input class="form-check-input" type="radio"
 													name="itemStatus" id="inlineRadio2"
-													value="새상품"> 
+													value="새상품" th:checked="${statusChk} eq '새상품'"> 
 													<label class="form-check-label"
 													for="inlineRadio2">새상품</label>
 											  </div>
@@ -112,17 +116,18 @@
 										<tr>
 											<th scope="row">거래방법*</th>
 											<td>
+											<div th:if="${#fields.hasErrors('tradeType')}" th:errors="*{tradeType}" class="hasError text-start"></div>
 											  <div class="form-check form-check-inline">
 															<input class="form-check-input" type="radio"
 																name="tradeType" id="inlineRadio3"
-																value="직거래" checked>
+																value="직거래" th:checked="${typeChk} eq '직거래'">
 																 <label class="form-check-label"
 																for="inlineRadio1">직거래</label>
 											  </div>
 										      <div class="form-check form-check-inline">
 											 	<input class="form-check-input" type="radio"
 													name="tradeType" id="inlineRadio4"
-													value="택배"> 
+													value="택배" th:checked="${typeChk} eq '택배'"> 
 													<label class="form-check-label"
 													for="inlineRadio2">택배</label>
 											  </div>
@@ -130,12 +135,14 @@
 											</td>
 										</tr>
 										<tr>
+											
 											<th scope="row">거래주소*</th>
 											<td>
 											   <div class="mb-3">
+											   	<div th:if="${#fields.hasErrors('tradeAddr')}" th:errors="*{tradeAddr}" class="hasError text-start"></div>
                     							 <input onclick="searchTrAddr();" type="text" class="form-control" 
                     							   id="tradeAddr" placeholder="거래지역을 입력해주세요" 
-                    							   name="tradeAddr" value="">
+                    							   name="tradeAddr" value="" th:field="*{tradeAddr}">
                   							  </div>
                
                   
