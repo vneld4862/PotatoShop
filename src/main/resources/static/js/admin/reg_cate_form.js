@@ -174,6 +174,7 @@ subCateSelect.addEventListener('change',function(){
 		success: function(result) {
 			detailCateSelect.innerHTML='';
 			let str='';
+			str+='<option value="not">선택</option>';
 			for(const subCate of result)
 			{
 				if(subCate.subCateName=='')
@@ -184,7 +185,6 @@ subCateSelect.addEventListener('change',function(){
 				{
 					alert('null임')
 				}
-				str+='<option value="not">선택</option>';
 				str+=`<option value="${subCate.subCateCode}">${subCate.subCateName}</option>`;
 			}
 			if(!result.length==0)
