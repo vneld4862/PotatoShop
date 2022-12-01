@@ -7,11 +7,13 @@ import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.validation.Valid;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.CookieValue;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -94,7 +96,6 @@ public class ItemController {
 		}
 //		model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		List<String> rankerList=memberService.memberRank();
-		System.out.println("@@@@@@@@@@@@@@@@@@@"+rankerList.size());
 		model.addAttribute("bestSalerItems",itemService.bestFourSalersItem(rankerList));
 		return "content/shop_main";
 	}
@@ -104,11 +105,23 @@ public class ItemController {
 	
 	//상품등록 버튼 클릭 -> 메인화면으로 이동(상품관리페이지 이동으로 변경예정)
 	@PostMapping("/regItem")
-	public String regItem(ItemVO itemVO
-						  , MultipartFile mainImg
-						  , @RequestParam(required = false)List<MultipartFile> subImgs
-						  , Authentication authentication) {
+	public String regItem(@Valid ItemVO itemVO
+							, BindingResult bindingResult
+							, Model model
+							, MultipartFile mainImg
+							, @RequestParam(required = false)List<MultipartFile> subImgs
+							, Authentication authentication) {
 		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("mainCateList",cateService.mainCateList());
+			if(itemVO.getMainCateCode()!=null)
+			{
+				model.addAttribute("mainChk",itemVO.getMainCateCode());
+			}
+			model.addAttribute("typeChk",itemVO.getTradeType());
+			model.addAttribute("statusChk",itemVO.getItemStatus());
+			return "content/manage/reg_item";
+		}
 		String nextItemCode = itemService.getNextItemCode();
 		
 		ImgVO uploadInfo = UploadFileUtil.uploadFile(mainImg);
