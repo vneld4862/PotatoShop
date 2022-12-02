@@ -74,9 +74,13 @@ public class ManageController {
 	@GetMapping("/myMarket")
 	public String myMarket(Model model
 						  , Authentication authentication
-						  , ItemVO itemVO) {
+						  , ItemVO itemVO
+						  , String wishChk) {
 		User user = (User)authentication.getPrincipal();
-		
+		if(wishChk!=null)
+		{
+			model.addAttribute("wishChk",wishChk);
+		}
 		//회원 정보 조회
 		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 				

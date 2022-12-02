@@ -1,3 +1,9 @@
+const wishChk=document.querySelector('.wishChk').value;
+if(wishChk=='toWish')
+{
+	document.querySelector('.wishBtn').click();
+}
+
 //모달 창 선택
 const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 
@@ -306,6 +312,7 @@ $(document).on("click", "input:checkbox[name=checkbox]", function(e) {
    }
    
    if(chks.length == chksChecked){
+
       $("#AllCbox").prop("checked", true);
    }else{
       $("#AllCbox").prop("checked",false);

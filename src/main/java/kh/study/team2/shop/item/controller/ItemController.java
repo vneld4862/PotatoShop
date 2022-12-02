@@ -96,8 +96,8 @@ public class ItemController {
 		}
 		if (authentication!=null) {
 			User user=(User)authentication.getPrincipal();
+			model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		}
-//		model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
 		List<String> rankerList=memberService.memberRank();
 		model.addAttribute("bestSalerItems",itemService.bestFourSalersItem(rankerList));
 		return "content/shop_main";

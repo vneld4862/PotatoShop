@@ -43,6 +43,7 @@
 	</style>
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
+		<input type="hidden" th:value="${wishChk}" class="wishChk">
 		<div>
 			<hr>
 			<!-- 내 정보 -->
@@ -125,7 +126,7 @@
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
+						<button class="nav-link wishBtn" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile-tab-pane" type="button" role="tab" aria-controls="profile-tab-pane" aria-selected="false">
 							찜
 						</button>
 					</li>
