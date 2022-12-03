@@ -2,6 +2,7 @@ package kh.study.team2.shop.board.vo;
 
 import groovy.transform.ToString;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.manage.vo.ProfileVO;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -20,4 +21,5 @@ public class BoardVO{
 	private ReviewImgVO reviewImgVO;
 	private ItemVO itemVO;
 	private ReplyVO replyVO;
+	private ProfileVO profileVO;
 }

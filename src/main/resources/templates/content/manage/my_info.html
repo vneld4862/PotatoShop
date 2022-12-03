@@ -14,7 +14,7 @@
    <form action="/manage/updateMyInfo" method="post">
       <input type="hidden" th:value="${myInfo.memberId}" name="memberId">
 		<div class="row">
-			<div class="col-12 mt-3">
+			<div class="col-12 mt-3 text-center">
 				<h2>내정보 수정</h2>
 				
 			</div>
@@ -27,8 +27,8 @@
 								    <tr>
 								      <th scope="col">기본정보</th>
 								      <th scope="col">
-								      	<div>
-								      	
+								      	<div class="text-end">
+								      	* 아이디와 이름은 변경하실 수 없습니다.
 								      	</div>
 								      </th>
 								    </tr>
@@ -39,7 +39,7 @@
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
-								      	 	name="memberId" th:value="${myInfo.memberId}" disabled>
+								      	 	name="memberId" th:value="${myInfo.memberId}" readonly><!-- disabled -->
 								      	 </div>
 								      </td>
 								    </tr>
@@ -65,7 +65,7 @@
 								      <td>
 								      	 <div>
 								      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
-								      	 	name="memberName" th:value="${myInfo.memberName}" disabled>
+								      	 	name="memberName" th:value="${myInfo.memberName}" readonly>
 								      	 </div>
 								      </td>
 								    </tr>

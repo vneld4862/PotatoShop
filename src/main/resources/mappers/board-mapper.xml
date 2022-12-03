@@ -15,6 +15,8 @@
 		<association property="itemVO" 		resultMap="itemMapper.item"/>
 		<association property="reviewImgVO" resultMap="reviewImg"/>
 		<association property="replyVO" 	resultMap="reply"/>
+		<association property="profileVO" 	resultMap="memberMapper.profile"/>
+		
 	</resultMap>
 	
 	<resultMap type="kh.study.team2.shop.board.vo.ReviewImgVO" id="reviewImg">
@@ -122,7 +124,7 @@
 	</select>
 	
 	<!-- 해당 상점에 작성된 리뷰 목록 조회-->
-	<select id="marketReviewList">
+	<select id="selectmarketReviewList" resultMap="board">
 		SELECT
 			 R.ITEM_CODE
 			 , (SELECT CHANGED_NAME
@@ -130,14 +132,16 @@
                   WHERE MEMBER_ID = B.BUYER) AS CHANGED_NAME
             , (SELECT MEMBER_NICKNAME
                FROM SHOP_MEMBER S
-                 WHERE MEMBER_ID = B.BUYER) AS NICKNAME
+                 WHERE MEMBER_ID = B.BUYER) AS MEMBER_NICKNAME
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, B.BUYER
 			, TO_CHAR(R.REG_DATE, 'YYYY-MM-DD') AS REG_DATE
 			, STAR_POINT
 		FROM REVIEW_BOARD R, SHOP_BUY B
-		WHERE B.SELLER = #{seller}
+		WHERE B.SELLER = (SELECT MEMBER_ID
+                        FROM SHOP_ITEM 
+                        WHERE ITEM_CODE = #{itemCode})
 		AND R.ITEM_CODE = B.ITEM_CODE
         AND ROWNUM <![CDATA[<=]]> 2
 		ORDER BY REG_DATE DESC   
@@ -250,5 +254,6 @@
 		DELETE REVIEW_REPLY
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
+	
 	
 </mapper>

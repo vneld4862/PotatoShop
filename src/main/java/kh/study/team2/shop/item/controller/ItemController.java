@@ -21,6 +21,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
@@ -181,8 +182,10 @@ public class ItemController {
 							, @CookieValue(required = false,name = "imgName")String cookieImgName
 							, @CookieValue(required = false,name = "cookieUser")String cookieUser) {
 		
+		System.out.println("****@@@@@@"+ itemVO);
 		User user = (User)authentication.getPrincipal();
 		String memberId = user.getUsername();
+		System.out.println("****@@@@@@"+ memberId);
 		System.out.println(itemCode);
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		System.out.println(itemInfo);
@@ -238,8 +241,15 @@ public class ItemController {
 		model.addAttribute("wishCode", wishCode);
 		model.addAttribute("profileInfo", memberService.detailProfile(itemCode));
 		model.addAttribute("itemList", itemService.marketItemList(itemCode));
+		
+		List<BoardVO> reviewList = boardService.selectmarketReviewList(itemCode);
+		System.out.println(reviewList);
+		model.addAttribute("reviewList", reviewList);
+		
 		return"content/item/item_detail";
 	}
+	
+	
 	
 	@GetMapping("/searchResult")
 	public String searchResult(Model model,ItemVO itemVO)

@@ -28,6 +28,8 @@ public interface BoardService {
 	//리뷰 작성 여부 업데이트(N)
 	void updateReviewBefore(String itemCode);
 	
+	//해당 상점에 작성된 리뷰 목록 조회
+	List<BoardVO> selectmarketReviewList(String seller);
 	
 ///////////////////리뷰 수정///////////////////	
 

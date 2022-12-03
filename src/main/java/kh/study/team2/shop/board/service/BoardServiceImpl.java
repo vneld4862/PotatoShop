@@ -114,6 +114,12 @@ public class BoardServiceImpl implements BoardService{
 		sqlSession.delete("boardMapper.deleteReviewReply", replyNum);
 	}
 
+	//해당 상점에 작성된 리뷰 목록 조회
+	@Override
+	public List<BoardVO> selectmarketReviewList(String seller) {
+		return sqlSession.selectList("boardMapper.selectmarketReviewList", seller);
+	}
+
 
 
 
