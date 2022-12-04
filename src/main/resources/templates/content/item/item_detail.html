@@ -30,6 +30,16 @@
         /* background: #0d6efd; */
         border-radius: 5px;
       }   
+      
+      #iconDiv{
+      	color: #D23369;
+      	font-size: 20px;
+      	border: thick;
+      }
+      
+      #stateAreaDiv{
+      	font-size: 18px;
+      }
 	</style>
 
 <div class="container">
@@ -44,9 +54,8 @@
 	    		 </div>
 	   		     <div class="row mb-3">
 	      			  <!-- 상품 이미지 -->
-	      			  
 	      			  		 <div class="col-6 text-center">
-	      			  		 <!-- 판매상태 조건 -->
+	      			  		 <!-- 판매상태 조건 : 판매중 -->
 	      					  <th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
 								<div id="carouselExampleFade" class="carousel carousel-dark slide carousel-fade" data-bs-ride="carousel">
 									  <div class="carousel-inner" align="center">
@@ -67,6 +76,7 @@
 									  </button>
 								</div>
 	      					  </th:block>
+	      					   <!-- 판매상태 조건 : 판매완료 -->
 	      					   <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
 	      			  		 		<img th:src="@{/images/sold_out.png}" width="320px;" height="350px;">
 	      			  		 		<div>
@@ -76,9 +86,6 @@
 	      			  		 		</div>
 	      			 		 	</th:block>
 				      		 </div>
-	      			    
-	      			 
-				     
 						      <div class="col-6 text-start">
 						            <!-- 상품설명 -->
 							        <div class="row">
@@ -95,47 +102,43 @@
 								            	 
 								          </div>
 								          <div class="col-10 mt-3">
-									            <div>
-									               
-									               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
-													  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
-													</svg>
-									                [[${wishAmount}]] / 
-									               <!-- 조회수 -->
-									               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
-													  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
-													  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
-													</svg>
-									                [[${itemInfo.viewCnt}]] / 
-									                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
-													  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
-													</svg>
-									               <div class="col" id="insertDate" style="display: inline-block;"></div>
-									              
-									               
-									               <input id="regDate" type="hidden" th:value="${itemInfo.regDate}">
+									            <div id="iconDiv">
+										               <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-heart-fill" viewBox="0 0 16 16">
+														  <path fill-rule="evenodd" d="M8 1.314C12.438-3.248 23.534 4.735 8 15-7.534 4.736 3.562-3.248 8 1.314z"/>
+														</svg>
+										                [[${wishAmount}]] / 
+										               <!-- 조회수 -->
+										               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="25" fill="currentColor" class="bi bi-eye-fill" viewBox="0 0 16 16">
+														  <path d="M10.5 8a2.5 2.5 0 1 1-5 0 2.5 2.5 0 0 1 5 0z"/>
+														  <path d="M0 8s3-5.5 8-5.5S16 8 16 8s-3 5.5-8 5.5S0 8 0 8zm8 3.5a3.5 3.5 0 1 0 0-7 3.5 3.5 0 0 0 0 7z"/>
+														</svg>
+										                [[${itemInfo.viewCnt}]] / 
+										                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-clock-fill" viewBox="0 0 16 16">
+														  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8 3.5a.5.5 0 0 0-1 0V9a.5.5 0 0 0 .252.434l3.5 2a.5.5 0 0 0 .496-.868L8 8.71V3.5z"/>
+														</svg>
+										               <div class="col" id="insertDate" style="display: inline-block;"></div>
+										               <input id="regDate" type="hidden" th:value="${itemInfo.regDate}">
 									            </div>
 								          </div>
 								          <div class="col-10 mt-3">
-									            <div class="row">
-									            	<div class="row mt-3">
-									            		 <div class="col-5">상품상태</div>
-										             	 <div class="col-5">[[${itemInfo.itemStatus}]]</div>
-									            	</div>
-										            <div class="row mt-3 mb-3">
-										            	 <div class="col-5">거래지역</div>
-										             	 <div class="col-5">[[${itemInfo.tradeAddr}]]</div>
-										            </div>
-										            
-										             
-										             
+									            <div class="row" id="stateAreaDiv">
+										            	<div class="row mt-3">
+										            		 <div class="col-5">상품상태</div>
+											             	 <div class="col-5">[[${itemInfo.itemStatus}]]</div>
+										            	</div>
+											            <div class="row mt-3 mb-3">
+											            	 <div class="col-5">거래지역</div>
+											             	 <div class="col-5">[[${itemInfo.tradeAddr}]]</div>
+											            </div>
 									            </div> 
 								          </div>
 								          <div class="col-10 mt-3">
 								          		 <!-- 내 상품이면 찜/감자톡/바로구매 버튼을 -->
 								          		 <!-- 내 상점 관리 버튼으로 변경해줘야한다. -->
 									          	 <div>
+									          	 	<!--다른 사람이 등록한 상품일 경우 -->
 									          	  	<th:block th:unless="${memberId eq itemInfo.memberId}">
+									          	  		 <!-- 판매중인 상품일 경우  -->
 									          	  		 <th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
 										          	  		 	 <button class="btn btn-success" th:onclick="insertWish(this);" 
 										          	  		 	 	th:data-item-code="${itemInfo.itemCode}"
@@ -160,16 +163,20 @@
 													             	th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|"
 													             	style="width: 25%;">바로구매</button>
 									          	  		 </th:block>
+									          	  		 <!-- 판매완료된 상품일 경우 -->
 											             <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
 											             	 <button type="button" class="btn btn-danger" style="width:80%;" disabled>sold out</button>
 											             </th:block>
 									             	</th:block>
 									             </div>
 									             <div>
+									             	<!-- 내가 등록한 상품일 경우 -->
 									             	<th:block th:if="${memberId eq itemInfo.memberId}">
+									             			<!--판매완료된 상품일 경우  -->
 									             			 <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
-									             			 		<button type="button" class="btn btn-danger" disabled>sold out</button>
-									             			 		<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|">내 상점 관리</button>
+									             			 		<button type="button" class="btn btn-danger" disabled style="width: 40%;">sold out</button>
+									             			 		<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|" 
+									             			 			style="width: 40%;">내 상점 관리</button>
 									             			 		
 									             			 </th:block>
 									             			  <th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
@@ -248,11 +255,7 @@
 										</div>
 									</div>
 								</div>
-
 							</div>
-				         
-				         
-				         
 				         <!-- <div>[[${itemInfo.itemComment}]]</div>
 				         <div>거래지역 : [[${itemInfo.tradeAddr}]] / 카테고리</div> -->
 			        </div>
@@ -294,10 +297,15 @@
 				        		 	   <th:block th:unless="${#lists.size(itemList) == 0}">
 				        		 	   	  <th:block th:each="itemInfo:${itemList}">
 				        		 	   	  	<div class="col-6">
-				        		 	   	  		<img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" 
-				        		 	   	  			width="100px;" height="100px;"
-				        		 	   	  			th:onclick="|location.href='@{/item/itemDetail(itemCode=${itemInfo.itemCode})}'|">
-				        		 	   	  		<p th:text="|${#numbers.formatInteger((itemInfo.itemPrice),3,'COMMA')}원|">
+				        		 	   	  		<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
+					        		 	   	  		<img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" 
+					        		 	   	  			width="100px;" height="100px;"
+					        		 	   	  			th:onclick="|location.href='@{/item/itemDetail(itemCode=${itemInfo.itemCode})}'|">
+					        		 	   	  		<p th:text="|${#numbers.formatInteger((itemInfo.itemPrice),3,'COMMA')}원|">
+				        		 	   	  		</th:block>
+				        		 	   	  		<th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
+				        		 	   	  			<img th:src="@{/images/sold_out2.png}" width="100px;" height="100px;">
+				        		 	   	  		</th:block>
 				        		 	   	  	</div>
 				        		 	   	  
 				        		 	   	 </th:block>
@@ -321,7 +329,7 @@
 										  <thead>
 											    <tr>
 												      <th scope="col">상품후기</th>
-												      <th scope="col">no</th><!--상품후기 개수 -->
+												      <th scope="col" style="color: #332FD0;">CNT</th><!--상품후기 개수 -->
 											    </tr>
 										  </thead>
 										  <tbody>
@@ -335,7 +343,9 @@
 										  		<th:block th:unless="${#lists.size(reviewList) == 0}">
 										  			  <tr th:each=" review: ${reviewList}">
 												    	  <th scope="row text-al">
-												    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|" width="50px;" height="60px;">
+												    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|"
+												    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|" 
+												    	  			width="50px;" height="60px;">
 												    	  </th>
 													      <td>
 													      	<div class="row">
