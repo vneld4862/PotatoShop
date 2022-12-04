@@ -149,14 +149,14 @@
 					  <!-- 상품 -->	
 					  <div class="tab-pane fade show active" id="home-tab-pane" role="tabpanel" aria-labelledby="home-tab" tabindex="0">
 						    <div class="row">
-							        <div class="col-12">
+							       <!--  <div class="col-12">
 							        	<div class="row text-start mt-3">
 							        		<div class="col">
 							        		    <h3>ITEM LIST</h3>
 							        		    <hr>
 							        		</div>
 							        	</div>
-							        </div>
+							        </div> -->
 									<div class="col-12 mb-3 mt-3">
 									  <th:block th:unless="${#lists.size(itemList) == 0}">	
 											<div class="row">
@@ -164,9 +164,14 @@
 													<div class="col-2 mt-3 mb-3" >
 														<div class="card" style="width:10rem">
 															<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
-															<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
-															width="100%;" height="200px;">
-															</a><!-- 이미지나 상품명 클릭하면 해당 상품 상세보기 페이지로 이동 -->
+																<th:block th:if="${item.salesStatus eq 'ON_SALE'}">
+				        		 	   	  							<img th:src="|@{/images/}${item.imgList[0].attachedName}|"
+																	width="100%;" height="150px;">
+				        		 	   	  						</th:block>
+																<th:block th:if="${item.salesStatus eq 'SOLD_OUT'}">
+				        		 	   	  							<img th:src="@{/images/sold_out2.png}" width="110px;" height="150px;">
+				        		 	   	  						</th:block>
+															</a>
 														<div class="card-body">
 															<h5 class="card-title">[[${item.itemName}]]</h5>
 															<p class="card-text"
@@ -189,12 +194,12 @@
 						<div class="tab-pane fade" id="profile-tab-pane" role="tabpanel" aria-labelledby="profile-tab" tabindex="0">
 								<div class="row">
 									  	<div class="col-12">
-									  		<div class="row text-start mt-3">
+									  		<!-- <div class="row text-start mt-3">
 									  			<div class="col">
 						        		    		<h3>WISH LIST</h3>
 						        		    		<hr>
 									 			</div>
-									  		</div>
+									  		</div> -->
 									  		
 									  	<th:block th:if="${#lists.size(wishList) != 0}">
  											<div class="row">
@@ -215,13 +220,18 @@
 										 		  		<div class="row  justify-content-center">
 										 		  			<div class="col-12">
 										 		  				<div class="row">
-										 		  					
 														 			 <th:block th:each="wish : ${wishList}">
 																		 <div class="col-5" style="margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
 																 				<div class="row">
 																 					<div class="col-4" style="margin: 0 auto;">
 																 						<a th:href="@{/item/itemDetail(itemCode=${wish.itemVO.itemCode})}">
-																 					    	<img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+																 							<th:block th:if="${wish.itemVO.salesStatus eq 'ON_SALE'}">
+																 								  <img th:src="|@{/images/}${wish.itemVO.imgList[0].attachedName}|" width="100%;" height="200px;">
+																 							</th:block>
+																 							<th:block th:if="${wish.itemVO.salesStatus eq 'SOLD_OUT'}">
+																 								  <img th:src="@{/images/sold_out.png}" width="100%" height="200px;">
+																 							</th:block>
+																 					    		
 																 						</a>
 																 					</div>
 																 					<div class="col-7" style="margin: 0 auto; margin-top: 30px;">
