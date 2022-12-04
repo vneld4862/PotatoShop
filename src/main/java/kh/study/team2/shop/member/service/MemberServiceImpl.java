@@ -43,7 +43,7 @@ public class MemberServiceImpl implements MemberService{
 		sqlSession.update("memberMapper.updateMyInfo", memberVO);
 	}
 	@Override
-	public MemberVO searchId(MemberVO memberVO) {
+	public String searchId(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.searchId", memberVO);
 	}
 	@Override

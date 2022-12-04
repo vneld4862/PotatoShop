@@ -84,24 +84,14 @@ public class MemberContorller {
 	}
 
 	// 아이디 찾기 실행
+	@ResponseBody
 	@PostMapping("/doSearchId")
-	public String doSearchId(MemberVO memberVO, Model model) {
-		MemberVO member = memberService.searchId(memberVO);
-
-		if (member == null) {
-			model.addAttribute("check", 1);
-		} else {
-			model.addAttribute("check", 0);
-			model.addAttribute("id", member.getMemberId());
-		}
-		return "redirect:/member/login";
+	public String find_id(MemberVO memberVO) {
+		
+		String result = memberService.searchId(memberVO);
+			
+		return result;
 	}
-	/*
-	 * //아이디 찾기 결과 페이지
-	 * 
-	 * @PostMapping("/searchIdResult") public String searchIdResult() { return
-	 * "content/member/search_id_result"; }
-	 */
 
 	
 	 // 메일로 비밀번호 보내기

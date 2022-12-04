@@ -68,10 +68,10 @@
 	
 	<!-- 아이디 찾기  -->
 	<select id="searchId" resultMap="member">
-		SELECT *
+		SELECT MEMBER_ID
 		FROM SHOP_MEMBER
 		WHERE MEMBER_NAME = #{memberName} 
-		AND MEMBER_EMAIL = #{memberEmail}
+		AND MEMBER_TELL = #{memberTell}
 	</select>
 	
 	<!-- 비밀번호 찾기  -->

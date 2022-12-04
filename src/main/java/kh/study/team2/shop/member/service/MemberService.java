@@ -16,7 +16,7 @@ public interface MemberService {
 	//프로필 조회(상품 상세정보 페이지)
 	ProfileVO detailProfile(String itemCode);
 	void updateMyInfo(MemberVO memberVO);
-	MemberVO searchId(MemberVO memberVO);
+	String searchId(MemberVO memberVO);
 	String searchPw(String memberEmail);
 	void sendEmail(String memberEmail, String memberName);
 
