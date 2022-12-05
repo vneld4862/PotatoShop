@@ -21,8 +21,7 @@ $("#pwBtn").click(function() {
 	else{
 		str +=  `<div>
 					<h4>${email}</h4>
-					<span> 비밀번호 전송 완료!</span><br><br>
-					<h6><div>※ 가입한 적이 없는 이메일 주소나 올바르지 않은 이메일 주소를<br> 입력하신 경우에는 메일을 받을 수 없습니다.</div></h6>
+					<span> 이메일로 임시 비밀번호를 발송하였습니다!</span><br><br>
 				 </div>`;
 		$('#searchPw_result').append(str);
 	}

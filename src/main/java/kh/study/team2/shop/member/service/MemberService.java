@@ -18,11 +18,9 @@ public interface MemberService {
 	void updateMyInfo(MemberVO memberVO);
 	String searchId(MemberVO memberVO);
 	String searchPw(String memberEmail);
-	void sendEmail(String memberEmail, String memberName);
-
+	void initPw(MemberVO memberVO);
 	
 	//회원 탈퇴
 	void deleteMember(String memberId);
 	List<String> memberRank();
-	void initPw(MemberVO memberVO);
 }
