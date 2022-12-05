@@ -104,7 +104,7 @@ public class ManageController {
 
 		//프로필정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
-		
+		model.addAttribute("viewCnt",manageService.selectShopViewCnt(user.getUsername()));
 		//내가 쓴 리뷰 총 개수
 		//int writtenReviewTotalCnt = manageService.selectWrittenReviewCnt(user.getUsername());
 		//내 상점에 쓰여진 리뷰 총 개수
