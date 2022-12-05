@@ -1,3 +1,15 @@
+function searchTrAddr(){
+	new daum.Postcode({
+		        oncomplete: function(data) {
+		            //도로명 주소
+		        	 const roadAddr = data.roadAddress; 
+		             document.querySelector('#tradeAddr').value = roadAddr;//내가 선택한 input태그에 밸류값으로 도로명주소를 넣어준다.
+		             
+		        }
+		    }).open();
+	
+}
+
 //서브 이미지  목록 삭제(버튼 클릭 시)
 function deleteImg(deleteBtn){
 	alert('이미지 삭제 구현하기');
