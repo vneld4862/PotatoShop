@@ -1,10 +1,10 @@
 package kh.study.team2.shop.member.controller;
 
+import java.util.Random;
+
 import javax.annotation.Resource;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import kh.study.team2.shop.member.service.MailService;
 
 //import com.sun.org.apache.xerces.internal.impl.xpath.regex.ParseException;
 
@@ -24,6 +26,9 @@ public class MemberContorller {
 
 	@Resource(name = "memberService")
 	private MemberService memberService;
+	
+	@Resource(name = "mailService")
+	private MailService mailService;
 
 	@Autowired
 	private PasswordEncoder encoder;
@@ -92,46 +97,56 @@ public class MemberContorller {
 		return memberId;
 	}
 
-	
-	 // 메일로 비밀번호 보내기
-	 @PostMapping("/sendEmail") 
-	 public ResponseEntity<Object> sendEmail(String memberEmail){ 
-		 String usernames = memberService.searchPw(memberEmail);
-	 
-		 if(usernames!= null) {
-			 memberService.sendEmail(memberEmail, usernames); 
-			}
-		 
-		 return new ResponseEntity<Object>(HttpStatus.OK); 
-	 }
-	 
-
 	// 비밀번호 찾기 페이지 이동
 	@GetMapping("/searchPw")
 	public String searchPw() {
 		return "content/member/search_pw";
 	}
-
-	// 비밀번호 찾기 실행
-	@PostMapping("/doSearchPw")
-	public String doSearchPw(MemberVO memberVO, Model model) {
-
-		return "redirect:/member/login";
-	}
-
-	// 비밀번호 찾기 결과
-	@PostMapping("/searchPwResult")
-	public String searchPwResult(MemberVO memberVO, Model model) {
-
-		return "redirect:/member/login";
-	}
-
-	// 회원 탈퇴
+	
+	// 메일로 임시 비밀번호 전송
 	@ResponseBody
-	@PostMapping("/deleteMember")
-	public void deleteMember(String memberId) {
-
-		memberService.deleteMember(memberId);
+	@PostMapping("/sendEmail") 
+	public void sendEmail(MemberVO memberVO){ 
+		//String memberPw = memberService.searchPw(memberEmail);
+		
+		//메일 보내기
+		String imsiPw = getImsiPw();
+		mailService.sendPw(memberVO.getMemberEmail(), imsiPw);
+		
+		//초기화 비밀번호를 암호화 시킴
+		memberVO.setMemberPw(encoder.encode(imsiPw));    
+		
+		//메일로 보낸 비밀번호로 디비 정보를 변경
+		memberService.initPw(memberVO);
+		
 	}
+	
+	//임시 비밀번호 발급
+	public String getImsiPw() {
+		String[] charSet = new String[] {
+                "0", "1", "2", "3", "4", "5", "6", "7", "8", "9",
+                "A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z",
+                "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"
+                };
+		
+		String imsiPw = "";
+		for(int i = 0 ; i < 4 ; i++) {
+			Random r = new Random();
+			int index = r.nextInt(charSet.length); 
+			String pw = charSet[index];
+			imsiPw = imsiPw + pw;
+		}
+		
+		return imsiPw;
+	}
+	
+	// 회원 탈퇴
+		@ResponseBody
+		@PostMapping("/deleteMember")
+		public void deleteMember(String memberId) {
 
+			memberService.deleteMember(memberId);
+		}
+	
+	
 }

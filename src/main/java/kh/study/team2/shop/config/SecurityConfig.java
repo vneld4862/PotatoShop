@@ -27,7 +27,7 @@ public class SecurityConfig {
 							, "/member/searchId"
 							, "/member/doSearchId"
 							, "/member/searchPw"
-							, "/member/doSearchPw"
+							, "/member/sendEmail"
 							, "/member/searchIdResult"
 							, "/notice/list"
 							, "/notice/noticeDetail"

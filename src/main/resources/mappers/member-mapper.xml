@@ -178,6 +178,15 @@
 			 ORDER BY TOTAL_SALES DESC) 
 		 WHERE MEMBER_RANK&lt;=4
 	</select>
+	
+	<update id="initPw">
+		UPDATE SHOP_MEMBER
+		SET
+		MEMBER_PW = #{memberPw}
+		WHERE MEMBER_ID = #{memberId}
+	</update>
+	
+	
 </mapper>
 
 
