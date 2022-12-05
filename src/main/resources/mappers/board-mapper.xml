@@ -255,10 +255,19 @@
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
 	
-	<!-- 리뷰 총 개수 조회 -->
-	<select id="selectBoardCnt" resultType="int">
+
+	<!-- 내가 쓴 리뷰 총 개수 조회 -->
+	<!-- <select id="selectWrittenReviewCnt" resultType="int">
 		SELECT COUNT(BOARD_NUM)
 		FROM REVIEW_BOARD
-	</select>	
+		WHERE BUYER = #{buyer}
+	</select> -->
+	
+	<!-- 내 상점에 작성된 리뷰 총 개수 조회 -->
+	<!-- <select id="selectMyMarketReviewCnt" resultType="int">
+		SELECT COUNT(BOARD_NUM)
+		FROM REVIEW_BOARD
+		WHERE SELLER = #{seller}
+	</select>  -->
 	
 </mapper>

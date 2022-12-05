@@ -10,13 +10,22 @@ import kh.study.team2.shop.member.vo.MemberVO;
 public interface ManageService {
 
 	//구매 내역 조회
-	List<BuyVO> selectBuyList(String memberId);
+	List<BuyVO> selectBuyList(BuyVO buyVO);
 	
-	//판매 내역 조회
-	List<BuyVO> selectSalesList(String memberId);
+	//총 구매 개수 조회
+	int selectBuyCnt(String buyer);	
 
-	//리뷰 총 개수 조회
-	int selectBoardCnt();
+	//판매 내역 조회
+	List<BuyVO> selectSalesList(BuyVO buyVO);
+
+	//총 판매 개수 조회
+	int selectSalesCnt(String seller);	
+	
+	//내가 쓴 리뷰 총 개수 조회
+	//int selectWrittenReviewCnt(String buyer);
+	
+	//내 상점에 작성된 리뷰 총 개수 조회
+	//int selectMyMarketReviewCnt(String seller);
 	
 	//닉네임 수정
 	void updateNickName(MemberVO memberVO);

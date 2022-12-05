@@ -9,7 +9,7 @@ import lombok.Setter;
 @ToString
 @Getter
 @Setter
-public class BoardVO extends PageVO {
+public class BoardVO {
 	private int boardNum;
 	private String itemCode;
 	private String boardTitle;

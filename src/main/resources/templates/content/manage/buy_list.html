@@ -42,7 +42,6 @@
 						<col width="10%">
 						<col width="*">
 						<col width="10%">
-						<col width="15%">
 						<col width="20%">
 					</colgroup>
 					<thead>
@@ -53,14 +52,13 @@
 							</th>
 							<th scope="col" colspan="2">상품정보</th>
 							<th scope="col">금액</th>
-							<th scope="col">주문상태</th>
 							<th scope="col">구매확정/리뷰작성</th>
 						</tr>
 					</thead>
 					<tbody>
 						<th:block th:if="${#lists.size(buyList) == 0}">
 							<tr>
-								<td colspan="6">주문 내역이 없습니다.</td>
+								<td colspan="5">주문 내역이 없습니다.</td>
 							</tr>
 						</th:block>
 						<th:block th:unless="${#lists.size(buyList) == 0}">
@@ -76,7 +74,6 @@
 									th:data-item-code="${buy.itemVO.itemName}" id="itemName"></td>
 									<!-- th:onclick="|location.href='@{/item/itemDetail(itemCode=${sales.itemCode})}'|" -->
 								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}"></td>
-								<td></td>
 								<td>
 									<!-- <input type="hidden" th:value="${buy.itemVO.itemName}" id="hiddenItemName"> -->
 									<input type="hidden" th:value="${buy.itemVO.itemCode}" id="hiddenItemCode">
@@ -101,10 +98,20 @@
 									</th:block>
 								</td>
 							</tr>
-						</th:block>
-						
+						</th:block>						
 					</tbody>
 				</table>
+				<div>
+					<th:block th:if="${buyVO.prev}">
+						<a th:text="prev" th:href="@{/manage/buyList(nowPage=${buyVO.beginPage - 1})}"></a>
+					</th:block>
+					<th:block th:each="pageNum : ${#numbers.sequence(buyVO.beginPage, buyVO.endPage)}">
+						<a th:text="${pageNum}" th:href="@{/manage/buyList(nowPage=${pageNum})}"></a>
+					</th:block>
+					<th:block th:if="${buyVO.next}">
+						<a th:text="next" th:href="@{/manage/buyList(nowPage=${buyVO.endPage + 1})}"></a>
+					</th:block>
+				</div>
 			</div>
 		</div>
 		

@@ -22,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.buy.service.BuyService;
+import kh.study.team2.shop.buy.vo.BuyVO;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
@@ -104,14 +105,15 @@ public class ManageController {
 		//프로필정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
 		
-		//전체 데이터 수
-		int totalCnt = manageService.selectBoardCnt();
+		//내가 쓴 리뷰 총 개수
+		//int writtenReviewTotalCnt = manageService.selectWrittenReviewCnt(user.getUsername());
+		//내 상점에 쓰여진 리뷰 총 개수
+		//int myMarketReviewTotalCnt = manageService.selectMyMarketReviewCnt(user.getUsername());
 		
 		//페이지 정보 세팅
-		boardVO.setTotalDataCnt(totalCnt);
-		boardVO.setPageInfo();
+		//boardVO.setTotalDataCnt(writtenReviewTotalCnt);
+		//boardVO.setPageInfo();
 
-		
 		return "content/manage/my_market"; 
 	}	
 	
@@ -302,24 +304,48 @@ public class ManageController {
 	
 	//구매 내역 페이지 이동
 	@GetMapping("/buyList")
-	public String buyList(Model model, Authentication authentication) {
+	public String buyList(Model model, Authentication authentication, BuyVO buyVO) {
 		
 		User user = (User)authentication.getPrincipal();
 		
-		//구매 내역 조회
-		model.addAttribute("buyList", manageService.selectBuyList(user.getUsername()));
 		
+		String buyer = user.getUsername();
+		
+		//전체 데이터 수
+		int totalCnt = manageService.selectBuyCnt(buyer);
+		
+		//페이지 정보 세팅
+		buyVO.setTotalDataCnt(totalCnt);
+		buyVO.setPageInfo();
+		
+		buyVO.setBuyer(user.getUsername());
+		
+		//구매 내역 조회
+		model.addAttribute("buyList", manageService.selectBuyList(buyVO));
+
 		return "content/manage/buy_list";
 	}
 	
 	//판매 내역 페이지 이동
 	@GetMapping("/salesList")
-	public String sellList(Model model, Authentication authentication) {
+	public String sellList(Model model, Authentication authentication, BuyVO buyVO) {
 		
 		User user = (User)authentication.getPrincipal();
 		
+
+		String seller = user.getUsername();
+		
+		//전체 데이터 수
+		int totalCnt = manageService.selectSalesCnt(seller);
+		
+		//페이지 정보 세팅
+		buyVO.setTotalDataCnt(totalCnt);
+		buyVO.setPageInfo();
+		
+		buyVO.setSeller(user.getUsername());
+		
 		//판매 내역 조회
-		model.addAttribute("salesList", manageService.selectSalesList(user.getUsername()));		
+		model.addAttribute("salesList", manageService.selectSalesList(buyVO));
 		
 		return "content/manage/sales_list";
 	}

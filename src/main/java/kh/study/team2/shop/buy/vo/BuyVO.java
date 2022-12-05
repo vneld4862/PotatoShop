@@ -12,7 +12,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class BuyVO {
+public class BuyVO extends PageVO {
 	private String buyCode;
 	private String buyer;
 	private String seller;

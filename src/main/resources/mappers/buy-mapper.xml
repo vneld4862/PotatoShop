@@ -43,29 +43,67 @@
 		FROM SHOP_BUY
 	</select>
 	
+	<update id="memberInfoUpdate">
+		UPDATE SHOP_MEMBER SET
+			TOTAL_SALES=TOTAL_SALES+#{itemPrice}
+			,SALES_CNT=SALES_CNT+1
+		WHERE MEMBER_ID=#{memberId}
+	</update>
+	
+	
+	
+	
 	
 	<!-- 구매 내역 조회 -->
 	<select id="selectBuyList" resultMap="buy">
-		SELECT BUY_CODE
+		SELECT ROW_NUM
+			, BUY_CODE
 			, BUYER
 			, SELLER
 			, BUY_DATE
-			, S.ITEM_CODE
-			, (SELECT ITEM_NAME
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_NAME
-			, (SELECT ITEM_PRICE
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_PRICE
+			, ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
 			, ATTACHED_NAME
 			, IS_CONFIRMED
-			, (SELECT IS_WRITTEN
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = S.ITEM_CODE) AS IS_WRITTEN
-		FROM SHOP_BUY S, ITEM_IMG I
-		WHERE BUYER = #{buyer}
-		AND S.ITEM_CODE = I.ITEM_CODE
-		AND IS_MAIN = 'Y'
+			, IS_WRITTEN
+		FROM (
+			SELECT  ROWNUM ROW_NUM
+				, BUY_CODE
+				, BUYER
+				, SELLER
+				, BUY_DATE
+				, ITEM_CODE
+				, ITEM_NAME
+				, ITEM_PRICE
+				, ATTACHED_NAME
+				, IS_CONFIRMED
+				, IS_WRITTEN
+			FROM (
+				SELECT BUY_CODE
+					, BUYER
+					, SELLER
+					, BUY_DATE
+					, S.ITEM_CODE
+					, (SELECT ITEM_NAME
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_NAME
+					, (SELECT ITEM_PRICE
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = S.ITEM_CODE) AS ITEM_PRICE
+					, ATTACHED_NAME
+					, IS_CONFIRMED
+					, (SELECT IS_WRITTEN
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = S.ITEM_CODE) AS IS_WRITTEN
+				    FROM SHOP_BUY S, ITEM_IMG I
+					WHERE BUYER = #{buyer}
+					AND S.ITEM_CODE = I.ITEM_CODE
+					AND IS_MAIN = 'Y'
+					ORDER BY BUY_DATE DESC
+				)
+			)
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 	
 	<!-- 구매 확정 시 구매 확정 여부 변경 -->
@@ -77,36 +115,71 @@
 	
 	<!-- 판매 내역 조회 -->
 	<select id="selectSalesList" resultMap="buy">
-		SELECT BUY_CODE
+		SELECT ROW_NUM
+			, BUY_CODE
 			, BUYER
 			, SELLER
 			, BUY_DATE
-			, B.ITEM_CODE
-			, (SELECT ITEM_NAME
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = B.ITEM_CODE) AS ITEM_NAME
-			, (SELECT ITEM_PRICE
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = B.ITEM_CODE) AS ITEM_PRICE
+			, ITEM_CODE
+			, ITEM_NAME
+			, ITEM_PRICE
 			, ATTACHED_NAME
 			, IS_CONFIRMED
-			, (SELECT SALES_STATUS
-				FROM SHOP_ITEM
-				WHERE ITEM_CODE = B.ITEM_CODE) AS SALES_STATUS
-		FROM SHOP_BUY B, ITEM_IMG I, SHOP_ITEM S
-		WHERE SELLER = #{seller}
-		AND B.ITEM_CODE = I.ITEM_CODE
-		AND B.ITEM_CODE = S.ITEM_CODE
-		AND IS_MAIN = 'Y'
-		AND SALES_STATUS = 'SOLD_OUT'
+			, SALES_STATUS
+		FROM (
+			SELECT  ROWNUM ROW_NUM
+				, BUY_CODE
+				, BUYER
+				, SELLER
+				, BUY_DATE
+				, ITEM_CODE
+				, ITEM_NAME
+				, ITEM_PRICE
+				, ATTACHED_NAME
+				, IS_CONFIRMED
+				, SALES_STATUS
+			FROM (
+				SELECT BUY_CODE
+					, BUYER
+					, SELLER
+					, BUY_DATE
+					, B.ITEM_CODE
+					, (SELECT ITEM_NAME
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = B.ITEM_CODE) AS ITEM_NAME
+					, (SELECT ITEM_PRICE
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = B.ITEM_CODE) AS ITEM_PRICE
+					, ATTACHED_NAME
+					, IS_CONFIRMED
+					, (SELECT SALES_STATUS
+						FROM SHOP_ITEM
+						WHERE ITEM_CODE = B.ITEM_CODE) AS SALES_STATUS
+				    FROM SHOP_BUY B, ITEM_IMG I, SHOP_ITEM S
+				   	WHERE SELLER = #{seller}
+					AND B.ITEM_CODE = I.ITEM_CODE
+					AND B.ITEM_CODE = S.ITEM_CODE
+					AND IS_MAIN = 'Y'
+					AND SALES_STATUS = 'SOLD_OUT'
+					ORDER BY BUY_DATE DESC
+				)
+			)
+		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
 	</select>
 
-	<update id="memberInfoUpdate">
-		UPDATE SHOP_MEMBER SET
-			TOTAL_SALES=TOTAL_SALES+#{itemPrice}
-			,SALES_CNT=SALES_CNT+1
-		WHERE MEMBER_ID=#{memberId}
-	</update>
+	<!-- 판매 내역 총 개수 조회 -->
+	<select id="selectSalesCnt" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM SHOP_BUY
+		WHERE SELLER = #{seller}
+	</select>
+	
+	<!-- 구매 내역 총 개수 조회 -->
+	<select id="selectBuyCnt" resultType="int">
+		SELECT COUNT(ITEM_CODE)
+		FROM SHOP_BUY
+		WHERE BUYER = #{buyer}
+	</select>
 
 </mapper>
 

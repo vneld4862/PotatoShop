@@ -147,7 +147,7 @@
 		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(180,180,180);">
 			<div class="col-3" th:each="item : ${bestSalerItems}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
-					<div class="image-box">
+					<div class="image-box" style="height: 400px;">
 						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
 					</div>
 					<div class="card-body" style="background-color: rgb(244, 244, 245);">

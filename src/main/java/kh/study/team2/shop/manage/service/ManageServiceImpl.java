@@ -15,24 +15,41 @@ import kh.study.team2.shop.member.vo.MemberVO;
 public class ManageServiceImpl implements ManageService{
 	@Autowired
 	SqlSessionTemplate sqlSession;
-
+	
+	//구매 내역 조회
 	@Override
-	public List<BuyVO> selectBuyList(String memberId) {
-		return sqlSession.selectList("buyMapper.selectBuyList", memberId);
+	public List<BuyVO> selectBuyList(BuyVO buyVO) {
+		return sqlSession.selectList("buyMapper.selectBuyList", buyVO);
 	}
 
+	//총 구매 개수 조회
 	@Override
-	public List<BuyVO> selectSalesList(String memberId) {
-		return sqlSession.selectList("buyMapper.selectSalesList", memberId);
+	public int selectBuyCnt(String buyer) {
+		return sqlSession.selectOne("buyMapper.selectBuyCnt", buyer);
+	}	
+
+	//판매 내역 조회
+	@Override
+	public List<BuyVO> selectSalesList(BuyVO buyVO) {
+		return sqlSession.selectList("buyMapper.selectSalesList", buyVO);
 	}
 	
-	//리뷰 총 개수 조회
+	//총 판매 개수 조회
 	@Override
-	public int selectBoardCnt() {
-		return sqlSession.selectOne("boardMapper.selectBoardCnt");
+	public int selectSalesCnt(String seller) {
+		return sqlSession.selectOne("buyMapper.selectSalesCnt", seller);
 	}	
 	
+	//내가 쓴 리뷰 총 개수 조회
+	//@Override
+	//public int selectWrittenReviewCnt(String buyer) {
+	//	return sqlSession.selectOne("buyMapper.selectWrittenReviewCnt", buyer);
+	//}
 	
+	//내 상점에 쓰여진 리뷰 총 개수 조회
+	//public int selectMyMarketReviewCnt(String seller) {
+	//	return sqlSession.selectOne("buyMapper.selectMyMarketReviewCnt", seller);
+	//}
 	
 	
 	@Override

@@ -1,4 +1,4 @@
-package kh.study.team2.shop.manage.vo;
+package kh.study.team2.shop.buy.vo;
 
 public class PageVO{//페이지 정보를 갖고 있는 객체를 만들어준다.
 	private int nowPage; //현재 선택된 페이지
@@ -15,8 +15,8 @@ public class PageVO{//페이지 정보를 갖고 있는 객체를 만들어준�
 	//생성자
 	public PageVO() {
 		nowPage = 1;
-		displayCnt = 5;
-		displayPageCnt = 5;
+		displayCnt = 10;
+		displayPageCnt = 10;
 		
 		//페이지(PageVO)가 만들어지면 기본 세팅을 이렇게 하겠다.
 	}
@@ -45,6 +45,7 @@ public class PageVO{//페이지 정보를 갖고 있는 객체를 만들어준�
 		
 		//prev 버튼의 유무
 		prev = beginPage == 1 ? false : true;
+
 		
 		startNum = (nowPage - 1)  * displayCnt + 1;
 		endNum = nowPage * displayCnt;

@@ -20,6 +20,7 @@ import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 import kh.study.team2.shop.config.UploadFileUtil2;
 import kh.study.team2.shop.item.service.ItemService;
+import kh.study.team2.shop.item.vo.ItemVO;
 
 @Controller
 @RequestMapping("/board")
@@ -35,7 +36,8 @@ public class BoardController {
 	public String regReview(BoardVO boardVO
 							, @RequestParam(required = false) ReviewImgVO reviewImgVO
 							, @RequestParam(required = false) MultipartFile reviewImg
-							, Authentication authentication) {
+							, Authentication authentication
+							, ItemVO itemVO) {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
 		
@@ -45,6 +47,7 @@ public class BoardController {
 
 		User user = (User)authentication.getPrincipal();
 		boardVO.setBuyer(user.getUsername());
+		boardVO.setSeller(boardVO.getItemVO().getMemberId());
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);
