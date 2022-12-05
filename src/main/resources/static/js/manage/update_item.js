@@ -106,9 +106,9 @@ function readURL2(input) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				let str = '';
-				str += '<div class="col-3 subDiv">';
-				str += `<img src=${e.target.result} width="230px;" height="230px;"><br>`;
-				str += `<input type="hidden" th:value="">`
+				str += '<div class="col-3 mb-3 subDiv">';
+				str += `	<img src=${e.target.result} width="210px;" height="210px;"><br>`;
+				str += `	<input type="hidden" th:value="">`
 				str += '</div>';
 				$('.allSubImgDiv').append(str);
 				
