@@ -134,7 +134,7 @@
 				<img alt="..." src="https://www.bodybogam.com/design/bodybogam/mobile_citybrown/bt_icon04.gif" width="100%">
 			</div>
 			<div>
-				<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;">
+				<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;">
 				<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
 					<img alt="..." src="https://cdn-icons-png.flaticon.com/512/38/38488.png" width="80%">
 					<div style="font-size: .8rem;">상품이 없습니다.</div>
@@ -167,7 +167,7 @@
 		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(195,195,195);">
 			<div class="col-3" th:each="item : ${itemList}">
 				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
-					<div class="image-box" style="height: 98%;">
+					<div class="image-box" style="height: 400px;">
 						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
 					</div>
 					<div class="card-body" style="background-color: rgb(244, 244, 245);">

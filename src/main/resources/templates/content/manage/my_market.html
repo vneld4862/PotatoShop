@@ -80,11 +80,14 @@
 						</div>
 					</div>
 					<div class="col text-start">
-						<div class="row">
-							<div class="col-6">[등급]</div>
-							<div class="col-6">[상점오픈일]</div>
-							<div class="col-6">[상점방문수]</div>
-							<div class="col-6">[판매횟수]</div>
+						<div class="row text-center">
+							<input type="hidden" th:value="${memberInfo.regDate}" id="regDate">
+							<div class="col-4">상점 오픈일</div>
+							<div class="col-4">판매횟수</div>
+							<div class="col-4">상점 조회수</div>
+							<div class="col-4" id="insertDate"></div>
+							<div class="col-4">&#91;[[${memberInfo.salesCnt}]]&#93;</div>
+							<div class="col-4">&#91;[[${itemView}]]&#93;</div>
 						</div>
 					</div>
 				</div>

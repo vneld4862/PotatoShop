@@ -23,4 +23,6 @@ public interface ManageService {
 	//이미지 삭제
 	void deleteImg(String imgCode);
 	
+	//내상점 전체 조회수
+	int selectShopViewCnt(String memberId);
 }

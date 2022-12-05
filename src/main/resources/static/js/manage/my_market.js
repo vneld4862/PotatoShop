@@ -342,3 +342,18 @@ function deleteWish(){
 	wishCodesForm.action = "/manage/deleteWish";
 	wishCodesForm.submit();
 }
+
+const regDate=document.querySelector('#regDate').value;
+const now=new Date();
+const start = new Date(regDate);
+
+const timeDiff = now.getTime() - start.getTime();
+const day = Math.floor(timeDiff / (1000 * 60 * 60 * 24));
+if(day==0)
+{
+	$('#insertDate').text('[오늘]');
+}
+else
+{
+	$('#insertDate').text('['+day + '일 째]');
+}
