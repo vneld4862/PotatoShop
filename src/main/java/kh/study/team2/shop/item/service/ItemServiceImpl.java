@@ -50,7 +50,10 @@ public class ItemServiceImpl implements ItemService {
 		 * 
 		 * }
 		 */
-		sqlSession.insert("itemMapper.insertImgs", itemVO);//조건
+		
+		if(itemVO.getImgList().size() != 0) {
+			sqlSession.insert("itemMapper.insertImgs", itemVO);//조건
+		}
 	    sqlSession.update("itemMapper.updateItem", itemVO);
 	}
 

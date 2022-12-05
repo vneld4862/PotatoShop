@@ -40,6 +40,14 @@
 	        text-overflow: ellipsis;
 	        white-space: nowrap;
 		}
+		
+		#wishListDiv > div{
+			margin-top: 20px;
+			border: 1px solid #dddddd;
+		}
+		#wishListDiv > div:nth-child(odd) {
+			margin-right: 60px;
+		}
 	</style>
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
@@ -222,9 +230,9 @@
 									 		<div class="row">
 										 		  		<div class="row  justify-content-center">
 										 		  			<div class="col-12">
-										 		  				<div class="row">
+										 		  				<div class="row" id="wishListDiv">
 														 			 <th:block th:each="wish : ${wishList}">
-																		 <div class="col-5" style="margin-top: 20px; border: 1px solid #dddddd; margin-right: 5rem;">
+																		 <div class="col-5" th:classappend="${wishStat.count % 2 == 1 ? 'offset-1' : ''}">
 																 				<div class="row">
 																 					<div class="col-4" style="margin: 0 auto;">
 																 						<a th:href="@{/item/itemDetail(itemCode=${wish.itemVO.itemCode})}">

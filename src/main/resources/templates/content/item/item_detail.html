@@ -12,7 +12,8 @@
 	<style>
 		#testDiv{
 			/*  overflow: scroll; */
-		 	 overflow-y:scroll; 
+		 	 overflow-y:scroll;  
+		 	 height: 800px;
 		}
 		
 		 ::-webkit-scrollbar {
@@ -231,11 +232,9 @@
 												</h3>
 												<p>
 													<div class="row text-center">
-														<div th:each="img : ${itemInfo.imgList}">
-															<div>
-																<img th:src="|@{/images/}${img.attachedName}|" 
-																width="350px;" height="380px;">
-															</div>
+												 		<div th:each="img : ${itemInfo.imgList}">
+															<img th:src="|@{/images/}${img.attachedName}|" 
+															width="350px;" height="380px;">
 														</div>
 													</div>
 												</p>
@@ -393,15 +392,27 @@
 				        </div>
 			       </div>
 			        <div>
+			        	<!-- 내가 등록한 상품이 아닐 경우 -->
 			        	<th:block th:unless="${memberId eq itemInfo.memberId}">
-				             <button class="btn btn-success" style="width: 35%;">감자톡</button>
-				             <button class="btn btn-success" 
-				             	th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|"
-				             	style="width: 35%;">
-				             	바로구매</button>
+			        		<!-- 판매상태 : 판매중  -->
+			        		<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
+					             <button class="btn btn-success" style="width: 35%;">감자톡</button>
+					             <button class="btn btn-success" 
+					             	th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|"
+					             	style="width: 35%;">
+					             	바로구매</button>
+					       </th:block> 
+					       <!-- 판매상태 : 판매완료 -->  
+					       <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
+					       		
+					       </th:block>  	
 			            </th:block>
+			            <!-- 내가 등록한 상품일 경우 -->
 			            <th:block th:if="${memberId eq itemInfo.memberId}">
-							 <button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|"style="width: 100%;">내 상점 관리</button>
+			            	<!-- 판매상태 : 판매중  -->
+			            	<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
+							 	<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|"style="width: 100%;">내 상점 관리</button>
+			            	</th:block>
 						</th:block>
 			            
 			        </div>

@@ -72,7 +72,7 @@ function readURL(input) {
     var reader = new FileReader();
     reader.onload = function(e) {
 			let str = '';
-			str += '<div class="col-3 mainDiv loadMainDiv">';
+			str += '<div class="col-5 mainDiv loadMainDiv">';
 			str += '[수정될 메인 이미지]';
 			str += `<img src=${e.target.result} width="230px;" height="230px;">`;
 			str += '</div>';

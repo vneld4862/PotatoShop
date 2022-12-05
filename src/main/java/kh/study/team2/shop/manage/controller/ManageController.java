@@ -76,7 +76,6 @@ public class ManageController {
 						  , Authentication authentication
 						  , ItemVO itemVO
 						  , String wishChk) {
-		
 		User user = (User)authentication.getPrincipal();
 		if(wishChk!=null)
 		{
@@ -104,7 +103,6 @@ public class ManageController {
 		System.out.println(wishList);
 		//프로필정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
-		model.addAttribute("itemView",manageService.selectShopViewCnt(user.getUsername()));
 		
 		return "content/manage/my_market"; 
 	}	
@@ -240,7 +238,7 @@ public class ManageController {
 		List<ImgVO> uploadList2 = new ArrayList<>();
 		
 		if(subImgs != null) {
-		List<ImgVO> uploadList = UploadFileUtil.multiUploadFile(subImgs);
+			List<ImgVO> uploadList = UploadFileUtil.multiUploadFile(subImgs);
 			for(ImgVO img : uploadList) {
 				img.setItemCode(itemVO.getItemCode());
 			}
