@@ -257,6 +257,18 @@
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
 	
+	<!-- 회원이 작성한 리뷰 수 조회 -->
+	<select id="selectReviewCnt" resultType="int">
+		SELECT COUNT(BOARD_NUM) 
+		FROM REVIEW_BOARD
+		WHERE ITEM_CODE IN (SELECT ITEM_CODE
+             				FROM SHOP_ITEM
+                    		WHERE MEMBER_ID = #{memberId})
+	</select>
+		<!-- SELECT COUNT(BOARD_NUM)
+			FROM REVIEW_BOARD
+			WHERE SELLER = #{memberId}  -->
+	
 
 	<!-- 내가 쓴 리뷰 총 개수 조회 -->
 	<!-- <select id="selectWrittenReviewCnt" resultType="int">

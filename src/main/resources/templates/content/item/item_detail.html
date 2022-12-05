@@ -13,7 +13,7 @@
 		#testDiv{
 			/*  overflow: scroll; */
 		 	 overflow-y:scroll;  
-		 	 height: 800px;
+		 	 height: 780px;
 		}
 		
 		 ::-webkit-scrollbar {
@@ -54,7 +54,7 @@
       } */
       
       .reviewListC {
-      	 width: 300px;
+      	 width: 220px;
   		 overflow: hidden;
   	   	 text-overflow: ellipsis;
   		 display: -webkit-box;
@@ -65,6 +65,12 @@
       .starPoint {
        color: #d9bd6e;
        font-size: 1.2rem;
+      }
+      
+      #reviewCnt {
+       	color: #332FD0;
+       	font-size: 1.4rem;
+       	font-style: inherit;
       }
 	</style>
 
@@ -300,7 +306,7 @@
 			         			  </div>
 			         			  <div>
 			         			  	<img th:src="@{/images/my_market.png}" 
-			         			  	width="55px;" height="70px;"
+			         			  	width="50px;" height="60px;"
 			         			  	th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|">
 			         			  </div>
 			         		</div>
@@ -310,21 +316,26 @@
 				         <div class="row mb-3">
 				        		 <div class="col-12">
 				        		 	<div class="row text-center">
+				        		 	   <!-- 상품목록이 없는 경우 -->	 
 				        		 	   <th:block th:if="${#lists.size(itemList) == 0}">
 				        		 	   		해당 상점에 등록된 상품이 없습니다.
 				        		 	   </th:block>
+				        		 	   <!-- 상품목록이 있는 경우 -->
 				        		 	   <th:block th:unless="${#lists.size(itemList) == 0}">
 				        		 	   	  <th:block th:each="itemInfo:${itemList}">
 				        		 	   	  	<div class="col-6">
+				        		 	   	  		<!-- 판매상태 : 판매중  -->
 				        		 	   	  		<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
 					        		 	   	  		<img th:src="|@{/images/}${itemInfo.imgList[0].attachedName}|" 
 					        		 	   	  			width="100px;" height="100px;"
 					        		 	   	  			th:onclick="|location.href='@{/item/itemDetail(itemCode=${itemInfo.itemCode})}'|">
 					        		 	   	  		<p th:text="|${#numbers.formatInteger((itemInfo.itemPrice),3,'COMMA')}원|">
 				        		 	   	  		</th:block>
+				        		 	   	  		<!-- 판매상태 : 판매완료  -->
 				        		 	   	  		<th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
 				        		 	   	  			<div class="mb-3">
-					        		 	   	  			<img th:src="@{/images/sold_out2.png}" width="100px;" height="100px;">
+					        		 	   	  			<img th:src="@{/images/sold_out2.png}" width="100px;" height="100px;"
+					        		 	   	  			th:onclick="|location.href='@{/item/itemDetail(itemCode=${itemInfo.itemCode})}'|">
 				        		 	   	  			
 				        		 	   	  			</div>
 				        		 	   	  		</th:block>
@@ -350,12 +361,20 @@
 						        	<table class="table align-middle" id="reviewTable">
 										  <thead>
 											    <tr>
-												      <th scope="col">상품후기</th>
-												      <th scope="col" style="color: #332FD0;">CNT</th><!--상품후기 개수 -->
+												      <th scope="col" colspan="2">
+												      		<div class="row">
+												      			<div class="col-6">상품후기</div>
+												      			<div class="col-6" id="reviewCnt">
+												      				[[${reviewCnt}]]
+												      			</div>
+												      		</div>
+												      			
+												     	
+												      </th>
+												      <!-- <th scope="col" style="color: #332FD0;">[[${reviewCnt}]]</th>상품후기 개수 -->
 											    </tr>
 										  </thead>
 										  <tbody>
-										  		<div id="reviewListDiv">
 											  			<th:block th:if="${#lists.size(reviewList) == 0}">
 												  			<tr>
 												  				<td colspan="2">
@@ -364,7 +383,7 @@
 												  			</tr>
 												  		</th:block>		
 												  		<th:block th:unless="${#lists.size(reviewList) == 0}">
-													  			  <tr th:each=" review: ${reviewList}" class="reviewListC">
+													  			  <tr th:each=" review: ${reviewList}" >
 															    	  <th scope="row">
 															    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|"
 															    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|" 
@@ -391,7 +410,7 @@
 																		      				
 																		      				
 																		      			</div>
-																		      			<div>
+																		      			<div class="reviewListC">
 																		      				[[${review.boardContent}]]
 																		      			</div>
 																		      			<div>[[${review.regDate}]]</div>
@@ -405,7 +424,6 @@
 																      </td>
 														   		 </tr>
 												  		</th:block>		
-										  		</div>
 											  		
 										  
 										  
@@ -437,7 +455,7 @@
 					       <!-- 판매상태 : 판매완료 -->  
 					       <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
 					       		 <button type="button" class="btn btn-danger" style="width:80%;" disabled>sold out</button>
-					       </th:block>  	
+					       </th:block>  
 			            </th:block>
 			            <!-- 내가 등록한 상품일 경우 -->
 			            <th:block th:if="${memberId eq itemInfo.memberId}">

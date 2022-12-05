@@ -120,7 +120,11 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.selectList("boardMapper.selectmarketReviewList", seller);
 	}
 	
-
+	//리뷰 수 조회
+	@Override
+	public int selectReviewCnt(String memberId) {
+		return sqlSession.selectOne("boardMapper.selectReviewCnt", memberId);
+	}
 
 
 

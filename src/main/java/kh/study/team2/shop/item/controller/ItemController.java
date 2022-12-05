@@ -30,6 +30,7 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.manage.vo.ProfileVO;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
@@ -239,13 +240,19 @@ public class ItemController {
 				
 		String wishCode =  wishService.selectWishCode(itemVO);
 		model.addAttribute("wishCode", wishCode);
-		model.addAttribute("profileInfo", memberService.detailProfile(itemCode));
+		
+		ProfileVO profileInfo = memberService.detailProfile(itemCode);
+		model.addAttribute("profileInfo", profileInfo);
+		
 		model.addAttribute("itemList", itemService.marketItemList(itemCode));
 		
 		List<BoardVO> reviewList = boardService.selectmarketReviewList(itemCode);
 		System.out.println(reviewList);
 		model.addAttribute("reviewList", reviewList);
+		//상점의 memberId
+		String marketMemId = profileInfo.getMemberId();
 		
+		model.addAttribute("reviewCnt", boardService.selectReviewCnt(marketMemId));
 		return"content/item/item_detail";
 	}
 	

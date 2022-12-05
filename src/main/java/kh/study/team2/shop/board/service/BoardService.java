@@ -31,6 +31,9 @@ public interface BoardService {
 	//해당 상점에 작성된 리뷰 목록 조회
 	List<BoardVO> selectmarketReviewList(String seller);
 	
+	//상점정보 - 리뷰수 조회
+    int selectReviewCnt(String memberId);
+	
 ///////////////////리뷰 수정///////////////////	
 
 	//리뷰 이미지 여부 조회
