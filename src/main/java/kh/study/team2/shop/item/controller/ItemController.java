@@ -6,6 +6,7 @@ import java.util.List;
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 import org.springframework.security.core.Authentication;
@@ -35,6 +36,7 @@ import kh.study.team2.shop.manage.vo.ProfileVO;
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
 import kh.study.team2.shop.member.service.MemberService;
+import kh.study.team2.shop.member.vo.MemberVO;
 import kh.study.team2.shop.wish.service.WishService;
 import kh.study.team2.shop.wish.vo.WishVO;
 
@@ -67,7 +69,8 @@ public class ItemController {
 					, @RequestParam(name = "mainCode",required = false) String mainCode
 					, @RequestParam(name = "subCode",required = false) String subCode
 					, @RequestParam(name = "detailCode",required = false) String detailCode
-					, Authentication authentication) {
+					, Authentication authentication
+					, HttpSession session) {
 		
 		if(mainCode != null)
 		{
@@ -99,6 +102,11 @@ public class ItemController {
 		if (authentication!=null) {
 			User user=(User)authentication.getPrincipal();
 			model.addAttribute("wishAmount",wishService.wishAmount(user.getUsername()));
+			
+			//로그인할 때 top에 닉네임 가지고 오기
+			MemberVO memberVO = memberService.selectMemberInfo(user.getUsername());
+			session.setAttribute("nick", memberVO.getMemberNickName());
+			
 		}
 		List<String> rankerList=memberService.memberRank();
 		model.addAttribute("bestSalerItems",itemService.bestFourSalersItem(rankerList));

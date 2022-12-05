@@ -36,7 +36,7 @@
 						<div sec:authorize="isAuthenticated()">
 							<div>
 								<div>
-									[[${#authentication.name}]]님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
+									[[${session.nick}]]님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
 								</div>
 								<div>
 									<a th:href="@{/manage/regItemForm}">판매하기</a> | 

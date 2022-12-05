@@ -60,5 +60,7 @@ public interface BoardService {
 	//리뷰 댓글 삭제
 	void deleteReply(int replyNum);
 
+	//다음에 들어갈 replyNum 조회
+	int getNextReplyNum();
 
 }

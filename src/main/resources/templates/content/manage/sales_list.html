@@ -43,7 +43,8 @@
 									<img th:src="|@{/images/}${sales.imgList[0].attachedName}|" height="100px;">
 								</td>
 								<td class="text-start" th:text="${sales.itemVO.itemName}"
-									th:data-item-code="${sales.itemVO.itemName}" id="itemName"></td>
+									th:data-item-code="${sales.itemVO.itemName}" id="itemName"
+									th:onclick="|location.href='@{/item/itemDetail(itemCode=${sales.itemCode})}'|"></td>
 								<td th:text="${#numbers.formatCurrency(sales.itemVO.itemPrice)}"></td>
 								<td>
 									<th:block th:if="${sales.isConfirmed} == 'Y'"> <!-- 구매 확정을 했으면 -->

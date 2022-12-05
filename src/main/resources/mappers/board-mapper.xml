@@ -219,6 +219,10 @@
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	
+	<select id="getNextReplyNum" resultType="int">
+		SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM REVIEW_REPLY
+	</select>
+		
 	<!-- 리뷰 댓글 작성 -->
 	<insert id="insertReviewReply">
 		INSERT INTO REVIEW_REPLY (
@@ -228,7 +232,7 @@
 			, BOARD_NUM
 			, ITEM_CODE
 		) VALUES (
-			(SELECT NVL(MAX(REPLY_NUM), 0) + 1 FROM REVIEW_REPLY)
+			#{boardNum}
 			, #{replyContent}
 			, #{memberId}
 			, (SELECT BOARD_NUM
@@ -265,7 +269,8 @@
              				FROM SHOP_ITEM
                     		WHERE MEMBER_ID = #{memberId})
 	</select>
-		<!-- SELECT COUNT(BOARD_NUM)
+	
+	<!-- SELECT COUNT(BOARD_NUM)
 			FROM REVIEW_BOARD
 			WHERE SELLER = #{memberId}  -->
 	

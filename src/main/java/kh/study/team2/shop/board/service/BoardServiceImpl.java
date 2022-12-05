@@ -126,7 +126,10 @@ public class BoardServiceImpl implements BoardService{
 		return sqlSession.selectOne("boardMapper.selectReviewCnt", memberId);
 	}
 
-
+	@Override
+	public int getNextReplyNum() {
+		return sqlSession.selectOne("boardMapper.getNextReplyNum");
+	}
 
 
 

@@ -71,8 +71,8 @@
 									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">
 								</td>
 								<td class="text-start" th:text="${buy.itemVO.itemName}"
-									th:data-item-code="${buy.itemVO.itemName}" id="itemName"></td>
-									<!-- th:onclick="|location.href='@{/item/itemDetail(itemCode=${sales.itemCode})}'|" -->
+									th:data-item-code="${buy.itemVO.itemName}" id="itemName" 
+									th:onclick="|location.href='@{/item/itemDetail(itemCode=${buy.itemCode})}'|"></td>
 								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}"></td>
 								<td>
 									<!-- <input type="hidden" th:value="${buy.itemVO.itemName}" id="hiddenItemName"> -->

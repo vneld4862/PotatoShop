@@ -20,7 +20,6 @@ import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 import kh.study.team2.shop.config.UploadFileUtil2;
 import kh.study.team2.shop.item.service.ItemService;
-import kh.study.team2.shop.item.vo.ItemVO;
 
 @Controller
 @RequestMapping("/board")
@@ -120,12 +119,15 @@ public class BoardController {
 		User user = (User)authentication.getPrincipal();
 		replyVO.setMemberId(user.getUsername());
 		
+ 		int replyNum = boardService.getNextReplyNum();
+		replyVO.setReplyNum(replyNum);
 		boardService.insertReviewReply(replyVO);
 
 		ReplyVO resultData = new ReplyVO();
 		resultData.setMemberId(user.getUsername());
 		resultData.setReplyContent(replyVO.getReplyContent());
 		resultData.setReplyRegDate(getNowDateTime());
+		resultData.setReplyNum(replyNum);
 		return resultData;
 	}
 	

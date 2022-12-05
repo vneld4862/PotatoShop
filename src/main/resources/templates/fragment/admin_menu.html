@@ -6,29 +6,11 @@
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a class="nav-link" aria-current="page" th:classappend="${menu} eq '1' ? 'active'"
-				th:href="@{/admin/memberManage(menu=1)}">회원관리</a>
+				th:href="@{/admin/memberManage(menu=1)}" style="color: #8B7E74">회원관리</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/admin/regCateForm(menu=2)}" th:classappend="${menu} eq '2' ? 'active'">카테고리생성</a>
+				<a class="nav-link" th:href="@{/admin/regCateForm(menu=2)}" th:classappend="${menu} eq '2' ? 'active'" style="color: #8B7E74">카테고리생성</a>
 			</li>
-			<li class="nav-item">
-				<a class="nav-link" th:classappend="${menu} eq '3' ? 'active'">상품관리(보류)</a>
-			</li>
-
-<!-- 			<li class="nav-item dropdown">
-				<a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="" role="button" 
-					th:classappend="${menu} eq '2' ? 'active'" aria-expanded="false">판매관리</a>
-				<ul class="dropdown-menu">
-					<li><a class="dropdown-item" th:href="@{/admin/sellManage(menu=2)}">매출관리</a></li>
-					<li><a class="dropdown-item" th:href="@{/admin/sellStatus(menu=2)}">판매현황</a></li>
-					<li><a class="dropdown-item">Something else here</a></li>
-					<li>
-						<hr class="dropdown-divider">
-					</li>
-					<li><a class="dropdown-item" href="#">Separated link</a></li>
-				</ul>
-			</li> -->
-
 		</ul>
 	</div>
 
