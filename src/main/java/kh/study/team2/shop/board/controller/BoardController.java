@@ -37,17 +37,17 @@ public class BoardController {
 							, @RequestParam(required = false) ReviewImgVO reviewImgVO
 							, @RequestParam(required = false) MultipartFile reviewImg
 							, Authentication authentication
-							, ItemVO itemVO) {
+							, String seller) {
 		
 		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
 		
 		uploadInfo.setItemCode(boardVO.getItemCode());
 		
 		boardVO.setItemCode(boardVO.getItemCode());
-
+		
 		User user = (User)authentication.getPrincipal();
 		boardVO.setBuyer(user.getUsername());
-		boardVO.setSeller(boardVO.getItemVO().getMemberId());
+		boardVO.setSeller(seller);
 		
 		boardVO.setReviewImgVO(uploadInfo);		
 		boardService.insertReview(boardVO, uploadInfo);

@@ -77,6 +77,7 @@
 								<td>
 									<!-- <input type="hidden" th:value="${buy.itemVO.itemName}" id="hiddenItemName"> -->
 									<input type="hidden" th:value="${buy.itemVO.itemCode}" id="hiddenItemCode">
+									<input type="hidden" th:value="${buy.seller}" id="hiddenSeller">
 									
 									<th:block th:if="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정을 했으면 -->
 										<input type="button" class="btn btn-success btn-sm" value="구매 확정" disabled>
@@ -131,6 +132,7 @@
 								<div class="mt-3">
 									상품명 | <span id="modalItemName"></span>
 									<input type="hidden" name="itemCode" value="" id="modalItemCode">
+									<input type="hidden" name="seller" value="" id="modalSeller">
 								</div>
 								<div class="mt-3"> 별점 | 
 									<span class="star">

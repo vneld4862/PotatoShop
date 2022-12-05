@@ -5,11 +5,11 @@ const reviewModal = new bootstrap.Modal('#review_modal');
 function regReview(selectedTag) {
 
 	const itemName = selectedTag.closest('tr').querySelector('#itemName').dataset.itemCode;
-	//const itemName = selectedTag.closest('td').querySelector('#hiddenItemName').value;
-	
 	const itemCode = selectedTag.closest('td').querySelector('#hiddenItemCode').value;
+	const seller = selectedTag.closest('td').querySelector('#hiddenSeller').value;
 	document.querySelector('#modalItemName').innerText = itemName;
 	document.querySelector('#modalItemCode').value = itemCode;
+	document.querySelector('#modalSeller').value = seller;
 	
 	//모달 실행
 	reviewModal.show();

@@ -43,6 +43,7 @@
 			, BOARD_TITLE
 			, BOARD_CONTENT
 			, BUYER
+			, SELLER
 			, STAR_POINT
 		) VALUES (
 			(SELECT NVL(MAX(BOARD_NUM), 0) + 1 FROM REVIEW_BOARD)
@@ -50,6 +51,7 @@
 			, #{boardTitle}
 			, #{boardContent}
 			, #{buyer}
+			, #{seller}
 			, #{starPoint}
 		)
 	</insert>
