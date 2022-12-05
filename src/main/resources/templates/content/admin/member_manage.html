@@ -47,17 +47,15 @@
 			<div class="col" style="padding-right: 15px;">
 				<table class="table text-center">
 					<colgroup>
-						<col width="10%">
+						<col width="15%">
 						<col width="*">
-						<col width="20%">
-						<col width="20%">
-						<col width="20%">
+						<col width="25%">
+						<col width="25%">
 					</colgroup>
 					<thead>
 						<tr>
 							<th scope="col">No</th>
 							<th scope="col">닉네임(ID)</th>
-							<th scope="col">등급</th>
 							<th scope="col">가입일</th>
 							<th scope="col">상태</th>
 						</tr>
@@ -69,16 +67,15 @@
 				<div class="row" style="height: 300px; overflow-y: scroll;">
 					<table class="table text-center memberListTable">
 						<colgroup>
-							<col width="10%">
+							<col width="15%">
 							<col width="*">
-							<col width="20%">
-							<col width="20%">
-							<col width="20%">
+							<col width="25%">
+							<col width="25%">
 						</colgroup>
 						<tbody>
 							<th:block th:if="${#lists.size(memberList) == 0}">
 								<tr>
-									<td colspan="5">회원이 없습니다.</td>
+									<td colspan="4">회원이 없습니다.</td>
 								</tr>
 							</th:block>
 							<th:block th:unless="${#lists.size(memberList) == 0}">
@@ -87,7 +84,6 @@
 										<div><input type="hidden" th:value="${#authentication.name}" id="hiddenId"></div>
 									</td>
 									<td th:onclick="getMemberDetail([[${member.memberId}]]);">[[${member.memberNickName}]]([[${member.memberId}]])</td>
-									<td>등급</td>
 									<td th:text="${member.regDate}"></td>
 									<td>
 										<div class="form-check form-check-inline">

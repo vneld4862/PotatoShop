@@ -255,5 +255,10 @@
 		WHERE REPLY_NUM = #{replyNum}
 	</delete>
 	
+	<!-- 리뷰 총 개수 조회 -->
+	<select id="selectBoardCnt" resultType="int">
+		SELECT COUNT(BOARD_NUM)
+		FROM REVIEW_BOARD
+	</select>	
 	
 </mapper>

@@ -14,6 +14,9 @@ public interface ManageService {
 	
 	//판매 내역 조회
 	List<BuyVO> selectSalesList(String memberId);
+
+	//리뷰 총 개수 조회
+	int selectBoardCnt();
 	
 	//닉네임 수정
 	void updateNickName(MemberVO memberVO);

@@ -128,36 +128,43 @@ function changeStatus(){
 			//추가할 태그 생성
 			let str = '';
 			str += '<tbody>';
-			//for(const member of result) {
-			for(let i = 0 ; i < result.length ; i++) {
+			if(result.length == 0) {
+				
 				str += '<tr>';
-				str += `	<td>${i+1}</td>`;
-				str += '	<td>';
-				str += `<span onclick="getMemberDetail('${result[i].memberId}')">${result[i].memberNickName}(${result[i].memberId})</td>`;
-				str += '	<td>등급</td>';
-				str += `	<td>${result[i].regDate}</td>`;
-				str += '	<td>';
-				str += '		<div class="form-check form-check-inline">';
-				str += '			<input class="form-check-input" type="radio"';
-				str += `				name="test_${i}" id="" value=""`;
-				if(result[i].memberStatus == 'ACTIVE'){
-					str += `				checked`;
-				}		
-				str += `				onclick="changeMemberStatus('${result[i].memberId}', 'ACTIVE');">`;
-				str += '			<label class="form-check-label" for="">활동 중</label>';
-				str += '		</div>';
-				str += '		<div class="form-check form-check-inline">';
-				str += '			<input class="form-check-input" type="radio"';
-				str += `				name="test_${i}" id="" value=""`;
-				if(result[i].memberStatus == 'DELETED'){
-					str += `				checked`;
+				str += '	<td colspan="4">회원이 없습니다.</td>';
+				str += '<tr>';
+				
+			} else {
+				//for(const member of result) {
+				for(let i = 0 ; i < result.length ; i++) {
+					str += '<tr>';
+					str += `	<td>${i+1}</td>`;
+					str += '	<td>';
+					str += `<span onclick="getMemberDetail('${result[i].memberId}')">${result[i].memberNickName}(${result[i].memberId})</td>`;
+					str += `	<td>${result[i].regDate}</td>`;
+					str += '	<td>';
+					str += '		<div class="form-check form-check-inline">';
+					str += '			<input class="form-check-input" type="radio"';
+					str += `				name="test_${i}" id="" value=""`;
+					if(result[i].memberStatus == 'ACTIVE'){
+						str += `				checked`;
+					}		
+					str += `				onclick="changeMemberStatus('${result[i].memberId}', 'ACTIVE');">`;
+					str += '			<label class="form-check-label" for="">활동 중</label>';
+					str += '		</div>';
+					str += '		<div class="form-check form-check-inline">';
+					str += '			<input class="form-check-input" type="radio"';
+					str += `				name="test_${i}" id="" value=""`;
+					if(result[i].memberStatus == 'DELETED'){
+						str += `				checked`;
+					}
+					str += `				onclick="changeMemberStatus('${result[i].memberId}', 'DELETED');">`;
+					str += '			<label class="form-check-label" for="">탈퇴</label>';
+					str += '		</div>';
+					str += '	</td>';
+					str += '</tr>';
+				
 				}
-				str += `				onclick="changeMemberStatus('${result[i].memberId}', 'DELETED');">`;
-				str += '			<label class="form-check-label" for="">탈퇴</label>';
-				str += '		</div>';
-				str += '	</td>';
-				str += '</tr>';
-			
 			}
 			str += '</tbody>';
 			

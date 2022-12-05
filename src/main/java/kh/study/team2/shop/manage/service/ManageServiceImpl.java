@@ -22,6 +22,20 @@ public class ManageServiceImpl implements ManageService{
 	}
 
 	@Override
+	public List<BuyVO> selectSalesList(String memberId) {
+		return sqlSession.selectList("buyMapper.selectSalesList", memberId);
+	}
+	
+	//리뷰 총 개수 조회
+	@Override
+	public int selectBoardCnt() {
+		return sqlSession.selectOne("boardMapper.selectBoardCnt");
+	}	
+	
+	
+	
+	
+	@Override
 	public void updateNickName(MemberVO memberVO) {
 		sqlSession.update("memberMapper.updateNickName", memberVO);
 	}
@@ -36,10 +50,6 @@ public class ManageServiceImpl implements ManageService{
 		sqlSession.update("itemMapper.salesStatus", itemVO);
 	}
 
-	@Override
-	public List<BuyVO> selectSalesList(String memberId) {
-		return sqlSession.selectList("buyMapper.selectSalesList", memberId);
-	}
 
 	@Override
 	public void deleteImg(String imgCode) {

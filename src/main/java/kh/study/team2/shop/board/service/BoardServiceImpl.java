@@ -119,7 +119,7 @@ public class BoardServiceImpl implements BoardService{
 	public List<BoardVO> selectmarketReviewList(String seller) {
 		return sqlSession.selectList("boardMapper.selectmarketReviewList", seller);
 	}
-
+	
 
 
 

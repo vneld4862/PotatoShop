@@ -291,8 +291,17 @@ public class ItemController {
 	
 	//판매자 상점 페이지 이동
 	@GetMapping("/sellerMarket")
-	public String sellerMarket(Model model, ItemVO itemVO, String memberId) {
+	public String sellerMarket(Model model
+								, Authentication authentication
+								, ItemVO itemVO
+								, String memberId
+								, String wishChk) {
 		
+		if(wishChk!=null)
+		{
+			model.addAttribute("wishChk",wishChk);
+		}
+
 		//회원 정보 조회
 		model.addAttribute("memberInfo", memberService.selectMemberInfo(memberId));
 		
@@ -304,7 +313,12 @@ public class ItemController {
 	    
 		//상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(memberId));
-
+		
+		User user = (User)authentication.getPrincipal();
+		
+		//내가 다른 상점에 남긴 후기 목록 조회
+		model.addAttribute("writtenReviewList", boardService.selectWrittenReviewList(user.getUsername()));
+		
 		//찜 목록 조회
 		List<WishVO> wishList = wishService.selectWishList(memberId);
 		model.addAttribute("wishList", wishList);

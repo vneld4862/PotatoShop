@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.service.BoardService;
+import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
@@ -75,6 +76,7 @@ public class ManageController {
 	public String myMarket(Model model
 						  , Authentication authentication
 						  , ItemVO itemVO
+						  , BoardVO boardVO
 						  , String wishChk) {
 		User user = (User)authentication.getPrincipal();
 		if(wishChk!=null)
@@ -88,8 +90,6 @@ public class ManageController {
 		itemVO.setMemberId(user.getUsername());
 		List<ItemVO> itemList = itemService.memberItemList(itemVO);
 	    model.addAttribute("itemList", itemList);
-//		List<ItemVO> itemList = itemService.selectItemList(itemVO);
-//		model.addAttribute("itemList", itemList);
 		
 		//내 상점 후기 목록 조회
 		model.addAttribute("boardList", boardService.selectBoardList(user.getUsername()));
@@ -100,9 +100,17 @@ public class ManageController {
 		//찜 목록 조회
 		List<WishVO> wishList = wishService.selectWishList(user.getUsername());
 		model.addAttribute("wishList", wishList);
-		System.out.println(wishList);
+
 		//프로필정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(user.getUsername()));
+		
+		//전체 데이터 수
+		int totalCnt = manageService.selectBoardCnt();
+		
+		//페이지 정보 세팅
+		boardVO.setTotalDataCnt(totalCnt);
+		boardVO.setPageInfo();
+
 		
 		return "content/manage/my_market"; 
 	}	

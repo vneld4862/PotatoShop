@@ -1,3 +1,9 @@
+const wishChk=document.querySelector('.wishChk').value;
+if(wishChk=='toWish')
+{
+	document.querySelector('.wishBtn').click();
+}
+
 //모달 창 선택
 const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 
@@ -136,7 +142,6 @@ function selectReviewReply(boardNum){
 	
 }
 
-
 //댓글 등록 버튼 시 실행되는 함수
 function regReply(){
 	const itemCode = document.querySelector('#replyItemCode').value;
@@ -179,27 +184,6 @@ function regReply(){
 	
 }
 
-
-//리뷰 삭제 클릭시 실행되는 Ajax
-function deleteReviewAjax(itemCode){
-	
-	//ajax start
-	$.ajax({
-		url: '/board/deleteReview', //요청경로
-		type: 'post',
-		data: {'itemCode':itemCode}, //필요한 데이터 를 가지고 컨트롤러로 가서 성공하면 밑에 석세스문이 실행
-		success: function(result) {
-			alert('리뷰가 삭제되었습니다.');
-			location.href="/manage/myMarket"
-		},
-		error: function() {
-			alert('실패');
-		}
-	});
-	//ajax end
-	
-}
-
 //리뷰 댓글 삭제 클릭시 실행되는 Ajax
 function deleteReplyAjax(replyNum){
 	
@@ -223,65 +207,6 @@ function deleteReplyAjax(replyNum){
 	}
 }
 
-//탈퇴하기 버튼 클릭 시 실행
-function deleteMember(memberId){
-	
-	const result = confirm('정말 탈퇴하시겠습니까?', memberId);
-	
-	if(result) {
-		//ajax start
-		$.ajax({
-			url: '/member/deleteMember', //요청경로
-			type: 'post',
-			data: {'memberId':memberId}, //필요한 데이터 를 가지고 컨트롤러로 가서 성공하면 밑에 석세스문이 실행
-			success: function(result) {
-				alert('탈퇴가 완료되었습니다.');
-				location.href="/logout"
-			},
-			error: function() {
-				alert('실패');
-			}
-		});
-		//ajax end
-	}
-}
-
-
-//리뷰 수정 클릭시 실행되는 Ajax
-function updateReviewAjax(itemCode){
-	
-	const itemName = document.querySelector('.modalItemName').innerText;
-	const boardTitle = document.querySelector('.modalBoardTitle').innerText;
-	const boardContent = document.querySelector('.modalBoardContent').innerText;
-	
-	document.querySelector('.updateReviewAjaxDiv').innerHTML = '';
-	
-	let str = '';
-	
-	str += '<div class="mt-3">';
-	str += `	상품명 | ${itemName}`;
-	str += `	<input type="hidden" name="itemCode" value="${itemCode}">`;
-	str += '</div>';
-	str += '<div class="mt-3"> 별점 | ';
-	str += '	<span class="star">';
-	str += '		★★★★★';
-	str += '		<span>★★★★★</span>';
-	str += '		<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="starPoint">';
-	str += '	</span>';
-	str += '</div>';
-	str += '<div class="mt-3">';
-	str += `	<input type="text" class="form-control" name="boardTitle" placeholder="제목을 입력하세요" value="${boardTitle}">`;
-	str += '</div>';
-	str += '<div class="mt-3">';
-	str += `	<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요">${boardContent}</textarea>`;
-	str += '</div>';
-	str += '<div class="mt-3">';
-	str += `	<input class="form-control" type="file" name="reviewImg">`;
-	str += '</div>';
-	
-	document.querySelector('.updateReviewAjaxDiv').insertAdjacentHTML('afterbegin', str);
-
-}
 
 //찜목록 전체선택 클릭 시 실행
 function checkAll() {
@@ -306,6 +231,7 @@ $(document).on("click", "input:checkbox[name=checkbox]", function(e) {
    }
    
    if(chks.length == chksChecked){
+
       $("#AllCbox").prop("checked", true);
    }else{
       $("#AllCbox").prop("checked",false);
