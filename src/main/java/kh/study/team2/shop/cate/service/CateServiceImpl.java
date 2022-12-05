@@ -80,6 +80,11 @@ public class CateServiceImpl implements CateService{
 	public void deleteDetailCateList(DetailCateVO detailCateVO) {
 		sqlSession.delete("cateMapper.deleteSubCateCode",detailCateVO);
 	}
+
+	@Override
+	public List<MainCateVO> mainChart() {
+		return sqlSession.selectList("cateMapper.mainChart");
+	}
 	
 	
 }

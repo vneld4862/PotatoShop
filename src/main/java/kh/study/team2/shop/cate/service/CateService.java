@@ -28,4 +28,6 @@ public interface CateService {
 	void deleteMainCateList(MainCateVO mainCateVO);
 	void deleteSubCateList(SubCateVO subCateVO);
 	void deleteDetailCateList(DetailCateVO detailCateVO);
+	
+	List<MainCateVO> mainChart();
 }

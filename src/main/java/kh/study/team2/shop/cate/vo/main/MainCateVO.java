@@ -15,4 +15,6 @@ public class MainCateVO {
 	private String mainCateName;
 	private String cateStatus;
 	private List<String> mainCateCodeList;
+	private int totalSales;
+	private int totalPrice;
 }

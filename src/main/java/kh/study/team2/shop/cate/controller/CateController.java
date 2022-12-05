@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import kh.study.team2.shop.cate.service.CateService;
 import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 
 @Controller
@@ -31,5 +32,12 @@ public class CateController
 	public List<DetailCateVO> selectDetailCateAjax(DetailCateVO detailCateVO)
 	{
 		return cateService.detailCateList(detailCateVO);
+	}
+	
+	@ResponseBody
+	@PostMapping("/mainCateChart")
+	public List<MainCateVO> mainCateChart()
+	{
+		return cateService.mainChart();
 	}
 }

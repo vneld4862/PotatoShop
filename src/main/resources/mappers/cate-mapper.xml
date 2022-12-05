@@ -7,6 +7,9 @@
 		<id column="MAIN_CATE_CODE" property="mainCateCode"/>
 		<result column="MAIN_CATE_NAME" property="mainCateName"/>
 		<result column="CATE_STATUS" property="cateStatus"/>
+		<result column="TOTAL_PRICE" property="totalPrice"/>
+		<result column="TOTAL_SALES" property="totalSales"/>
+		
 	</resultMap>
 	<resultMap type="kh.study.team2.shop.cate.vo.sub.SubCateVO" id="subCate">
 		<id column="SUB_CATE_CODE" property="subCateCode"/>
@@ -140,6 +143,11 @@
 			#{detailCateCode}
 		</foreach>
 	</delete> 
+	
+	<select id="mainChart" resultMap="mainCate">
+		SELECT MAIN_CATE_NAME,TOTAL_SALES,TOTAL_PRICE FROM MAIN_CATE
+		ORDER BY TOTAL_SALES DESC
+	</select>
 </mapper>
 
 
