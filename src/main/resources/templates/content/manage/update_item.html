@@ -177,16 +177,20 @@
 											   <input type="hidden" th:value="${itemInfo.itemCode}" name="itemCode">
 										  </td>
 										</tr>
-										<tr>
+										<tr style="height: 125px;">
 											<th scope="row">카테고리*</th>
-											<td>
+											<td class="align-top">
 						 					  <!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
+						 					  <div class="mainCate">
 											    <select name="mainCateCode" class="form-select form-select-sm" aria-label=".form-select-sm example">
-											       <option selected >카테고리</option>
+											       <option selected value="">카테고리</option>
 											         <th:block th:each="mainCate:${mainCateList}">
-											    	   <option value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
+											    	   <option th:value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
 											         </th:block>
 											    </select>
+						 					  </div>
+						 					  <div class="subCate"></div>
+						 					  <div class="detailCate"></div>
 											</td>
 										</tr>
 										<tr>

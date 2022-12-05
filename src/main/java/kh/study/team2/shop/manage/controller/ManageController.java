@@ -200,7 +200,7 @@ public class ManageController {
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		
 		model.addAttribute("itemInfo", itemInfo);
-		
+		model.addAttribute("mainCateList",cateService.mainCateList());
 		//서브이미지 개수
 //		int subImgCnt = 0;
 //		for(ImgVO e : itemInfo.getImgList()) {
@@ -276,7 +276,6 @@ public class ManageController {
 			String itemCode = itemVO.getItemCode();
 			List<String> itemCodeList = new ArrayList<>();
 			itemCodeList.add(itemCode);
-			System.out.println("@@@@@@@@@@@@성공기원^^ :" + itemCodeList);
 			itemVO.setItemCodeList(itemCodeList);
 		}
 		itemService.deleteItem(itemVO);
