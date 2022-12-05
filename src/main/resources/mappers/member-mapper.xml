@@ -67,7 +67,7 @@
 	</select>
 	
 	<!-- 아이디 찾기  -->
-	<select id="searchId" resultMap="member">
+	<select id="searchId" resultType="String">
 		SELECT MEMBER_ID
 		FROM SHOP_MEMBER
 		WHERE MEMBER_NAME = #{memberName} 

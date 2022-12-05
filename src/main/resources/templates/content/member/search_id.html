@@ -39,16 +39,9 @@
             <div class="row mb-3">
                <div class="col text-center">
 	           		<h3>아이디 조회 결과</h3>
-	           		<br>
-				       <th:block>                                                                         
-				          <!-- <th:block th:if="${#strings.isEmpty(memberName)}">    --> 
-				          <th:block th:if="${#strings.isEmpty(memberVO)}" />                                             
-				              <h5>입력한 정보로 가입된 아이디가 없습니다.</h5>                               
-				          </th:block>                                                                         
-				          <th:block th:unless="${#strings.isEmpty(memberVO)}">                                                                     
-				            00  <!-- ${memberVO.memberId} -->                                              
-				          </th:block>                                                                    
-				       </th:block>   
+	           		<div style="height: 5px;"></div>
+	           		<h5><div id="searchId_result"></div></h5>
+	           		<div style="height: 5px;"></div>
                </div>
             </div>
             <div class="row">
@@ -63,6 +56,6 @@
    </div>
     
 	<script type="text/javascript" th:src="@{/js/member/search_id.js}"></script>  
-	</div>
+</div>
 </div>
 </html>

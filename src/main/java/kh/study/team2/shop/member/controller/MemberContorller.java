@@ -87,20 +87,20 @@ public class MemberContorller {
 	@ResponseBody
 	@PostMapping("/doSearchId")
 	public String find_id(MemberVO memberVO) {
-		
-		String result = memberService.searchId(memberVO);
+		String memberId = memberService.searchId(memberVO);
 			
-		return result;
+		return memberId;
 	}
 
 	
 	 // 메일로 비밀번호 보내기
-	 
 	 @PostMapping("/sendEmail") 
 	 public ResponseEntity<Object> sendEmail(String memberEmail){ 
 		 String usernames = memberService.searchPw(memberEmail);
 	 
-		 if(usernames != null) { memberService.sendEmail(memberEmail, usernames); }
+		 if(usernames!= null) {
+			 memberService.sendEmail(memberEmail, usernames); 
+			}
 		 
 		 return new ResponseEntity<Object>(HttpStatus.OK); 
 	 }
