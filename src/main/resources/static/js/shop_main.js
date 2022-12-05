@@ -23,12 +23,12 @@ function mainChart() {
 		success: function(result) {
 			for (const mainChart of result) {
 				mainCateName.push(mainChart.mainCateName);
-				totalPrice.push(mainChart.totalPrice);
+				totalPrice.push(mainChart.totalPrice+'원');
 				totalSales.push(mainChart.totalSales)
 			}
 			var options = {
 				series: [{
-					name: "Desktops",
+					name: "주요 카테고리",
 					data: totalPrice
 				}],
 				chart: {
@@ -45,8 +45,8 @@ function mainChart() {
 					curve: 'straight'
 				},
 				title: {
-					text: 'Product Trends by Month',
-					align: 'left'
+					text: '주요 카테고리 chart',
+					align: 'center'
 				},
 				grid: {
 					row: {
