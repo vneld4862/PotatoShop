@@ -1,5 +1,3 @@
-//alert('상품등록화면 연결성공~');
-
 function searchTrAddr(){
 	new daum.Postcode({
 		        oncomplete: function(data) {
@@ -12,6 +10,59 @@ function searchTrAddr(){
 	
 }
 
+//메인 이미지 미리보기(파일 선택 시)
+function readURL(input) {
+    $('.mainImgDiv div.mainDiv').remove();
+  if (input.files && input.files[0]) {
+    
+    
+
+    var reader = new FileReader();
+    reader.onload = function(e) {
+			let str = '';
+			str += '<div class="col-10 mainDiv">';
+			str += `	<div>[등록될  메인 이미지]</div>`;
+			str += `	<div>`;
+			str += `		<img src=${e.target.result} width="230px;" height="230px;">`;
+			str += '	</div>';
+			str += '</div>';
+			$('.mainImgDiv').append(str);
+
+	
+	//	document.getElementById('preview').src = e.target.result;
+    };
+    reader.readAsDataURL(input.files[0]);
+    
+  } else {
+	
+  }
+}
+
+//서브 이미지 미리보기(파일 선택 시)
+function readURL2(input) {
+	$('.loadImgDiv').remove();
+	//$('.allSubImgDiv div:not(.loadImgDiv)').remove();
+	
+	for(const img_file of input.files){
+		if (input.files && img_file) {
+			var reader = new FileReader();
+			reader.onload = function(e) {
+				let str = '';
+				str += '<div class="col-3 subDiv mb-3">';
+				str += `	<img src=${e.target.result} width="230px;" height="230px;">`;
+				str += '</div>';
+				$('.allSubImgDiv').append(str);
+				
+			};
+			reader.readAsDataURL(img_file);
+		} else {
+			
+		}
+	}
+}
+
+
+//카테고리 구현
 const mainSelect=document.querySelector('.mainCate select');
 const subCate=document.querySelector('.subCate');
 const detailCate=document.querySelector('.detailCate');

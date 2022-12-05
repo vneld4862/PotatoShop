@@ -38,9 +38,6 @@ function deleteImg(deleteBtn){
 	
 }
 
-//서브이미지 미리보기 삭제 
-
-
 
 //메인 이미지 삭제
 function deleteMainImg(){

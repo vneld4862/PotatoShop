@@ -172,7 +172,6 @@ public class ManageController {
 		List<MainCateVO> mainCateList = cateService.mainCateList();
 		System.out.println(mainCateList);
 		model.addAttribute("mainCateList", mainCateList);
-		
 		return "content/manage/reg_item";
 	}
 	
@@ -207,7 +206,6 @@ public class ManageController {
 	@GetMapping("/updateForm")
 	public String updateForm(String itemCode, Model model
 							 , @RequestParam(defaultValue = "2") String menu) {
-		System.out.println(itemCode);
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		
 		model.addAttribute("itemInfo", itemInfo);
