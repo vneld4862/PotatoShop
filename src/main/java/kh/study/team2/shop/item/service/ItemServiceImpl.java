@@ -44,13 +44,6 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public void updateItem(ItemVO itemVO) {
 		
-		/*
-		 * if(itemVO.getImgList()) {
-		 * 
-		 * 
-		 * }
-		 */
-		
 		if(itemVO.getImgList().size() != 0) {
 			sqlSession.insert("itemMapper.insertImgs", itemVO);//조건
 		}
@@ -99,4 +92,5 @@ public class ItemServiceImpl implements ItemService {
 	public List<ItemVO> marketItemList(String itemCode) {
 		return sqlSession.selectList("itemMapper.marketItemList", itemCode);
 	}
+
 }

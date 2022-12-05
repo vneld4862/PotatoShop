@@ -32,14 +32,39 @@
         border-radius: 5px;
       }   
       
-      #iconDiv{
+      #iconDiv {
       	color: #D23369;
       	font-size: 20px;
       	border: thick;
       }
       
-      #stateAreaDiv{
+      #stateAreaDiv {
       	font-size: 18px;
+      }
+      
+    /*  #reviewTable{
+      	width: 300px;
+      }  */ 
+      
+      /* #reviewListDiv {
+      	flex-grow: 1;
+   	    flex-shrink: 1;
+    	min-width: 0;
+    	overflow:hidden;
+      } */
+      
+      .reviewListC {
+      	 width: 300px;
+  		 overflow: hidden;
+  	   	 text-overflow: ellipsis;
+  		 display: -webkit-box;
+  		 -webkit-line-clamp: 2;
+  		 -webkit-box-orient: vertical;
+      }
+      
+      .starPoint {
+       color: #d9bd6e;
+       font-size: 1.2rem;
       }
 	</style>
 
@@ -80,11 +105,6 @@
 	      					   <!-- 판매상태 조건 : 판매완료 -->
 	      					   <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
 	      			  		 		<img th:src="@{/images/sold_out.png}" width="320px;" height="350px;">
-	      			  		 		<div>
-	      			  		 			<span>
-	      			  		 				판매완료
-	      			  		 			</span>
-	      			  		 		</div>
 	      			 		 	</th:block>
 				      		 </div>
 						      <div class="col-6 text-start">
@@ -303,7 +323,10 @@
 					        		 	   	  		<p th:text="|${#numbers.formatInteger((itemInfo.itemPrice),3,'COMMA')}원|">
 				        		 	   	  		</th:block>
 				        		 	   	  		<th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
-				        		 	   	  			<img th:src="@{/images/sold_out2.png}" width="100px;" height="100px;">
+				        		 	   	  			<div class="mb-3">
+					        		 	   	  			<img th:src="@{/images/sold_out2.png}" width="100px;" height="100px;">
+				        		 	   	  			
+				        		 	   	  			</div>
 				        		 	   	  		</th:block>
 				        		 	   	  	</div>
 				        		 	   	  
@@ -324,7 +347,7 @@
 				         <!-- 상품후기 목록 -->
 				         <div class="row">
 						        <div class="col-12">
-						        	<table class="table align-middle">
+						        	<table class="table align-middle" id="reviewTable">
 										  <thead>
 											    <tr>
 												      <th scope="col">상품후기</th>
@@ -332,49 +355,58 @@
 											    </tr>
 										  </thead>
 										  <tbody>
-										  		<th:block th:if="${#lists.size(reviewList) == 0}">
-										  			<tr>
-										  				<td colspan="2">
-										  					해당 상점에 등록된 후기가 없습니다.
-										  				</td>
-										  			</tr>
-										  		</th:block>		
-										  		<th:block th:unless="${#lists.size(reviewList) == 0}">
-										  			  <tr th:each=" review: ${reviewList}">
-												    	  <th scope="row text-al">
-												    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|"
-												    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|" 
-												    	  			width="50px;" height="60px;">
-												    	  </th>
-													      <td>
-													      	<div class="row">
-													      		<div class="col-12">
-													      			<div class="row">
-													      				<!-- <div class="col-3">
-													      					<img th:src="|@{/images/}${review.profileVO.changedName}|" width="50px;" height="60px;">
-													      				</div> -->
-													      				<div class="col-12 text-start">
-															      			<div>[[${review.profileVO.memberVO.memberNickName}]]</div>
-															      			<div>
-															      				<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
-																					<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
-																				</svg>
-																				[[${review.starPoint}]]
-															      			</div>
-															      			<div>
-															      				[[${review.boardContent}]]
-															      			</div>
-															      			<div>[[${review.regDate}]]</div>
-															      		
-													      		
-													      				</div>
-													      			</div>
-													      		</div>
-													      		
-													      	</div>
-													      </td>
-											   		 </tr>
-										  		</th:block>		
+										  		<div id="reviewListDiv">
+											  			<th:block th:if="${#lists.size(reviewList) == 0}">
+												  			<tr>
+												  				<td colspan="2">
+												  					해당 상점에 등록된 후기가 없습니다.
+												  				</td>
+												  			</tr>
+												  		</th:block>		
+												  		<th:block th:unless="${#lists.size(reviewList) == 0}">
+													  			  <tr th:each=" review: ${reviewList}" class="reviewListC">
+															    	  <th scope="row">
+															    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|"
+															    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|" 
+															    	  			width="50px;" height="60px;">
+															    	  </th>
+																      <td>
+																      	<div class="row">
+																      		<div class="col-12">
+																      			<div class="row">
+																      				<!-- <div class="col-3">
+																      					<img th:src="|@{/images/}${review.profileVO.changedName}|" width="50px;" height="60px;">
+																      				</div> -->
+																      				<div class="col-12 text-start">
+																		      			<div>
+																		      				<div class="row mb-3">
+																		      					<div class="col">[[${review.profileVO.memberVO.memberNickName}]]</div>
+																		      					<div class="col text-start starPoint">
+																		      						<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">
+																										<path d="M3.612 15.443c-.386.198-.824-.149-.746-.592l.83-4.73L.173 6.765c-.329-.314-.158-.888.283-.95l4.898-.696L7.538.792c.197-.39.73-.39.927 0l2.184 4.327 4.898.696c.441.062.612.636.282.95l-3.522 3.356.83 4.73c.078.443-.36.79-.746.592L8 13.187l-4.389 2.256z"/>
+																									</svg>
+																									[[${review.starPoint}]]
+																		      					</div>
+																		      				</div>
+																		      				
+																		      				
+																		      			</div>
+																		      			<div>
+																		      				[[${review.boardContent}]]
+																		      			</div>
+																		      			<div>[[${review.regDate}]]</div>
+																		      		
+																      		
+																      				</div>
+																      			</div>
+																      		</div>
+																      		
+																      	</div>
+																      </td>
+														   		 </tr>
+												  		</th:block>		
+										  		</div>
+											  		
 										  
 										  
 										  
@@ -404,14 +436,19 @@
 					       </th:block> 
 					       <!-- 판매상태 : 판매완료 -->  
 					       <th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
-					       		
+					       		 <button type="button" class="btn btn-danger" style="width:80%;" disabled>sold out</button>
 					       </th:block>  	
 			            </th:block>
 			            <!-- 내가 등록한 상품일 경우 -->
 			            <th:block th:if="${memberId eq itemInfo.memberId}">
 			            	<!-- 판매상태 : 판매중  -->
 			            	<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
-							 	<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|"style="width: 100%;">내 상점 관리</button>
+							 	<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|"style="width: 80%;">내 상점 관리</button>
+			            	</th:block>
+			            	<!-- 판매상태 : 판매완료 -->
+			            	<th:block th:if="${itemInfo.salesStatus eq 'SOLD_OUT'}">
+			            		<button class="btn btn-warning" th:onclick="|location.href='@{/manage/itemManage}'|"style="width: 40%;">내 상점 관리</button>
+			            		<button type="button" class="btn btn-danger" style="width:40%;" disabled>sold out</button>
 			            	</th:block>
 						</th:block>
 			            

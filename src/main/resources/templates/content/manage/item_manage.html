@@ -27,13 +27,13 @@
 		    	<table class="table align-middle text-center">
 	    			<colgroup>
 				       <col width="8%">
-				       <col width="18%">
+				       <col width="20%">
 				       <col width="12%">
-				       <col width="18%">
+				       <col width="16%">
 				       <col width="*">
-				       <col width="8%">
 				       <col width="10%">
-				       <col width="15%">
+				       <col width="10%">
+				       <col width="13%">
 					</colgroup>
 					  <thead>
 					    <tr>
@@ -71,9 +71,9 @@
 					      <td>수정일</td>
 					      <td>
 					      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
-					      	 	class="btn btn-warning btn-sm">수정</button>
+					      	 	class="btn btn-warning btn-sm" style="width: 45px;">수정</button>
 					      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
-					      		class="btn btn-secondary btn-sm">삭제</button>
+					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>
 					      </td>
 					    </tr>
 					  
