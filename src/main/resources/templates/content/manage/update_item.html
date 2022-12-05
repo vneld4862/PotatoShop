@@ -89,7 +89,7 @@
 																		<div class="row mainImgDiv">
 																			<th:block th:each="img : ${itemInfo.imgList}">
 																				 <th:block th:if="${img.isMain eq 'Y'}">
-																				 	  <div class="col-5 mainDiv">
+																				 	  <div class="col-6 mainDiv">
 																				 	  	[기존 메인 이미지]
 																				 	  		<img id="preview" th:src="|@{/images/}${img.attachedName}|" 
 																				 	  		  width="230px;" height="230px;">
@@ -250,7 +250,6 @@
 														<label class="form-check-label"
 														for="inlineRadio2">택배</label>
 												  </div>
-												 <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">  -->
 											</td>
 										</tr>
 										<tr>

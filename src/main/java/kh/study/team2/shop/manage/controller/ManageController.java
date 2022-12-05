@@ -205,7 +205,8 @@ public class ManageController {
 	
 	//상품 수정 화면으로 이동
 	@GetMapping("/updateForm")
-	public String updateForm(String itemCode, Model model) {
+	public String updateForm(String itemCode, Model model
+							 , @RequestParam(defaultValue = "2") String menu) {
 		System.out.println(itemCode);
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		
