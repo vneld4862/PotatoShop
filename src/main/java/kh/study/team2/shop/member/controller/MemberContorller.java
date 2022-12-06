@@ -54,7 +54,7 @@ public class MemberContorller {
 
 		memberService.join(memberVO);
 
-		return "redirect:/item/list";
+		return "content/member/join_result";
 	}
 
 	@GetMapping("/accessDenied")

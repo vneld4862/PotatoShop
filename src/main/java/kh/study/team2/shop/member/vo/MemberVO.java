@@ -31,6 +31,8 @@ public class MemberVO extends SearchVO {
 	 private String regDate; 
 	 private int memberRank;
 	 private int salesCnt;
+	 @NotBlank(message = "인증번호는 필수입력입니다.")
+	 private String certifyNum;
 	 
 	
 }
