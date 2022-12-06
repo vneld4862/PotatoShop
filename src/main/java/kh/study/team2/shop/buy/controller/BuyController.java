@@ -55,7 +55,6 @@ public class BuyController {
 		System.out.println("merchant_uid : " + merchant_uid);
 		System.out.println("---------------------------------------");
 		
-		
 		System.out.println("@@@@@@@@@@"+itemVO);
 		User user = (User)authentication.getPrincipal();
 		buyVO.setBuyer(user.getUsername());

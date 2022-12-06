@@ -8,6 +8,7 @@
 <div class="container"><br>
 <div class="card card-signin my-5">
 	<div class="card-body">
+	<div style="margin-top: 1rem;"></div>
 	<h3 class="card-title text-center mb-5">주문/결제</h3>
 		<div class="row justify-content-md-center">
 			<div class="row">
@@ -111,50 +112,42 @@
 					<label class="form-check-label" for="">신용/체크카드</label>
 				  </div>
 				</div>
-<!-- 							<div class="col-12">
-							  <div class="form-check form-check-inline">
-							 	<input class="form-check-input" type="radio" name="" id="" value="무통장입금"> 
-								<label class="form-check-label" for="">무통장입금</label>
-							  </div>
-							 </div> -->
-						
 				</div>
 				<hr>
-					<div class="row mt-3 mb-3">
-						<div class="row" >
-							<div class="w-75 p-3">
-								<h4>
-								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
-								  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
-								</svg>
-								최종 결제금액
-								</h4>
-								<div th:text="|${#numbers.formatInteger((item.itemPrice),3,'COMMA')}원|" style="font-size: 30px; margin-left: 1rem;"></div>
-							</div>	
-						</div>
+				<div class="row mt-3 mb-3">
+					<div class="row" >
+						<div class="w-75 p-3">
+							<h4>
+							<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-circle" viewBox="0 0 16 16">
+							  <path d="M8 15A7 7 0 1 1 8 1a7 7 0 0 1 0 14zm0 1A8 8 0 1 0 8 0a8 8 0 0 0 0 16z"/>
+							</svg>
+							최종 결제금액
+							</h4>
+							<div th:text="|${#numbers.formatInteger((item.itemPrice),3,'COMMA')}원|" style="font-size: 30px; margin-left: 1rem;"></div>
+						</div>	
 					</div>
 				</div>
-				</div>
-				</div>
-			
-	<input type="hidden" id="seller" th:value="${item.memberId}"></div>
-	<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
-	<input type="hidden" id="nextBuyCode" name="buyCode" th:value="${nextBuyCode}">
-	<input type="hidden" id="itemCode" name="itemCode" th:value="${item.itemCode}">
-	<input type="hidden" id="buyerName" name="memberName" th:value="${memberInfo.memberName}">
-	<input type="hidden" id="mainCateCode" name="mainCateCode" th:value="${item.mainCateCode}">
-	<input type="hidden" id="buyerTell" name="memberTell" th:value="${memberInfo.memberTell}">
-	<input type="hidden" id="buyerAddr" name="memberAddr" th:value="${memberInfo.memberAddr}">
-	<input type="hidden" id="buyerItem" name="itemName" th:value="${item.itemName}">
-	<input type="hidden" id="buyerPrice" name="itemPrice" th:value="${item.itemPrice}">
-	<input type="hidden" id="buyerEmail" name="memberEmail" th:value="${memberInfo.memberEmail}">
-	<div class="text-center">
-	<button class="btn btn-primary btn-lg mb-5" type="button" onclick="payBtn();">결제하기</button>
+			</div>
+		</div>
 	</div>
-<!-- <script src="https://code.jquery.com/jquery-latest.min.js"></script> -->
-<!-- iamport.payment.js -->
-	 <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
-	 <script type="text/javascript" th:src="@{/js/buy/buy_info.js}"></script>       
-	
+</div>			
+<input type="hidden" id="seller" th:value="${item.memberId}">
+<input type="hidden" id="real_item_price" th:value="${item.itemPrice}">
+<input type="hidden" id="nextBuyCode" name="buyCode" th:value="${nextBuyCode}">
+<input type="hidden" id="itemCode" name="itemCode" th:value="${item.itemCode}">
+<input type="hidden" id="buyerName" name="memberName" th:value="${memberInfo.memberName}">
+<input type="hidden" id="mainCateCode" name="mainCateCode" th:value="${item.mainCateCode}">
+<input type="hidden" id="buyerTell" name="memberTell" th:value="${memberInfo.memberTell}">
+<input type="hidden" id="buyerAddr" name="memberAddr" th:value="${memberInfo.memberAddr}">
+<input type="hidden" id="buyerItem" name="itemName" th:value="${item.itemName}">
+<input type="hidden" id="buyerPrice" name="itemPrice" th:value="${item.itemPrice}">
+<input type="hidden" id="buyerEmail" name="memberEmail" th:value="${memberInfo.memberEmail}">
+
+<div class="text-center">
+	<button class="btn btn-primary btn-lg mb-5" type="button" onclick="payBtn();">결제하기</button>
+</div>
+
+<script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js"></script>	
+<script type="text/javascript" th:src="@{/js/buy/buy_info.js}"></script>       
 </div>
 </html>
