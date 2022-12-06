@@ -1,6 +1,7 @@
 	 
 function payBtn() {
 	const buyName = $('#buyerName').val();
+	const mainCateCode = $('#mainCateCode').val();
 	const buyTell = $('#buyerTell').val();
 	const buyAddr = $('#buyerAddr').val();
 	const buyItem = $('#buyerItem').val();
@@ -39,7 +40,8 @@ function payBtn() {
 	                'buyCode': merchant_uid,
 	                'itemCode': $('#itemCode').val(),
 	                'seller':seller,
-	                'itemPrice':buyPrice
+	                'itemPrice':buyPrice,
+	                'mainCateCode':mainCateCode
 	                
 	            }
 	        }).done(function (data) {

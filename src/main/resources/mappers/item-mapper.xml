@@ -133,6 +133,7 @@
 	<!-- 상품 상세정보 조회 -->
 	<select id="selectItemDetail" resultMap="item">
 		SELECT I.ITEM_CODE
+			, MAIN_CATE_CODE
 		 	, MEMBER_ID
 			, ITEM_NAME
 			, ITEM_PRICE

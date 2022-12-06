@@ -23,72 +23,52 @@ function mainChart() {
 		success: function(result) {
 			for (const mainChart of result) {
 				mainCateName.push(mainChart.mainCateName);
-				totalPrice.push(mainChart.totalPrice+'원');
+				totalPrice.push(mainChart.totalPrice + '원');
 				totalSales.push(mainChart.totalSales)
 			}
 			var options = {
 				series: [{
-					name: "주요 카테고리",
+					name: '카테고리 총 매출',
+					type: 'column',
 					data: totalPrice
+				}, {
+					name: '주요 카테고리 총 판매량',
+					type: 'line',
+					data: totalSales
 				}],
 				chart: {
-					height: 500,
+					height: 350,
 					type: 'line',
-					zoom: {
-						enabled: false
-					}
-				},
-				dataLabels: {
-					enabled: false
 				},
 				stroke: {
-					curve: 'straight'
+					width: [0, 4]
 				},
 				title: {
-					text: '주요 카테고리 chart',
-					align: 'center'
+					text: '카테고리 매출상황'
+					,align: 'center'
 				},
-				grid: {
-					row: {
-						colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
-						opacity: 0.5
-					},
-				},
-				xaxis: {
-					categories: mainCateName,
-				}
-			};
-
-			var chart = new ApexCharts(document.querySelector("#chart1"), options);
-			chart.render();
-
-
-			var options = {
-				series: totalSales,
-				chart: {
-					type: 'donut',
-				},
-				responsive: [{
-					breakpoint: 480,
-					options: {
-						chart: {
-							width: 150,
-						},
-						legend: {
-							position: 'bottom'
-						}
-					}
-				}],
-				labels: mainCateName,
 				dataLabels: {
-					dropShadow: {
-						blur: 3,
-						opacity: 0.8
+					enabled: true,
+					enabledOnSeries: [1]
+				},
+				labels: mainCateName,
+				xaxis: {
+					type: 'line'
+				},
+				yaxis: [{
+					title: {
+						text: 'totalPrice',
+					},
+
+				}, {
+					opposite: true,
+					title: {
+						text: 'totalSale Amount'
 					}
-				}
+				}]
 			};
 
-			var chart = new ApexCharts(document.querySelector("#chart2"), options);
+			var chart = new ApexCharts(document.querySelector("#chart"), options);
 			chart.render();
 
 
