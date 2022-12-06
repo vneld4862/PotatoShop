@@ -121,26 +121,18 @@ public class ManageController {
 	
 	//내 정보
 	@GetMapping("/myInfo")
-	public String myInfo(Model model, String memberId) {
-		MemberVO memberInfo = memberService.selectMemberInfo(memberId);
+	public String myInfo(Model model, MemberVO memberVO) {
+		MemberVO memberInfo = memberService.selectMyInfo(memberVO);
 		model.addAttribute("myInfo", memberInfo);
 		return"content/manage/my_info";
 	}
 	
 	//내 정보 수정
 	@PostMapping("/updateMyInfo")
-	public String updateMyInfo(MemberVO memberVO
-							   , BindingResult bindingResult
-							   , Model model) {
+	public String updateMyInfo(MemberVO memberVO) {
 		//비밀번호 암호화
 //		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
 //		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
-		
-		//validation 체크(데이터 유효성 검증)
-		if(bindingResult.hasErrors()) { 
-			return "content/manage/my_info";
-		}
-		
 		
 		memberService.updateMyInfo(memberVO);
 		return "redirect:/manage/myMarket";
@@ -231,7 +223,7 @@ public class ManageController {
 //		System.out.println("@@@@@@@@" + subImgCnt);
 //		model.addAttribute("subImgCnt", subImgCnt);
 		
-		return "content/manage/update_item2";
+		return "content/manage/update_item";
 	}
 	
 	//상품수정 페이지 - 이미지 삭제
@@ -266,7 +258,7 @@ public class ManageController {
 			}
 			model.addAttribute("typeChk",itemVO.getTradeType());
 			model.addAttribute("statusChk",itemVO.getItemStatus());
-			return "content/manage/update_item2";
+			return "redirect:/manage/updateForm";
 		}
 		
 		

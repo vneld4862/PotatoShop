@@ -95,6 +95,16 @@
 		WHERE MEMBER_ID = #{memberId}
 	</select>
 	
+	<!--내정보 조회  -->
+	<select id="selectMyInfo" resultMap="member">
+		SELECT MEMBER_ID
+			, MEMBER_NAME
+			, MEMBER_TELL
+			, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR
+			, MEMBER_EMAIL
+		FROM SHOP_MEMBER
+		WHERE MEMBER_ID = #{memberId}
+	</select>
 	<!-- 내정보 수정 -->
 	<update id="updateMyInfo">
 		UPDATE SHOP_MEMBER

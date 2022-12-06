@@ -67,5 +67,9 @@ public class MemberServiceImpl implements MemberService{
 	public void initPw(MemberVO memberVO) {
 		sqlSession.update("memberMapper.initPw", memberVO);
 	}
+	@Override
+	public MemberVO selectMyInfo(MemberVO memberVO) {
+		return sqlSession.selectOne("memberMapper.selectMyInfo", memberVO);
+	}
 	
 }

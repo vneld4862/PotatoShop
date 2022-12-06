@@ -21,8 +21,8 @@
 
 
 <div class="container">
-   <form action="/manage/updateMyInfo" method="post">
-      <input type="hidden" th:value="${myInfo.memberId}" name="memberId" th:object="${memberVO}">
+   <form action="/manage/updateMyInfo" method="post" id="myInfoForm">
+      <!-- <input type="hidden" th:value="${myInfo.memberId}" name="memberId"> -->
 		<div class="row">
 			<div class="col-12 mt-3 text-center">
 				<h2>
@@ -102,10 +102,11 @@
 									      <th scope="row">휴대폰</th>
 									      <td>
 									      	 <div>
-									      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
-									      	 	>
-									      	 	<!-- name="memberTell" th:value="${myInfo.memberTell}"> -->
-									      	 	
+									      	 	<input type="text" class="form-control" id="memberTell" 
+									      	 	name="memberTell" th:value="${myInfo.memberTell}">
+									      	 </div>
+									      	 <div class="text-start">
+									      	 	<span class="point tellChk"></span>
 									      	 </div>
 									      </td>
 									    </tr>
@@ -113,8 +114,11 @@
 									      <th scope="row">이메일</th>
 									      <td>
 									      	 <div>
-									      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
+									      	 	<input type="text" class="form-control" id="memberEmail" 
 									      	 	name="memberEmail" th:value="${myInfo.memberEmail}">
+									      	 </div>
+									      	 <div class="text-start">
+									      	 	<span class="point emailChk"></span>
 									      	 </div>
 									      </td>
 									    </tr>
@@ -134,7 +138,7 @@
 				<button type="button" class="btn btn-secondary" th:onclick="deleteMember([[${#authentication.name}]]);">탈퇴하기</button>
 			</div>
 			<div class="col-6  mt-3 text-end">
-				<button type="submit" class="btn btn-info">수정하기</button>
+				<button type="button" class="btn btn-info" onclick="updateBtn();">수정하기</button>
 			</div>
 		</div>
      </form>
