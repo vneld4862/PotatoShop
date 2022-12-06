@@ -258,7 +258,7 @@ public class ManageController {
 			}
 			model.addAttribute("typeChk",itemVO.getTradeType());
 			model.addAttribute("statusChk",itemVO.getItemStatus());
-			return "redirect:/manage/updateForm";
+			return "content/manage/update_item";
 		}
 		
 		

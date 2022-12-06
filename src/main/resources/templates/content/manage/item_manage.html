@@ -88,7 +88,7 @@
 					      <td>[[${item.itemName}]]</td>
 					      <td th:text="${#numbers.formatCurrency(item.itemPrice)}"></td>
 					      <td>[[${item.cntWishList}]]</td>
-					      <td>수정일</td>
+					      <td>[[${item.revisionDate}]]</td>
 					      <td>
 					      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
 					      	 	class="btn btn-warning btn-sm" style="width: 45px;">수정</button>
