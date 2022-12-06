@@ -129,13 +129,21 @@ public class ManageController {
 	
 	//내 정보 수정
 	@PostMapping("/updateMyInfo")
-	public String updateMyInfo(MemberVO memberVO) {
+	public String updateMyInfo(MemberVO memberVO
+							   , BindingResult bindingResult
+							   , Model model) {
 		//비밀번호 암호화
 //		String pw = encoder.encode(memberVO.getMemberPw()); //memberVO 안에서 input으로 입력받은 비밀번호를 가지고 와서 암호화 후 이름을 pw로 지정
 //		memberVO.setMemberPw(pw); //암호화한 값 pw를 memberVO의 비밀번호로 세팅
 		
+		//validation 체크(데이터 유효성 검증)
+		if(bindingResult.hasErrors()) { 
+			return "content/manage/my_info";
+		}
+		
+		
 		memberService.updateMyInfo(memberVO);
-		return "redirect:/item/memberItemList";//my_market으로 변경예정.
+		return "redirect:/manage/myMarket";
 	}
 	
 	//프로필 정보 수정

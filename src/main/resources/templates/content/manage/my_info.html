@@ -10,6 +10,7 @@
 
 
 <div layout:fragment ="content">
+
 	<style>
 		.card{
 			border: 5px solid #A3C7D6;
@@ -21,7 +22,7 @@
 
 <div class="container">
    <form action="/manage/updateMyInfo" method="post">
-      <input type="hidden" th:value="${myInfo.memberId}" name="memberId">
+      <input type="hidden" th:value="${myInfo.memberId}" name="memberId" th:object="${memberVO}">
 		<div class="row">
 			<div class="col-12 mt-3 text-center">
 				<h2>
@@ -102,7 +103,9 @@
 									      <td>
 									      	 <div>
 									      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
-									      	 	name="memberTell" th:value="${myInfo.memberTell}">
+									      	 	>
+									      	 	<!-- name="memberTell" th:value="${myInfo.memberTell}"> -->
+									      	 	
 									      	 </div>
 									      </td>
 									    </tr>

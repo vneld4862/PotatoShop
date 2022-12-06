@@ -364,13 +364,18 @@ else
 
 
 ////프로필 수정 - 닉네임//////
-function checkNickName(){
+function checkNickName(updateBtn){
 	
 	if($("#nickName").val() == ""){
+		
 		$(".nickNameChk").text("*닉네임을 입력해주세요");
 		$(".nickNameChk").css("color", "red");
 		const myModalAlternative = new bootstrap.Modal('#updateProfileModal');
 		myModalAlternative.show();
+	}
+	else{
+		$("#profileForm").submit();
+		
 	}
 
 		
