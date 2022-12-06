@@ -10,69 +10,76 @@
 		<div class="col-6">
 			<form class="row g-3" th:action="@{/member/join}" method="post" th:object="${memberVO}">
 				<div class="col-9">
-					<label for="memberId" class="form-label">아이디</label> 
-					<input type="text" class="form-control" th:field="*{memberId}" required>
-					 <span class="point successNameChk">※ 이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
+					<label for="memberId" class="form-label">아이디*</label> 
+					<input type="text" class="form-control" th:field="*{memberId}" >
+					<span class="point successNameChk">※ 이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
+					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div> 
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
 					<button class="btn btn-warning form-control" id="duplicate_check" type="button" onclick="check();">중복확인</button>
 				</div>
 				<div class="col-12">
-					<label for="memberPw" class="form-label">비밀번호</label>
-					<input type="password" class="form-control" th:field="*{memberPw}" required maxlength="8">
-					<span class="point">※ 비밀번호는 총 8자까지 입력가능</span>
+					<label for="memberPw" class="form-label">비밀번호*</label>
+					<input type="password" class="form-control" th:field="*{memberPw}" maxlength="12">
+					<span class="point">※ 비밀번호는 총 12자까지 입력가능</span>
+					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
 				</div>
 				<div class="col-12">
-					<label for="userpasschk" class="form-label">비밀번호 확인</label>
-					<input id="userpasschk" type="password" class="form-control" onkeyup="passChk();" required maxlength="8">
+					<label for="userpasschk" class="form-label">비밀번호 확인*</label>
+					<input id="userpasschk" type="password" class="form-control" onkeyup="passChk();" maxlength="12">
 					<span class="point successPwChk"></span>
+					<div class="hasError" th:if="${#fields.hasErrors('memberPw')}" th:errors="*{memberPw}"></div>
 				</div>
 				<div class="col-12">
-					<label for="memberName" class="form-label">이름</label> 
-					<input type="text" class="form-control" th:field="*{memberName}" required>
+					<label for="memberName" class="form-label">이름*</label> 
+					<input type="text" class="form-control" th:field="*{memberName}" >
+					<div class="hasError" th:if="${#fields.hasErrors('memberName')}" th:errors="*{memberName}"></div> 
 				</div>
 				<div class="col-12">
-					<label for="memberNickName" class="form-label">닉네임</label> 
-					<input type="text" class="form-control" th:field="*{memberNickName}" required>
+					<label for="memberNickName" class="form-label">닉네임*</label> 
+					<input type="text" class="form-control" th:field="*{memberNickName}" >
+					<div class="hasError" th:if="${#fields.hasErrors('memberNickName')}" th:errors="*{memberNickName}"></div> 
 				</div>
 				<div class="col-9">
-					<label for="memberAddr" class="form-label">주소</label>
-					<input onclick="searchAddr();" type="text" class="form-control" th:field="*{memberAddr}" readonly required>
+					<label for="memberAddr" class="form-label">주소*</label>
+					<input onclick="searchAddr();" type="text" class="form-control" th:field="*{memberAddr}" readonly>
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label>
-					<input onclick="searchAddr();" type="button"
-						class="btn btn-warning form-control" value="검색">
+					<input onclick="searchAddr();" type="button" class="btn btn-warning form-control" value="검색">
 				</div>
 				<div class="col-12">
 					<input type="text" class="form-control" th:field="*{addrDetail}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberAddr')}" th:errors="*{memberAddr}"></div> 
 				</div>
  				<div class="col-9">
-					<label for="" class="form-label">휴대폰 번호</label> 
-					<input type="text" class="form-control" id="memberTell" name="memberTell" th:field="*{memberTell}" required>
+					<label for="" class="form-label">휴대폰 번호*</label> 
+					<!-- <input type="text" class="form-control" id="memberTell" name="memberTell" th:field="*{memberTell}" required> -->
+					<input class="form-control" th:if="${memberTell != null}" type="text" name="memberTell" readonly th:value="${memberTell}">
+					<input class="form-control" th:unless="${memberTell != null}" type="text" name="memberTell" >
+					<div class="hasError" th:if="${#fields.hasErrors('memberTell')}" th:errors="*{memberTell}"></div> 
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
 					<button class="btn btn-warning form-control" type="button" id="sendPhoneNumber">인증번호 전송</button>
 				</div>
+				
 				<div class="col-9">
-					<label for="" class="form-label">인증번호 입력</label> 
-					<input type="text" class="form-control" id="inputCertifiedNumber" required>
+					<label for="" class="form-label">인증번호 입력*</label> 
+					<input type="text" class="form-control" id="inputCertifiedNumber" >
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
-					<button class="btn btn-warning form-control" type="button" id="checkBtn" onclick="test();">인증확인</button>
+					<button class="btn btn-warning form-control" type="button" id="checkBtn" onclick="smsCheck();">인증확인</button>
 				</div> 
-
-				
 				<div class="col-12">
 					<label for="memberName" class="form-label">이메일</label> 
-					<input type="email" class="form-control" th:field="*{memberEmail}" required>
+					<input type="email" class="form-control" th:field="*{memberEmail}">
 				</div>
 			
 				<div class="col-12 d-grid gap-2">
-					<button type="submit" class="btn btn-warning" onclick="join();">회원가입</button>
+					<button type="submit" class="btn btn-warning" onclick="join();" id="joinBtn">회원가입</button>
 				</div>
 			 </form>
 		</div>

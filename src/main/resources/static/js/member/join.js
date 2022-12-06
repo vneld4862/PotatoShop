@@ -11,8 +11,8 @@ function searchAddr(){
 //중복확인 버튼 클릭시 진행
 function check(){
 	const member_id = $("#memberId").val();
-	if(member_id == "" || member_id.length < 2){
-    		$(".successNameChk").text("이름은 2자 이상 8자 이하로 설정해주세요 :)");
+	if(member_id == "" || member_id.length < 5){
+    		$(".successNameChk").text("이름은 5자 이상 12자 이하로 설정해주세요 :)");
 			$(".successNameChk").css("color", "red");
 	}else{
 	
