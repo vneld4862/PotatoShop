@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.Authentication;
@@ -11,6 +12,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -188,7 +190,7 @@ public class ManageController {
 		String memberId = user.getUsername();
 		
 		itemVO.setMemberId(memberId);
-		int totalCnt=itemService.selectItemCnt(itemVO);
+		int totalCnt = manageService.selectManageItemCnt(itemVO);
 		itemVO.setDisplayCnt(5);
 		itemVO.setTotalDataCnt(totalCnt);
 		itemVO.setPageInfo();
@@ -238,13 +240,29 @@ public class ManageController {
 	
 	//상품 수정
 	@PostMapping("/updateItem")
-	public String updateItem(ItemVO itemVO
+	public String updateItem(@Valid ItemVO itemVO
+							, BindingResult bindingResult
+							, Model model
 							, @RequestParam(required = false)MultipartFile mainImg
 							, @RequestParam(required = false)List<MultipartFile> subImgs
 							, String imgCode) {
 		System.out.println(itemVO);
 		System.out.println(imgCode);
 		System.out.println("@@@@@@@"+subImgs.get(0));
+		
+		if (bindingResult.hasErrors()) {
+			model.addAttribute("mainCateList",cateService.mainCateList());
+			if(itemVO.getMainCateCode()!=null)
+			{
+				model.addAttribute("mainChk",itemVO.getMainCateCode());
+			}
+			model.addAttribute("typeChk",itemVO.getTradeType());
+			model.addAttribute("statusChk",itemVO.getItemStatus());
+			return "content/manage/update_item";
+		}
+		
+		
+		
 		List<ImgVO> uploadList2 = new ArrayList<>();
 		
 		if(subImgs != null) {

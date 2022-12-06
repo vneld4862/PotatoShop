@@ -251,7 +251,7 @@ public class ItemController {
 		
 		ProfileVO profileInfo = memberService.detailProfile(itemCode);
 		model.addAttribute("profileInfo", profileInfo);
-		
+		//해당 상점의 상품목록 조회
 		model.addAttribute("itemList", itemService.marketItemList(itemCode));
 		
 		List<BoardVO> reviewList = boardService.selectmarketReviewList(itemCode);

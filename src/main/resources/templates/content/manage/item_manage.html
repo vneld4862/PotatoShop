@@ -10,12 +10,20 @@
 			<!-- 검색 -->
 		    <div class="col-12 mb-3 text-end">
 		    	<form th:action="@{/manage/itemManage}" method="post">
-					<select name="searchKeyword">
-						<option value="ITEM_NAME" th:seleted="${itemVO.searchKeyword == 'ITEM_NAME'}">상품명</option>
-						<option>수정일</option>
-					</select> 
-					<input type="text" name="searchValue" th:value="${itemVO.searchValue}">
-					<button type="submit" class="btn btn-success btn-sm">검색</button>
+		    		<div class="row">
+		    			<div class="offset-7 col-2"  style="padding-right: 0px;">
+		    				<select name="searchKeyword" class="form-select">
+								<option value="ITEM_NAME" th:seleted="${itemVO.searchKeyword == 'ITEM_NAME'}">상품명</option>
+								<option value="SALES_STATUS" th:seleted="${itemVO.searchKeyword == 'SALES_STATUS'}">판매상태</option>
+							</select>
+		    			</div>
+		    			<div class="col-2" style="padding-right: 0px;">
+		    				<input type="text" name="searchValue" class="form-control" th:value="${itemVO.searchValue}">
+		    			</div>
+		    			<div class="col-1">
+		    				<button type="submit" class="btn btn-success form-control" style="padding-top: 9px; padding-bottom: 3px;">검색</button>
+		    			</div>
+		    		</div>
 				</form>
 		    	
 		    </div>

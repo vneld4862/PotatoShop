@@ -30,7 +30,7 @@
 		   <div class="row text-center">
 			  <div class="col-12">
 			  		
-					  <form th:action="@{/manage/updateItem}" method="post" enctype="multipart/form-data">
+					  <form th:action="@{/manage/updateItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}">
 						<div class="card mb-3">
 						  <div class="card-body">
 									<div class="row">
@@ -136,11 +136,17 @@
 														</tr>
 														<tr>
 															<th scope="row">상품명*</th>
-															<td><input type="text" class="form-control"
-																id="exampleFormControlInput1" name="itemName"
-																th:value="${itemInfo.itemName}"> <input
-																type="hidden" th:value="${itemInfo.itemCode}"
-																name="itemCode"></td>
+															<td>
+																<input type="text" class="form-control"
+																	id="exampleFormControlInput1" 
+																    th:field="*{itemName}"> <!--th:value="${itemInfo.itemName}"-->
+																<div class="hasError" 
+																	th:if="${#fields.hasErrors('itemName')}" 
+																	th:errors="*{itemName}"></div>
+																<!-- <input type="hidden" th:value="${itemInfo.itemCode}"
+																name="itemCode"> -->
+																<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div>	
+															</td>
 														</tr>
 														<tr style="height: 125px;">
 															<th scope="row">카테고리*</th>
@@ -152,9 +158,12 @@
 																		aria-label=".form-select-sm example">
 																		<option selected value="">카테고리</option>
 																		<th:block th:each="mainCate:${mainCateList}">
-																			<option th:value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
+																			<option th:field="*{mainCateCode}">[[${mainCate.MainCateName}]]</option>
 																		</th:block>
 																	</select>
+																	<div th:if="${#fields.hasErrors('mainCateCode')}"
+																		th:errors="*{mainCateCode}"
+																		class="hasError text-start"></div>
 																</div>
 																<div class="subCate"></div>
 																<div class="detailCate"></div>
@@ -163,14 +172,17 @@
 														<tr>
 															<th scope="row">상품가격*</th>
 															<td><input type="text" class="form-control"
-																id="exampleFormControlInput1" name="itemPrice"
-																th:value="${itemInfo.itemPrice}"></td>
+																id="exampleFormControlInput1" 
+																th:field="*{itemPrice}">
+																<div th:if="${#fields.hasErrors('itemPrice')}"
+																	class="hasError text-start">올바른 가격을 입력해주세요</div>
+															</td>
 														</tr>
 														<tr>
 															<th scope="row">상품설명*</th>
 															<td>
 																<!-- <input type="text" class="form-control" id="exampleFormControlInput1" name="itemComment" th:value="${itemInfo.itemComment}"> -->
-																<textarea rows="5" class="form-control"
+																<textarea rows="7" class="form-control"
 																	name="itemComment" style="resize: none; height: 8rem;"
 																	placeholder="상품에 대한 정보를 입력해주세요">[[${itemInfo.itemComment}]]</textarea>
 															</td>
@@ -197,6 +209,8 @@
 																		value="새상품"> <label class="form-check-label"
 																		for="inlineRadio2">새상품</label>
 																</div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value=""> -->
+																<div th:if="${#fields.hasErrors('itemStatus')}"
+																	th:errors="*{itemStatus}" class="hasError text-start"></div>
 															</td>
 														</tr>
 														<tr>
@@ -214,6 +228,8 @@
 																		th:checked="${itemInfo.tradeType eq '택배'}"> <label
 																		class="form-check-label" for="inlineRadio2">택배</label>
 																</div>
+																<div th:if="${#fields.hasErrors('tradeType')}"
+																	th:errors="*{tradeType}" class="hasError text-start"></div>
 															</td>
 														</tr>
 														<tr>
@@ -221,8 +237,10 @@
 															<td>
 																<div class="mb-3">
 																	<input onclick="searchTrAddr();" type="text"
-																		class="form-control" id="tradeAddr" name="tradeAddr"
-																		th:value="${itemInfo.tradeAddr}">
+																		class="form-control" id="tradeAddr"
+																		th:field="*{tradeAddr}">
+																	<div th:if="${#fields.hasErrors('tradeAddr')}"
+																		th:errors="*{tradeAddr}" class="hasError text-start"></div>	
 																</div>
 
 

@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/manage_layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment ="content">
+
+   <style>
+      .card{
+         border: 5px solid #FFD384;
+         border-radius: 30px;
+      }
+   
+   </style>
+
+
+
+ <div class="container">
+   <div class="row">
+       <div class="col-12 mt-3 text-center">
+          <h2>
+          상품수정
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="40" fill="currentColor" class="bi bi-box-seam" viewBox="0 0 16 16">
+           <path d="M8.186 1.113a.5.5 0 0 0-.372 0L1.846 3.5l2.404.961L10.404 2l-2.218-.887zm3.564 1.426L5.596 5 8 5.961 14.154 3.5l-2.404-.961zm3.25 1.7-6.5 2.6v7.922l6.5-2.6V4.24zM7.5 14.762V6.838L1 4.239v7.923l6.5 2.6zM7.443.184a1.5 1.5 0 0 1 1.114 0l7.129 2.852A.5.5 0 0 1 16 3.5v8.662a1 1 0 0 1-.629.928l-7.185 2.874a.5.5 0 0 1-.372 0L.63 13.09a1 1 0 0 1-.63-.928V3.5a.5.5 0 0 1 .314-.464L7.443.184z"/>
+         </svg>
+          </h2>
+       </div>
+      <div class="col-12">
+         <div class="row text-center">
+           <div class="col-12">
+                 
+                 <form th:action="@{/manage/updateItem}" method="post" enctype="multipart/form-data">
+                  <div class="card mb-3">
+                    <div class="card-body">
+                           <div class="row">
+                              <div class="col">
+                                 <hr>
+
+                                 <div>
+                                    <table class="table align-middle">
+                                       <colgroup>
+                                          <col width="25%">
+                                          <col width="*">
+                                       </colgroup>
+                                       <thead>
+                                          <tr>
+                                             <th scope="col">기본정보</th>
+                                             <th scope="col">
+                                                <div class="text-start">*필수항목</div>
+
+                                             </th>
+                                          </tr>
+                                       </thead>
+                                       <tbody>
+                                          <tr>
+                                             <th scope="row">상품이미지*</th>
+                                             <td>
+                                                <div class="row">
+                                                   <div class="col-12 text-start mb-3">[메인 이미지]</div>
+                                                   <div class="col-12 mb-3">
+                                                      <div class="row text-center">
+                                                         <div class="col-8 text-center">
+                                                            <div class="row mainImgDiv">
+                                                               <th:block th:each="img : ${itemInfo.imgList}">
+                                                                  <th:block th:if="${img.isMain eq 'Y'}">
+                                                                     <div class="col-6 mainDiv">
+                                                                        [기존 메인 이미지] <img id="preview"
+                                                                           th:src="|@{/images/}${img.attachedName}|"
+                                                                           width="230px;" height="230px;"> <input
+                                                                           type="hidden" th:value="${img.imgCode}"
+                                                                           name="imgCode">
+                                                                     </div>
+                                                                  </th:block>
+                                                               </th:block>
+                                                            </div>
+                                                         </div>
+                                                         <div class="col-4">
+                                                            메인 이미지 수정
+                                                            <hr>
+                                                            <div class="input-group flex-nowrap mb-3">
+                                                               <span class="input-group-text" id="addon-wrapping">Main
+                                                                  Image</span> <input type="file" onchange="readURL(this);"
+                                                                  id="mainImgTag" class="form-control"
+                                                                  name="mainImg">
+                                                               <!--  <input type="file"  id="mainImgTag"
+                                                         class="form-control" name="mainImg"> -->
+                                                            </div>
+                                                         </div>
+                                                      </div>
+                                                   </div>
+                                                   <hr>
+                                                   <div class="col-12 text-start">[서브 이미지]</div>
+                                                   <div class="col-12">
+                                                      <div class="row text-center allSubImgDiv">
+                                                         <th:block th:each="img : ${itemInfo.imgList}">
+                                                            <th:block th:if="${img.isMain eq 'N'}">
+                                                               <div class="col-3 subDiv loadImgDiv">
+                                                                  <img th:src="|@{/images/}${img.attachedName}|"
+                                                                     width="210px;" height="210px;"><br> <input
+                                                                     type="hidden" th:value="${itemInfo.itemCode}">
+                                                                  <button type="button" class="testBtn btn btn-outline-secondary btn-sm mt-3"
+                                                                     style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .75rem;"
+                                                                     th:onclick="deleteImg(this);"
+                                                                     th:data-img-code="${img.imgCode}"
+                                                                     th:data-item-code="${itemInfo.itemCode}">
+                                                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+                                                                          <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+                                                                        </svg> 
+                                                                        
+                                                                     
+                                                                     </button>
+                                                                  <!-- <button type="button" class="sc-kxynE gpQVsP"></button>    -->
+                                                               </div>
+                                                            </th:block>
+                                                         </th:block>
+                                                         <!--서브 이미지 미리보기  -->
+                                                      </div>
+                                                   </div>
+                                                   <div>
+                                                      <img class="preview" width="230px;">
+                                                   </div>
+                                                   <div class="col-12 text-start mt-3">
+                                                      서브 이미지 수정
+                                                      <hr>
+
+                                                      <div class="input-group flex-nowrap mb-3">
+                                                         <span class="input-group-text" id="addon-wrapping">Sub
+                                                            Images</span> <input type="file" onchange="readURL2(this);"
+                                                            class="form-control" name="subImgs" multiple
+                                                            value="null">
+                                                      </div>
+                                                   </div>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th scope="row">상품명*</th>
+                                             <td><input type="text" class="form-control"
+                                                id="exampleFormControlInput1" name="itemName"
+                                                th:value="${itemInfo.itemName}"> <input
+                                                type="hidden" th:value="${itemInfo.itemCode}"
+                                                name="itemCode"></td>
+                                          </tr>
+                                          <tr style="height: 125px;">
+                                             <th scope="row">카테고리*</th>
+                                             <td class="align-top">
+                                                <!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
+                                                <div class="mainCate">
+                                                   <select name="mainCateCode"
+                                                      class="form-select form-select-sm"
+                                                      aria-label=".form-select-sm example">
+                                                      <option selected value="">카테고리</option>
+                                                      <th:block th:each="mainCate:${mainCateList}">
+                                                         <option th:value="${mainCate.mainCateCode}">[[${mainCate.MainCateName}]]</option>
+                                                      </th:block>
+                                                   </select>
+                                                </div>
+                                                <div class="subCate"></div>
+                                                <div class="detailCate"></div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th scope="row">상품가격*</th>
+                                             <td><input type="text" class="form-control"
+                                                id="exampleFormControlInput1" name="itemPrice"
+                                                th:value="${itemInfo.itemPrice}"></td>
+                                          </tr>
+                                          <tr>
+                                             <th scope="row">상품설명*</th>
+                                             <td>
+                                                <!-- <input type="text" class="form-control" id="exampleFormControlInput1" name="itemComment" th:value="${itemInfo.itemComment}"> -->
+                                                <textarea rows="5" class="form-control"
+                                                   name="itemComment" style="resize: none; height: 8rem;"
+                                                   placeholder="상품에 대한 정보를 입력해주세요">[[${itemInfo.itemComment}]]</textarea>
+                                             </td>
+                                          </tr>
+                                          <!-- <tr>
+                                 <th scope="row">상품수량</th>
+                                 <td>
+                                    <input type="number" class="form-control" id="exampleFormControlInput1" name="itemStock" th:value="${itemInfo.itemStock}">
+                                 </td>
+                              </tr> -->
+                                          <tr>
+                                             <th scope="row">상품상태*</th>
+                                             <td>
+                                                <div class="form-check form-check-inline">
+                                                   <input class="form-check-input" type="radio"
+                                                      name="itemStatus" id="inlineRadio1" value="중고"
+                                                      th:checked="${itemInfo.itemStatus eq '중고'}"> <label
+                                                      class="form-check-label" for="inlineRadio1">중고</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                   <input class="form-check-input" type="radio"
+                                                      name="itemStatus" id="inlineRadio2"
+                                                      th:checked="${itemInfo.itemStatus eq '새상품'}"
+                                                      value="새상품"> <label class="form-check-label"
+                                                      for="inlineRadio2">새상품</label>
+                                                </div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value=""> -->
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th scope="row">거래방법*</th>
+                                             <td>
+                                                <div class="form-check form-check-inline">
+                                                   <input class="form-check-input" type="radio"
+                                                      name="tradeType" id="inlineRadio3" value="직거래"
+                                                      th:checked="${itemInfo.tradeType eq '직거래'}"> <label
+                                                      class="form-check-label" for="inlineRadio1">직거래</label>
+                                                </div>
+                                                <div class="form-check form-check-inline">
+                                                   <input class="form-check-input" type="radio"
+                                                      name="tradeType" id="inlineRadio4" value="택배"
+                                                      th:checked="${itemInfo.tradeType eq '택배'}"> <label
+                                                      class="form-check-label" for="inlineRadio2">택배</label>
+                                                </div>
+                                             </td>
+                                          </tr>
+                                          <tr>
+                                             <th scope="row">거래주소*</th>
+                                             <td>
+                                                <div class="mb-3">
+                                                   <input onclick="searchTrAddr();" type="text"
+                                                      class="form-control" id="tradeAddr" name="tradeAddr"
+                                                      th:value="${itemInfo.tradeAddr}">
+                                                </div>
+
+
+                                                <div class="mb-3">
+                                                   <input onclick="searchTrAddr();" type="button"
+                                                      class="form-control" value="Search">
+                                                </div>
+                                             </td>
+                                          </tr>
+                                       </tbody>
+                                    </table>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+                  
+                  
+                  <button type="submit" class="btn btn-warning btn-lg">수정하기</button>
+               </form>
+               
+               
+                 
+           </div>
+         </div>
+      </div>
+   </div>
+ </div>
+
+
+
+
+
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<!-- 타임리프에서 경로나 페이지이동은 @{ }로 작성해준다.   -->
+<script type="text/javascript" th:src="@{/js/manage/update_item.js}"></script>
+</div>
+</html>

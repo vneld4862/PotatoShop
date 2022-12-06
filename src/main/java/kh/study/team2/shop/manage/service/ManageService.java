@@ -42,4 +42,7 @@ public interface ManageService {
 	
 	//상품관리 - 상품목록 조회
 	List<ItemVO> selectManageitemList(ItemVO itemVO);
+	
+	//상품관리 - 조회된 상품수량 조회(페이징 처리)
+	int selectManageItemCnt(ItemVO itemVO);
 }
