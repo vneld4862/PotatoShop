@@ -7,25 +7,33 @@
 <div layout:fragment ="content">
 	<div class="container">
 		<div class="row text-start">
-			<div class="col-12">
-				<!-- <h3>
-		    	   상품목록
-		 		</h3> -->
-			</div>
-		    
-		    <div class="col-6 mb-3 text-end">
-		    	<div class="row">
-		    		<div class="col-3">
-						<select class="form-select">
-							<option selected>상품명</option>
-							<option>상품명</option>
-						</select> <input type="text">
-						<button class="btn btn-primary btn-sm">검색</button>
-					</div>
-					<div class="col-3"></div>
-		    	</div>
-			    	
+			<!-- 검색 -->
+		    <div class="col-12 mb-3 text-end">
+		    	<form th:action="@{/manage/itemManage}" method="post">
+					<select name="searchKeyword">
+						<option value="ITEM_NAME" th:seleted="${itemVO.searchKeyword == 'ITEM_NAME'}">상품명</option>
+						<option>수정일</option>
+					</select> 
+					<input type="text" name="searchValue" th:value="${itemVO.searchValue}">
+					<button type="submit" class="btn btn-success btn-sm">검색</button>
+				</form>
+		    	
 		    </div>
+			   <!--  <div class="col-6 mb-3 text-end">
+			    	<div class="row">
+			    		<div class="col-3">
+							<select class="form-select">
+								<option selected>상품명</option>
+								<option>상품명</option>
+							</select> 
+						</div>
+						<div class="col-3">
+						<input class="form-control" type="text">
+							<button class="btn btn-primary btn-sm">검색</button>
+						</div>
+			    	</div>
+				    	
+			    </div> -->
 		    <hr>
 		    <div class="col-12">
 		    	<table class="table align-middle text-center">

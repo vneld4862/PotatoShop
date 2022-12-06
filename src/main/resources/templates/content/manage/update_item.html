@@ -99,10 +99,17 @@
 																						<img th:src="|@{/images/}${img.attachedName}|"
 																							width="210px;" height="210px;"><br> <input
 																							type="hidden" th:value="${itemInfo.itemCode}">
-																						<button type="button" class="testBtn"
+																						<button type="button" class="testBtn btn btn-outline-secondary btn-sm mt-3"
+																							style="--bs-btn-padding-y: .25rem; --bs-btn-padding-x: .4rem; --bs-btn-font-size: .75rem;"
 																							th:onclick="deleteImg(this);"
 																							th:data-img-code="${img.imgCode}"
-																							th:data-item-code="${itemInfo.itemCode}">x</button>
+																							th:data-item-code="${itemInfo.itemCode}">
+																								<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-lg" viewBox="0 0 16 16">
+																								  <path d="M2.146 2.854a.5.5 0 1 1 .708-.708L8 7.293l5.146-5.147a.5.5 0 0 1 .708.708L8.707 8l5.147 5.146a.5.5 0 0 1-.708.708L8 8.707l-5.146 5.147a.5.5 0 0 1-.708-.708L7.293 8 2.146 2.854Z"/>
+																								</svg> 
+																								
+																							
+																							</button>
 																						<!-- <button type="button" class="sc-kxynE gpQVsP"></button>	 -->
 																					</div>
 																				</th:block>

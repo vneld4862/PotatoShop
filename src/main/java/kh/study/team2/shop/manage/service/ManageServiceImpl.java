@@ -77,5 +77,11 @@ public class ManageServiceImpl implements ManageService{
 	public int selectShopViewCnt(String memberId) {
 		return sqlSession.selectOne("itemMapper.selectShopViewCnt",memberId);
 	}
+
+	//상품관리 - 상품목록 조회
+	@Override
+	public List<ItemVO> selectManageitemList(ItemVO itemVO) {
+		return sqlSession.selectList("itemMapper.selectManageitemList", itemVO);
+	}
 	
 }

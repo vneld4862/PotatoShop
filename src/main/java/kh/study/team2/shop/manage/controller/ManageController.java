@@ -177,7 +177,7 @@ public class ManageController {
 	
 	
 	//상품관리 페이지 이동
-	@GetMapping("/itemManage")
+	@RequestMapping("/itemManage")
 	public String itemManage(Authentication authentication
 							, Model model
 							, ItemVO itemVO
@@ -193,7 +193,7 @@ public class ManageController {
 		itemVO.setTotalDataCnt(totalCnt);
 		itemVO.setPageInfo();
 		
-		List<ItemVO> itemList = itemService.memberItemList(itemVO);
+		List<ItemVO> itemList = manageService.selectManageitemList(itemVO);
 		model.addAttribute("itemList", itemList);
 		
 		
@@ -204,7 +204,8 @@ public class ManageController {
 	
 	//상품 수정 화면으로 이동
 	@GetMapping("/updateForm")
-	public String updateForm(String itemCode, Model model
+	public String updateForm(String itemCode
+							 , Model model
 							 , @RequestParam(defaultValue = "2") String menu) {
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		

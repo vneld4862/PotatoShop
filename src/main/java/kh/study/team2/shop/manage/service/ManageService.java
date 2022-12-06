@@ -29,7 +29,9 @@ public interface ManageService {
 	
 	//닉네임 수정
 	void updateNickName(MemberVO memberVO);
+	//프로필 이미지 수정
 	void updateProfileImg(ProfileVO profileVO);
+	//판매상태 변경
 	void salesStatus(ItemVO itemVO);
 	
 	//이미지 삭제
@@ -37,4 +39,7 @@ public interface ManageService {
 	
 	//내상점 전체 조회수
 	int selectShopViewCnt(String memberId);
+	
+	//상품관리 - 상품목록 조회
+	List<ItemVO> selectManageitemList(ItemVO itemVO);
 }
