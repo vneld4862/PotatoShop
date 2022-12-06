@@ -6,13 +6,9 @@
 
 <div layout:fragment="content"> 
 <br>
-<div class="col-12 mb-3"><h2>F&Q</h2>자주묻는질문</div>
- 
-<form action="/qna/list" method="post" class="mb-4">
-	<input type="text" name="searchValue" placeholder="무엇을 도와드릴까요?" th:value="${searchValue}" style="font-size: 20px;">
-	<input type="submit" class="btn btn-dark" value="F&Q 검색"><br>
-</form>
- <br>
+<span style="font-size: 40px; margin-right: 1rem;">F&Q</span>
+<span style="font-size: 20px;">자주묻는질문</span>
+<div style="margin-top: 10px;"></div>
  <div class="accordion accordion-flush" id="accordionFlushExample">
   <div class="accordion-item">
     <h6 class="accordion-header" id="flush-headingOne">
