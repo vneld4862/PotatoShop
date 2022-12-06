@@ -125,7 +125,7 @@
 							th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
 								내정보 수정
 							</button>
-							<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
+							<button style="width: 30%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
 								프로필 수정
 							</button>
 							<button class="btn btn-success" style="width: 30%" th:onclick="|location.href='@{/manage/itemManage}'|">
@@ -522,7 +522,7 @@
 	
 
 	<!-- 프로필 수정Modal -->
-	<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+	<div class="modal fade" id="updateProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		   <form th:action="@{/manage/updateProfile}" method="post" enctype="multipart/form-data">
 			    <input type="hidden" th:value="${profileInfo.profileCode}" name="profileCode">
@@ -535,9 +535,18 @@
 				      <div class="modal-body">
 					      	<div class="row">
 					      		<div class="col-12">
-						      		  <label>닉네임</label>
+						      		  
+						      		  <div class="row">
+						      		  	<div class="col-2 text-start">
+						      		  		<label>닉네임</label>
+						      		  	</div>
+						      		  	<div class="col-4 text-start">
+						      		  		<span class="point nickNameChk" ></span>
+						      		  	</div>
+						      		 	 
+						      		  </div>
 						      		  <div class="input-group flex-nowrap mb-3">
-						      		  	<input type="text" class="form-control" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
+						      		  	<input type="text" class="form-control" id="nickName" th:value="${profileInfo.memberVO.memberNickName}" name="memberNickName">
 						      		  </div>
 						      		  <label>상점 이미지</label>
 						      	      <div class="input-group flex-nowrap mb-3">
@@ -547,7 +556,7 @@
 					      	</div>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="submit" class="btn btn-primary" data-bs-dismiss="modal">수정</button>
+				        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="checkNickName();">수정</button>
 				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 				      </div>
 			    </div>

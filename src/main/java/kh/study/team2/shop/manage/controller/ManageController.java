@@ -153,7 +153,7 @@ public class ManageController {
 		}
 		manageService.updateNickName(memberVO);
 		
-		return "redirect:/item/memberItemList";
+		return "redirect:/manage/myMarket";
 	}
 	
 	//찜 선택삭제
