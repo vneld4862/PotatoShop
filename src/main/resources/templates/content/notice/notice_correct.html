@@ -11,14 +11,15 @@
 		     <label for="title" class="form-label">TITLE</label>
 		     <input type="text" class="form-control" name="title" th:value="${notice.title}">
 	  	</div>
-	  	<div class="col-12 mb-3">
+	  	<div class="col-12 mb-4">
 		     <label for="content" class="form-label">CONTENT</label>
-		     <textarea rows="5" cols="40" class="form-control" name="content">[[${notice.content}]]</textarea>
+		     <textarea rows="15" class="form-control" name="content" style="resize: none;">[[${notice.content}]]</textarea>
 	  	</div>
 		
 		<div class="col-12 text-center">
 			<input type="submit" class="btn btn-warning" value="수정완료">
  		</div>
+ 		<div style="margin-bottom: 5rem;"></div>
 	</form>
 </div>
 

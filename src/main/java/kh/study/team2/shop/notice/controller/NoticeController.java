@@ -39,6 +39,7 @@ public class NoticeController {
 	//글 등록
 	@PostMapping("/regNotice")
 	public String doRegNotice(NoticeVO noticeVO) {
+		
 		noticeService.insertNotice(noticeVO);
 		return "redirect:/notice/list";
 	}
