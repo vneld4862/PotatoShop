@@ -7,6 +7,10 @@
 <div layout:fragment="content"> 
 	<br>
  	<div class="col-12 mb-3"><h3>공지사항</h3></div>
+ 	<form action="/notice/list" method="post" class="mb-4">
+		<input type="text" name="searchValue" placeholder="무엇을 도와드릴까요?" th:value="${noticeVO.searchValue}" style="font-size: 20px;">
+		<input type="submit" class="btn btn-dark" value="검색"><br>
+	</form>
  	<table class="table text-center border">
  		<colgroup>
 	       <col width="15%">

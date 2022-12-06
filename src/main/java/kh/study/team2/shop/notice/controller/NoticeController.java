@@ -18,7 +18,8 @@ public class NoticeController {
 	@Resource(name = "noticeService")
 	NoticeService noticeService;
 	
-	@GetMapping("/list")
+	
+	@RequestMapping("/list")
 	public String list(NoticeVO noticeVO, Model model) {
 		
 		int totalCnt = noticeService.selectNoticeCnt();
@@ -67,5 +68,10 @@ public class NoticeController {
 		return "redirect:/notice/list";
 	}
 	
+	//공지사항 목록
+	@RequestMapping("/qnaList")
+	public String qnaList() {
+		return "/content/qna/qna_list";
+	}
 	
 }
