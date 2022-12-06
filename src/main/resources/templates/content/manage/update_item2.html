@@ -137,10 +137,14 @@
                                           <tr>
                                              <th scope="row">상품명*</th>
                                              <td><input type="text" class="form-control"
-                                                id="exampleFormControlInput1" name="itemName"
-                                                th:value="${itemInfo.itemName}"> <input
+                                                id="exampleFormControlInput1" 
+                                                th:field="*{itemName}">
+                                                <div th:if="${#fields.hasErrors('itemName')}"
+												th:errors="*{itemName}" class="hasError text-start"></div>
+                                                 <!-- <input
                                                 type="hidden" th:value="${itemInfo.itemCode}"
-                                                name="itemCode"></td>
+                                                name="itemCode"> -->
+                                             </td>
                                           </tr>
                                           <tr style="height: 125px;">
                                              <th scope="row">카테고리*</th>

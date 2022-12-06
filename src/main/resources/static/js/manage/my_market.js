@@ -289,6 +289,9 @@ function updateReviewAjax(itemCode){
 
 }
 
+
+////////////////////----------찜 기능---------///////////////////////
+
 //찜목록 전체선택 클릭 시 실행
 function checkAll() {
    if($("#AllCbox").is(':checked')) {
@@ -343,6 +346,7 @@ function deleteWish(){
 	wishCodesForm.submit();
 }
 
+////////////////
 const regDate=document.querySelector('#regDate').value;
 const now=new Date();
 const start = new Date(regDate);
@@ -357,3 +361,6 @@ else
 {
 	$('#insertDate').text('['+day + '일 째]');
 }
+
+
+////프로필 수정//////

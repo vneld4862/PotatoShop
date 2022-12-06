@@ -223,7 +223,7 @@ public class ManageController {
 //		System.out.println("@@@@@@@@" + subImgCnt);
 //		model.addAttribute("subImgCnt", subImgCnt);
 		
-		return "content/manage/update_item";
+		return "content/manage/update_item2";
 	}
 	
 	//상품수정 페이지 - 이미지 삭제
@@ -258,7 +258,7 @@ public class ManageController {
 			}
 			model.addAttribute("typeChk",itemVO.getTradeType());
 			model.addAttribute("statusChk",itemVO.getItemStatus());
-			return "content/manage/update_item";
+			return "content/manage/update_item2";
 		}
 		
 		
