@@ -35,7 +35,7 @@ public class CateController
 	}
 	
 	@ResponseBody
-	@PostMapping("/mainCateChart")
+	@PostMapping("/mainCateChartAjax")
 	public List<MainCateVO> mainCateChart()
 	{
 		return cateService.mainChart();

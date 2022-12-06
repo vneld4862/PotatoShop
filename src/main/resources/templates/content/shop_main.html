@@ -39,8 +39,10 @@
 	
 	</style>
 
+	
 
 	<div class="col">
+
 		<div class="row d-flex justify-content-start">
 		<!-- 카테고리 목록 -->
 			<div class="dropdown" id="dropdownMenu" style="width: 65px;">
@@ -75,134 +77,146 @@
 					</div>
 				</div>
 			</div>
+				
 		
-		
-	</div>
-		<div id="carouselExampleDark" class="carousel carousel-white slide" data-bs-ride="carousel" style="width: 100%; height: 200px;">
-			<div class="carousel-indicators">
-				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
-				<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
 			</div>
-			<div class="carousel-inner">
-				<div class="carousel-item active" data-bs-interval="10000">
-					<img src="https://media.bunjang.co.kr/images/nocrop/919673566_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
-					<div class="carousel-caption d-none d-md-block">
+			<div id="carouselExampleDark" class="carousel carousel-white slide" data-bs-ride="carousel" style="width: 100%; height: 200px;">
+				<div class="carousel-indicators">
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="1" aria-label="Slide 2"></button>
+					<button type="button" data-bs-target="#carouselExampleDark" data-bs-slide-to="2" aria-label="Slide 3"></button>
+				</div>
+				<div class="carousel-inner">
+					<div class="carousel-item active" data-bs-interval="10000">
+						<img src="https://media.bunjang.co.kr/images/nocrop/919673566_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+						</div>
+					</div>
+					<div class="carousel-item" data-bs-interval="2000">
+						<img src="https://media.bunjang.co.kr/images/nocrop/919158390_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+						</div>
+					</div>
+					<div class="carousel-item">
+						<img src="https://media.bunjang.co.kr/images/nocrop/907207228_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
+						<div class="carousel-caption d-none d-md-block">
+						</div>
 					</div>
 				</div>
-				<div class="carousel-item" data-bs-interval="2000">
-					<img src="https://media.bunjang.co.kr/images/nocrop/919158390_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
-					<div class="carousel-caption d-none d-md-block">
-					</div>
-				</div>
-				<div class="carousel-item">
-					<img src="https://media.bunjang.co.kr/images/nocrop/907207228_w2058.jpg" class="d-block w-100" alt="..." height="200px;">
-					<div class="carousel-caption d-none d-md-block">
-					</div>
-				</div>
+				<button class="carousel-control-prev" type="button"data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="z-index: 0;">
+					<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Previous</span>
+				</button>
+				<button class="carousel-control-next" type="button"	data-bs-target="#carouselExampleDark" data-bs-slide="next" style="z-index: 0;">
+					<span class="carousel-control-next-icon" aria-hidden="true"></span>
+					<span class="visually-hidden">Next</span>
+				</button>
 			</div>
-			<button class="carousel-control-prev" type="button"data-bs-target="#carouselExampleDark" data-bs-slide="prev" style="z-index: 0;">
-				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Previous</span>
-			</button>
-			<button class="carousel-control-next" type="button"	data-bs-target="#carouselExampleDark" data-bs-slide="next" style="z-index: 0;">
-				<span class="carousel-control-next-icon" aria-hidden="true"></span>
-				<span class="visually-hidden">Next</span>
-			</button>
+			
 		</div>
 		
-	</div>
-	
-	<!-- 최근 본 상품리모컨 -->
-	<div class="banner">
-		<div class="border like_it text-center" style="position: static;">
-			<div class="col">찜</div>
-			<div class="col" style="position: relative;top: 22px;">
-				[[${wishAmount}]]
+		<!-- 최근 본 상품리모컨 -->
+		<div class="banner">
+			<div class="border like_it text-center" style="position: static;">
+				<div class="col">찜</div>
+				<div class="col" style="position: relative;top: 22px;">
+					[[${wishAmount}]]
+				</div>
+				<div class="col" th:if="${#lists.isEmpty(wishAmount)}" style="position: relative;top: 22px;">&nbsp;</div>
+				<div class="col">
+					<a onclick="location.href='/manage/myMarket?wishChk='+'toWish';">
+						<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16" style="position: relative;bottom: 25px;z-index: 4;cursor: pointer;">
+							<path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
+						</svg>
+					</a>
+				</div>
 			</div>
-			<div class="col" th:if="${#lists.isEmpty(wishAmount)}" style="position: relative;top: 22px;">&nbsp;</div>
-			<div class="col">
-				<a onclick="location.href='/manage/myMarket?wishChk='+'toWish';">
-					<svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" fill="currentColor" class="bi bi-bag-heart-fill" viewBox="0 0 16 16" style="position: relative;bottom: 25px;z-index: 4;cursor: pointer;">
-						<path d="M11.5 4v-.5a3.5 3.5 0 1 0-7 0V4H1v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V4h-3.5ZM8 1a2.5 2.5 0 0 1 2.5 2.5V4h-5v-.5A2.5 2.5 0 0 1 8 1Zm0 6.993c1.664-1.711 5.825 1.283 0 5.132-5.825-3.85-1.664-6.843 0-5.132Z"/>
-					</svg>
-				</a>
-			</div>
-		</div>
-		<div class="border clickItem" style="overflow-y: scroll;overflow-x: hidden;">
-			<div class="text-center">
-				<img alt="..." src="https://www.bodybogam.com/design/bodybogam/mobile_citybrown/bt_icon04.gif" width="100%">
-			</div>
-			<div>
-				<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;">
-				<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
-					<img alt="..." src="https://cdn-icons-png.flaticon.com/512/38/38488.png" width="80%">
-					<div style="font-size: .8rem;">상품이 없습니다.</div>
+			<div class="border clickItem" style="overflow-y: scroll;overflow-x: hidden;">
+				<div class="text-center">
+					<img alt="..." src="https://www.bodybogam.com/design/bodybogam/mobile_citybrown/bt_icon04.gif" width="100%">
+				</div>
+				<div>
+					<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;">
+					<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
+						<img alt="..." src="https://cdn-icons-png.flaticon.com/512/38/38488.png" width="80%">
+						<div style="font-size: .8rem;">상품이 없습니다.</div>
+					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<div class="container col-12" style="margin-top: 5rem;margin-bottom: 1.5rem;">
-		<h4>인기 판매자의 최신상품</h4>
-		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(180,180,180);">
-			<div class="col-3" th:each="item : ${bestSalerItems}">
-				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
-					<div class="image-box" style="height: 400px;">
-						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
-					</div>
-					<div class="card-body" style="background-color: rgb(244, 244, 245);">
-						<div><p>[[${item.itemName}]]</p></div>
-						<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
-					</div>
-				</div>
-			</div>
-			<div th:if="${#lists.isEmpty(bestSalerItems)}" class="col-12">
-				<img alt="..." src="http://www.boopoom.com/shop/img/no_item.gif">
-			</div>
-		</div>
-	</div>
-	
-	<div class="row">
-		<div id="chart" class="col"></div>	
-	</div>
-	
-	<div class="container col-12">
-		<h5>상품 목록</h5>
-		<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(195,195,195);">
-			<div class="col-3" th:each="item : ${itemList}">
-				<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
-					<div class="image-box" style="height: 400px;">
-						<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
-					</div>
-					<div class="card-body" style="background-color: rgb(244, 244, 245);">
-						<div><p>[[${item.itemName}]]</p></div>
-						<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
+		
+		<div class="accordion" id="accordionExample">
+			<div class="accordion-item">
+				<h2 class="accordion-header" id="headingTwo">
+					<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo" onclick="mainChart();">
+						판매현황 보기
+					</button>
+				</h2>
+				<div id="collapseTwo" class="accordion-collapse collapse"
+					aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+					<div class="accordion-body" id="chart">
 					</div>
 				</div>
 			</div>
-			<div th:if="${#lists.isEmpty(itemList)}" class="col-12">
-				<img alt="..." src="http://www.boopoom.com/shop/img/no_item.gif">
+		</div>
+		
+		<div class="container col-12" style="margin-top: 5rem;margin-bottom: 1.5rem;">
+			<h4>인기 판매자의 최신상품</h4>
+			<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(180,180,180);">
+				<div class="col-3" th:each="item : ${bestSalerItems}">
+					<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
+						<div class="image-box" style="height: 400px;">
+							<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
+						</div>
+						<div class="card-body" style="background-color: rgb(244, 244, 245);">
+							<div><p>[[${item.itemName}]]</p></div>
+							<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
+						</div>
+					</div>
+				</div>
+				<div th:if="${#lists.isEmpty(bestSalerItems)}" class="col-12">
+					<img alt="..." src="http://www.boopoom.com/shop/img/no_item.gif">
+				</div>
 			</div>
 		</div>
-	</div>
-	<div class="text-center" th:if="${!#lists.isEmpty(itemList)}">
-		<th:block th:if="${itemVO.prev}">
-	   		<a th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}">&lt;</a>
-	   	</th:block>
-	   	
-	   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
-	   		<a th:text="${pageNum}" th:href="@{/item/list(nowPage=${pageNum})}"></a> 	
-	   	</th:block>
-	   	
-	   	<th:block th:if="${itemVO.next}">
-	   		<a th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}">&gt;</a>
-	   	</th:block>
-	</div>
+		
+		<div class="container col-12">
+			<h5>상품 목록</h5>
+			<div class="row text-center" style="padding-top: .75rem;border: 5px solid rgb(195,195,195);">
+				<div class="col-3" th:each="item : ${itemList}">
+					<div class="card mb-3" th:onclick="|location.href='@{/item/itemDetail(itemCode=${item.itemCode})}'|" style="border: 3px solid rgb(192, 192, 192);">
+						<div class="image-box" style="height: 400px;">
+							<img th:src="|@{/images/}${item.imgList[0].attachedName}|" th:onclick="clickItem(${item.itemCode})" class="card-img-top image-thumbnail upCnt" alt="...">
+						</div>
+						<div class="card-body" style="background-color: rgb(244, 244, 245);">
+							<div><p>[[${item.itemName}]]</p></div>
+							<div th:text="${#numbers.formatCurrency(item.itemPrice)}"></div>
+						</div>
+					</div>
+				</div>
+				<div th:if="${#lists.isEmpty(itemList)}" class="col-12">
+					<img alt="..." src="http://www.boopoom.com/shop/img/no_item.gif">
+				</div>
+			</div>
+		</div>
+		<div class="text-center" th:if="${!#lists.isEmpty(itemList)}">
+			<th:block th:if="${itemVO.prev}">
+		   		<a th:href="@{/item/list(nowPage=${itemVO.beginPage}-1)}">&lt;</a>
+		   	</th:block>
+		   	
+		   	<th:block th:each="pageNum : ${#numbers.sequence(itemVO.beginPage, itemVO.endPage)}">
+		   		<a th:text="${pageNum}" th:href="@{/item/list(nowPage=${pageNum})}"></a> 	
+		   	</th:block>
+		   	
+		   	<th:block th:if="${itemVO.next}">
+		   		<a th:href="@{/item/list(nowPage=${itemVO.endPage}+1)}">&gt;</a>
+		   	</th:block>
+		</div>
 
-	<!--제이쿼리 태그 추가 -->	
-	<script src="https://code.jquery.com/jquery-latest.min.js"></script>	
-	<!--차트 생성을 위한 태그 추가 -->	
-	<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
-	<script type="text/javascript" th:src="@{/js/shop_main.js}"></script>
-</div>
+		<!--제이쿼리 태그 추가 -->	
+		<script src="https://code.jquery.com/jquery-latest.min.js"></script>	
+		<!--차트 생성을 위한 태그 추가 -->	
+		<script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+		<script type="text/javascript" th:src="@{/js/shop_main.js}"></script>
+	</div>
 </html>
