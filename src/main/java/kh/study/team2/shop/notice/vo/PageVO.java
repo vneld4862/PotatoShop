@@ -1,7 +1,7 @@
 package kh.study.team2.shop.notice.vo;
 
 
-public class PageVO {
+public class PageVO extends SearchVO{
 	private int nowPage; //현재 선택된 페이지
 	private int totalDataCnt; //전체 데이터 수
 	private int beginPage; //화면에 보이는 첫 페이지

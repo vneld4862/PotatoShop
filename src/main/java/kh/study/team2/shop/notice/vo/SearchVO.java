@@ -1,4 +1,4 @@
-package kh.study.team2.shop.qna.vo;
+package kh.study.team2.shop.notice.vo;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -8,7 +8,6 @@ import lombok.ToString;
 @Setter
 @ToString
 public class SearchVO {
-	private String searchKeyword;
 	private String searchValue;
 	
 }
