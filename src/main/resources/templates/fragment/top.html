@@ -20,8 +20,10 @@
 						<form action="/item/searchResult" method="get" class="searchForm">
 							<div class="input-group mb-3">
 								<input type="text" name="searchKeyword" class="form-control border border-4 border-end-0 searchInput border-success" placeholder="상품명 또는 카테고리를 입력해주세요" aria-describedby="button-addon2" style="border-radius: 0;">
-								<button onclick="searchSubmit();" class="btn border border-4 border-start-0 searchBtn border-success" type="button" id="button-addon2" style="border-radius: 0;">
-									<img alt="" src="https://m.bunjang.co.kr/pc-static/resource/2be3c66fa47ccd5ece2a.png">
+								<button onclick="searchSubmit();" class="btn border border-4 border-start-0 searchBtn border-success" type="button" id="button-addon2" style="border-radius: 0; color: green;">
+									<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+									  <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0z"/>
+									</svg>
 								</button>
 							</div>
 						</form>
@@ -39,10 +41,10 @@
 									<span style="color: green; font-size: 1.2rem; font-weight: bold;">[[${session.nick}]]</span>님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
 								</div>
 								<div>
-									<a th:href="@{/manage/regItemForm}">판매하기</a> | 
-									<a th:href="@{/manage/myMarket}">내 상점</a> | 
+									<a th:href="@{/manage/regItemForm}">판매하기</a> ｜
+									<a th:href="@{/manage/myMarket}">내 상점</a> ｜
 									<a target="_blank" onclick="potatoChat();" style="cursor: pointer;">감자톡</a>
-									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/memberManage}"> | (관리기능)</a><!-- 임시로 생성 -->
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/memberManage}">｜관리자 메뉴</a>
 								</div>
 							</div>
 						</div>
