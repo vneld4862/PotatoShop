@@ -80,7 +80,7 @@ div p{
 
 .M01>li a:hover {
     display: block;
-    background: red;
+    background: green;
 }
 
 .M02, .M03 {
@@ -98,12 +98,12 @@ div p{
 
 .M02>li a:hover {
     display: block;
-    background: red;
+    background: green;
 }
 
 .M03>li a:hover {
     display: block;
-    background: rgb(255, 0, 0);
+    background: green;
 }
 
 .dropdown-button {
@@ -149,4 +149,12 @@ div p{
        overflow: hidden;
        text-overflow: ellipsis;
        white-space: nowrap;
+}
+
+hr{
+	height : 2px;
+	border : 0;
+	background-color: green;
+	margin-top: 40px;
+	margin-bottom: 50px;
 }

@@ -8,16 +8,16 @@ xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 		<ul class="nav nav-tabs">
 			<li class="nav-item">
 				<a class="nav-link" aria-current="page" th:classappend="${menu} eq '1' ? 'active'"
-				th:href="@{/manage/regItemForm(menu=1)}" style="color: #8B7E74">상품등록</a>
+				th:href="@{/manage/regItemForm(menu=1)}" style="color: green">상품등록</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/manage/itemManage(menu=2)}" th:classappend="${menu} eq '2' ? 'active'" style="color: #8B7E74">상품관리</a>
+				<a class="nav-link" th:href="@{/manage/itemManage(menu=2)}" th:classappend="${menu} eq '2' ? 'active'" style="color: green">상품관리</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/manage/buyList(menu=3)}" th:classappend="${menu} eq '3' ? 'active'" style="color: #8B7E74">구매내역</a>
+				<a class="nav-link" th:href="@{/manage/buyList(menu=3)}" th:classappend="${menu} eq '3' ? 'active'" style="color: green">구매내역</a>
 			</li>
 			<li class="nav-item">
-				<a class="nav-link" th:href="@{/manage/salesList(menu=4)}" th:classappend="${menu} eq '4' ? 'active'" style="color: #8B7E74">판매내역</a>
+				<a class="nav-link" th:href="@{/manage/salesList(menu=4)}" th:classappend="${menu} eq '4' ? 'active'" style="color: green">판매내역</a>
 			</li>
 		</ul>
 	</div>
