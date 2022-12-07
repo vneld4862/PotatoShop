@@ -35,7 +35,7 @@
 						</th:block>
 						<th:block th:unless="${#lists.size(salesList) == 0}">
 							<tr th:each="sales : ${salesList}">
-								<td>
+								<td style="line-height:50px;">
 									<div>[[${sales.buyDate}]]</div>
 									<div><span>[</span>[[${sales.buyCode}]]<span>]</span></div>
 								</td>
@@ -44,9 +44,9 @@
 								</td>
 								<td class="text-start" th:text="${sales.itemVO.itemName}"
 									th:data-item-code="${sales.itemVO.itemName}" id="itemName"
-									th:onclick="|location.href='@{/item/itemDetail(itemCode=${sales.itemCode})}'|"></td>
-								<td th:text="${#numbers.formatCurrency(sales.itemVO.itemPrice)}"></td>
-								<td>
+									th:onclick="|location.href='@{/item/itemDetail(itemCode=${sales.itemCode})}'|" style="line-height:100px;"></td>
+								<td th:text="${#numbers.formatCurrency(sales.itemVO.itemPrice)}" style="line-height:100px;"></td>
+								<td style="line-height:100px;">
 									<th:block th:if="${sales.isConfirmed} == 'Y'"> <!-- 구매 확정을 했으면 -->
 										구매 확정 완료
 									</th:block>

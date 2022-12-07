@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.User;
@@ -54,7 +55,17 @@ public class AdminController {
 	@RequestMapping("/memberManage")
 	public String memberManage(Model model
 							, MemberVO memberVO
-							, Authentication authentication) {
+							, Authentication authentication
+							, HttpSession session) {
+		
+		if (authentication!=null) {
+			User user=(User)authentication.getPrincipal();
+			
+			//로그인할 때 top에 닉네임 가지고 오기
+			memberVO = memberService.selectMemberInfo(user.getUsername());
+			session.setAttribute("nick", memberVO.getMemberNickName());
+			
+		}
 		
 		//회원 목록 조회
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));

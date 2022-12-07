@@ -21,20 +21,20 @@
 					<div class="col-3 text-center">
 						<div sec:authorize="isAnonymous()">
 							<div>
-								<a th:href="@{/member/login}">로그인</a>/
+								<a th:href="@{/member/login}">로그인</a> ｜
 								<a th:href="@{/member/join}">회원가입</a>
 							</div>
 						</div>
 						<div sec:authorize="isAuthenticated()">
 							<div>
 								<div>
-									[[${#authentication.name}]]님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
+									<span style="color: green; font-size: 1.2rem; font-weight: bold;">[[${session.nick}]]</span>님 어서오세요! | <a th:href="@{/logout}">로그아웃</a>
 								</div>
 								<div>
-									<a th:href="@{/manage/regItemForm}">판매하기</a> | 
-									<a th:href="@{/manage/myMarket}">내 상점</a> | 
+									<a th:href="@{/manage/regItemForm}">판매하기</a> ｜
+									<a th:href="@{/manage/myMarket}">내 상점</a> ｜
 									<a target="_blank" onclick="potatoChat();" style="cursor: pointer;">감자톡</a>
-									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/regCateForm}"> | (관리기능)</a><!-- 임시로 생성 -->
+									<a sec:authorize="hasAnyRole('ROLE_ADMIN')" th:href="@{/admin/memberManage}">｜관리자 메뉴</a>
 								</div>
 							</div>
 						</div>

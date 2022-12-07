@@ -9,37 +9,70 @@
 		.msg {
 			margin-top: -15px;
 			font-weight: bold;
-			color: #CFB997;
-			font-size: 14px;
+			color: #CCD6A6;
+			font-size: 0.9rem;
 		}
 	</style>
 
 	<div class="col-10" style="margin: 0 auto;">
-		<div class="col">
-			<div class="text-end">
-				<form th:action="@{/admin/memberManage}" method="post">
-					<select name="searchType" style="width: 10%; height: 30px; font-family: 'Cafe24SsurroundAir'">
-						<option value="MEMBER_NICKNAME" th:selected="${memberVO.searchType == 'MEMBER_NICKNAME'}">닉네임</option>
-						<option value="MEMBER_ID" th:selected="${memberVO.searchType == 'MEMBER_ID'}">아이디</option>
-					</select>
-					<input type="text" name="searchValue" th:value="${memberVO.searchValue}" class="" style="width: 20%">
-					<input type="submit" value="검색" class="btn btn-success" style="width: 5%">
-				</form>
-			</div>
-		</div>
-		<div class="col mb-3">
-			<div class="col mb-3 text-center">
-				<h4>MEMBER LIST</h4>
-			</div>
-			<div class="col text-start">
-				<select class="mb-3 text-start" onchange="changeStatus();"
-						id="statusSelectBox" style="width: 12%; height: 30px; font-family: 'Cafe24SsurroundAir';">
+<!-- 		<div class="mb-3">
+			<form th:action="@{/admin/memberManage}" method="post">
+				<div class="row">
+					<div class="offset-7 col-2"  style="padding-right: 0px;">
+						<select class="form-select" name="searchType">
+							<option value="MEMBER_NICKNAME" th:selected="${memberVO.searchType == 'MEMBER_NICKNAME'}">닉네임</option>
+							<option value="MEMBER_ID" th:selected="${memberVO.searchType == 'MEMBER_ID'}">아이디</option>
+						</select>
+					</div>
+					<div class="col-2" style="padding-right: 0px;">
+						<input type="text" name="searchValue" th:value="${memberVO.searchValue}" class="form-control">
+					</div>
+					<div class="col-1">
+						<input type="submit" value="검색" class="btn btn-success">
+					</div>
+				</div>
+			</form>
+		</div> -->
+<!-- 			<div class="col text-start">
+				<select class="mb-3 text-start form-select" onchange="changeStatus();"
+						id="statusSelectBox" style="width: 12%;">
 					<option value="ALL">전체</option>
 					<option value="ACTIVE">활동 중인 회원</option>
 					<option value="DELETED">탈퇴한 회원</option>
 				</select>
-			</div>
+			</div> -->
 			
+		<div class="col mb-3">
+			<div class="col mt-3 mb-3 text-center">
+				<h4 style="color: green;">MEMBER LIST</h4>
+			</div>
+			<div class="mb-3">
+				<form th:action="@{/admin/memberManage}" method="post">
+					<div class="row">
+						<div class="col-2">
+							<select class="mb-3 text-start form-select" onchange="changeStatus();" id="statusSelectBox">
+								<option value="ALL">전체</option>
+								<option value="ACTIVE">활동 중인 회원</option>
+								<option value="DELETED">탈퇴한 회원</option>
+							</select>
+						</div>
+						<div class="offset-5 col-2"  style="padding-right: 0px;">
+							<select class="form-select" name="searchType">
+								<option value="MEMBER_NICKNAME" th:selected="${memberVO.searchType == 'MEMBER_NICKNAME'}">닉네임</option>
+								<option value="MEMBER_ID" th:selected="${memberVO.searchType == 'MEMBER_ID'}">아이디</option>
+							</select>
+						</div>
+						<div class="col-2" style="padding-right: 0px;">
+							<input type="text" name="searchValue" th:value="${memberVO.searchValue}" class="form-control">
+						</div>
+						<div class="col-1">
+							<input type="submit" value="검색" class="btn btn-success">
+						</div>
+					</div>
+				</form>
+			</div>
+		
+
 			<div class="msg mb-3 text-end">
 				*회원 닉네임 클릭시 상세 정보 조회 가능
 			</div>
@@ -106,13 +139,8 @@
 						</tbody>
 					</table>
 				</div>
-				
-
-				
 			</div>
 		</div>
-		
-		
 		
 		<div class="row mt-3">
 			<div class="col" id="detailDiv">
@@ -132,7 +160,6 @@
 
 			</div>
 		</div>
-	
 	</div>
 	
 	<!-- 리뷰 제목 클릭시 실행되는 Modal -->
@@ -149,7 +176,6 @@
 					</div>
 
 				</div>
-				
 			</div>
 		</div>
 	</div>
@@ -161,7 +187,6 @@
 			    document.querySelector(`.star span`).style.width = `${target.value * 10}%`;
 			  }
 	</script>
-	
 	<script type="text/javascript" th:src="@{/js/admin/member_manage.js}"></script>
 
 </div>

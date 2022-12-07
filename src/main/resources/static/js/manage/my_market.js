@@ -95,9 +95,9 @@ function reviewDetail(itemCode){
 		error: function() {
 			alert('실패');
 		}
-	});
-//ajax end
+	}); //ajax end
 }
+
 
 
 //리뷰 댓글 조회
@@ -377,8 +377,4 @@ function checkNickName(updateBtn){
 		$("#profileForm").submit();
 		
 	}
-
-		
-		
-	
 }

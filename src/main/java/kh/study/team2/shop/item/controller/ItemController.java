@@ -31,6 +31,7 @@ import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.item.service.ItemService;
 import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
+import kh.study.team2.shop.manage.service.ManageService;
 import kh.study.team2.shop.manage.vo.ProfileVO;
 
 import java.io.UnsupportedEncodingException;
@@ -57,6 +58,9 @@ public class ItemController {
 
 	@Resource(name="boardService")
 	private BoardService boardService;
+	
+	@Resource(name="manageService")
+	private ManageService manageService;
 	
 	
 	@GetMapping("/list")
@@ -341,6 +345,7 @@ public class ItemController {
 
 		//프로필 정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
+		model.addAttribute("viewCnt", manageService.selectShopViewCnt(user.getUsername()));
 
 		return "content/item/seller_market";
 	}

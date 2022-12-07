@@ -94,21 +94,13 @@
 	       /*  background: #0d6efd; */
 	        border-radius: 5px;
         }
-        
-        hr{
-			height : 2px;
-			border : 0;
-			background-color: green;
-			margin-top: 40px;
-			margin-bottom: 50px;
-		}
-		
+
 	</style>
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
 		<input type="hidden" th:value="${wishChk}" class="wishChk">
 		<div>
-			<hr>
+			<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
 					<h4><span style="color:green;">[[${memberInfo.memberNickName}]]</span> 님의 상점</h4>
@@ -120,7 +112,7 @@
 						<div class="col">
 							<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
 						</div>
-						<div class="col-12">
+						<div class="col-12 mt-3">
 							<button class="btn btn-success" style="width: 15%" th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
 								내 정보 수정
 							</button>
@@ -148,7 +140,7 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 		<div>
 			<div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -167,8 +159,6 @@
 							상점 리뷰
 						</button>
 					</li>
-					
-					<!-- 본인만 보이는 탭 -->
 					<li class="nav-item" role="presentation">
 						<button class="nav-link" id="writtenReview-tab" data-bs-toggle="tab" data-bs-target="#writtenReview-tab-pane" type="button" role="tab" aria-controls="writtenReview-tab-pane" aria-selected="false" style="color: green;">
 							다른 상점에 작성한 리뷰
@@ -445,7 +435,6 @@
 						</div>
 					</div>
 				
-
 					<hr>
 					
 					<div class="col-12 replyListDiv">

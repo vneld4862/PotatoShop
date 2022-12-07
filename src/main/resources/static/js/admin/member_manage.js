@@ -12,12 +12,12 @@ function getMemberDetail(memberId){
 			str += '	<div class="mb-3">                                                '
 			str += '		<회원 상세 정보>                                              '
 			str += '	</div>                                                            '
-			str += '	<table class="table table-striped text-center">                   '
+			str += '	<table class="table text-center">                   '
 			str += '		<colgroup>'
 			str += '			<col width="30%">'
 			str += '			<col width="70%">'
 			str += '		</colgroup>	'
-			str += '		<tr>                                                          '
+			str += '		<tr style="background-color: #CCD6A6; color:white;">                                                          '
 			str += '			<td>이름</td>                                             '
 			str += '			<td>주소</td>                                             '
 			str += '		</tr>                                                         '
@@ -25,7 +25,7 @@ function getMemberDetail(memberId){
 			str += `			<td>${result.memberName}</td>`
 			str += `			<td>${result.memberAddr} ${result.addrDetail}</td>`
 			str += '		</tr>                                                         '
-			str += '		<tr>                                                          '
+			str += '		<tr style="background-color: #CCD6A6; color:white;">                                                          '
 			str += '			<td>연락처</td>                                           '
 			str += '			<td>이메일</td>                                           '
 			str += '		</tr>                                                         '
@@ -65,7 +65,7 @@ function getMemberDetail(memberId){
 			str += '				<col width="*">';
 			str += '				<col width="30%">';
 			str += '			</colgroup>';
-			str += '			<thead>';
+			str += '			<thead style="background-color: #CCD6A6; color:white;">';
 			str += '				<tr>';
 			str += '					<th scope="col">No</th>';
 			str += '					<th scope="col">제목</th>';

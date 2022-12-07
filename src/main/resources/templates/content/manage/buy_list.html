@@ -64,17 +64,17 @@
 						<th:block th:unless="${#lists.size(buyList) == 0}">
 							<tr th:each="buy : ${buyList}">
 								<td>
-									<div>[[${buy.buyDate}]]</div>
-									<div><span>[</span>[[${buy.buyCode}]]<span>]</span></div>
+									<div style="line-height:50px;">[[${buy.buyDate}]]</div>
+									<div style="line-height:50px;"><span>[</span>[[${buy.buyCode}]]<span>]</span></div>
 								</td>
 								<td class="text-end">
 									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">
 								</td>
 								<td class="text-start" th:text="${buy.itemVO.itemName}"
 									th:data-item-code="${buy.itemVO.itemName}" id="itemName" 
-									th:onclick="|location.href='@{/item/itemDetail(itemCode=${buy.itemCode})}'|"></td>
-								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}"></td>
-								<td>
+									th:onclick="|location.href='@{/item/itemDetail(itemCode=${buy.itemCode})}'|" style="line-height:100px;"></td>
+								<td th:text="${#numbers.formatCurrency(buy.itemVO.itemPrice)}" style="line-height:100px;"></td>
+								<td style="line-height:100px;">
 									<!-- <input type="hidden" th:value="${buy.itemVO.itemName}" id="hiddenItemName"> -->
 									<input type="hidden" th:value="${buy.itemVO.itemCode}" id="hiddenItemCode">
 									<input type="hidden" th:value="${buy.seller}" id="hiddenSeller">

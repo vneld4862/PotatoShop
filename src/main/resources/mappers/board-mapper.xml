@@ -232,7 +232,7 @@
 			, BOARD_NUM
 			, ITEM_CODE
 		) VALUES (
-			#{boardNum}
+			#{replyNum}
 			, #{replyContent}
 			, #{memberId}
 			, (SELECT BOARD_NUM
