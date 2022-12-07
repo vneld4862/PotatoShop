@@ -96,8 +96,9 @@ public class ItemController {
 			model.addAttribute("cookiechk",imgName);
 			String[] cookieArr=imgName.split(",");
 			List<String> cookieList=Arrays.asList(cookieArr);
+			List<ImgVO> cookieImg=itemService.cookieItemList(cookieList);
+			model.addAttribute("cookie_imgName",cookieImg); 
 			
-			model.addAttribute("cookie_imgName",cookieList);
 		}
 		if (authentication!=null) {
 			User user=(User)authentication.getPrincipal();

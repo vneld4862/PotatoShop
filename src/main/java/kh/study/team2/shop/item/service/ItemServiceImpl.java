@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
 
 @Service("itemService")
@@ -94,6 +95,11 @@ public class ItemServiceImpl implements ItemService {
 	@Override
 	public List<ItemVO> marketItemList(String itemCode) {
 		return sqlSession.selectList("itemMapper.marketItemList", itemCode);
+	}
+
+	@Override
+	public List<ImgVO> cookieItemList(List<String> attachedNameList) {
+		return sqlSession.selectList("itemMapper.cookieItemList",attachedNameList);
 	}
 
 }

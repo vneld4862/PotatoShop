@@ -436,6 +436,13 @@
 	<select id="selectShopViewCnt" resultType="int">
 		SELECT NVL(SUM(VIEW_CNT),0) FROM SHOP_ITEM WHERE MEMBER_ID=#{memberId} 
 	</select>
+	
+	<select id="cookieItemList" resultMap="img">
+		SELECT ITEM_CODE,ATTACHED_NAME FROM ITEM_IMG WHERE ATTACHED_NAME IN 
+		<foreach collection="list" item="attachedName" open="(" close=")" separator=",">
+			#{attachedName}
+		</foreach>
+	</select>
 </mapper>
 
 

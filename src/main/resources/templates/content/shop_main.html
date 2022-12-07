@@ -104,7 +104,10 @@
 					<img alt="..." src="https://www.bodybogam.com/design/bodybogam/mobile_citybrown/bt_icon04.gif" width="100%">
 				</div>
 				<div>
-					<img class="border-bottom border-top mb-3" th:each="cookieImg:${cookie_imgName}" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;">
+					<th:block th:each="cookieImg:${cookie_imgName}">
+						<img th:onclick="|location.href='@{/item/itemDetail(itemCode=${cookieImg.itemCode})}'|" class="border-bottom border-top mb-3" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;cursor: pointer;">
+					</th:block>
+					
 					<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
 						<img alt="..." src="https://cdn-icons-png.flaticon.com/512/38/38488.png" width="80%">
 						<div style="font-size: .8rem;">상품이 없습니다.</div>

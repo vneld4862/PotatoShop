@@ -2,6 +2,7 @@ package kh.study.team2.shop.item.service;
 
 import java.util.List;
 
+import kh.study.team2.shop.item.vo.ImgVO;
 import kh.study.team2.shop.item.vo.ItemVO;
 
 public interface ItemService {
@@ -22,4 +23,5 @@ public interface ItemService {
 	int searchCateCnt(ItemVO itemVO);
 	void updateViewCnt(String itemCode);
 	List<ItemVO> bestFourSalersItem(List<String> memberList);
+	List<ImgVO> cookieItemList(List<String> attachedNameList);
 }
