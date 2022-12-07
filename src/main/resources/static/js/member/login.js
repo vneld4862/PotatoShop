@@ -14,8 +14,8 @@ function loginBtn(){
 			$(".successPwChk").text("비밀번호를 입력해주세요");
 			$(".successPwChk").css("color", "red");
 		}	
+		return ;
 	}
-	
 	document.querySelector('#loginForm').submit();
 }
 
