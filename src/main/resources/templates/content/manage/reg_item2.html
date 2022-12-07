@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+   xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+   layout:decorate="~{layout/manage_layout}"
+   xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment ="content">
+	<style>
+		.card{
+			border: 5px solid #68B984;
+			border-radius: 30px;
+		}
+	</style>
+ <div class="container">
+	<div class="row text-center">
+		<div class="col-12">
+		   <div class="row text-center">
+		   	  <div class="col-12 text-center">
+		   	  		<h2>
+		   	  		Product Registration
+		   	  		<img th:src="@{/images/reg_item.png}" width="50px;" height="60px;">
+		   	  		</h2>
+		   	  </div>	
+			  <div class="col-12 text-center">
+			  		
+					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}" id="regItemForm">
+						
+							<div class="card">
+							  <div class="card-body">
+									<div class="row contentDiv">
+										<div class="col">
+											
+
+											<div>
+												<table class="table align-middle">
+													<colgroup>
+														<col width="25%">
+														<col width="*">
+													</colgroup>
+													<thead>
+														<tr>
+															<th scope="col">기본정보</th>
+															<th scope="col">
+																<div class="text-start" style="color: #7F669D;">*필수항목</div>
+
+															</th>
+														</tr>
+													</thead>
+													<tbody>
+														<tr>
+															<th scope="row">
+																상품이미지*
+															</th>
+															<td>
+																<div class="row">
+																	<div class="col-12 text-start mb-3">
+																		<div class="row">
+																			<div class="col-2">[메인 이미지]</div>
+																			<span class="point mainImgChk"></span>
+																			<!-- <div class="col-9 text-end" style="color: #9C254D; font-size: 1.1rem">※ 메인 이미지는 필수입력입니다</div> -->
+																		</div>	
+																		
+																	</div>
+																	<div class="col-12 mb-3">
+																		<div class="row text-center">
+																			<div class="col-5 text-center">
+																				<div class="row mainImgDiv text-start">
+																							<div class="col-10 mainDiv">
+																								<div>
+																									<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" fill="currentColor" class="bi bi-image" viewBox="0 0 16 16">
+																									  <path d="M6.002 5.5a1.5 1.5 0 1 1-3 0 1.5 1.5 0 0 1 3 0z"/>
+																									  <path d="M2.002 1a2 2 0 0 0-2 2v10a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V3a2 2 0 0 0-2-2h-12zm12 1a1 1 0 0 1 1 1v6.5l-3.777-1.947a.5.5 0 0 0-.577.093l-3.71 3.71-2.66-1.772a.5.5 0 0 0-.63.062L1.002 12V3a1 1 0 0 1 1-1h12z"/>
+																									</svg>
+																								
+																									<!-- <img th:src="@{/images/image.png}"
+																									width="230px;" height="230px;"> -->
+																								</div>
+																								
+																								
+																							</div> 
+																				</div>
+																			</div>
+																			<div class="col-5 text-start">
+																				메인 이미지 등록
+																				<hr>
+																				<div class="input-group flex-nowrap mb-3">
+																					<span class="input-group-text" id="addon-wrapping">Main
+																						Image</span> 
+																						<input type="file"
+																						onchange="readURL(this);" id="mainImgTag"
+																						class="form-control" name="mainImg">
+																				</div>
+																			</div>
+																		</div>
+																	</div>
+																	<hr>
+																	<div class="col-12 text-start">[서브 이미지]</div>
+																	<div class="col-12">
+																		<div class="row text-start allSubImgDiv">
+																				
+																					<div class="col-3 subDiv loadImgDiv">
+																						<svg xmlns="http://www.w3.org/2000/svg" width="300" height="200" fill="currentColor" class="bi bi-images" viewBox="0 0 16 16">
+																						  <path d="M4.502 9a1.5 1.5 0 1 0 0-3 1.5 1.5 0 0 0 0 3z"/>
+																						  <path d="M14.002 13a2 2 0 0 1-2 2h-10a2 2 0 0 1-2-2V5A2 2 0 0 1 2 3a2 2 0 0 1 2-2h10a2 2 0 0 1 2 2v8a2 2 0 0 1-1.998 2zM14 2H4a1 1 0 0 0-1 1h9.002a2 2 0 0 1 2 2v7A1 1 0 0 0 15 11V3a1 1 0 0 0-1-1zM2.002 4a1 1 0 0 0-1 1v8l2.646-2.354a.5.5 0 0 1 .63-.062l2.66 1.773 3.71-3.71a.5.5 0 0 1 .577-.094l1.777 1.947V5a1 1 0 0 0-1-1h-10z"/>
+																						</svg>	
+																						<!-- <img th:src="@{/images/image2.png}"
+																							width="230px;" height="230px;"> -->
+																					</div>
+																				
+																					
+																			<!--서브 이미지 미리보기  -->
+																		</div>
+																	</div>
+																	<div class="col-12 text-start mt-3">
+																		서브 이미지 등록
+																		<hr>
+
+																		<div class="input-group flex-nowrap mb-3">
+																			<span class="input-group-text" id="addon-wrapping">Sub
+																				Images</span> <input type="file" onchange="readURL2(this);"
+																				class="form-control" name="subImgs" multiple
+																				value="null">
+																		</div>
+																	</div>
+																</div>
+															</td>
+														</tr>
+
+
+
+
+
+
+
+
+
+
+														<!-- <tr>
+															<th class="align-middle" scope="row">상품이미지<br>(메인이미지
+																필수)
+															</th>
+															<td>
+																<div class="input-group flex-nowrap mb-3">
+																	<span class="input-group-text" id="addon-wrapping">Main
+																		Images</span> <input type="file" class="form-control"
+																		name="mainImg">
+																</div>
+																<div class="input-group flex-nowrap mb-3">
+																	<span class="input-group-text" id="addon-wrapping">Sub
+																		Images</span> <input type="file" class="form-control"
+																		name="subImgs" multiple>
+																</div>
+															</td>
+														</tr> -->
+														<tr>
+															<th scope="row">상품명*</th>
+															<td>
+																<input type="text" class="form-control"
+																id="itemName" placeholder="상품명을 입력해주세요"
+																name="itemName"
+	                                               				th:value="${itemInfo.itemName}">
+																<span class="point nameChk"></span>
+															</td>
+														</tr>
+														<tr>
+															<th class="align-middle" scope="row"
+																style="height: 125px;">카테고리*</th>
+															<td class="align-top">
+																<!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
+																<div class="mainCate">
+																	<select name="mainCateCode" id="mainCateCode"
+																		class="form-select form-select-sm"
+																		aria-label=".form-select-sm example">
+																		<option value="" th:field="*{mainCateCode}">카테고리</option>
+																		<th:block th:each="mainCate:${mainCateList}">
+																			<option th:value="${mainCate.mainCateCode}"
+																				th:selected="${mainCate.mainCateCode eq mainChk}">[[${mainCate.MainCateName}]]</option>
+																		</th:block>
+																	</select>
+																</div>
+																<div class="subCate"></div>
+																<div class="detailCate"></div>
+																<div>
+				                                                	<span class="point cateChk"></span>
+				                                                </div>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">상품가격*</th>
+															<td>
+															    <input
+																type="text" class="form-control"
+																id="itemPrice" placeholder="상품가격을 입력해주세요"
+																name="itemPrice" th:value="${itemInfo.itemPrice}">
+																<span class="point priceChk"></span>
+
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">상품설명</th>
+															<td>
+																<!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품에 대한 정보를 입력해주세요" name="itemComment" value=""> -->
+																<textarea rows="7" class="form-control"
+																	name="itemComment" style="resize: none;"
+																	placeholder="상품에 대한 정보를 입력해주세요"></textarea>
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">상품상태*</th>
+															<td>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio"
+																		name="itemStatus" id="inlineRadio1" value="중고"
+																		th:checked="${statusChk} eq '중고'"> <label
+																		class="form-check-label" for="inlineRadio1">중고</label>
+																</div>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio"
+																		name="itemStatus" id="inlineRadio2" value="새상품"
+																		th:checked="${statusChk} eq '새상품'"> <label
+																		class="form-check-label" for="inlineRadio2">새상품</label>
+																</div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value=""> -->
+															</td>
+														</tr>
+														<tr>
+															<th scope="row">거래방법*</th>
+															<td>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio"
+																		name="tradeType" id="inlineRadio3" value="직거래"
+																		th:checked="${typeChk} eq '직거래'"> <label
+																		class="form-check-label" for="inlineRadio1">직거래</label>
+																</div>
+																<div class="form-check form-check-inline">
+																	<input class="form-check-input" type="radio"
+																		name="tradeType" id="inlineRadio4" value="택배"
+																		th:checked="${typeChk} eq '택배'"> <label
+																		class="form-check-label" for="inlineRadio2">택배</label>
+																</div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">  -->
+															</td>
+														</tr>
+														<tr>
+
+															<th scope="row">거래주소*</th>
+															<td>
+																<div class="mb-3">
+																	<input onclick="searchTrAddr();" type="text"
+																		class="form-control" id="tradeAddr"
+																		placeholder="거래지역을 입력해주세요" name="tradeAddr" value=""
+																		th:value="${itemInfo.tradeAddr}">
+																</div>
+
+
+																<div class="mb-3">
+																	<input onclick="searchTrAddr();" type="button"
+																		class="form-control" value="Search">
+																</div>
+																<div>
+				                                                	<span class="point addrChk"></span>
+				                                                </div>
+															</td>
+														</tr>
+													</tbody>
+												</table>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						
+						
+						<!-- <button type="submit" class="btn btn-success btn-lg mt-3">상품등록</button> -->
+						<button type="button" class="btn btn-success btn-lg mt-3" onclick="regItem();">상품등록</button> -->
+					</form>
+					
+					<!-- 임시버튼 (상품목록 조회 테스트)-->
+					<div class="text-end">
+						<button type="button" th:onclick="|location.href='@{/item/memberItemList}'|">
+						임시상품목록
+					   </button>
+					</div>
+					
+			  		
+			  </div>
+			</div>
+		</div>
+	</div>
+ </div>
+
+
+
+
+
+
+
+
+<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+<script type="text/javascript" th:src="@{/js/manage/reg_item.js}"></script><!-- 타임리프에서 경로나 페이지이동은 @{ }로 작성해준다.   -->
+
+</div>
+</html>

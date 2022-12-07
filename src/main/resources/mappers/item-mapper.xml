@@ -136,6 +136,8 @@
 	<select id="selectItemDetail" resultMap="item">
 		SELECT I.ITEM_CODE
 			, MAIN_CATE_CODE
+			, SUB_CATE_CODE
+			, DETAIL_CATE_CODE
 		 	, MEMBER_ID
 			, ITEM_NAME
 			, ITEM_PRICE

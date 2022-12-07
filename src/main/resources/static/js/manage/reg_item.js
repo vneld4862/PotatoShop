@@ -126,6 +126,8 @@ function subCateList(){
 	})
 }
 
+
+//상품등록 validation 구현 
 function regItem(){
 	const mainImg = document.querySelector('#mainImgTag').value;
 	const itemName = document.querySelector('#itemName').value;

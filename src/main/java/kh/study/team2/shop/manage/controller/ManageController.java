@@ -26,7 +26,9 @@ import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.buy.service.BuyService;
 import kh.study.team2.shop.buy.vo.BuyVO;
 import kh.study.team2.shop.cate.service.CateService;
+import kh.study.team2.shop.cate.vo.detail.DetailCateVO;
 import kh.study.team2.shop.cate.vo.main.MainCateVO;
+import kh.study.team2.shop.cate.vo.sub.SubCateVO;
 import kh.study.team2.shop.config.UploadFileUtil;
 import kh.study.team2.shop.config.UploadFileUtil_profile;
 import kh.study.team2.shop.item.service.ItemService;
@@ -207,12 +209,20 @@ public class ManageController {
 	//상품 수정 화면으로 이동
 	@GetMapping("/updateForm")
 	public String updateForm(String itemCode
+							 , SubCateVO subCateVO
+							 , DetailCateVO detailCateVO
 							 , Model model
 							 , @RequestParam(defaultValue = "2") String menu) {
 		ItemVO itemInfo = itemService.selectItemDetail(itemCode);
 		
 		model.addAttribute("itemInfo", itemInfo);
+		//카테고리 목록조회
 		model.addAttribute("mainCateList",cateService.mainCateList());
+//		subCateVO.setSubCateCode(itemInfo.getSubCateCode());
+//		model.addAttribute("mainCateList",cateService.subCateList(subCateVO));
+//		detailCateVO.setDetailCateCode(itemInfo.getDetailCateCode());
+//		model.addAttribute("mainCateList",cateService.detailCateList(detailCateVO));
+		
 		//서브이미지 개수
 //		int subImgCnt = 0;
 //		for(ImgVO e : itemInfo.getImgList()) {
