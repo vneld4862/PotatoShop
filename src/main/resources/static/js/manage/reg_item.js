@@ -49,7 +49,7 @@ function readURL2(input) {
 			reader.onload = function(e) {
 				let str = '';
 				str += '<div class="col-3 subDiv mb-3">';
-				str += `	<img src=${e.target.result} width="230px;" height="230px;">`;
+				str += `	<img src=${e.target.result} width="210px;" height="210px;">`;
 				str += '</div>';
 				$('.allSubImgDiv').append(str);
 				
@@ -124,4 +124,14 @@ function subCateList(){
 	    }
 	});
 	})
+}
+
+function regItem(){
+	const mainImg = document.querySelector('#mainImgTag');
+	alert(mainImg.value);
+	/*if(){
+		
+		return ;
+	}*/
+	document.querySelector('#regItemForm').submit();
 }

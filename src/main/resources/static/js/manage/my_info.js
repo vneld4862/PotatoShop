@@ -24,39 +24,66 @@ function deleteMember(memberId){
 //수정하기 버튼 클릭 시 실행
 function updateBtn(){
 	alert(222);
-	//휴대폰
-	if($("#memberTell").val() == ""||$("#memberTell").val() == ""){
+	//
+	let submitBoolean = true;
+	
+	
+	
+	
 		if($("#memberTell").val() == ""){
-		
-		$(".tellChk").text("※ 휴대폰은 필수입력입니다");
-		$(".tellChk").css("color", "red");
+			$(".tellChk").text("※ 휴대폰은 필수입력입니다");
+			$(".tellChk").css("color", "red");
+			submitBoolean = false;
 		} 
 		if($("#memberEmail").val() == ""){
+			$(".emailChk").text("※ 이메일은 필수입력입니다");
+			$(".emailChk").css("color", "red");
+			submitBoolean = false;
+
+		}
 		
-		$(".emailChk").text("※ 이메일은 필수입력입니다");
-		$(".emailChk").css("color", "red");
+		
+		if(submitBoolean){
+			
+			
+			$("#myInfoForm").submit();
+	
+		}
+	
+	
+	
+	
+	
+	
+		/*if($("#memberTell").val() == ""){
+			$(".tellChk").text("※ 휴대폰은 필수입력입니다");
+			$(".tellChk").css("color", "red");
+		} 
+		if($("#memberEmail").val() == ""){
+			$(".emailChk").text("※ 이메일은 필수입력입니다");
+			$(".emailChk").css("color", "red");
+		}*/
+		
+		
+	/*else{
+		$("#myInfoForm").submit();
+	}*/
+	
+	
+	/*if($("#memberTell").val() == ""||$("#memberEmail").val() == ""){
+		if($("#memberTell").val() == ""){
+			$(".tellChk").text("※ 휴대폰은 필수입력입니다");
+			$(".tellChk").css("color", "red");
+		} 
+		if($("#memberEmail").val() == ""){
+			$(".emailChk").text("※ 이메일은 필수입력입니다");
+			$(".emailChk").css("color", "red");
 		}
 		
 		
 	}else{
 		$("#myInfoForm").submit();
-	}
-	
-	
-	/*if($("#memberTell").val() == ""){
-		
-		$(".tellChk").text("※ 휴대폰은 필수입력입니다");
-		$(".tellChk").css("color", "red");
-	}else{
-		$("#myInfoForm").submit();
-	}
-	//이메일
-	if($("#memberEmail").val() == ""){
-		
-		$(".emailChk").text("※ 이메일은 필수입력입니다");
-		$(".emailChk").css("color", "red");
-	}else{
-		$("#myInfoForm").submit();
 	}*/
+	
 	
 }

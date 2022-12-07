@@ -240,7 +240,7 @@ public class ManageController {
 	
 	//상품 수정
 	@PostMapping("/updateItem")
-	public String updateItem(@Valid ItemVO itemVO
+	public String updateItem(ItemVO itemVO
 							, BindingResult bindingResult
 							, Model model
 							, @RequestParam(required = false)MultipartFile mainImg

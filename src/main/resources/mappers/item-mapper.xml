@@ -253,14 +253,21 @@
 	 
 	<!--상품수정-->
 	<update id="updateItem">
-		UPDATE SHOP_ITEM
-		SET 
-			ITEM_NAME = #{itemName}
-			, ITEM_PRICE = #{itemPrice}
-			, ITEM_COMMENT = #{itemComment}
-			, ITEM_STATUS = #{itemStatus}
-			, TRADE_TYPE = #{tradeType}
-			, TRADE_ADDR = #{tradeAddr}
+	UPDATE SHOP_ITEM
+	SET
+	ITEM_NAME = #{itemName}
+	, ITEM_PRICE = #{itemPrice}
+	, ITEM_COMMENT = #{itemComment}
+	, ITEM_STATUS = #{itemStatus}
+	, TRADE_TYPE = #{tradeType}
+	, TRADE_ADDR = #{tradeAddr}
+	, MAIN_CATE_CODE = #{mainCateCode}
+	<if test="subCateCode != null and !subCateCode.equals('')">
+		, SUB_CATE_CODE = #{subCateCode}
+	</if>
+	<if test="detailCateCode != null and !detailCateCode.equals('')">
+		, DETAIL_CATE_CODE = #{detailCateCode}
+	</if>
 		WHERE ITEM_CODE = #{itemCode}
 	</update>
 	

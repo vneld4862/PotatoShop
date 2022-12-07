@@ -23,7 +23,7 @@
 		   	  </div>	
 			  <div class="col-12 text-center">
 			  		
-					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}">
+					  <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}" id="regItemForm">
 						
 							<div class="card">
 							  <div class="card-body">
@@ -56,7 +56,7 @@
 																	<div class="col-12 text-start mb-3">
 																		<div class="row">
 																			<div class="col-2">[메인 이미지]</div>
-																			<div class="col-9 text-end" style="color: #9C254D; font-size: 1.2rem">*메인 이미지는 필수입력입니다</div>
+																			<div class="col-9 text-end" style="color: #9C254D; font-size: 1.1rem">※ 메인 이미지는 필수입력입니다</div>
 																		</div>	
 																		
 																	</div>
@@ -271,7 +271,7 @@
 							</div>
 						
 						
-						<button type="submit" class="btn btn-success btn-lg mt-3">상품등록</button>
+						<button type="button" class="btn btn-success btn-lg mt-3" onclick="regItem();">상품등록</button>
 					</form>
 					
 					<!-- 임시버튼 (상품목록 조회 테스트)-->
