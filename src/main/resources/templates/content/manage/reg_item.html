@@ -56,7 +56,8 @@
 																	<div class="col-12 text-start mb-3">
 																		<div class="row">
 																			<div class="col-2">[메인 이미지]</div>
-																			<div class="col-9 text-end" style="color: #9C254D; font-size: 1.1rem">※ 메인 이미지는 필수입력입니다</div>
+																			<span class="point mainImgChk"></span>
+																			<!-- <div class="col-9 text-end" style="color: #9C254D; font-size: 1.1rem">※ 메인 이미지는 필수입력입니다</div> -->
 																		</div>	
 																		
 																	</div>
@@ -157,8 +158,9 @@
 																<div th:if="${#fields.hasErrors('itemName')}"
 																	th:errors="*{itemName}" class="hasError text-start"></div>
 																<input type="text" class="form-control"
-																id="exampleFormControlInput1" placeholder="상품명을 입력해주세요"
-																name="itemName" value="" th:field="*{itemName}">
+																id="itemName" placeholder="상품명을 입력해주세요"
+																>
+																<span class="point nameChk"></span>
 															</td>
 														</tr>
 														<tr>

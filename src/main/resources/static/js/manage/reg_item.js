@@ -127,11 +127,20 @@ function subCateList(){
 }
 
 function regItem(){
-	const mainImg = document.querySelector('#mainImgTag');
-	alert(mainImg.value);
-	/*if(){
-		
+	const mainImg = document.querySelector('#mainImgTag').value;
+	const itemName = document.querySelector('#itemName').value;
+	alert(itemName);
+	if(mainImg == ""){
+		$(".mainImgChk").text("※ 메인 이미지는 필수입력입니다");
+		$(".mainImgChk").css("color", "red");
 		return ;
-	}*/
+	}
+	
+	//상품명		
+	if($("#itemName").val() == ""){
+		$(".nameChk").text("※ 상품명은 필수입력입니다");
+		$(".nameChk").css("color", "red");
+		submitBoolean = false;
+	} 
 	document.querySelector('#regItemForm').submit();
 }

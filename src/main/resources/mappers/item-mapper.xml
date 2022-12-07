@@ -94,7 +94,7 @@
 		</foreach>	
 	</insert>
 	
-	<!--  -->
+	<!--전체상품목록 조회 (메인) -->
 	<select id="selectItemList" resultMap="item">
 		SELECT ROW_NUM
 		    ,ITEM_CODE
@@ -114,7 +114,8 @@
 		        ,ITEM_PRICE
 	            ,ATTACHED_NAME
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
-	        WHERE IS_MAIN ='Y'
+	        WHERE SALES_STATUS = 'ON_SALE'
+	        AND IS_MAIN ='Y'
 	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
 			<if test="mainCateCode != null and !mainCateCode.equals('')">
 				AND MAIN_CATE_CODE=#{mainCateCode}
@@ -416,6 +417,7 @@
 		UPDATE SHOP_ITEM SET VIEW_CNT=VIEW_CNT+1 WHERE ITEM_CODE=#{itemCode}
 	</update>
 	
+	<!-- 인기상품 목록 조회  -->
 	<select id="bestSalersItem" resultMap="item">
 		SELECT MEMBER_ID
 		    ,ITEM_CODE
@@ -430,6 +432,7 @@
 		        ,ROW_NUMBER() OVER (PARTITION BY MEMBER_ID ORDER BY ITEM.ITEM_CODE DESC) AS ROW_CODE
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 		    WHERE ITEM.ITEM_CODE=IMG.ITEM_CODE
+		    AND SALES_STATUS = 'ON_SALE'
 		    AND IS_MAIN='Y')
 		    WHERE ROW_CODE='1'
 		    <if test="list.size!= 0">  
