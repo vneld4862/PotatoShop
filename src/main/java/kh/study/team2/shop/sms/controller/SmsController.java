@@ -17,7 +17,7 @@ import net.nurigo.java_sdk.exceptions.CoolsmsException;
 public class SmsController {
 	
 	@ResponseBody
-	@PostMapping("/sendSMS")
+	@PostMapping("/sendSMSAjax")
     public String sendSMS(String memberTell) throws CoolsmsException {
 
         Random rand  = new Random();

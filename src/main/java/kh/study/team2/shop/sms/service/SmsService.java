@@ -15,7 +15,8 @@ public class SmsService {
 		String api_secret = "AYMYE6S0FADZF1SJURL8KKSSFM89H7H6";
 		Message coolsms = new Message(api_key, api_secret);
 			
-		  
+		System.out.println("!!!!"); 
+		
 		HashMap<String, String> params = new HashMap<String, String>();
 	    params.put("to", memberTell);    // 수신전화번호 (ajax로 view 화면에서 받아온 값으로 넘김)
 	    params.put("from", "01040365367");    // 발신전화번호. 테스트시에는 발신,수신 둘다 본인 번호로 하면 됨
