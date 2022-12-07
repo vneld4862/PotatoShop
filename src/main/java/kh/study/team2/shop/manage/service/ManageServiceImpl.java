@@ -51,23 +51,24 @@ public class ManageServiceImpl implements ManageService{
 	//	return sqlSession.selectOne("buyMapper.selectMyMarketReviewCnt", seller);
 	//}
 	
-	
+	//닉네임 수정
 	@Override
 	public void updateNickName(MemberVO memberVO) {
 		sqlSession.update("memberMapper.updateNickName", memberVO);
 	}
-
+	//프로필 이미지 수정
 	@Override
 	public void updateProfileImg(ProfileVO profileVO) {
 		sqlSession.update("memberMapper.updateProfileImg", profileVO);
 	}
-
+	
+	//판매상태 변경
 	@Override
 	public void salesStatus(ItemVO itemVO) {
 		sqlSession.update("itemMapper.salesStatus", itemVO);
 	}
 
-
+	//이미지 삭제
 	@Override
 	public void deleteImg(String imgCode) {
 		sqlSession.delete("itemMapper.deleteImg", imgCode);
@@ -83,6 +84,7 @@ public class ManageServiceImpl implements ManageService{
 	public List<ItemVO> selectManageitemList(ItemVO itemVO) {
 		return sqlSession.selectList("itemMapper.selectManageitemList", itemVO);
 	}
+	
 	//상품관리 - 조회된 상품수량 조회(페이징 처리)
 	@Override
 	public int selectManageItemCnt(ItemVO itemVO) {

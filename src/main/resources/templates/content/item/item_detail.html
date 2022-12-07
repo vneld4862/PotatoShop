@@ -181,7 +181,7 @@
 																	  </th:block> 	
 												            	 </button>
 													             <input type="hidden" th:value="${itemInfo.itemCode}" id="itemCodeInput">
-													             <button class="btn btn-success" style="width: 25%;">감자톡</button>
+													             <button class="btn btn-success" style="width: 25%;" onclick="potatoChat();">감자톡</button>
 													             <button class="btn btn-success" 
 													             	th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|"
 													             	style="width: 25%;">바로구매</button>
@@ -296,7 +296,9 @@
 			         		</div>
 			         		<div class="col-6">
 			         			  <div>
-			         			  	[[${profileInfo.memberVO.memberNickName}]]님의
+			         			  	<!-- [[${profileInfo.memberVO.memberNickName}]]님의 -->
+			         			  	<span style="color: green; font-size: 1.1rem; font-weight: bold;">[[${profileInfo.memberVO.memberNickName}]]</span>님의 
+			         			  	
 			         			  </div>
 			         			  <div>
 			         			  	<img th:src="@{/images/my_market.png}" 
@@ -364,10 +366,7 @@
 												      				[[${reviewCnt}]]
 												      			</div>
 												      		</div>
-												      			
-												     	
 												      </th>
-												      <!-- <th scope="col" style="color: #332FD0;">[[${reviewCnt}]]</th>상품후기 개수 -->
 											    </tr>
 										  </thead>
 										  <tbody>
@@ -442,7 +441,7 @@
 			        	<th:block th:unless="${memberId eq itemInfo.memberId}">
 			        		<!-- 판매상태 : 판매중  -->
 			        		<th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
-					             <button class="btn btn-success" style="width: 35%;">감자톡</button>
+					             <button class="btn btn-success" style="width: 35%;" onclick="potatoChat();">감자톡</button>
 					             <button class="btn btn-success" 
 					             	th:onclick="|location.href='@{/buy/buyInfo(itemCode=${itemInfo.itemCode})}'|"
 					             	style="width: 35%;">

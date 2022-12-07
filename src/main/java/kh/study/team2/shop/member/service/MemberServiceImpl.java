@@ -63,10 +63,13 @@ public class MemberServiceImpl implements MemberService{
 		return sqlSession.selectOne("memberMapper.searchPw", memberEmail);
 	}
 
+	
 	@Override
 	public void initPw(MemberVO memberVO) {
 		sqlSession.update("memberMapper.initPw", memberVO);
 	}
+	
+	//내정보 조회
 	@Override
 	public MemberVO selectMyInfo(MemberVO memberVO) {
 		return sqlSession.selectOne("memberMapper.selectMyInfo", memberVO);

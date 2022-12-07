@@ -130,48 +130,44 @@ function delSubPreview(deleteBtn){
 
 ////validation 구현 중
 function updateItem(){
-	alert('수정작업');
 	let submitBoolean = true;
 	
-//		const mainCateCode = document.querySelector('#mainCateCode').value;
-//		alert(mainCateCode);
+	//상품명		
+	if($("#itemName").val() == ""){
+		$(".nameChk").text("※ 상품명은 필수입력입니다");
+		$(".nameChk").css("color", "red");
+		submitBoolean = false;
+	} 
+	//카테고리
+	if($("#mainCateCode").val() == ""){
+		$(".cateChk").text("※ 최소 한개 이상의 카테고리를 등록해주세요");
+		$(".cateChk").css("color", "red");
+		submitBoolean = false;
+
+	}
+	//상품가격
+	if($("#itemPrice").val() == ""){
+		$(".priceChk").text("※ 올바른 가격을 입력해주세요");
+		$(".priceChk").css("color", "red");
+		submitBoolean = false;
+
+	}
 	
-		//상품명		
-		if($("#itemName").val() == ""){
-			$(".nameChk").text("※ 상품명은 필수입력입니다");
-			$(".nameChk").css("color", "red");
-			submitBoolean = false;
-		} 
-		//카테고리
-		if($("#mainCateCode").val() == ""){
-			$(".cateChk").text("※ 최소 한개 이상의 카테고리를 등록해주세요");
-			$(".cateChk").css("color", "red");
-			submitBoolean = false;
+	//거래주소
+	if($("#tradeAddr").val() == ""){
+		$(".addrChk").text("※ 주소창은 필수입력입니다");
+		$(".addrChk").css("color", "red");
+		submitBoolean = false;
 
-		}
-		//상품가격
-		if($("#itemPrice").val() == ""){
-			$(".priceChk").text("※ 올바른 가격을 입력해주세요");
-			$(".priceChk").css("color", "red");
-			submitBoolean = false;
-
-		}
-		
-		//거래주소
-		if($("#tradeAddr").val() == ""){
-			$(".addrChk").text("※ 주소창은 필수입력입니다");
-			$(".addrChk").css("color", "red");
-			submitBoolean = false;
-
-		}
-		
-		
-		if(submitBoolean){
-			
-			
-			$("#ItemForm").submit();
+	}
 	
-		}
+	
+	if(submitBoolean){
+		
+		
+		$("#ItemForm").submit();
+
+	}
 	
 }
 

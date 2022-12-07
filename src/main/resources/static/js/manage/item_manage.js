@@ -57,27 +57,18 @@ function deleteItem(){
 function changeStatus(statSelect){
 	const salesStatus = statSelect.value;
 	const itemCode = statSelect.dataset.itemCode;
-	alert(salesStatus);
-	alert(itemCode);
 	
-	//ajax start
 	$.ajax({
 	   url: '/manage/salesStatus', //요청경로
 	    type: 'post',
 	    data:{'salesStatus':salesStatus, 'itemCode':itemCode}, //필요한 데이터
 	    success: function(salesStatus) {
-	      alert('상태 업데이트 성공');
-	      alert(salesStatus);
+	      alert('판매상태를 변경하였습니다.');
 	    },
 	    error: function(){
 	       alert('업데이트 실패');
 	    }
 	});
-	//ajax end
-	
-
-		
-	
 	
 }
 
