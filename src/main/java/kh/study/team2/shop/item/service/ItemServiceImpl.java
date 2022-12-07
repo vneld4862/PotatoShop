@@ -5,6 +5,7 @@ import java.util.List;
 import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import kh.study.team2.shop.item.vo.ItemVO;
 
@@ -42,12 +43,14 @@ public class ItemServiceImpl implements ItemService {
 	}
 
 	@Override
+	@Transactional(rollbackFor = Exception.class)
 	public void updateItem(ItemVO itemVO) {
 		
 		if(itemVO.getImgList().size() != 0) {
 			sqlSession.insert("itemMapper.insertImgs", itemVO);//조건
 		}
 	    sqlSession.update("itemMapper.updateItem", itemVO);
+	    sqlSession.update("itemMapper.updateRevisionDate", itemVO);
 	}
 
 	@Override

@@ -17,20 +17,20 @@ import lombok.ToString;
 @Setter
 public class ItemVO extends PageVO{
 	private String itemCode;
-	@NotBlank(message = "상품명은 필수입력입니다")
+	@NotBlank(message = "※ 상품명은 필수입력입니다")
 	private String itemName;
 	@Positive
 	private int itemPrice;
 	private String regDate;
 	private String itemComment;
-	@NotBlank(message = "상품상태를 선택해주세요")
+	@NotBlank(message = "※ 상품상태를 선택해주세요")
 	private String itemStatus;
-	@NotBlank(message = "거래방법을 선택해주세요")
+	@NotBlank(message = "※ 거래방법을 선택해주세요")
 	private String tradeType;
-	@NotBlank(message = "주소창은 필수입력입니다")
+	@NotBlank(message = "※ 주소창은 필수입력입니다")
 	private String tradeAddr;
 	private int viewCnt;
-	@NotBlank(message = "최소 한개 이상의 카테고리를 등록해주십시오")
+	@NotBlank(message = "※ 최소 한개 이상의 카테고리를 등록해주십시오")
 	private String mainCateCode;
 	private String subCateCode;
 	private String detailCateCode;

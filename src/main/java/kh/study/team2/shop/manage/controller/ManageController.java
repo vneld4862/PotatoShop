@@ -283,7 +283,7 @@ public class ManageController {
 		
 		itemVO.setImgList(uploadList2);
 		itemVO.setItemCode(itemVO.getItemCode());
-		
+		System.out.println(itemVO);
 		
 		itemService.updateItem(itemVO);
 		
