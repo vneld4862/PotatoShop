@@ -63,7 +63,7 @@ $('#sendPhoneNumber').click(function(){
         data: {"memberTell" : memberTell},
         success: function(res){
             $('#checkBtn').click(function test(){
-                if($.trim(res) ==$('#inputCertifiedNumber').val()){
+               if($.trim(res) ==$('#inputCertifiedNumber').val()){
                     Swal.fire(
                         '인증성공!',
                         '휴대폰 인증이 정상적으로 완료되었습니다.',

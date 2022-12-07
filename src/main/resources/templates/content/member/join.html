@@ -12,7 +12,7 @@
 				<div class="col-9">
 					<label for="memberId" class="form-label">아이디*</label> 
 					<input type="text" class="form-control" th:field="*{memberId}" >
-					<span class="point successNameChk">※ 이름은 2자 이상 5자 이하로 설정해주시기 바랍니다.</span>
+					<span class="point successNameChk">※ 이름은 2자 이상 8자 이하로 설정해주시기 바랍니다.</span>
 					<div class="hasError" th:if="${#fields.hasErrors('memberId')}" th:errors="*{memberId}"></div> 
 				</div>
 				<div class="col-3">
@@ -55,9 +55,7 @@
 				</div>
  				<div class="col-9">
 					<label for="" class="form-label">휴대폰 번호*</label> 
-					<!-- <input type="text" class="form-control" id="memberTell" name="memberTell" th:field="*{memberTell}" required> -->
-					<input class="form-control" th:if="${memberTell != null}" type="text" name="memberTell" readonly th:value="${memberTell}">
-					<input class="form-control" th:unless="${memberTell != null}" type="text" name="memberTell" >
+					<input type="text" class="form-control" id="memberTell" name="memberTell" th:field="*{memberTell}">
 					<div class="hasError" th:if="${#fields.hasErrors('memberTell')}" th:errors="*{memberTell}"></div> 
 				</div>
 				<div class="col-3">
@@ -67,8 +65,8 @@
 				
 				<div class="col-9">
 					<label for="" class="form-label">인증번호 입력*</label> 
-					<input type="text" class="form-control" th:field="*{certifyNum}" >
-					<div class="hasError" th:if="${#fields.hasErrors('certifyNum')}" th:errors="*{certifyNum}"></div>
+					<input type="text" class="form-control" id="inputCertifiedNumber" name="inputCertifiedNumber" th:field="*{certifyNum}">
+					<div class="hasError" th:if="${#fields.hasErrors('certifyNum')}" th:errors="*{certifyNum}"></div> 
 				</div>
 				<div class="col-3">
 					<label for="" class="form-label">&nbsp;</label> 
