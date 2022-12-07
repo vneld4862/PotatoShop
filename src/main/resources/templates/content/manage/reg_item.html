@@ -23,7 +23,7 @@
               </div>   
            <div class="col-12 text-center">
                  
-                 <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" th:object="${itemVO}">
+                 <form th:action="@{/item/regItem}" method="post" enctype="multipart/form-data" id="regItemForm">
                   
                      <div class="card">
                        <div class="card-body">
@@ -56,7 +56,8 @@
                                                    <div class="col-12 text-start mb-3">
                                                       <div class="row">
                                                          <div class="col-2">[메인 이미지]</div>
-                                                         <div class="col-9 text-end" style="color: #9C254D; font-size: 1.2rem">*메인 이미지는 필수입력입니다</div>
+                                                         <span class="point mainImgChk"></span>
+                                                         <!-- <div class="col-9 text-end" style="color: #9C254D; font-size: 1.2rem">*메인 이미지는 필수입력입니다</div> -->
                                                       </div>   
                                                       
                                                    </div>
@@ -154,26 +155,21 @@
                                           <tr>
                                              <th scope="row">상품명*</th>
                                              <td>
-                                                <div th:if="${#fields.hasErrors('itemName')}"
-                                                   th:errors="*{itemName}" class="hasError text-start"></div>
                                                 <input type="text" class="form-control"
-                                                id="exampleFormControlInput1" placeholder="상품명을 입력해주세요"
-                                                name="itemName" value="" th:field="*{itemName}">
+                                                id="itemName" placeholder="상품명을 입력해주세요"
+                                                name="itemName" value="">
+                                                <span class="point nameChk"></span>
                                              </td>
                                           </tr>
                                           <tr>
                                              <th class="align-middle" scope="row"
                                                 style="height: 125px;">카테고리*</th>
                                              <td class="align-top">
-                                                <!--  <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="카테고리는 임시로 생성^^" > -->
                                                 <div class="mainCate">
-                                                   <div th:if="${#fields.hasErrors('mainCateCode')}"
-                                                      th:errors="*{mainCateCode}"
-                                                      class="hasError text-start"></div>
                                                    <select name="mainCateCode"
                                                       class="form-select form-select-sm"
-                                                      aria-label=".form-select-sm example">
-                                                      <option value="" th:field="*{mainCateCode}">카테고리</option>
+                                                      aria-label=".form-select-sm example" id="mainCateCode">
+                                                      <option value="" >카테고리</option>
                                                       <th:block th:each="mainCate:${mainCateList}">
                                                          <option th:value="${mainCate.mainCateCode}"
                                                             th:selected="${mainCate.mainCateCode eq mainChk}">[[${mainCate.MainCateName}]]</option>
@@ -182,17 +178,18 @@
                                                 </div>
                                                 <div class="subCate"></div>
                                                 <div class="detailCate"></div>
+                                                <div>
+                                                	<span class="point cateChk"></span>
+                                                </div>
                                              </td>
                                           </tr>
                                           <tr>
                                              <th scope="row">상품가격*</th>
                                              <td>
-                                                <div th:if="${#fields.hasErrors('itemPrice')}"
-                                                   class="hasError text-start">※ 올바른 가격을 입력해주세요</div> <input
-                                                type="text" class="form-control"
-                                                id="exampleFormControlInput1" placeholder="상품가격을 입력해주세요"
-                                                name="itemPrice" th:field="*{itemPrice}">
-
+                                                <input type="text" class="form-control"
+                                                id="itemPrice" placeholder="상품가격을 입력해주세요"
+                                                name="itemPrice" value="">
+                                                <span class="point priceChk"></span>
                                              </td>
                                           </tr>
                                           <tr>
@@ -207,38 +204,32 @@
                                           <tr>
                                              <th scope="row">상품상태*</th>
                                              <td>
-                                                <div th:if="${#fields.hasErrors('itemStatus')}"
-                                                   th:errors="*{itemStatus}" class="hasError text-start"></div>
                                                 <div class="form-check form-check-inline">
                                                    <input class="form-check-input" type="radio"
-                                                      name="itemStatus" id="inlineRadio1" value="중고"
-                                                      th:checked="${statusChk} eq '중고'"> <label
-                                                      class="form-check-label" for="inlineRadio1">중고</label>
+                                                      name="itemStatus" id="itemStatus" value="중고" checked>
+                                                    <label class="form-check-label" for="inlineRadio1">중고</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                    <input class="form-check-input" type="radio"
-                                                      name="itemStatus" id="inlineRadio2" value="새상품"
-                                                      th:checked="${statusChk} eq '새상품'"> <label
-                                                      class="form-check-label" for="inlineRadio2">새상품</label>
+                                                      name="itemStatus" id="itemStatus" value="새상품">
+                                                    <label class="form-check-label" for="inlineRadio2">새상품</label>
                                                 </div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="상품상태에 대한 정보를 입력해주세요" name="itemStatus" value=""> -->
                                              </td>
                                           </tr>
                                           <tr>
                                              <th scope="row">거래방법*</th>
                                              <td>
-                                                <div th:if="${#fields.hasErrors('tradeType')}"
-                                                   th:errors="*{tradeType}" class="hasError text-start"></div>
                                                 <div class="form-check form-check-inline">
                                                    <input class="form-check-input" type="radio"
-                                                      name="tradeType" id="inlineRadio3" value="직거래"
-                                                      th:checked="${typeChk} eq '직거래'"> <label
-                                                      class="form-check-label" for="inlineRadio1">직거래</label>
+                                                      name="tradeType" id="tradeType" value="직거래" checked> 
+                                                    <label
+                                                    class="form-check-label" for="inlineRadio1">직거래</label>
                                                 </div>
                                                 <div class="form-check form-check-inline">
                                                    <input class="form-check-input" type="radio"
-                                                      name="tradeType" id="inlineRadio4" value="택배"
-                                                      th:checked="${typeChk} eq '택배'"> <label
-                                                      class="form-check-label" for="inlineRadio2">택배</label>
+                                                      name="tradeType" id="tradeType" value="택배">
+                                                   <label class="form-check-label" for="inlineRadio2">택배</label>
+                                                  	
                                                 </div> <!-- <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="거래방법을 입력해주세요" name="tradeType" value="">  -->
                                              </td>
                                           </tr>
@@ -247,18 +238,19 @@
                                              <th scope="row">거래주소*</th>
                                              <td>
                                                 <div class="mb-3">
-                                                   <div th:if="${#fields.hasErrors('tradeAddr')}"
-                                                      th:errors="*{tradeAddr}" class="hasError text-start"></div>
                                                    <input onclick="searchTrAddr();" type="text"
                                                       class="form-control" id="tradeAddr"
-                                                      placeholder="거래지역을 입력해주세요" name="tradeAddr" value=""
-                                                      th:field="*{tradeAddr}">
+                                                      placeholder="거래지역을 입력해주세요" name="tradeAddr" value="">
+                                                      
                                                 </div>
 
 
                                                 <div class="mb-3">
                                                    <input onclick="searchTrAddr();" type="button"
                                                       class="form-control" value="Search">
+                                                </div>
+                                                <div>
+                                                	<span class="point addrChk"></span>
                                                 </div>
                                              </td>
                                           </tr>
@@ -271,7 +263,8 @@
                      </div>
                   
                   
-                  <button type="submit" class="btn btn-success btn-lg mt-3">상품등록</button>
+                  <button type="button" class="btn btn-success btn-lg mt-3" onclick="regItem();">상품등록</button>
+                 <!--  <button type="submit" class="btn btn-success btn-lg mt-3">상품등록</button> -->
                </form>
                
                <!-- 임시버튼 (상품목록 조회 테스트)-->

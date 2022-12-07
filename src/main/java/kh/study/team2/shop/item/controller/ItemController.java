@@ -123,7 +123,7 @@ public class ItemController {
 	
 	//상품등록 버튼 클릭 -> 메인화면으로 이동(상품관리페이지 이동으로 변경예정)
 	@PostMapping("/regItem")
-	public String regItem(@Valid ItemVO itemVO
+	public String regItem(ItemVO itemVO
 							, BindingResult bindingResult
 							, Model model
 							, MultipartFile mainImg
