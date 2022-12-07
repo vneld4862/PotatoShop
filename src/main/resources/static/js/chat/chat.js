@@ -1,9 +1,15 @@
-window.addEventListener("keyup", e => {
-  const key = document.getElementById(e.key);
-  if(e.key=='Enter'){
-	$("#button-send").click();
-}
-  
+window.addEventListener("keydown", e => {
+	const key = document.getElementById(e.key);
+	const textLine=document.querySelector('#msg');
+	const hadled=false;
+	if(e.key=='Enter'){
+		$("#button-send").click();
+	}
+	if(e.keyCode==32)
+	{
+		textLine.value+='\u00A0';
+		hadled=true;
+	}
 });
 
 $(document).ready(function(){
@@ -60,12 +66,15 @@ function onMessage(msg) {
     }
 
     var cur_session = username;
-
+	
     //현재 세션에 로그인 한 사람
     console.log("cur_session : " + cur_session);
     sessionId = arr[0];
     message = arr[1];
-
+	if(message[0]==' ')
+	{
+		return
+	}
     console.log("sessionID : " + sessionId);
     console.log("cur_session : " + cur_session);
 
