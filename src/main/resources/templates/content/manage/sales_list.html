@@ -35,9 +35,11 @@
 						</th:block>
 						<th:block th:unless="${#lists.size(salesList) == 0}">
 							<tr th:each="sales : ${salesList}">
-								<td style="line-height:50px;">
-									<div>[[${sales.buyDate}]]</div>
-									<div><span>[</span>[[${sales.buyCode}]]<span>]</span></div>
+								<td>
+									<div style="line-height:25px;">　</div>
+									<div style="line-height:25px;">[[${sales.buyDate}]]</div>
+									<div style="line-height:25px;"><span>[</span>[[${sales.buyCode}]]<span>]</span></div>
+									<div style="line-height:25px;">　</div>
 								</td>
 								<td class="text-end">
 									<img th:src="|@{/images/}${sales.imgList[0].attachedName}|" height="100px;">

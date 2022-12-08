@@ -64,8 +64,10 @@
 						<th:block th:unless="${#lists.size(buyList) == 0}">
 							<tr th:each="buy : ${buyList}">
 								<td>
-									<div style="line-height:50px;">[[${buy.buyDate}]]</div>
-									<div style="line-height:50px;"><span>[</span>[[${buy.buyCode}]]<span>]</span></div>
+									<div style="line-height:25px;">　</div>
+									<div style="line-height:25px;">[[${buy.buyDate}]]</div>
+									<div style="line-height:25px;"><span>[</span>[[${buy.buyCode}]]<span>]</span></div>
+									<div style="line-height:25px;">　</div>
 								</td>
 								<td class="text-end">
 									<img th:src="|@{/images/}${buy.imgList[0].attachedName}|" height="100px;">

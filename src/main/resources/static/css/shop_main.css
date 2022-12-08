@@ -58,7 +58,7 @@ div p{
 }
 #menu2 a {
     display: block;
-    color: #fff;
+    color: green;
 }
 
 .M01 {
@@ -80,11 +80,11 @@ div p{
 
 .M01>li a:hover {
     display: block;
-    background: green;
+    background: #C8DBBE;
 }
 
 .M02, .M03 {
-	background-color:black;
+	background-color:white;
     width: 100px;
     position: absolute;
     top: 0;
@@ -98,12 +98,12 @@ div p{
 
 .M02>li a:hover {
     display: block;
-    background: green;
+    background: #C8DBBE;
 }
 
 .M03>li a:hover {
     display: block;
-    background: green;
+    background: #C8DBBE;
 }
 
 .dropdown-button {
@@ -119,7 +119,7 @@ div p{
 .dropdown-content {
 	display: none;
 	position: absolute;
-	background-color: black;
+	background-color: white;
 	min-width: 200px;
 	padding: 5px;
 	box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
