@@ -178,7 +178,7 @@ function regReply(){
 			
 		},
 		error: function() {
-			alert('실패');
+			alert('내용을 입력해 주세요.');
 		}
 	});
 	
