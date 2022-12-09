@@ -168,7 +168,6 @@ function regItem(){
 	if(submitBoolean){
 			
 		document.querySelector('#regItemForm').submit();
-		
 	}
 	
 }

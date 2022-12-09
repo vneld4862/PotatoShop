@@ -33,7 +33,7 @@
       }   
       
       #iconDiv {
-      	color: #D23369;
+      	color: #68B984;
       	font-size: 20px;
       	border: thick;
       }
@@ -165,7 +165,7 @@
 									          	  		 <th:block th:if="${itemInfo.salesStatus eq 'ON_SALE'}">
 										          	  		 	 <button class="btn btn-success" th:onclick="insertWish(this);" 
 										          	  		 	 	th:data-item-code="${itemInfo.itemCode}"
-										          	  		 	 	style="width:25%; ">
+										          	  		 	 	style="width:25%;">
 												             	         찜
 													             	  <th:block th:unless="${wishCode == null}">
 														             	    <!--heart-fill  -->
@@ -230,10 +230,10 @@
 										<nav id="navbar-example3"
 											class="h-100 flex-column align-items-stretch pe-4 border-end">
 											<nav class="nav nav-pills flex-column">
-												<a class="nav-link" href="#item-1">이미지</a>
+												<a class="nav-link" href="#item-1" style="color: green; background: #B6E388;">이미지</a>
 												<nav class="nav nav-pills flex-column">
 												</nav>
-												<a class="nav-link" href="#item-2">상품설명</a> 
+												<a class="nav-link" href="#item-2" style="color: green;">상품설명</a> 
 												<nav class="nav nav-pills flex-column">
 												</nav>
 											</nav>
