@@ -258,7 +258,7 @@ public class ItemController {
 		model.addAttribute("profileInfo", profileInfo);
 		//해당 상점의 상품목록 조회
 		model.addAttribute("itemList", itemService.marketItemList(itemCode));
-		
+		//해당 상점에 등록된 리뷰조회
 		List<BoardVO> reviewList = boardService.selectmarketReviewList(itemCode);
 		System.out.println(reviewList);
 		model.addAttribute("reviewList", reviewList);

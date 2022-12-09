@@ -16,7 +16,7 @@
 		 	 height: 780px;
 		}
 		
-		 ::-webkit-scrollbar {
+ 	  /* ::-webkit-scrollbar {
         width: 10px;
       }
        
@@ -27,13 +27,14 @@
        
       ::-webkit-scrollbar-thumb {
         /* background: linear-gradient(#c2e59c, #64b3f4); */ /*스크롤바를 그라데이션으로도 설정가능. */
-        background: #dcdcdc;
+      /*   background: #dcdcdc; */
         /* background: #0d6efd; */
-        border-radius: 5px;
-      }   
+       /*  border-radius: 5px; */
+   /*    }     */ 
+      
       
       #iconDiv {
-      	color: #68B984;
+        color: #68B984;
       	font-size: 20px;
       	border: thick;
       }
@@ -91,7 +92,7 @@
 										    <div class="carousel-item active">
 										     	 <img th:src="|@{/images/}${img.attachedName}|" width="320px;" height="350px;">
 										    </div>
-									    </th:block>
+									     </th:block>
 									  </div>
 									  <!-- <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev" style="position: relative; rigth: 20px;"> -->
 									  <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
@@ -223,14 +224,14 @@
 					           <h3>상품정보</h3>
 					           <hr>
 				         </div>
-				         <!--본문 테스트  -->
+				         <!--본문-->
 				         <div class="row" id="testDiv">
 								<div class="row">
 									<div class="col-2">
 										<nav id="navbar-example3"
 											class="h-100 flex-column align-items-stretch pe-4 border-end">
 											<nav class="nav nav-pills flex-column">
-												<a class="nav-link" href="#item-1" style="color: green; background: #B6E388;">이미지</a>
+												<a class="nav-link" href="#item-1" style="color: green;">이미지</a><!-- background: #B6E388; -->
 												<nav class="nav nav-pills flex-column">
 												</nav>
 												<a class="nav-link" href="#item-2" style="color: green;">상품설명</a> 
@@ -346,9 +347,21 @@
 				        		 </div>
 				        		 <div class="col text-center">
 				        		 	<th:block th:unless="${#lists.size(itemList) == 0}">
-										 <button class="btn btn-outline-secondary" 
-										 	th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|">
-										 	상품 더보기></button>
+				        		 		<th:block></th:block>
+				        		 	    <!-- 내가 등록한 상품일 경우 -->
+										<th:block th:if="${memberId eq itemInfo.memberId}">
+											<button class="btn btn-outline-secondary" 
+											 	th:onclick="|location.href='@{/manage/myMarket(memberId=${profileInfo.memberId})}'|">
+											 	상품 더보기></button>
+										</th:block>
+				        		 		<!--다른 사람이 등록한 상품일 경우 -->
+										<th:block th:unless="${memberId eq itemInfo.memberId}">
+				        		 			<button class="btn btn-outline-secondary" 
+											 	th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|">
+											 	상품 더보기></button>
+				        		 	    </th:block>
+											 
+											 
 									</th:block>	 					        		 
 				        		 </div>
 				         </div>
@@ -381,7 +394,7 @@
 													  			  <tr th:each=" review: ${reviewList}" >
 															    	  <th scope="row">
 															    	  		<img th:src="|@{/images/}${review.profileVO.changedName}|"
-															    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${profileInfo.memberId})}'|" 
+															    	  			th:onclick="|location.href='@{/item/sellerMarket(memberId=${review.profileVO.memberId})}'|" 
 															    	  			width="50px;" height="60px;">
 															    	  </th>
 																      <td>

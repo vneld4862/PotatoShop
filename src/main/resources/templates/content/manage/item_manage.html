@@ -58,7 +58,11 @@
 					  <thead>
 					    <tr>
 					      <th scope="col">
-					      	<input type="checkbox" onclick="checkAll();" id="AllCbox">전체선택
+					      	<!-- <input type="checkbox" onclick="checkAll();" id="AllCbox">전체선택 -->
+					      	<input class="form-check-input" type="checkbox" onclick="checkAll();" id="AllCbox">
+								<label class="form-check-label" for="flexCheckDefault">
+									 전체선택
+							    </label>
 					      </th>
 					      <th scope="col">사진</th>
 					      <th scope="col">판매상태</th>
@@ -72,7 +76,7 @@
 					  <tbody th:each="item : ${itemList}">
 					    <tr>
 					      <th scope="row">
-					      	  <input type="checkbox" name="checkbox" class="checkbox" th:value="${item.itemCode}">
+					      	  <input type="checkbox" name="checkbox" class="form-check-input" th:value="${item.itemCode}">
 					      </th>
 					      <td>
 					      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
