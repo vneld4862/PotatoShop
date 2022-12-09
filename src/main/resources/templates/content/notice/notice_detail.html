@@ -8,15 +8,15 @@
 <br>
  	<div class="col-12 mb-3"><h3>공지사항</h3></div><br>
 			<h4><div th:text=${notice.title}></div></h4>	  	
-	<div class="col-12 border mb-4">
+	<div class="col-12 border mb-3">
 			<div style="margin-left: 1rem; margin-top: 1rem;" th:text=${notice.createDate} class="mb-2"></div>	  	
 			<div style="margin-left: 1rem; margin-bottom: 1rem; white-space:pre;" th:text="${notice.content}"></div>	  	
 	</div>
-	<a th:href="@{/notice/list}"><input type="button" class="btn btn-warning" value="목록"></a>
+	<a th:href="@{/notice/list}"><input type="button" class="btn btn-success" value="목록"></a>
  	<div class="col-12 text-center" style="margin-bottom: 2rem;">
-	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning" value="수정"
+	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-success" value="수정"
 	 		   th:onclick="|location.href='@{/notice/correctNotice(noticeNum=${notice.noticeNum})}'|">
-	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-warning"  value="삭제"
+	 	<input sec:authorize="hasRole('ROLE_ADMIN')"  type="button" class="btn btn-success"  value="삭제"
 	 		   th:onclick="|location.href='@{/notice/deleteNotice(noticeNum=${notice.noticeNum})}'|"> 
  	</div>
 </div>
