@@ -40,7 +40,6 @@ function deleteItem(){
 		return;
 	}
 	
-	
 	let itemCodes = '';
 	for(const checkBox of checkBoxes){
 		const itemCode = checkBox.value;
@@ -72,8 +71,12 @@ function changeStatus(statSelect){
 	
 }
 
-
-
+//상품 삭제 버튼 클릭 시
+function deleteCheck(){
+	//모달 -> 확인 : 삭제
+	        //취소: 모달지우기
+	 alert('삭제체크');
+}
 
 
 

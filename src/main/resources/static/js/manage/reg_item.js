@@ -12,11 +12,10 @@ function searchTrAddr(){
 
 //메인 이미지 미리보기(파일 선택 시)
 function readURL(input) {
-    $('.mainImgDiv div.mainDiv').remove();
+  $('.mainImgDiv div.mainDiv').remove();
+  
   if (input.files && input.files[0]) {
     
-    
-
     var reader = new FileReader();
     reader.onload = function(e) {
 			let str = '';
@@ -40,7 +39,7 @@ function readURL(input) {
 
 //서브 이미지 미리보기(파일 선택 시)
 function readURL2(input) {
-	$('.loadImgDiv').remove();
+	$('.allSubImgDiv div.loadImgDiv').remove();
 	//$('.allSubImgDiv div:not(.loadImgDiv)').remove();
 	
 	for(const img_file of input.files){

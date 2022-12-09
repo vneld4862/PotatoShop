@@ -233,21 +233,21 @@
                                           <tr>
                                              <th scope="row">거래주소*</th>
                                              <td>
-                                                <div class="mb-3">
-                                                   <input onclick="searchTrAddr();" type="text"
-                                                      class="form-control" id="tradeAddr" name="tradeAddr"
-                                                      th:value="${itemInfo.tradeAddr}">
-                                                </div>
-
-
-                                                <div class="mb-3">
-                                                   <input onclick="searchTrAddr();" type="button"
-                                                      class="form-control" value="Search">
-                                                      
-                                                </div>
-                                                <div>
-                                                	<span class="point addrChk"></span>
-                                                </div>
+                                             	<div class="row">
+                                             		 <div class="col-9 mb-3">
+	                                                   <input onclick="searchTrAddr();" type="text"
+	                                                      class="form-control" id="tradeAddr" name="tradeAddr"
+	                                                      th:value="${itemInfo.tradeAddr}">
+	                                                </div>
+	                                                <div class="col-3 mb-3">
+	                                                   <input onclick="searchTrAddr();" type="button" style="background: #B6E388;"
+	                                                      class="btn form-control" value="Search">
+	                                                </div>
+	                                                <div>
+	                                                	<span class="point addrChk"></span>
+	                                                </div>
+                                             	</div>
+	                                               
                                              </td>
                                           </tr>
                                        </tbody>

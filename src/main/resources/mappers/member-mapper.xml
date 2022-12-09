@@ -100,16 +100,19 @@
 		SELECT MEMBER_ID
 			, MEMBER_NAME
 			, MEMBER_TELL
-			, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR
+			, MEMBER_ADDR
+			, ADDR_DETAIL
 			, MEMBER_EMAIL
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}
 	</select>
+	<!--, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR  -->
 	
 	<!-- 내정보 수정 -->
 	<update id="updateMyInfo">
 		UPDATE SHOP_MEMBER
 	    SET MEMBER_ADDR = #{memberAddr}
+	    	, ADDR_DETAIL = #{addrDetail}
 	        , MEMBER_TELL = #{memberTell}
 	        , MEMBER_EMAIL = #{memberEmail}
 	    WHERE MEMBER_ID = #{memberId}    

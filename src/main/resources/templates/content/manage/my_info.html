@@ -92,10 +92,27 @@
 									    <tr>
 									      <th scope="row">주소</th>
 									      <td>
-									      	 <div>
-									      	 	<input type="text" class="form-control" id="exampleFormControlInput1" 
-									      	 	name="memberAddr" th:value="${myInfo.memberAddr}">
-									      	 </div>
+									      	  <div class="row">
+															<div class="col-9">
+																<input onclick="searchMemAddr();" type="text"
+																	class="form-control" id="memberAddr" name="memberAddr"
+																	th:value="${myInfo.memberAddr}">
+															</div>
+															<div class="col-3">
+																<input onclick="searchMemAddr();" type="button" style="background: #B6E388;"
+																	class="btn form-control" value="Search">
+
+															</div>
+															<div class="col-12 mt-3">
+																<input  type="text"
+																	class="form-control" id="addrDetail" name="addrDetail"
+																	th:value="${myInfo.addrDetail}">
+															</div>
+															<div class="text-start">
+									      	 					<span class="point addrChk"></span>
+								      	 					</div>
+														</div>
+										      	 
 									      </td>
 									    </tr>
 									    <tr>
@@ -143,7 +160,7 @@
 		</div>
      </form>
 </div>
-
+	<script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 	<script type="text/javascript" th:src="@{/js/manage/my_info.js}"></script>
 </div>
 </html>

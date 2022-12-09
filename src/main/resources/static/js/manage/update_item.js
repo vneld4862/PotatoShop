@@ -1,3 +1,4 @@
+//주소창 및 search 버튼 클릭 시 실행
 function searchTrAddr(){
 	new daum.Postcode({
 		        oncomplete: function(data) {

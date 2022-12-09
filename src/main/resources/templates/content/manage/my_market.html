@@ -269,13 +269,6 @@
 																			 			</div> 
 													 		  					 </th:block> 	
 													 		  				</div>
-													 		  				
-													 		  				
-													 		  				
-													 		  				
-													 		  				
-													 		  				
-													 		  				
 													 		  			</div>
 													 		  		</div>
 												 		 	 </div>	
@@ -296,7 +289,6 @@
 												  			</div>
 												  	</th:block>	
 									  		
-									 		 	 
 									  		</div>
 							  		</div>
 						</div>
@@ -481,7 +473,7 @@
 	
 	
 
-	<!-- 프로필 수정Modal -->
+	<!-- 프로필 수정 버튼 클릭 시 실행되는 Modal -->
 	<div class="modal fade" id="updateProfileModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
 	  <div class="modal-dialog">
 		   <form th:action="@{/manage/updateProfile}" method="post" enctype="multipart/form-data" id="profileForm">
@@ -516,7 +508,7 @@
 					      	</div>
 				      </div>
 				      <div class="modal-footer">
-				        <button type="button" class="btn btn-primary" data-bs-dismiss="modal" onclick="checkNickName();">수정</button>
+				        <button type="button" class="btn btn-success" data-bs-dismiss="modal" onclick="checkNickName();">수정</button>
 				        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">닫기</button>
 				      </div>
 			    </div>

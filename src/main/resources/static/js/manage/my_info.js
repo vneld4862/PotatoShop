@@ -1,3 +1,16 @@
+//주소창 및 search 버튼 클릭 시 실행
+function searchMemAddr(){
+	new daum.Postcode({
+		        oncomplete: function(data) {
+		            //도로명 주소
+		        	 const roadAddr = data.roadAddress; 
+		             document.querySelector('#memberAddr').value = roadAddr;//내가 선택한 input태그에 밸류값으로 도로명주소를 넣어준다.
+		             
+		        }
+		    }).open();
+	
+}
+
 //탈퇴하기 버튼 클릭 시 실행
 function deleteMember(memberId){
 	
@@ -34,6 +47,11 @@ function updateBtn(){
 	if($("#memberEmail").val() == ""){
 		$(".emailChk").text("※ 이메일은 필수입력입니다");
 		$(".emailChk").css("color", "red");
+		submitBoolean = false;
+	}
+	if($("#memberAddr").val() == ""){
+		$(".addrChk").text("※ 주소는 필수입력입니다");
+		$(".addrChk").css("color", "red");
 		submitBoolean = false;
 	}
 	
