@@ -61,19 +61,9 @@ public class BuyController {
 		itemVO.setMemberId(buyVO.getSeller());
 		buyService.buyItem(buyVO,itemVO);
 		
-		return "content/buy/buy_detail";
+		return "content/manage/buy_list";
 	}
-	
-	//구매상세조회
-	@GetMapping("/buyList")
-	public String buyList(Authentication authentication, Model model) {
-		User user = (User)authentication.getPrincipal();
-		//회원정보 조회
-		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
 		
-		return "content/buy/buy_detail";
-	}
-	
 	//구매 확정
 	@ResponseBody
 	@PostMapping("/buyConfirm")
