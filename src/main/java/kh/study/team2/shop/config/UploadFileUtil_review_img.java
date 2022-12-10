@@ -7,15 +7,15 @@ import org.springframework.web.multipart.MultipartFile;
 
 import kh.study.team2.shop.board.vo.ReviewImgVO;
 
-public class UploadFileUtil2 {
+public class UploadFileUtil_review_img {
 	
 	//파일이 첨부될 경로
 
 	//예진 경로
 //	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//연지 경로
-	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
-//	private static final String UPLOAD_PATH = "D:\\dev\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+//	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	private static final String UPLOAD_PATH = "C:\\Users\\user\\git\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//명현 경로
 //	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//민하 경로
