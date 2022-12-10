@@ -25,6 +25,7 @@ public class MemberVO extends SearchVO {
 	@NotBlank(message = "주소는 필수입력입니다.")
 	 private String memberAddr;
 	 private String addrDetail;
+	 @NotBlank(message = "이메일은 필수입력입니다.")
 	 private String memberEmail;
 	 private String memberRole;
 	 private String memberStatus;

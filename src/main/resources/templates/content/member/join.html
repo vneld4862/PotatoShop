@@ -74,8 +74,9 @@
 					<button class="btn form-control" style=" background-color: #B6E388;" type="button" id="checkBtn" data-is-click="0" onclick="check1();">인증확인</button>
 				</div> 
 				<div class="col-12">
-					<label for="memberName" class="form-label">이메일</label> 
+					<label for="memberName" class="form-label">이메일*</label> 
 					<input type="email" class="form-control" th:field="*{memberEmail}">
+					<div class="hasError" th:if="${#fields.hasErrors('memberEmail')}" th:errors="*{memberEmail}"></div> 
 				</div>
 			
 				<div class="col-12 d-grid gap-2">
