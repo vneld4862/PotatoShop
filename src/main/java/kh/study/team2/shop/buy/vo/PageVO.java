@@ -15,8 +15,8 @@ public class PageVO{//페이지 정보를 갖고 있는 객체를 만들어준�
 	//생성자
 	public PageVO() {
 		nowPage = 1;
-		displayCnt = 10;
-		displayPageCnt = 10;
+		displayCnt = 5;
+		displayPageCnt = 5;
 		
 		//페이지(PageVO)가 만들어지면 기본 세팅을 이렇게 하겠다.
 	}

@@ -78,11 +78,19 @@ function getMemberDetail(memberId){
 				str += '<tr><td colspan=3>작성한 리뷰가 없습니다.</td></tr>'
 			}
 			
-			for(const review of result) {
+/*			for(const review of result) {
 				str += '				<tr>';
 				str += '					<td>1</td>';
 				str += `					<td onclick="reviewDetail('${review.itemCode}');">${review.boardTitle}</td>`;
 				str += `					<td>${review.regDate}</td>`;
+				str += '				</tr>';
+			}*/
+			
+			for(let i = 0 ; i < result.length ; i++) {
+				str += '				<tr>';
+				str += `					<td>${i+1}</td>`;
+				str += `					<td onclick="reviewDetail('${result[i].itemCode}');">${result[i].boardTitle}</td>`;
+				str += `					<td>${result[i].regDate}</td>`;
 				str += '				</tr>';
 			}
 			

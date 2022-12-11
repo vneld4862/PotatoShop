@@ -331,6 +331,7 @@
 													</svg>
 													[[${board.starPoint}]]
 													<input type="hidden" th:value="${board.itemCode}" id="hiddenItemCode">
+													<input type="hidden" th:value="${board.boardNum}" id="hiddenBoardNum">
 												</td>
 												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
 												<td th:text="${board.buyer}"></td>
@@ -458,9 +459,8 @@
 								
 							</div>
 
-							<div class="col-12 text-end">
-								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">수정</button>
+							<div class="col-12 text-center">
+								<button type="submit" class="btn btn-success">수정</button>
 							</div>
 						</form>
 					</div>

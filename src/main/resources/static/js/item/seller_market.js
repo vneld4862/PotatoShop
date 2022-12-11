@@ -240,6 +240,43 @@ $(document).on("click", "input:checkbox[name=checkbox]", function(e) {
 });
 
 
+//리뷰 수정 클릭시 실행되는 Ajax
+function updateReviewAjax(itemCode){
+	
+	const itemName = document.querySelector('.modalItemName').innerText;
+	const boardTitle = document.querySelector('.modalBoardTitle').innerText;
+	const boardContent = document.querySelector('.modalBoardContent').innerText;
+	
+	document.querySelector('.updateReviewAjaxDiv').innerHTML = '';
+	
+	let str = '';
+	
+	str += '<div class="mt-3">';
+	str += `	상품명 | ${itemName}`;
+	str += `	<input type="hidden" name="itemCode" value="${itemCode}">`;
+	str += '</div>';
+	str += '<div class="mt-3"> 별점 | ';
+	str += '	<span class="star">';
+	str += '		★★★★★';
+	str += '		<span>★★★★★</span>';
+	str += '		<input type="range" oninput="drawStar(this)" value="1" step="1" min="0" max="10" name="starPoint">';
+	str += '	</span>';
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `	<input type="text" class="form-control" name="boardTitle" placeholder="제목을 입력하세요" value="${boardTitle}">`;
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `	<textarea rows="10px;" class="form-control" name="boardContent" placeholder="내용을 입력하세요">${boardContent}</textarea>`;
+	str += '</div>';
+	str += '<div class="mt-3">';
+	str += `	<input class="form-control" type="file" name="reviewImg">`;
+	str += '</div>';
+	
+	document.querySelector('.updateReviewAjaxDiv').insertAdjacentHTML('afterbegin', str);
+
+}
+
+
 //찜목록 선택삭제 버튼 클릭 시 실행
 function deleteWish(){
 	const itemCodesForm = document.querySelector('#wishCodesForm');

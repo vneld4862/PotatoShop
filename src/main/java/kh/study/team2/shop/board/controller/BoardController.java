@@ -121,6 +121,7 @@ public class BoardController {
 		
  		int replyNum = boardService.getNextReplyNum();
 		replyVO.setReplyNum(replyNum);
+
 		boardService.insertReviewReply(replyVO);
 
 		ReplyVO resultData = new ReplyVO();
