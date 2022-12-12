@@ -94,21 +94,13 @@
 	       /*  background: #0d6efd; */
 	    /*     border-radius: 5px; */
        /*  } */ 
-        
-        hr{
-			height : 2px;
-			border : 0;
-			background-color: green;
-			margin-top: 40px;
-			margin-bottom: 50px;
-		}
 		
 	</style>
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
 		<input type="hidden" th:value="${wishChk}" class="wishChk">
 		<div>
-			<hr>
+			<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
 					<h4>[[${memberInfo.memberNickName}]]님의 상점</h4>
@@ -139,7 +131,7 @@
 				</div>
 			</div>
 		</div>
-		<hr>
+		<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 		<div>
 			<div>
 				<ul class="nav nav-tabs" id="myTab" role="tablist">
@@ -299,12 +291,12 @@
 							<div>
 								<table class="table">
 									<colgroup>
-										<col width="10%">
-										<col width="15%">
+										<col width="5%">
+										<col width="30%">
 										<col width="10%">
 										<col width="*">
-										<col width="15%">
-										<col width="15%">
+										<col width="10%">
+										<col width="10%">
 									</colgroup>
 									<thead>
 										<tr>
@@ -333,7 +325,7 @@
 													[[${board.starPoint}]]
 													<input type="hidden" th:value="${board.itemCode}" id="hiddenItemCode">
 												</td>
-												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
+												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]], this);"></td>
 												<td th:text="${board.buyer}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>
@@ -349,12 +341,12 @@
 							<div>
 								<table class="table">
 									<colgroup>
-										<col width="10%">
-										<col width="15%">
+										<col width="5%">
+										<col width="30%">
 										<col width="10%">
 										<col width="*">
-										<col width="15%">
-										<col width="15%">
+										<col width="10%">
+										<col width="10%">
 									</colgroup>
 									<thead>
 										<tr>
@@ -383,7 +375,7 @@
 													[[${review.starPoint}]]
 													<input type="hidden" th:value="${review.itemCode}" id="hiddenItemCode">
 												</td>
-												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]]);"></td>
+												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]], this);"></td>
 												<td th:text="${review.buyer}"></td>
 												<td th:text="${review.regDate}"></td>
 											</tr>
@@ -461,8 +453,7 @@
 							</div>
 
 							<div class="col-12 text-end">
-								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">수정</button>
+								<button type="submit" class="btn btn-success">수정</button>
 							</div>
 						</form>
 					</div>

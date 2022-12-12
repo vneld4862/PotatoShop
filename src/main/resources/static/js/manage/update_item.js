@@ -11,13 +11,10 @@ function searchTrAddr(){
 	
 }
 
-//서브 이미지  목록 삭제(버튼 클릭 시)
+//서브 이미지 삭제(삭제버튼 클릭 시)
 function deleteImg(deleteBtn){
-	alert('이미지 삭제 구현하기');
 	const imgCode = deleteBtn.dataset.imgCode;
 	const itemCode = deleteBtn.dataset.itemCode;
-	alert(itemCode);
-	alert(imgCode);
 	
 	//ajax start
 	$.ajax({
@@ -26,8 +23,6 @@ function deleteImg(deleteBtn){
 	    data:{'imgCode':imgCode, 'itemCode':itemCode}, //필요한 데이터
 	    success: function(itemInfo) {
 		
-	      alert('이미지 삭제 성공');
-	      alert(itemInfo.itemCode);
 	      $(deleteBtn).closest('div').remove(); //j쿼리문법 **** 
 	      
 	    },
@@ -121,13 +116,13 @@ function readURL2(input) {
 	}
 }
 
-//서브이미지 미리보기 삭제
+/*//서브이미지 미리보기 삭제
 function delSubPreview(deleteBtn){
 	alert('서브 미리보기 삭제');
 	$(deleteBtn).closest('div').remove(); //j쿼리문법 **** 
 	
 	
-}
+}*/
 
 ////validation 구현 중
 function updateItem(){

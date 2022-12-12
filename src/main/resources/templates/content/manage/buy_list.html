@@ -109,7 +109,7 @@
 						<a th:text="prev" th:href="@{/manage/buyList(nowPage=${buyVO.beginPage - 1})}"></a>
 					</th:block>
 					<th:block th:each="pageNum : ${#numbers.sequence(buyVO.beginPage, buyVO.endPage)}">
-						<a th:text="${pageNum}" th:href="@{/manage/buyList(nowPage=${pageNum})}"></a>
+						<a th:text="${pageNum}" th:href="@{/manage/buyList(nowPage=${pageNum},menu=3)}"></a>
 					</th:block>
 					<th:block th:if="${buyVO.next}">
 						<a th:text="next" th:href="@{/manage/buyList(nowPage=${buyVO.endPage + 1})}"></a>
@@ -155,8 +155,7 @@
 								</div>
 							</div>
 							<div class="col-12 text-end">
-								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">등록</button>
+								<button type="submit" class="btn btn-success">등록</button>
 							</div>
 						</form>
 					</div>

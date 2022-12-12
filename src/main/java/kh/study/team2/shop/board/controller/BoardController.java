@@ -18,7 +18,7 @@ import kh.study.team2.shop.board.service.BoardService;
 import kh.study.team2.shop.board.vo.BoardVO;
 import kh.study.team2.shop.board.vo.ReplyVO;
 import kh.study.team2.shop.board.vo.ReviewImgVO;
-import kh.study.team2.shop.config.UploadFileUtil2;
+import kh.study.team2.shop.config.UploadFileUtil_review_img;
 import kh.study.team2.shop.item.service.ItemService;
 
 @Controller
@@ -38,7 +38,7 @@ public class BoardController {
 							, Authentication authentication
 							, String seller) {
 		
-		ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+		ReviewImgVO uploadInfo = UploadFileUtil_review_img.uploadFile(reviewImg);
 		
 		uploadInfo.setItemCode(boardVO.getItemCode());
 		
@@ -85,7 +85,7 @@ public class BoardController {
 			//수정한 리뷰에 첨부 파일이 있다면
 			if(!reviewImg.getOriginalFilename().equals("")) {
 				String itemCode = boardVO.getItemCode();
-				ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+				ReviewImgVO uploadInfo = UploadFileUtil_review_img.uploadFile(reviewImg);
 				uploadInfo.setItemCode(itemCode);
 				
 				boardVO.setReviewImgVO(uploadInfo);
@@ -98,7 +98,7 @@ public class BoardController {
 			//수정한 리뷰에 첨부 파일이 있다면
 			if(!reviewImg.getOriginalFilename().equals("")) {
 				String itemCode = boardVO.getItemCode();
-				ReviewImgVO uploadInfo = UploadFileUtil2.uploadFile(reviewImg);
+				ReviewImgVO uploadInfo = UploadFileUtil_review_img.uploadFile(reviewImg);
 				uploadInfo.setItemCode(itemCode);
 				
 				boardService.updateReviewImg(uploadInfo);
@@ -121,6 +121,7 @@ public class BoardController {
 		
  		int replyNum = boardService.getNextReplyNum();
 		replyVO.setReplyNum(replyNum);
+
 		boardService.insertReviewReply(replyVO);
 
 		ReplyVO resultData = new ReplyVO();

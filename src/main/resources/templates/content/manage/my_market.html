@@ -298,12 +298,12 @@
 							<div>
 								<table class="table">
 									<colgroup>
-										<col width="10%">
-										<col width="15%">
+										<col width="5%">
+										<col width="30%">
 										<col width="10%">
 										<col width="*">
-										<col width="15%">
-										<col width="15%">
+										<col width="10%">
+										<col width="10%">
 									</colgroup>
 									<thead>
 										<tr>
@@ -332,7 +332,7 @@
 													[[${board.starPoint}]]
 													<input type="hidden" th:value="${board.itemCode}" id="hiddenItemCode">
 												</td>
-												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]]);"></td>
+												<td th:text="${board.boardTitle}" th:onclick="reviewDetail([[${board.itemCode}]], this);"></td>
 												<td th:text="${board.buyer}"></td>
 												<td th:text="${board.regDate}"></td>
 											</tr>
@@ -348,12 +348,12 @@
 							<div>
 								<table class="table">
 									<colgroup>
-										<col width="10%">
-										<col width="15%">
+										<col width="5%">
+										<col width="30%">
 										<col width="10%">
 										<col width="*">
-										<col width="15%">
-										<col width="15%">
+										<col width="10%">
+										<col width="10%">
 									</colgroup>
 									<thead>
 										<tr>
@@ -382,7 +382,7 @@
 													[[${review.starPoint}]]
 													<input type="hidden" th:value="${review.itemCode}" id="hiddenItemCode">
 												</td>
-												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]]);"></td>
+												<td th:text="${review.boardTitle}" th:onclick="reviewDetail([[${review.itemCode}]], this);"></td>
 												<td th:text="${review.buyer}"></td>
 												<td th:text="${review.regDate}"></td>
 											</tr>
@@ -458,9 +458,8 @@
 								
 							</div>
 
-							<div class="col-12 text-end">
-								<button type="button" class="btn btn-secondary"	data-bs-dismiss="modal">Close</button>
-								<button type="submit" class="btn btn-primary">수정</button>
+							<div class="col-12 text-center">
+								<button type="submit" class="btn btn-success">수정</button>
 							</div>
 						</form>
 					</div>

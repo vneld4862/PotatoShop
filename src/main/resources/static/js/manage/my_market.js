@@ -8,12 +8,13 @@ if(wishChk=='toWish')
 const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 
 //리뷰 제목 클릭하면 실행
-function reviewDetail(itemCode){
+function reviewDetail(itemCode, selectedTag){
 	
 	const loginId = document.querySelector('#hiddenId').value;
 	
 	//제목 클릭과 동시에 댓글 폼에 있는 itemCode에 값 넣어 주기
-	const hiddenItemCode = document.querySelector('#hiddenItemCode').value;
+	
+	const hiddenItemCode = selectedTag.closest('tr').querySelector('#hiddenItemCode').value;
 	document.querySelector('#replyItemCode').value = hiddenItemCode;
 	
 	//ajax start
@@ -45,7 +46,7 @@ function reviewDetail(itemCode){
 			str += '	</div>';
 			str += '	<div class="col-9 text-start">';
 			str += '		<div class="col modalItemName">';
-			str += `			${result.itemVO.itemName}`
+			str += `			${result.itemVO.itemName}`;
 			str += '		</div>';
 			str += '		<div class="col">';
 			str += '			<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-star-fill" viewBox="0 0 16 16">'
@@ -168,7 +169,7 @@ function regReply(){
 			str += '<div class="col-12 text-end mb-3">';
 			str += `	<input type="button" value="삭제" class="btn btn-secondary" onclick="deleteReplyAjax('${result.replyNum}')">`;
 			str += '</div>';
-			str += '<hr>';		
+			str += '<hr>';
 			str += '</div>';
 			
 		
