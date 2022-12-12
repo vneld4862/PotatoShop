@@ -53,7 +53,7 @@ function mainCate(selectBtn)
 			str+=`<td class="text-center mainCountList">${mainCount+1}</td>`;
 			str+=`<td class="noneText mainCateCode">${nextMainCateCode}</td>`;
 			str+=`<td>${mainCateName}</td>`;
-			str+=`<td><input class="form-check-input form" onclick="updateCateStatus(this);" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked></td>`;
+			str+=`<td><div class="form-check form-switch"><input class="form-check-input form" onclick="updateCateStatus(this);" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked><div></td>`;
 			str+='</tr>';
 			mainCateList.insertAdjacentHTML('beforeend',str);
 			mainCount+=1;

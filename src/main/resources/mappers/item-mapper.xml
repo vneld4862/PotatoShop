@@ -116,6 +116,7 @@
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 	        WHERE SALES_STATUS = 'ON_SALE'
 	        AND IS_MAIN ='Y'
+	        AND (SELECT CATE_STATUS FROM MAIN_CATE WHERE MAIN_CATE_CODE=ITEM.MAIN_CATE_CODE)='USE'
 	        AND ITEM.ITEM_CODE=IMG.ITEM_CODE
 			<if test="mainCateCode != null and !mainCateCode.equals('')">
 				AND MAIN_CATE_CODE=#{mainCateCode}
@@ -305,15 +306,16 @@
 	<!-- 상품 전체 수량 -->
 	<select id="selectItemCnt" resultType="int">
 		SELECT COUNT(ITEM_CODE) FROM SHOP_ITEM
-		
+		WHERE (SELECT CATE_STATUS FROM MAIN_CATE WHERE MAIN_CATE_CODE=SHOP_ITEM.MAIN_CATE_CODE)='USE'
+		AND SALES_STATUS='ON_SALE'
 		<if test="mainCateCode != null and !mainCateCode.equals('')">
-		WHERE MAIN_CATE_CODE=#{mainCateCode}
+		AND MAIN_CATE_CODE=#{mainCateCode}
 		</if>
 		<if test="subCateCode != null and !subCateCode.equals('')">
-		WHERE SUB_CATE_CODE=#{subCateCode}
+		AND SUB_CATE_CODE=#{subCateCode}
 		</if>
 		<if test="detailCateCode != null and !detailCateCode.equals('')">
-		WHERE DETAIL_CATE_CODE=#{detailCateCode}
+		AND DETAIL_CATE_CODE=#{detailCateCode}
 		</if>
 	</select>
 	
@@ -426,6 +428,7 @@
 		    FROM SHOP_ITEM ITEM,ITEM_IMG IMG
 		    WHERE ITEM.ITEM_CODE=IMG.ITEM_CODE
 		    AND SALES_STATUS = 'ON_SALE'
+		    AND (SELECT CATE_STATUS FROM MAIN_CATE WHERE MAIN_CATE_CODE=ITEM.MAIN_CATE_CODE)='USE'
 		    AND IS_MAIN='Y')
 		    WHERE ROW_CODE='1'
 		    <if test="list.size!= 0">  
