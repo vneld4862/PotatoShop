@@ -26,7 +26,7 @@ function check(){
 	
 		//ajax start
 		$.ajax({
-			url: '/member/checkDuplId', //요청경로
+			url: '/member/checkDuplIdAjax', //요청경로
 			type: 'post',
 			data: {'memberId':member_id}, //필요한 데이터
 			success: function(result) {
