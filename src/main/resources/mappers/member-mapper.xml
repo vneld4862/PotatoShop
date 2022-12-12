@@ -16,6 +16,7 @@
 		<result column="MEMBER_STATUS" property="memberStatus"/>
 		<result column="REG_DATE" property="regDate"/>
 		<result column="MEMBER_RANK" property="memberRank"/>
+		<result column="SALES_CNT" property="salesCnt"/>
 	</resultMap> 
 	
 	<resultMap type="kh.study.team2.shop.manage.vo.ProfileVO" id="profile">
@@ -89,7 +90,7 @@
 			, MEMBER_NICKNAME
 			, MEMBER_EMAIL
 			, MEMBER_ADDR||' '||ADDR_DETAIL AS MEMBER_ADDR
-			, NVL(SALES_CNT,0)
+			, NVL(SALES_CNT,0) SALES_CNT
 			, TO_CHAR(REG_DATE,'YYYY-MM-DD HH24:MI:SS') REG_DATE
 		FROM SHOP_MEMBER
 		WHERE MEMBER_ID = #{memberId}

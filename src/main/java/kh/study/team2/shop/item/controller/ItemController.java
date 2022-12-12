@@ -354,7 +354,7 @@ public class ItemController {
 
 		//프로필 정보 조회
 		model.addAttribute("profileInfo", memberService.profileInfo(memberId));
-		model.addAttribute("viewCnt", manageService.selectShopViewCnt(user.getUsername()));
+		model.addAttribute("viewCnt", manageService.selectShopViewCnt(memberId));
 
 		return "content/item/seller_market";
 	}
