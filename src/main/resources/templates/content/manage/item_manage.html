@@ -27,21 +27,7 @@
 				</form>
 		    	
 		    </div>
-			   <!--  <div class="col-6 mb-3 text-end">
-			    	<div class="row">
-			    		<div class="col-3">
-							<select class="form-select">
-								<option selected>상품명</option>
-								<option>상품명</option>
-							</select> 
-						</div>
-						<div class="col-3">
-						<input class="form-control" type="text">
-							<button class="btn btn-primary btn-sm">검색</button>
-						</div>
-			    	</div>
-				    	
-			    </div> -->
+			   
 		    <hr>
 		    <div class="col-12">
 		    	<table class="table align-middle text-center">
@@ -73,46 +59,66 @@
 					      <th scope="col">기능</th>
 					    </tr>
 					  </thead>
-					  <tbody th:each="item : ${itemList}">
-					    <tr>
-					      <th scope="row">
-					      	  <input type="checkbox" name="checkbox" class="form-check-input checkbox" th:value="${item.itemCode}">
-					      </th>
-					      <td>
-					      	<a th:href="@{/item/itemDetail(itemCode=${item.itemCode})}">
-					      	   <img th:src="|@{/images/}${item.imgList[0].attachedName}|" width="125px;" height="150px;">
-					      	</a>
-					      </td>
-					      <td>
-					      	<select class="form-select" aria-label="Default select example" onchange="changeStatus(this);" th:data-item-code="${item.itemCode}">
-					      		<option value="ON_SALE" th:selected="${item.salesStatus eq 'ON_SALE'}">판매 중</option>
-					      		<option value="SOLD_OUT" th:selected="${item.salesStatus eq 'SOLD_OUT'}">판매 완료</option>
-					      	</select>
-					      </td>
-					      <td>[[${item.itemName}]]</td>
-					      <td th:text="${#numbers.formatCurrency(item.itemPrice)}"></td>
-					      <td>[[${item.cntWishList}]]</td>
-					      <td>[[${item.revisionDate}]]</td>
-					      <td>
-					      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
-					      	 	class="btn btn btn-sm" style="width: 45px; background: #B6E388;">수정</button>
-					        <!-- <button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
+					  <th:block th:if="${#lists.size(itemList) == 0}">
+					  	<tbody>
+					  		<tr>
+					  			<td colspan="8" style="font-size: 1.3rem">현재 등록된 상품이 없습니다.</td>
+					  		
+					  		</tr>
+					  	</tbody>
+					  </th:block>
+					  <th:block th:unless="${#lists.size(itemList) == 0}">
+						<tbody th:each="item : ${itemList}">
+							<tr>
+								<th scope="row"><input type="checkbox" name="checkbox"
+									class="form-check-input checkbox" th:value="${item.itemCode}">
+								</th>
+								<td><a
+									th:href="@{/item/itemDetail(itemCode=${item.itemCode})}"> <img
+										th:src="|@{/images/}${item.imgList[0].attachedName}|"
+										width="125px;" height="150px;">
+								</a></td>
+								<td><select class="form-select"
+									aria-label="Default select example"
+									onchange="changeStatus(this);"
+									th:data-item-code="${item.itemCode}">
+										<option value="ON_SALE"
+											th:selected="${item.salesStatus eq 'ON_SALE'}">판매 중</option>
+										<option value="SOLD_OUT"
+											th:selected="${item.salesStatus eq 'SOLD_OUT'}">판매
+											완료</option>
+								</select></td>
+								<td>[[${item.itemName}]]</td>
+								<td th:text="${#numbers.formatCurrency(item.itemPrice)}"></td>
+								<td>[[${item.cntWishList}]]</td>
+								<td>[[${item.revisionDate}]]</td>
+								<td>
+									<button
+										th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
+										class="btn btn btn-sm"
+										style="width: 45px; background: #B6E388;">수정</button> <!-- <button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
 					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button> -->
-					      	<button onclick="deleteCheck(this);" th:data-item-code ="${item.itemCode}"
-					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button> 
-					      </td>
-					    </tr>
-					  
-					  </tbody>
+									<button onclick="deleteCheck(this);"
+										th:data-item-code="${item.itemCode}"
+										class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>
+								</td>
+							</tr>
+
+						</tbody>
+					</th:block>
+					
 				</table>
 		    </div>
 		    <div class="col-12 text-end">
 		        <form action="" method="post" id="itemCodesForm">
 		        	<input type="hidden" name="itemCodes" value="">
 		        </form>
-		    	<button th:onclick="deleteItem();" class="btn btn-success">
-		    		선택삭제
-		    	</button>
+		        <th:block th:unless="${#lists.size(itemList) == 0}">
+		        	<button th:onclick="deleteItem();" class="btn btn-success">
+			    		선택삭제
+			    	</button>
+		        </th:block>
+		    	
 		    </div>
 		    <div class="text-center" th:if="${!#lists.isEmpty(itemList)}">
 					<th:block th:if="${itemVO.prev}">
