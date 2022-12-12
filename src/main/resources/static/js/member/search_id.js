@@ -6,6 +6,19 @@ function searchId(){
 	//연락처에서 모든 '-'를 ''로 변경
 	phone = phone.replace(/-/gi, "");
 
+	if(name == "" || phone == ""){
+		if(name == ""){
+    		$(".successNameChk").text("이름을 입력해주세요");
+			$(".successNameChk").css("color", "red");
+		}
+		if(phone == ""){
+			$(".successTellChk").text("휴대폰 번호를 입력해주세요");
+			$(".successTellChk").css("color", "red");
+		}	
+		return ;
+	}else{
+
+
 	//ajax start
 	$.ajax({
 	    url: '/member/doSearchId', //요청경로
@@ -36,4 +49,4 @@ function searchId(){
 	//ajax end
 
 }
- 
+ }

@@ -75,7 +75,7 @@ public class MemberContorller {
 
 	// 아이디 중복확인
 	@ResponseBody
-	@PostMapping("/checkDuplIdAjax")
+	@PostMapping("/checkDuplId")
 	public boolean ID_Check(String memberId) {
 		System.out.println(memberId);
 		String result = memberService.idChk(memberId);

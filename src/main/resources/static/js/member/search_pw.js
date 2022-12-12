@@ -8,23 +8,35 @@ $("#pwBtn").click(function() {
 	
 	const memberId = $("#memberId").val();
 	
-	if(!regExp.test(email)){
-		str += '<span>이메일을 정확히 입력해주세요</span>';
-		$('#searchPw_result').append(str);
-
-		//모달창 띄우기
-		const modal = new bootstrap.Modal('#searchPwModal');
-		modal.show();
-		
+	if(memberId == "" || email == ""){
+		if(memberId == ""){
+    		$(".successIdChk").text("아이디를 입력해주세요");
+			$(".successIdChk").css("color", "red");
+		}
+		if(email == ""){
+			$(".successMailChk").text("이메일을 입력해주세요");
+			$(".successMailChk").css("color", "red");
+		}	
 		return ;
-	}
-	else{
-		str +=  `<div>
-					<h4>${email}</h4>
-					<span> 이메일로 임시 비밀번호를 발송하였습니다!</span><br><br>
-				 </div>`;
-		$('#searchPw_result').append(str);
-	}
+	}else{
+	
+		if(!regExp.test(email)){
+			str += '<span>이메일을 정확히 입력해주세요</span>';
+			$('#searchPw_result').append(str);
+	
+			//모달창 띄우기
+			const modal = new bootstrap.Modal('#searchPwModal');
+			modal.show();
+			
+			return ;
+		}
+		else{
+			str +=  `<div>
+						<h4>${email}</h4>
+						<span> 이메일로 임시 비밀번호를 발송하였습니다!</span><br><br>
+					 </div>`;
+			$('#searchPw_result').append(str);
+		}
 	
  
 	 //ajax start
@@ -42,7 +54,7 @@ $("#pwBtn").click(function() {
 		    }
 		});
 		//ajax end
- 	
+ 	}
  })
 
 
