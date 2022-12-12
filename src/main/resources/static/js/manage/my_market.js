@@ -8,12 +8,13 @@ if(wishChk=='toWish')
 const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 
 //리뷰 제목 클릭하면 실행
-function reviewDetail(itemCode){
+function reviewDetail(itemCode, selectedTag){
 	
 	const loginId = document.querySelector('#hiddenId').value;
 	
 	//제목 클릭과 동시에 댓글 폼에 있는 itemCode에 값 넣어 주기
-	const hiddenItemCode = document.querySelector('#hiddenItemCode').value
+	
+	const hiddenItemCode = selectedTag.closest('tr').querySelector('#hiddenItemCode').value;
 	document.querySelector('#replyItemCode').value = hiddenItemCode;
 	
 	//ajax start
