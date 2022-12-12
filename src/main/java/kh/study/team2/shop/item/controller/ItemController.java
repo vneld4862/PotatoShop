@@ -321,7 +321,10 @@ public class ItemController {
 								, Authentication authentication
 								, ItemVO itemVO
 								, String memberId
-								, String wishChk) {
+								, String wishChk
+								, String reviewChk) {
+		System.out.println(reviewChk);
+		model.addAttribute("reviewChk", reviewChk);
 		
 		if(wishChk!=null)
 		{
