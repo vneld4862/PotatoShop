@@ -55,7 +55,7 @@ function getMemberDetail(memberId){
 			
 			str += '<div class="row">';
 			str += '	<div class="mb-3">';
-			str += '		<다른 상점에 남긴 후기>';
+			str += '		<다른 상점에 남긴 리뷰>';
 			str += '	</div>';
 
 			str += '	<div class="col">';
