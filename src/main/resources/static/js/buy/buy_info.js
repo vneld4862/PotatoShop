@@ -46,7 +46,7 @@ function payBtn() {
 	            }
 	        }).done(function (data) {
 				alert('결제가 완료되었습니다.');
-				location.href = '/manage/buyList';
+				location.href = '/buy/buyResult';
 	        })
 	      }else {
 			console.log(rsp);
