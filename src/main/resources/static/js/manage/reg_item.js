@@ -47,8 +47,8 @@ function readURL2(input) {
 			var reader = new FileReader();
 			reader.onload = function(e) {
 				let str = '';
-				str += '<div class="col-3 subDiv mb-3">';
-				str += `	<img src=${e.target.result} width="210px;" height="210px;">`;
+				str += '<div class="col-4 subDiv mb-3">';
+				str += `	<img src=${e.target.result} width="230px;" height="230px;">`;
 				str += '</div>';
 				$('.allSubImgDiv').append(str);
 				

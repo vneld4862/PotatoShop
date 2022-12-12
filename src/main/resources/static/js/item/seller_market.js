@@ -4,6 +4,13 @@ if(wishChk=='toWish')
 	document.querySelector('.wishBtn').click();
 }
 
+//리뷰 목록 바로가기
+const reviewChk=document.querySelector('.reviewChk').value;
+if(reviewChk=='toReview')
+{
+	document.querySelector('.reviewBtn').click();
+}
+
 //모달 창 선택
 const reviewDetailModal = new bootstrap.Modal('#reviewDetailModal');
 

@@ -99,6 +99,7 @@
 
 	<div class="col-10 text-center mt-3" style="margin: 0 auto;">
 		<input type="hidden" th:value="${wishChk}" class="wishChk">
+		<input type="hidden" th:value="${reviewChk}" class="reviewChk">
 		<div>
 			<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 			<!-- 내 정보 -->
@@ -146,7 +147,7 @@
 						</button>
 					</li>
 					<li class="nav-item" role="presentation">
-						<button class="nav-link" id="myMarketReview-tab" data-bs-toggle="tab" data-bs-target="#myMarketReview-tab-pane" type="button" role="tab" aria-controls="myMarketReview-tab-pane" aria-selected="false" style="color: green;">
+						<button class="nav-link reviewBtn" id="myMarketReview-tab" data-bs-toggle="tab" data-bs-target="#myMarketReview-tab-pane" type="button" role="tab" aria-controls="myMarketReview-tab-pane" aria-selected="false" style="color: green;">
 							상점 리뷰
 						</button>
 					</li>

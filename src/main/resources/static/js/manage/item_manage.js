@@ -31,7 +31,6 @@ $(document).on("click", "input:checkbox[name=checkbox]", function(e) {
 
 //선택삭제 버튼 클릭 시 실행
 function deleteItem(){
-	alert(1111);
 	const itemCodesForm = document.querySelector('#itemCodesForm');
 	const checkBoxes = document.querySelectorAll('.checkbox:checked');
 	
@@ -40,16 +39,21 @@ function deleteItem(){
 		return;
 	}
 	
-	let itemCodes = '';
-	for(const checkBox of checkBoxes){
-		const itemCode = checkBox.value;
-		itemCodes = itemCodes + itemCode + ',';
+	const result = confirm('해당 상품을 삭제하시겠습니까?');
+	if(result){
+		let itemCodes = '';
+		for (const checkBox of checkBoxes) {
+			const itemCode = checkBox.value;
+			itemCodes = itemCodes + itemCode + ',';
+
+		}
+
+		itemCodesForm.querySelector('input[type="hidden"]').value = itemCodes;
+		itemCodesForm.action = "/manage/deleteItem";
+		itemCodesForm.submit();
 		
 	}
 	
-	itemCodesForm.querySelector('input[type="hidden"]').value = itemCodes;
-	itemCodesForm.action = "/manage/deleteItem";
-	itemCodesForm.submit();
 }
 
 //판매상태 변경 시
@@ -89,13 +93,13 @@ function deleteCheck(deleteBtn){
 				  	 cancelButtonColor: '#B2B2B2', // cancel 버튼 색깔 지정
 				  	 confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
 				  	 cancelButtonText: '취소', // cancel 버튼 텍스트 지정
-                   } ).then(result => {
+                   }).then(result => {
    // 만약 Promise리턴을 받으면,
-   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
-   
-   		location.href = '/manage/deleteItem?itemCode='+ itemCode;
-   		
-   }
+	   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+	   
+	   		location.href = '/manage/deleteItem?itemCode='+ itemCode;
+	   		
+	   }
 });
                    
 	 
