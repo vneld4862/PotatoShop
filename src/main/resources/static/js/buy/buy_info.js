@@ -1,9 +1,9 @@
 	 
 function payBtn() {
-	const buyName = $('#buyerName').val();
+	const buyName = $('#buyerName').text();
 	const mainCateCode = $('#mainCateCode').val();
-	const buyTell = $('#buyerTell').val();
-	const buyAddr = $('#buyerAddr').val();
+	const buyTell = $('#buyerTell').text();
+	const buyAddr = $('#buyerAddr').text();
 	const buyItem = $('#buyerItem').val();
 	const seller = $('#seller').val();
 	const buyPrice = $('#buyerPrice').val();
