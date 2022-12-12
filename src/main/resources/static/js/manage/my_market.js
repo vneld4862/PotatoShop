@@ -190,22 +190,26 @@ function regReply(){
 //리뷰 삭제 클릭시 실행되는 Ajax
 function deleteReviewAjax(itemCode){
 	
-	//ajax start
-	$.ajax({
-		url: '/board/deleteReview', //요청경로
-		type: 'post',
-		data: {'itemCode':itemCode}, //필요한 데이터 를 가지고 컨트롤러로 가서 성공하면 밑에 석세스문이 실행
-		success: function(result) {
-			alert('리뷰가 삭제되었습니다.');
-			location.href="/manage/myMarket"
-		},
-		error: function() {
-			alert('실패');
-		}
-	});
-	//ajax end
-	
+	const result = confirm('리뷰를 삭제하시겠습니까?', itemCode);
+
+	if(result) {
+		//ajax start
+		$.ajax({
+			url: '/board/deleteReview', //요청경로
+			type: 'post',
+			data: {'itemCode':itemCode},
+			success: function(result) {
+				alert('리뷰가 삭제되었습니다.');
+				location.href="/manage/myMarket"
+			},
+			error: function() {
+				alert('실패');
+			}
+		});
+		//ajax end
+	}
 }
+
 
 //리뷰 댓글 삭제 클릭시 실행되는 Ajax
 function deleteReplyAjax(replyNum){

@@ -104,8 +104,7 @@
 			<hr style="height: 2px; border: 0; background-color: green; margin-top: 40px; margin-bottom: 50px;">
 			<!-- 내 정보 -->
 			<div class="col mt-3 mb-3">
-					<h4>[[${memberInfo.memberNickName}]]님의 상점</h4>
-					<!-- <h4>[[${profileInfo.memberVO.memberNickName}]]님의 상점</h4> -->
+				<h4><span style="color:green;">[[${memberInfo.memberNickName}]]</span> 님의 상점</h4>
 			</div>
 			
 			<!-- 프로필 div -->
@@ -115,6 +114,19 @@
 						<div class="col">
 							<img th:src="|@{/images/}${profileInfo.changedName}|" width="200px;">
 						</div>
+						<th:block th:if="${memberInfo.memberId == #authentication.name}">
+							<div class="col-12 mt-3">
+								<button class="btn btn-success" style="width: 15%" th:onclick="|location.href='@{/manage/myInfo(memberId=${profileInfo.memberId})}'|">
+									내 정보 수정
+								</button>
+								<button style="width: 15%" type="button" class="btn btn-success" data-bs-toggle="modal" data-bs-target="#updateProfileModal">
+									프로필 수정
+								</button>
+								<button class="btn btn-success" style="width: 15%" th:onclick="|location.href='@{/manage/itemManage}'|">
+									내 상점 관리
+								</button>
+							</div>						
+						</th:block>
 						<div class="row text-center mt-4">
 							<input type="hidden" th:value="${memberInfo.regDate}" id="regDate">
 							<div class="col-3"></div>
