@@ -6,6 +6,7 @@ import org.mybatis.spring.SqlSessionTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 @Service("adminService")
@@ -31,6 +32,11 @@ public class AdminServiceImpl implements AdminService{
 	@Override
 	public void updateMemberStatus(MemberVO memberVO) {
 		sqlSession.update("adminMapper.updateMemberStatus", memberVO);
+	}
+
+	@Override
+	public void updateCateStatus(MainCateVO mainCateVO) {
+		sqlSession.update("adminMapper.updateCateStatus",mainCateVO);
 	}
 	
 }

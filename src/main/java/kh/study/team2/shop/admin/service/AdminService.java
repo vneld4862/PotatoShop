@@ -2,6 +2,7 @@ package kh.study.team2.shop.admin.service;
 
 import java.util.List;
 
+import kh.study.team2.shop.cate.vo.main.MainCateVO;
 import kh.study.team2.shop.member.vo.MemberVO;
 
 public interface AdminService {
@@ -18,4 +19,6 @@ public interface AdminService {
 	//회원 상태 변경
 	void updateMemberStatus(MemberVO memberVO);
 	
+	//카테고리 상태변경
+	void updateCateStatus(MainCateVO mainCateVO);
 }

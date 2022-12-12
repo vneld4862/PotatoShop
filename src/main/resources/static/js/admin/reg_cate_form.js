@@ -1,3 +1,25 @@
+function updateCateStatus(selectTag)
+{
+	const mainCateCode=selectTag.closest('tr').querySelector('.mainCateCode').innerText;
+	let cateStatus='UNUSED'
+	if(selectTag.checked)
+	{
+		cateStatus='USE'
+	}
+	$.ajax({
+		url: '/admin/updateCateStatusAjax', //요청경로
+		type: 'post',
+		data: {'cateStatus':cateStatus,
+				'mainCateCode':mainCateCode}, //필요한 데이터
+		success: function(result) {
+			alert('변경되었습니다.');
+		},
+		error: function() {
+			alert('실패');
+		}
+	});
+}
+
 function mainCate(selectBtn)
 {
 	const inputMainCate=selectBtn.closest('.form').querySelector('.inputCateName');
@@ -6,7 +28,10 @@ function mainCate(selectBtn)
 	let mainCount=parseInt(mainCountList[mainCountList.length-1].innerText);
 	const mainCateList=document.querySelector('#mainCateList');
 	const textChk=mainCateList.querySelector('.noneText');
-	if(mainCateName=='')
+	let vowelsAndConsonants= /([^가-힣\x20])/i;
+	let specialCharacter = /^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\x20]*$/gi;
+	
+	if(mainCateName=='' || mainCateName.match(vowelsAndConsonants) ||mainCateName.match(specialCharacter))
 	{
 		alert('입력이 잘못되었습니다.\n다시입력해주십시오.')
 		return

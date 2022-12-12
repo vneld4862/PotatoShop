@@ -189,4 +189,11 @@ public class AdminController {
 		detailCateVO.setDetailCateCodeList(detailCateCodeList);
 		cateService.deleteDetailCateList(detailCateVO);
 	}
+	
+	@ResponseBody
+	@PostMapping("/updateCateStatusAjax")
+	public void updateCateStatusAjax(MainCateVO mainCateVO)
+	{
+		adminService.updateCateStatus(mainCateVO);
+	}
 }

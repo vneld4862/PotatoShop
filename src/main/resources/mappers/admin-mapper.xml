@@ -64,7 +64,10 @@
 		WHERE MEMBER_ID = #{memberId}
 	</update>
 	
-	
+	<update id="updateCateStatus">
+		UPDATE MAIN_CATE SET CATE_STATUS=#{cateStatus}
+		WHERE MAIN_CATE_CODE=#{mainCateCode}
+	</update>
 </mapper>
 
 

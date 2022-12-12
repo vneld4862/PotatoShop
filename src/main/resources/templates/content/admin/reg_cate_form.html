@@ -31,9 +31,12 @@
 					<tr th:unless="${#lists.size(mainCateList)}==0" th:each="mainCate:${mainCateList}">
 						<td><input class="form-check-input mainChk" name="mainCbox" type="checkbox" th:value="${mainCate.mainCateCode}"></td>
 						<td class="text-center mainCountList" th:text="${mainCateStat.count}"></td>
-						<td class="noneText" th:text="${mainCate.mainCateCode}"></td>
+						<td class="noneText mainCateCode" th:text="${mainCate.mainCateCode}"></td>
 						<td th:text="${mainCate.mainCateName}"></td>
-						<td th:text="${mainCate.cateStatus}">
+						<td>
+							<div class="form-check form-switch">
+							  <input class="form-check-input" th:onclick="updateCateStatus(this);" type="checkbox" role="switch" id="flexSwitchCheckChecked" th:checked="${mainCate.cateStatus eq 'USE'}">
+							</div>
 						</td>
 					</tr>
 				</tbody>			</table>
