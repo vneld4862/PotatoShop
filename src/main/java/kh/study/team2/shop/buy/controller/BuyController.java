@@ -63,6 +63,15 @@ public class BuyController {
 		
 		return "content/manage/buy_list";
 	}
+	
+	@GetMapping("/buyResult")
+	public String buyResult(Model model, Authentication authentication) {
+		
+		User user = (User)authentication.getPrincipal();
+		model.addAttribute("memberInfo", memberService.selectMemberInfo(user.getUsername()));
+		
+		return "content/buy/buy_result";
+	}
 		
 	//구매 확정
 	@ResponseBody

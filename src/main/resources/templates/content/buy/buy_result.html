@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	  layout:decorate="~{layout/base_layout}"
+	  xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+
+<div layout:fragment="content"> 
+<div class="container"><br>
+<div class="col-sm-9 col-md-9 col-lg-7 mx-auto">
+
+	<div class="card-body">
+	<div style="margin-top: 1rem;"></div>
+	<h4 class="card-title mb-4">주문완료</h4>
+	<div class="text-center">주문해 주셔서 감사합니다.</div>
+	<div class="text-center" style="margin-top: 1rem;">주문내역에 관한 안내는 <a th:href ="@{/manage/buyList}" style="text-decoration: underline;">구매내역</a>을 통하여 확인 가능합니다.</div>
+	<div style="margin-bottom: 4rem;"></div>
+		<div class="row justify-content-md-center" >
+			<div class="row">
+					<div class="col-12 mb-2">
+						<div class="row">
+							<div class="w-75">
+								<h6>
+								배송 정보
+								</h6>
+							</div>
+						</div>
+					</div>
+				 	<div class="border mb-5">
+						<div class="col-12" style="margin-top: 1rem;">
+						 	<span>수령인</span>
+							<span class=""  style="margin-left: 10rem;" id="buyerName" th:text="${memberInfo.memberName}"></span>
+						</div>
+						<div class="col-12" style="margin-top: 1rem;">
+						 	<span>휴대전화</span>
+							<span class=""  style="margin-left: 9.2rem;" id="buyerTell" th:text="${memberInfo.memberTell}"></span>
+						</div>
+						<div class="col-12" style="margin-top: 1rem;">
+						 	<span>배송지 주소</span>
+							<span class=""  style="margin-left: 8rem;" id="buyerAddr" th:text="${memberInfo.memberAddr}"></span>
+						</div>
+						<div class="input-group" style="margin-top: 1rem;">
+							<span>배송메모</span>
+						</div>
+					</div> 
+				</div> 
+			</div>
+			<div class="text-center">
+				<button class="btn btn-success btn-lg mb-5" type="button" th:onclick="|location.href='@{/item/list}'|">메인 페이지</button>
+			</div>
+		</div>
+	</div>
+</div>			
+</div>
+</html>
