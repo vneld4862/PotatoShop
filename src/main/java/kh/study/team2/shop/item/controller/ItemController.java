@@ -121,7 +121,7 @@ public class ItemController {
 	
 	
 	
-	//상품등록 버튼 클릭 -> 메인화면으로 이동(상품관리페이지 이동으로 변경예정)
+	//상품등록 버튼 클릭
 	@PostMapping("/regItem")
 	public String regItem(ItemVO itemVO
 							, BindingResult bindingResult
@@ -160,9 +160,15 @@ public class ItemController {
 		itemVO.setMemberId(memberId);
 		itemService.insertItem(itemVO);
 		
-		return "redirect:/manage/itemManage";
+		return "redirect:/item/checkRegItem";
 	}
 	
+	//상품등록 확인(alert)을 위한 페이지 생성
+	@GetMapping("/checkRegItem")
+	public String checkRegItem() {
+		
+		return "content/item/check_reg_item";
+	}
 	
 	//상품리스트 테스트
 	@GetMapping("/memberItemList")

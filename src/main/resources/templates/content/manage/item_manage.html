@@ -96,10 +96,10 @@
 					      <td>
 					      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
 					      	 	class="btn btn btn-sm" style="width: 45px; background: #B6E388;">수정</button>
-					        <button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
-					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>
-					      	<!-- <button onclick="deleteCheck(this);" th:data-item-code ="${item.itemCode}"
-					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>  -->
+					        <!-- <button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
+					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button> -->
+					      	<button onclick="deleteCheck(this);" th:data-item-code ="${item.itemCode}"
+					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button> 
 					      </td>
 					    </tr>
 					  
@@ -133,7 +133,7 @@
 		</div>
 	</div>
 
-
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@9"></script>
 <script type="text/javascript" th:src="@{/js/manage/item_manage.js}"></script>
 </div>
 </html>

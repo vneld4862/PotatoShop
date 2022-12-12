@@ -62,7 +62,12 @@ function changeStatus(statSelect){
 	    type: 'post',
 	    data:{'salesStatus':salesStatus, 'itemCode':itemCode}, //필요한 데이터
 	    success: function(salesStatus) {
-	      alert('판매상태를 변경하였습니다.');
+	      //alert('판매상태를 변경하였습니다.');
+	       Swal.fire(
+                    'ok',
+                    '판매상태가 변경되었습니다.',
+                    'success'
+                    )
 	    },
 	    error: function(){
 	       alert('업데이트 실패');
@@ -73,16 +78,26 @@ function changeStatus(statSelect){
 
 //상품 삭제 버튼 클릭 시
 function deleteCheck(deleteBtn){
-	//모달 -> 확인 : 삭제
-	        //취소: 모달지우기
-	   const itemCode  = deleteBtn.dataset.itemCode;
-	 alert(itemCode);
-//	 const result = confirm('해당 상품을 삭제하시겠습니까?')
-	 
-//	 if(result){
-//		location.href = '/manage/deleteItem()';
-		
-//	}
+	 const itemCode  = deleteBtn.dataset.itemCode;
+	  Swal.fire(
+                   { title: '해당 상품을 삭제하시겠습니까?',
+				 //	 text: '다시 되돌릴 수 없습니다. 신중하세요.',
+				  	 icon: 'warning',
+				   
+				  	 showCancelButton: true, // cancel버튼 보이기. 기본은 원래 없음
+				  	 confirmButtonColor: '#367E18', // confrim 버튼 색깔 지정
+				  	 cancelButtonColor: '#B2B2B2', // cancel 버튼 색깔 지정
+				  	 confirmButtonText: '삭제', // confirm 버튼 텍스트 지정
+				  	 cancelButtonText: '취소', // cancel 버튼 텍스트 지정
+                   } ).then(result => {
+   // 만약 Promise리턴을 받으면,
+   if (result.isConfirmed) { // 만약 모달창에서 confirm 버튼을 눌렀다면
+   
+   		location.href = '/manage/deleteItem?itemCode='+ itemCode;
+   		
+   }
+});
+                   
 	 
 }
 
