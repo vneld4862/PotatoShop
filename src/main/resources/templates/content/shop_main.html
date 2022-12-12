@@ -105,7 +105,7 @@
 				</div>
 				<div>
 					<th:block th:each="cookieImg:${cookie_imgName}">
-						<img th:onclick="|location.href='@{/item/itemDetail(itemCode=${cookieImg.itemCode})}'|" class="border-bottom border-top mb-3" alt="..." th:src="|@{/images/}${cookieImg}|" width="100%;" style="min-height: 110px;min-width: 100%;cursor: pointer;">
+						<img th:onclick="|location.href='@{/item/itemDetail(itemCode=${cookieImg.itemCode})}'|" class="border-bottom border-top mb-3" alt="..." th:src="|@{/images/}${cookieImg.attachedName}|" width="100%;" style="min-height: 110px;min-width: 100%;cursor: pointer;">
 					</th:block>
 					
 					<div class="row justify-content-center" th:if="${#lists.isEmpty(cookie_imgName)}">
