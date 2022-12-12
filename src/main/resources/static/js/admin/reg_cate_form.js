@@ -28,10 +28,9 @@ function mainCate(selectBtn)
 	let mainCount=parseInt(mainCountList[mainCountList.length-1].innerText);
 	const mainCateList=document.querySelector('#mainCateList');
 	const textChk=mainCateList.querySelector('.noneText');
-	let vowelsAndConsonants= /([^가-힣\x20])/i;
-	let specialCharacter = /^[0-9a-zA-Z가-힣ㄱ-ㅎㅏ-ㅣ\x20]*$/gi;
+	let specialCharacter = /^[ㄱ-ㅎㅏ-ㅣ\x20]*$/gi;
 	
-	if(mainCateName=='' || mainCateName.match(vowelsAndConsonants) ||mainCateName.match(specialCharacter))
+	if(mainCateName=='' || mainCateName.match(specialCharacter))
 	{
 		alert('입력이 잘못되었습니다.\n다시입력해주십시오.')
 		return
@@ -52,9 +51,9 @@ function mainCate(selectBtn)
 			let str='<tr>';
 			str+=`<td><input class="form-check-input mainChk" name="mainCbox" type="checkbox" value="${nextMainCateCode}"></td>`;
 			str+=`<td class="text-center mainCountList">${mainCount+1}</td>`;
-			str+=`<td>${nextMainCateCode}</td>`;
-			str+=`<td class="noneText">${mainCateName}</td>`;
-			str+=`<td>USE</td>`;
+			str+=`<td class="noneText mainCateCode">${nextMainCateCode}</td>`;
+			str+=`<td>${mainCateName}</td>`;
+			str+=`<td><input class="form-check-input form" onclick="updateCateStatus(this);" type="checkbox" role="switch" id="flexSwitchCheckChecked" checked></td>`;
 			str+='</tr>';
 			mainCateList.insertAdjacentHTML('beforeend',str);
 			mainCount+=1;

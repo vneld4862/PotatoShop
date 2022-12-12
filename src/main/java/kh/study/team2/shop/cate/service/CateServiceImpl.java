@@ -78,7 +78,7 @@ public class CateServiceImpl implements CateService{
 	
 	@Override
 	public void deleteDetailCateList(DetailCateVO detailCateVO) {
-		sqlSession.delete("cateMapper.deleteSubCateCode",detailCateVO);
+		sqlSession.delete("cateMapper.deleteDetailCateCode",detailCateVO);
 	}
 
 	@Override
