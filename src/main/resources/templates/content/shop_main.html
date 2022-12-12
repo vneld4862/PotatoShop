@@ -27,7 +27,7 @@
 							</li>
 						</ul>
 						
-						<ul class="M01" th:each="mainCate:${mainCateList}" th:unless="${#lists.size(mainCateList)}==0">
+						<ul class="M01" th:each="mainCate:${mainCateList}" th:unless="${#lists.size(mainCateList)}==0" th:if="${mainCate.cateStatus eq 'USE'}">
 							<li>
 								<a th:href="@{/item/list(mainCode=${mainCate.mainCateCode})}">[[${mainCate.mainCateName}]]</a>
 								<ul class="M02">
