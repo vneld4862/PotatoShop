@@ -87,17 +87,17 @@
 									<th:block th:unless="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정을 안 했으면 -->
 										<input type="button" class="btn btn-success btn-sm" value="구매 확정" th:onclick="isConfirmed(this);">
 									</th:block>
-									<!-- 구매 확정 안 하면 후기 작성 안 되게 -->
-									<th:block th:if="${buy.itemVO.isWritten} == 'N'"> <!-- 후기 작성 안 했으면 -->									
-										<th:block th:if="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정 O -> 후기 작성 가능 -->
-											<input type="button" class="btn btn-warning btn-sm" value="후기 작성" th:onclick="regReview(this);" >
+									<!-- 구매 확정 안 하면 리뷰 작성 안 되게 -->
+									<th:block th:if="${buy.itemVO.isWritten} == 'N'"> <!-- 리뷰 작성 안 했으면 -->									
+										<th:block th:if="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정 O -> 리뷰 작성 가능 -->
+											<input type="button" class="btn btn-warning btn-sm" value="리뷰 작성" th:onclick="regReview(this);" >
 										</th:block>
-										<th:block th:unless="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정 X -> 후기 작성 불가능 -->
-											<input type="button" class="btn btn-warning btn-sm" value="후기 작성" disabled>
+										<th:block th:unless="${buy.isConfirmed} == 'Y'"> <!-- 구매 확정 X -> 리뷰 작성 불가능 -->
+											<input type="button" class="btn btn-warning btn-sm" value="리뷰 작성" disabled>
 										</th:block>										
 									</th:block>
-									<th:block th:unless="${buy.itemVO.isWritten} == 'N'"> <!-- 후기 작성 했으면 -->
-										<input type="button" class="btn btn-warning btn-sm" value="후기 작성" disabled>
+									<th:block th:unless="${buy.itemVO.isWritten} == 'N'"> <!-- 리뷰 작성 했으면 -->
+										<input type="button" class="btn btn-warning btn-sm" value="리뷰 작성" disabled>
 									</th:block>
 								</td>
 							</tr>
