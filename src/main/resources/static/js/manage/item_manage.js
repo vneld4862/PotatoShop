@@ -72,10 +72,18 @@ function changeStatus(statSelect){
 }
 
 //상품 삭제 버튼 클릭 시
-function deleteCheck(){
+function deleteCheck(deleteBtn){
 	//모달 -> 확인 : 삭제
 	        //취소: 모달지우기
-	 alert('삭제체크');
+	   const itemCode  = deleteBtn.dataset.itemCode;
+	 alert(itemCode);
+//	 const result = confirm('해당 상품을 삭제하시겠습니까?')
+	 
+//	 if(result){
+//		location.href = '/manage/deleteItem()';
+		
+//	}
+	 
 }
 
 

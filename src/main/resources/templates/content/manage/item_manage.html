@@ -96,10 +96,10 @@
 					      <td>
 					      	<button th:onclick="|location.href='@{/manage/updateForm(itemCode=${item.itemCode})}'|"
 					      	 	class="btn btn btn-sm" style="width: 45px; background: #B6E388;">수정</button>
-					      	<button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
+					        <button th:onclick="|location.href='@{/manage/deleteItem(itemCode=${item.itemCode})}'|"
 					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>
-					      	<!-- <button onclick="deleteCheck();"
-					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button> -->
+					      	<!-- <button onclick="deleteCheck(this);" th:data-item-code ="${item.itemCode}"
+					      		class="btn btn-secondary btn-sm" style="width: 45px;">삭제</button>  -->
 					      </td>
 					    </tr>
 					  
