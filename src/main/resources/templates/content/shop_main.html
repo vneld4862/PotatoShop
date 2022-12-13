@@ -26,7 +26,65 @@
 								<a style="text-align: center;">등록된 카테고리가 없습니다.</a>
 							</li>
 						</ul>
-						
+
+						<ul class="M01">
+							<li>
+								<a>지역</a>
+								<ul class="M02">
+									<li>
+										<a th:href="@{/item/list(tradeAddr='서울')}">서울</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='경기')}">경기</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='광주')}">광주</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='대구')}">대구</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='대전')}">대전</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='부산')}">부산</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='울산')}">울산</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='인천')}">인천</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='강원')}">강원</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='경남')}">경남</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='경북')}">경북</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='전남')}">전남</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='전북')}">전북</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='충남')}">충남</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='충북')}">충북</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='제주')}">제주</a>
+									</li>
+									<li>
+										<a th:href="@{/item/list(tradeAddr='세종')}">세종</a>
+									</li>
+								</ul>
+							</li>
+						</ul>						
 						<ul class="M01" th:each="mainCate:${mainCateList}" th:unless="${#lists.size(mainCateList)}==0" th:if="${mainCate.cateStatus eq 'USE'}">
 							<li>
 								<a th:href="@{/item/list(mainCode=${mainCate.mainCateCode})}">[[${mainCate.mainCateName}]]</a>

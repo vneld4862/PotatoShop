@@ -34,6 +34,7 @@ public class ItemServiceImpl implements ItemService {
 	//상품목록 조회
 	@Override
 	public List<ItemVO> selectItemList(ItemVO itemVO) {
+		System.out.println("@@@@@@@@@@"+itemVO.getTradeAddr());
 		return sqlSession.selectList("itemMapper.selectItemList",itemVO);
 	}
 

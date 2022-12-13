@@ -127,6 +127,9 @@
 			<if test="detailCateCode != null and !detailCateCode.equals('')">
 			AND DETAIL_CATE_CODE=#{detailCateCode}
 			</if>
+			<if test="tradeAddr != null and !tradeAddr.equals('')">
+			AND TRADE_ADDR LIKE ('%'||#{tradeAddr}||'%')
+			</if>
 		    ORDER BY ITEM_CODE DESC
 		))
 		WHERE ROW_NUM &gt;= #{startNum} AND ROW_NUM &lt;= #{endNum}
@@ -316,6 +319,9 @@
 		</if>
 		<if test="detailCateCode != null and !detailCateCode.equals('')">
 		AND DETAIL_CATE_CODE=#{detailCateCode}
+		</if>
+		<if test="tradeAddr != null and !tradeAddr.equals('')">
+		AND TRADE_ADDR LIKE ('%'||#{tradeAddr}||'%')
 		</if>
 	</select>
 	

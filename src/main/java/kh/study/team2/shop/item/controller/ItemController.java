@@ -76,6 +76,7 @@ public class ItemController {
 					, Authentication authentication
 					, HttpSession session) {
 		
+		
 		if(mainCode != null)
 		{
 			itemVO.setMainCateCode(mainCode);
