@@ -233,6 +233,7 @@ public class ManageController {
 //		System.out.println("@@@@@@@@" + subImgCnt);
 //		model.addAttribute("subImgCnt", subImgCnt);
 		
+		model.addAttribute("menu", menu);
 		return "content/manage/update_item";
 	}
 	
