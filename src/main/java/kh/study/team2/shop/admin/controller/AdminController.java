@@ -62,11 +62,11 @@ public class AdminController {
 			User user=(User)authentication.getPrincipal();
 			
 			//로그인할 때 top에 닉네임 가지고 오기
-			memberVO = memberService.selectMemberInfo(user.getUsername());
-			session.setAttribute("nick", memberVO.getMemberNickName());
+			MemberVO loginVO = memberService.selectMemberInfo(user.getUsername());
+			session.setAttribute("nick", loginVO.getMemberNickName());
 			
 		}
-		
+
 		//회원 목록 조회
 		model.addAttribute("memberList", adminService.selectMemberList(memberVO));
 		

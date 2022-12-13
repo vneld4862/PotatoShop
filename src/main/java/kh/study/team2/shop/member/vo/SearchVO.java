@@ -1,8 +1,8 @@
 package kh.study.team2.shop.member.vo;
 
-import groovy.transform.ToString;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 @ToString
 @Getter
