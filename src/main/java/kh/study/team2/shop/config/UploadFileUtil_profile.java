@@ -12,10 +12,10 @@ public class UploadFileUtil_profile {
 	//파일이 첨부될 경로
 
 	//예진 경로
-//	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
+	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
 //	private static final String UPLOAD_PATH = "C:\\dev\\workspaceSTS\\cloneSpringTest\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//연지 경로
-	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
+//	private static final String UPLOAD_PATH = "D:\\workspaceSTS\\project\\PotatoShop\\src\\main\\resources\\static\\images\\";
 //	private static final String UPLOAD_PATH = "C:\\Users\\user\\git\\PotatoShop\\src\\main\\resources\\static\\images\\";
 	//명현 경로
 //	private static final String UPLOAD_PATH = "C:\\workspace\\PotatoShop\\src\\main\\resources\\static\\images\\";

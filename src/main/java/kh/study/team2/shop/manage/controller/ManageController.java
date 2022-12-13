@@ -166,7 +166,7 @@ public class ManageController {
 		List<String> wishCodeList = java.util.Arrays.asList(wishCodeArr);
 		wishVO.setWishCodeList(wishCodeList);
 		wishService.deleteWish(wishVO);
-		return"redirect:/item/memberItemList";
+		return"redirect:/manage/myMarket";
 	}
 
 	
