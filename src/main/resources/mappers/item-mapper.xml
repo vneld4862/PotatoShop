@@ -251,7 +251,7 @@
                             FROM SHOP_ITEM
                             WHERE ITEM_CODE = #{itemCode})
 		AND IS_MAIN = 'Y'
-		AND SALES_STATUS = 'ON_SALE'
+	    AND SALES_STATUS = 'ON_SALE'
 		AND ROWNUM <![CDATA[<=]]> 4
 		ORDER BY ITEM_CODE DESC
 	</select>
